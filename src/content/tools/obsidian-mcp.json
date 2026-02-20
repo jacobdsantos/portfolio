@@ -1,0 +1,9 @@
+{
+  "name": "Obsidian MCP",
+  "fullName": "Research Knowledge Base Server",
+  "description": "MCP server providing full CRUD access to an Obsidian vault containing threat research, SPOT reports, and campaign analysis. 11 tools: search, read, create, update, tags, backlinks.",
+  "impact": "Unified AI-searchable knowledge base for all threat research",
+  "tech": ["Node.js", "MCP SDK", "Obsidian", "Markdown"],
+  "status": "Production",
+  "order": 7
+}
