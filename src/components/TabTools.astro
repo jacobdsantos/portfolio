@@ -6,11 +6,21 @@ const tools = allTools
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
   .map(entry => entry.data);
 
-const statusColors: Record<string, string> = {
-  'Production': 'text-accent-success',
-  'Active Dev': 'text-accent-warning',
-  'Planned': 'text-text-muted',
+const statusConfig: Record<string, { color: string; dot: string }> = {
+  'Production': { color: 'text-accent-primary', dot: 'bg-accent-primary' },
+  'Active Dev': { color: 'text-accent-warning', dot: 'bg-accent-warning' },
+  'Planned': { color: 'text-text-muted', dot: 'bg-text-muted' },
 };
+
+// Each tool gets a unique accent color scheme
+const toolAccents = [
+  { bg: 'bg-accent-primary/10', border: 'border-accent-primary/20', text: 'text-accent-primary' },
+  { bg: 'bg-violet-500/10', border: 'border-violet-500/20', text: 'text-violet-400' },
+  { bg: 'bg-rose-500/10', border: 'border-rose-500/20', text: 'text-rose-400' },
+  { bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', text: 'text-cyan-400' },
+  { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400' },
+  { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400' },
+];
 
 const toolIcons: Record<string, string> = {
   'TITAs': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
@@ -26,40 +36,62 @@ const defaultIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" view
 
 <div class="content-card">
   <h2 class="section-title">Tools & Automation</h2>
-  <p class="text-text-secondary text-sm mb-6">
+  <p class="section-subtitle">
     Production systems used daily by our threat hunting team
     <span class="text-text-muted">— not side projects, operational infrastructure.</span>
   </p>
 
   <div class="grid sm:grid-cols-2 gap-3">
-    {tools.map(tool => (
-      <div class="card !p-4">
-        <div class="flex items-start justify-between mb-3">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center text-accent-primary shrink-0" set:html={toolIcons[tool.name] || defaultIcon} />
-            <div>
-              <h3 class="text-text-primary font-medium text-sm">{tool.name}</h3>
-              <p class="text-text-muted text-[10px]">{tool.fullName}</p>
+    {tools.map((tool, idx) => {
+      const accent = toolAccents[idx % toolAccents.length];
+      const status = statusConfig[tool.status] || statusConfig['Planned'];
+      return (
+        <div class="card !p-4 group">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2.5">
+              <div class={`w-9 h-9 rounded-xl ${accent.bg} border ${accent.border} flex items-center justify-center ${accent.text} shrink-0 transition-transform duration-300 group-hover:scale-110`} set:html={toolIcons[tool.name] || defaultIcon} />
+              <div>
+                <h3 class="text-text-primary font-semibold text-sm">{tool.name}</h3>
+                <p class="text-text-muted text-[10px] font-mono">{tool.fullName}</p>
+              </div>
             </div>
+            <span class={`inline-flex items-center gap-1.5 text-[10px] font-mono ${status.color}`}>
+              <span class={`w-1.5 h-1.5 rounded-full ${status.dot}`}></span>
+              {tool.status}
+            </span>
           </div>
-          <span class={`text-[10px] font-mono ${statusColors[tool.status]}`}>{tool.status}</span>
-        </div>
 
-        <p class="text-text-muted text-xs leading-relaxed mb-3">{tool.description}</p>
+          <p class="text-text-muted text-xs leading-relaxed mb-3">{tool.description}</p>
 
-        <div class="flex items-center gap-1.5 mb-3">
-          <svg class="w-3 h-3 text-accent-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-          </svg>
-          <span class="text-text-secondary text-[10px]">{tool.impact}</span>
-        </div>
+          <div class="flex items-center gap-1.5 mb-3 px-2.5 py-1.5 rounded-lg bg-accent-primary/[0.04] border border-accent-primary/[0.06]">
+            <svg class="w-3 h-3 text-accent-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+            <span class="text-text-secondary text-[10px]">{tool.impact}</span>
+          </div>
 
-        <div class="flex flex-wrap gap-1">
-          {tool.tech.map(t => (
-            <span class="tag-cyan !text-[8px]">{t}</span>
-          ))}
+          <div class="flex flex-wrap gap-1">
+            {tool.tech.map(t => (
+              <span class="tag-cyan !text-[8px]">{t}</span>
+            ))}
+          </div>
         </div>
+      );
+    })}
+  </div>
+
+  <!-- Operational summary -->
+  <div class="mt-6 rounded-xl bg-bg-secondary/50 border border-white/[0.06] p-4">
+    <div class="flex items-center gap-2 mb-2">
+      <div class="w-5 h-5 rounded-md bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center">
+        <svg class="w-3 h-3 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
       </div>
-    ))}
+      <span class="text-text-primary text-xs font-semibold">Built for the team, used every day</span>
+    </div>
+    <p class="text-text-muted text-xs leading-relaxed">
+      Every tool here was born from a real workflow pain point. Together they save our team hundreds of hours per month on inquiry processing, report generation, and threat enrichment.
+    </p>
   </div>
 </div>

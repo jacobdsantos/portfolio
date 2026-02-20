@@ -8,64 +8,82 @@ const engagements = allSpeaking
 
 const typeColors: Record<string, string> = {
   'Training': 'tag-amber',
-  'Speaker': 'tag-blue',
+  'Speaker': 'tag-purple',
 };
+
+// Unique accent per engagement
+const engAccents = [
+  'from-red-500/20 to-orange-500/10',
+  'from-emerald-500/20 to-teal-500/10',
+  'from-blue-500/20 to-indigo-500/10',
+  'from-violet-500/20 to-purple-500/10',
+];
 
 const flagIcons: Record<string, string> = {
-  'JP': `<svg class="w-5 h-3.5" viewBox="0 0 640 480"><rect width="640" height="480" fill="#fff"/><circle cx="320" cy="240" r="120" fill="#bc002d"/></svg>`,
-  'OM': `<div class="w-5 h-3.5 rounded-sm overflow-hidden flex flex-col"><div class="flex-1 bg-white"></div><div class="flex-1 bg-green-600"></div><div class="flex-1 bg-red-600"></div></div>`,
-  'INTL': `<div class="w-5 h-3.5 bg-blue-600 rounded-sm flex items-center justify-center text-[6px] text-white font-bold">INTL</div>`,
-  'CONF': `<div class="w-5 h-3.5 bg-accent-primary/20 rounded-sm flex items-center justify-center border border-accent-primary/30"><svg class="w-3 h-3 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>`,
+  'JP': `<svg class="w-6 h-4" viewBox="0 0 640 480"><rect width="640" height="480" fill="#fff"/><circle cx="320" cy="240" r="120" fill="#bc002d"/></svg>`,
+  'OM': `<div class="w-6 h-4 rounded-sm overflow-hidden flex flex-col"><div class="flex-1 bg-white"></div><div class="flex-1 bg-green-600"></div><div class="flex-1 bg-red-600"></div></div>`,
+  'INTL': `<div class="w-6 h-4 bg-blue-600/80 rounded-sm flex items-center justify-center text-[7px] text-white font-bold font-mono">INTL</div>`,
+  'CONF': `<div class="w-6 h-4 bg-accent-primary/15 rounded-sm flex items-center justify-center border border-accent-primary/20"><svg class="w-3 h-3 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>`,
 };
 
-const defaultFlag = `<div class="w-5 h-3.5 bg-bg-secondary rounded-sm"></div>`;
+const defaultFlag = `<div class="w-6 h-4 bg-bg-surface rounded-sm"></div>`;
 ---
 
 <div class="content-card">
   <h2 class="section-title">Speaking & Training</h2>
-  <p class="text-text-secondary text-sm mb-6">
+  <p class="section-subtitle">
     International cybersecurity trainer for government agencies and law enforcement.
     <span class="text-text-muted">I don't just find threats — I teach others how to defend against them.</span>
   </p>
 
   <div class="space-y-3">
-    {engagements.map(eng => (
-      <div class="card !p-4">
-        <div class="flex items-start gap-4">
-          <div class="shrink-0 mt-0.5 w-10 h-10 rounded-xl bg-bg-secondary flex items-center justify-center" set:html={flagIcons[eng.flag] || defaultFlag} />
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <h3 class="text-text-primary font-medium text-sm">{eng.title}</h3>
-              <span class={typeColors[eng.type]}>{eng.type}</span>
+    {engagements.map((eng, idx) => (
+      <div class="card !p-0 overflow-hidden group">
+        <!-- Gradient accent bar -->
+        <div class={`h-1 bg-gradient-to-r ${engAccents[idx % engAccents.length]}`}></div>
+        <div class="p-4">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 mt-0.5 w-11 h-11 rounded-xl bg-bg-secondary/80 border border-white/[0.06] flex items-center justify-center transition-transform duration-300 group-hover:scale-110" set:html={flagIcons[eng.flag] || defaultFlag} />
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <h3 class="text-text-primary font-semibold text-sm group-hover:text-accent-primary transition-colors">{eng.title}</h3>
+                <span class={typeColors[eng.type]}>{eng.type}</span>
+              </div>
+              <p class="text-accent-secondary text-xs font-mono mb-1.5">{eng.org} — {eng.location}</p>
+              <p class="text-text-muted text-xs leading-relaxed">{eng.description}</p>
             </div>
-            <p class="text-accent-secondary text-xs font-mono mb-1.5">{eng.org} — {eng.location}</p>
-            <p class="text-text-muted text-xs leading-relaxed">{eng.description}</p>
           </div>
         </div>
       </div>
     ))}
   </div>
 
-  <!-- Global reach -->
-  <div class="mt-6 rounded-xl bg-bg-secondary/50 border border-white/[0.06] p-4 text-center">
-    <p class="text-text-muted text-xs">
+  <!-- Global reach stats -->
+  <div class="mt-6 rounded-xl bg-bg-secondary/50 border border-white/[0.06] p-5">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-4 h-4 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582" />
+      </svg>
+      <span class="text-text-primary text-xs font-semibold">Global Reach</span>
+    </div>
+    <p class="text-text-muted text-xs mb-4">
       Training delivered across
       <span class="text-accent-primary font-medium">Asia</span>,
       <span class="text-accent-primary font-medium">Middle East</span>, and
       <span class="text-accent-primary font-medium">online</span> for international law enforcement
     </p>
-    <div class="flex justify-center gap-6 mt-3">
-      <div class="text-center">
+    <div class="grid grid-cols-3 gap-3">
+      <div class="text-center py-3 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
         <div class="text-lg font-bold text-accent-primary font-mono">5+</div>
-        <div class="text-text-muted text-[10px]">Countries</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">Countries</div>
       </div>
-      <div class="text-center">
-        <div class="text-lg font-bold text-accent-primary font-mono">Gov</div>
-        <div class="text-text-muted text-[10px]">Agencies</div>
+      <div class="text-center py-3 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
+        <div class="text-lg font-bold text-accent-secondary font-mono">Gov</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">Agencies</div>
       </div>
-      <div class="text-center">
-        <div class="text-lg font-bold text-accent-primary font-mono">INTERPOL</div>
-        <div class="text-text-muted text-[10px]">Partner</div>
+      <div class="text-center py-3 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
+        <div class="text-lg font-bold text-accent-tertiary font-mono">INTERPOL</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">Partner</div>
       </div>
     </div>
   </div>

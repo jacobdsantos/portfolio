@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,17 +13,21 @@
 
   body {
     @apply bg-bg-primary text-text-primary font-sans;
+    background-image:
+      linear-gradient(rgba(0, 223, 162, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 223, 162, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 
   ::selection {
-    @apply bg-accent-primary/30 text-white;
+    @apply bg-accent-primary/25 text-white;
   }
 
   ::-webkit-scrollbar {
-    width: 4px;
+    width: 5px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    @apply bg-bg-primary;
   }
   ::-webkit-scrollbar-thumb {
     @apply bg-accent-primary/20 rounded-full;
@@ -36,33 +40,46 @@
 @layer components {
   /* Sidebar card */
   .sidebar-card {
-    @apply bg-bg-card border border-white/[0.06] rounded-2xl p-6 shadow-xl shadow-black/20;
+    @apply bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] rounded-2xl p-6;
+    box-shadow:
+      0 0 0 1px rgba(0, 223, 162, 0.04),
+      0 20px 50px -12px rgba(0, 0, 0, 0.5);
   }
 
   /* Content panel card */
   .content-card {
-    @apply bg-bg-card border border-white/[0.06] rounded-2xl p-6 md:p-8 shadow-xl shadow-black/20;
+    @apply bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] rounded-2xl p-6 md:p-8;
+    box-shadow:
+      0 0 0 1px rgba(0, 223, 162, 0.04),
+      0 20px 50px -12px rgba(0, 0, 0, 0.5);
   }
 
   /* Generic inner card */
   .card {
-    @apply bg-bg-secondary/50 border border-white/[0.06] rounded-xl p-5
-           transition-all duration-300 hover:border-accent-primary/20
-           hover:bg-bg-hover hover:shadow-lg hover:shadow-accent-primary/5;
+    @apply bg-bg-surface/60 border border-white/[0.06] rounded-xl p-5
+           transition-all duration-300;
+  }
+  .card:hover {
+    @apply border-accent-primary/15 bg-bg-hover/80;
+    box-shadow: 0 0 30px -10px rgba(0, 223, 162, 0.1);
   }
 
   /* Tags */
   .tag {
-    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wide
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-mono uppercase tracking-wider
            border transition-colors duration-200;
   }
 
-  .tag-blue {
+  .tag-green {
     @apply tag bg-accent-primary/10 text-accent-primary border-accent-primary/20;
   }
 
-  .tag-cyan {
+  .tag-purple {
     @apply tag bg-accent-secondary/10 text-accent-secondary border-accent-secondary/20;
+  }
+
+  .tag-cyan {
+    @apply tag bg-accent-tertiary/10 text-accent-tertiary border-accent-tertiary/20;
   }
 
   .tag-amber {
@@ -73,29 +90,33 @@
     @apply tag bg-accent-danger/10 text-accent-danger border-accent-danger/20;
   }
 
-  .tag-green {
-    @apply tag bg-accent-success/10 text-accent-success border-accent-success/20;
+  .tag-blue {
+    @apply tag bg-accent-tertiary/10 text-accent-tertiary border-accent-tertiary/20;
   }
 
-  /* Section headings inside content */
+  /* Section headings */
   .section-title {
-    @apply text-2xl font-semibold text-text-primary mb-6;
+    @apply text-2xl font-bold text-text-primary mb-1 tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-text-secondary text-sm mb-6;
   }
 
   /* Nav tab */
   .nav-tab {
-    @apply px-4 py-2.5 text-sm font-medium text-text-muted rounded-xl
+    @apply px-5 py-2.5 text-sm font-medium text-text-muted rounded-xl
            transition-all duration-200 cursor-pointer select-none
-           hover:text-text-primary hover:bg-white/5;
+           hover:text-text-primary hover:bg-white/[0.04];
   }
 
   .nav-tab.active {
-    @apply text-accent-primary bg-accent-primary/10;
+    @apply text-accent-primary bg-accent-primary/[0.08] border border-accent-primary/20;
   }
 
   /* Separator */
   .sep {
-    @apply border-t border-white/[0.06] my-4;
+    @apply border-t border-white/[0.06] my-5;
   }
 
   /* Info row */
@@ -104,13 +125,14 @@
   }
 
   .info-icon {
-    @apply w-8 h-8 rounded-lg bg-bg-secondary flex items-center justify-center text-accent-primary shrink-0;
+    @apply w-9 h-9 rounded-xl bg-accent-primary/[0.06] border border-accent-primary/10
+           flex items-center justify-center text-accent-primary shrink-0;
   }
 
   /* Tab content panel animation */
   .tab-panel {
     display: none;
-    animation: fadeSlideIn 0.3s ease-out;
+    animation: fadeSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .tab-panel.active {
@@ -120,11 +142,60 @@
   @keyframes fadeSlideIn {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Research card with thumbnail */
+  .research-card {
+    @apply bg-bg-surface/60 border border-white/[0.06] rounded-xl overflow-hidden
+           transition-all duration-300 cursor-pointer;
+  }
+  .research-card:hover {
+    @apply border-accent-primary/20;
+    box-shadow: 0 8px 40px -8px rgba(0, 223, 162, 0.12);
+    transform: translateY(-2px);
+  }
+  .research-card:hover .research-thumb {
+    transform: scale(1.05);
+  }
+
+  .research-thumb {
+    @apply transition-transform duration-500 ease-out;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8;
+    background: rgba(7, 9, 15, 0.85);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .modal-content {
+    @apply bg-bg-card border border-white/[0.08] rounded-2xl overflow-hidden
+           w-full max-w-5xl max-h-[90vh] flex flex-col;
+    box-shadow: 0 0 80px -20px rgba(0, 223, 162, 0.15);
+    animation: modalSlideIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
     }
   }
 }

@@ -30,28 +30,31 @@ const stats = [
 <div class="sidebar-card">
   <!-- Avatar & identity -->
   <div class="text-center mb-5">
-    <div class="w-24 h-24 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 border border-accent-primary/20 flex items-center justify-center">
-      <span class="text-3xl font-bold bg-gradient-to-br from-accent-primary to-accent-secondary bg-clip-text text-transparent font-mono">JS</span>
+    <div class="relative w-24 h-24 mx-auto mb-4">
+      <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary/30 via-accent-secondary/20 to-accent-danger/20 animate-glow"></div>
+      <div class="relative w-full h-full rounded-2xl bg-bg-secondary border border-accent-primary/20 flex items-center justify-center overflow-hidden">
+        <span class="text-3xl font-bold bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent font-mono tracking-tighter">JS</span>
+      </div>
     </div>
-    <h1 class="text-xl font-semibold text-text-primary">Jacob Santos</h1>
-    <div class="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-lg bg-bg-secondary text-xs font-mono text-text-secondary">
+    <h1 class="text-xl font-bold text-text-primary tracking-tight">Jacob Santos</h1>
+    <div class="inline-flex items-center gap-2 mt-2.5 px-3.5 py-1.5 rounded-lg bg-accent-primary/[0.06] border border-accent-primary/10 text-xs font-mono text-accent-primary">
       <span class="relative flex h-1.5 w-1.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-success opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-success"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-primary"></span>
       </span>
-      Senior Threat Researcher
+      Sr. Threat Researcher
     </div>
   </div>
 
   <div class="sep"></div>
 
   <!-- Contact info -->
-  <div class="space-y-3">
+  <div class="space-y-3.5">
     {contacts.map(contact => (
       <div class="info-row">
         <div class="info-icon" set:html={contact.icon} />
         <div class="min-w-0">
-          <p class="text-text-muted text-[10px] uppercase tracking-wider">{contact.label}</p>
+          <p class="text-text-muted text-[10px] uppercase tracking-widest font-mono">{contact.label}</p>
           {contact.href ? (
             <a href={contact.href} target={contact.href.startsWith('http') ? '_blank' : undefined} rel={contact.href.startsWith('http') ? 'noopener' : undefined}
               class="text-text-secondary text-xs hover:text-accent-primary transition-colors truncate block">
@@ -70,9 +73,9 @@ const stats = [
   <!-- Quick stats -->
   <div class="grid grid-cols-3 gap-2">
     {stats.map(stat => (
-      <div class="text-center py-2 rounded-lg bg-bg-secondary">
-        <div class="text-base font-bold text-accent-primary font-mono">{stat.value}</div>
-        <div class="text-text-muted text-[10px] mt-0.5">{stat.label}</div>
+      <div class="text-center py-2.5 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
+        <div class="text-lg font-bold text-accent-primary font-mono">{stat.value}</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">{stat.label}</div>
       </div>
     ))}
   </div>
@@ -81,14 +84,14 @@ const stats = [
 
   <!-- Specializations -->
   <div>
-    <h3 class="text-text-muted text-[10px] uppercase tracking-wider mb-3">Specializations</h3>
+    <h3 class="text-text-muted text-[9px] uppercase tracking-widest font-mono mb-3">Specializations</h3>
     <div class="flex flex-wrap gap-1.5">
-      <span class="tag-blue">Ransomware</span>
-      <span class="tag-blue">APT Tracking</span>
-      <span class="tag-cyan">Threat Hunting</span>
+      <span class="tag-red">Ransomware</span>
+      <span class="tag-purple">APT Tracking</span>
+      <span class="tag-green">Threat Hunting</span>
       <span class="tag-amber">BYOVD</span>
       <span class="tag-cyan">Automation</span>
-      <span class="tag-blue">MITRE ATT&CK</span>
+      <span class="tag-purple">MITRE ATT&CK</span>
     </div>
   </div>
 </div>
