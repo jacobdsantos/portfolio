@@ -2,9 +2,13 @@
   "title": "Multistage RA World Ransomware",
   "date": "Mar 2024",
   "url": "https://www.trendmicro.com/en_us/research/24/c/multistage-ra-world-ransomware.html",
-  "tags": ["Ransomware", "GPO Abuse", "Safe Mode"],
+  "tags": [
+    "Ransomware",
+    "GPO Abuse",
+    "Safe Mode"
+  ],
   "description": "Analyzed RA World using GPO-distributed payloads, Safe Mode abuse for defense evasion, and Babuk-derived encryption.",
   "summary": "RA World ransomware employs a sophisticated multistage attack chain that abuses legitimate Windows infrastructure for maximum impact. The operators distribute their payloads through Group Policy Objects (GPO), ensuring enterprise-wide deployment across Active Directory environments. A key evasion technique involves rebooting infected machines into Safe Mode, where most security products don't load, before executing the encryption routine. The ransomware itself is derived from Babuk source code with modifications to the encryption implementation. This article traces the full kill chain from initial domain compromise through GPO abuse to encryption, with detailed analysis of each stage.",
   "source": "Trend Micro Research Blog",
-  "order": 8
+  "order": 16
 }

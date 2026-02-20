@@ -1,10 +1,14 @@
 {
   "title": "Revisiting UNC3886 Tactics",
   "date": "Jul 2025",
-  "url": "https://www.trendmicro.com/en_us/research/25/g/revisiting-unc3886.html",
-  "tags": ["APT", "China-Nexus", "Espionage"],
+  "url": "https://www.trendmicro.com/en_us/research/25/g/revisiting-unc3886-tactics-to-defend-against-present-risk.html",
+  "tags": [
+    "APT",
+    "China-Nexus",
+    "Espionage"
+  ],
   "description": "Revisiting the tactics of UNC3886, a China-nexus threat actor targeting network edge devices and virtualization infrastructure.",
   "summary": "UNC3886 is a sophisticated China-nexus espionage group that specializes in targeting network edge devices, virtualization platforms, and security appliances — infrastructure that typically lacks endpoint detection. This article revisits their evolving tactics including exploitation of zero-day vulnerabilities in Fortinet and VMware products, custom backdoors designed for hypervisor environments, and persistence mechanisms that survive reboots and patches. Includes updated TTPs, infrastructure analysis, and defensive recommendations for organizations running exposed network appliances.",
   "source": "Trend Micro Research Blog",
-  "order": 4
+  "order": 10
 }

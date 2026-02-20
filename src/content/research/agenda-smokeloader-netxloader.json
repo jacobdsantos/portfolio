@@ -1,0 +1,14 @@
+{
+  "title": "Agenda Ransomware Adds SmokeLoader and NETXLOADER",
+  "date": "May 2025",
+  "url": "https://www.trendmicro.com/en_us/research/25/e/agenda-ransomware-group-adds-smokeloader-and-netxloader-to-their.html",
+  "tags": [
+    "Ransomware",
+    "Defense Evasion",
+    "Cross-Platform"
+  ],
+  "description": "Uncovered Agenda ransomware group adopting SmokeLoader and a new loader named NETXLOADER for improved delivery and evasion.",
+  "summary": "During monitoring of Agenda (Qilin) ransomware activities, campaigns were uncovered using the SmokeLoader malware and a newly identified loader named NETXLOADER. The addition of these tools to Agenda's arsenal demonstrates the group's continued evolution in delivery mechanisms and evasion capabilities. NETXLOADER features .NET-based obfuscation and dynamic payload retrieval, while SmokeLoader provides modular post-exploitation capabilities. The research documents the full kill chain from initial access through loader deployment to ransomware execution.",
+  "source": "Trend Micro Research Blog",
+  "order": 11
+}

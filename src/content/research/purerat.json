@@ -2,9 +2,13 @@
   "title": "PureRAT via Foxit PDF DLL Side-loading",
   "date": "Dec 2025",
   "url": "https://www.trendmicro.com/en_us/research/25/l/valleyrat-campaign.html",
-  "tags": ["RAT", "Social Engineering", "DLL Sideloading"],
+  "tags": [
+    "RAT",
+    "Social Engineering",
+    "DLL Sideloading"
+  ],
   "description": "Uncovered PureRAT targeting job seekers using renamed Foxit PDF Reader for DLL side-loading and Python-based shellcode loaders.",
   "summary": "This research uncovers a social engineering campaign deploying PureRAT through trojanized job application documents. The attackers rename legitimate Foxit PDF Reader binaries to load malicious DLLs, establishing persistent access through the PureRAT backdoor. The infection chain uses Python-based shellcode loaders to evade static analysis, with multi-stage payloads that check for analysis environments before proceeding. The campaign specifically targets job seekers, leveraging urgency and trust in PDF documents to achieve initial compromise. Includes detailed loader analysis, C2 protocol breakdown, and YARA rules for detection.",
   "source": "Trend Micro Research Blog",
-  "order": 6
+  "order": 1
 }

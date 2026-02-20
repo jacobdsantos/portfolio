@@ -2,9 +2,13 @@
   "title": "New LockBit 5.0 Targets Windows, Linux, ESXi",
   "date": "Sep 2025",
   "url": "https://www.trendmicro.com/en_us/research/25/i/lockbit-5-targets-windows-linux-esxi.html",
-  "tags": ["Ransomware", "Cross-Platform", "LockBit"],
+  "tags": [
+    "Ransomware",
+    "Cross-Platform",
+    "LockBit"
+  ],
   "description": "Technical analysis of LockBit 5.0 — cross-platform ransomware with heavy obfuscation, anti-analysis, and geopolitical safeguards.",
   "summary": "LockBit 5.0 represents a significant evolution of the LockBit ransomware family, now targeting Windows, Linux, and VMware ESXi environments with a unified codebase. This research details the heavy obfuscation techniques including string encryption and API hashing, anti-analysis measures that detect sandboxes and debuggers, and geopolitical safeguards that skip CIS-region systems. The article covers the full kill chain from initial access through lateral movement to encryption, with comparative analysis against previous LockBit versions.",
   "source": "Trend Micro Research Blog",
-  "order": 2
+  "order": 5
 }

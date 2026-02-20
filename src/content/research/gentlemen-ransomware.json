@@ -2,9 +2,13 @@
   "title": "Unmasking The Gentlemen Ransomware",
   "date": "Sep 2025",
   "url": "https://www.trendmicro.com/en_us/research/25/i/unmasking-the-gentlemen-ransomware.html",
-  "tags": ["Ransomware", "BYOVD", "Defense Evasion"],
+  "tags": [
+    "Ransomware",
+    "BYOVD",
+    "Defense Evasion"
+  ],
   "description": "Analysis of a new ransomware group with adaptive defense evasion — custom-patching anti-AV tools mid-attack based on target recon.",
   "summary": "Gentlemen ransomware introduced a novel approach to defense evasion: rather than using a fixed BYOVD payload, the operators dynamically select and custom-patch anti-AV tools during the attack based on reconnaissance of the target's security stack. This article provides a full technical breakdown of their multi-stage infection chain, the adaptive evasion framework, encrypted C2 communication, and the Rust-based ransomware payload. Includes IOCs, MITRE ATT&CK mapping, and detection guidance.",
   "source": "Trend Micro Research Blog",
-  "order": 1
+  "order": 4
 }

@@ -1,0 +1,14 @@
+{
+  "title": "Agenda Ransomware Deploys Linux Variant on Windows Systems",
+  "date": "Oct 2025",
+  "url": "https://www.trendmicro.com/en_us/research/25/j/agenda-ransomware-deploys-linux-variant-on-windows-systems.html",
+  "tags": [
+    "Ransomware",
+    "Cross-Platform",
+    "Defense Evasion"
+  ],
+  "description": "Discovered Agenda ransomware deploying Linux variants on Windows systems via remote management tools and BYOVD techniques for cross-platform evasion.",
+  "summary": "A sophisticated Agenda ransomware attack was identified deploying a Linux variant on Windows systems, achieving cross-platform execution that makes detection significantly more challenging for enterprises. The operators used remote management tools for initial deployment and BYOVD (Bring Your Own Vulnerable Driver) techniques to disable security products. Running Linux ransomware on Windows through compatibility layers or virtualization represents an innovative evasion strategy that bypasses Windows-focused endpoint detection. The research provides detection strategies for this cross-platform execution technique.",
+  "source": "Trend Micro Research Blog",
+  "order": 2
+}
