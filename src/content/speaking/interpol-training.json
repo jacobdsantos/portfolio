@@ -1,0 +1,12 @@
+{
+  "type": "Training",
+  "title": "Advanced Malware & Ransomware Analysis for Law Enforcement",
+  "org": "INTERPOL",
+  "location": "Online (Global)",
+  "flag": "INTL",
+  "year": "2024",
+  "audience": "International law enforcement officers across APAC, Africa, EU, and MENA",
+  "topics": ["Ransomware Forensics", "Advanced Malware Analysis", "Cross-Border Cyber Investigation"],
+  "description": "Recurring trainer for INTERPOL's cybercrime programs including Operation Synergia, delivering advanced malware analysis and ransomware investigation training to law enforcement officers worldwide.",
+  "order": 1
+}

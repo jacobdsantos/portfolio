@@ -1,0 +1,12 @@
+{
+  "type": "Speaker",
+  "title": "Conference Speaker — DECODE, DOST ICT Summit, CIRQIT",
+  "org": "Multiple Conferences",
+  "location": "Philippines",
+  "flag": "PH",
+  "year": "2024 — 2025",
+  "audience": "Cybersecurity professionals, government IT personnel, and industry practitioners",
+  "topics": ["Attacker Tradecraft", "AI in Cybersecurity", "Social Engineering", "Threat Hunting"],
+  "description": "Regular conference speaker covering topics from attacker-to-defender methodology to AI-powered social engineering. Featured at DECODE (Trend Micro's flagship cybersecurity conference), DOST ICT Summit, and enterprise security events.",
+  "order": 3
+}
