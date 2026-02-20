@@ -1,0 +1,9 @@
+{
+  "name": "SPOT Report Engine",
+  "fullName": "Automated Report Generation",
+  "description": "AI agent system that transforms raw threat intelligence into structured SPOT reports and publication-ready blog articles with auto-redaction.",
+  "impact": "Standardized reporting across the threat hunting team",
+  "tech": ["Claude AI", "Markdown", "Obsidian", "MCP"],
+  "status": "Production",
+  "order": 3
+}

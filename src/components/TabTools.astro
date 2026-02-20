@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+
+const allTools = await getCollection('tools');
+const tools = allTools
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .map(entry => entry.data);
+
+const statusColors: Record<string, string> = {
+  'Production': 'text-accent-success',
+  'Active Dev': 'text-accent-warning',
+  'Planned': 'text-text-muted',
+};
+
+const toolIcons: Record<string, string> = {
+  'TITAs': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
+  'Skadi': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>`,
+  'SPOT Report Engine': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>`,
+  'Confluence Tools Suite': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.63 3.29a.75.75 0 01-1.1-.66V5.65a.75.75 0 011.1-.66l5.63 3.29m0 0l5.63-3.29a.75.75 0 011.1.66v12.15a.75.75 0 01-1.1.66l-5.63-3.29m0 0V3.75m0 11.42V20.25"/></svg>`,
+  'OpenCTI MCP Server': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>`,
+  'Claude Code Desktop': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
+};
+
+const defaultIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.63 3.29a.75.75 0 01-1.1-.66V5.65a.75.75 0 011.1-.66l5.63 3.29"/></svg>`;
+---
+
+<div class="content-card">
+  <h2 class="section-title">Tools & Automation</h2>
+  <p class="text-text-secondary text-sm mb-6">
+    Production systems used daily by our threat hunting team
+    <span class="text-text-muted">— not side projects, operational infrastructure.</span>
+  </p>
+
+  <div class="grid sm:grid-cols-2 gap-3">
+    {tools.map(tool => (
+      <div class="card !p-4">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center text-accent-primary shrink-0" set:html={toolIcons[tool.name] || defaultIcon} />
+            <div>
+              <h3 class="text-text-primary font-medium text-sm">{tool.name}</h3>
+              <p class="text-text-muted text-[10px]">{tool.fullName}</p>
+            </div>
+          </div>
+          <span class={`text-[10px] font-mono ${statusColors[tool.status]}`}>{tool.status}</span>
+        </div>
+
+        <p class="text-text-muted text-xs leading-relaxed mb-3">{tool.description}</p>
+
+        <div class="flex items-center gap-1.5 mb-3">
+          <svg class="w-3 h-3 text-accent-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+          <span class="text-text-secondary text-[10px]">{tool.impact}</span>
+        </div>
+
+        <div class="flex flex-wrap gap-1">
+          {tool.tech.map(t => (
+            <span class="tag-cyan !text-[8px]">{t}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

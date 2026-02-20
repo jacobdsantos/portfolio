@@ -1,0 +1,9 @@
+{
+  "title": "Revisiting UNC3886 Tactics",
+  "date": "Jul 2025",
+  "role": "Author",
+  "url": "https://www.trendmicro.com/en_us/research/25/g/revisiting-unc3886.html",
+  "tags": ["APT", "China-Nexus", "Espionage"],
+  "description": "Revisiting the tactics of UNC3886, a China-nexus threat actor targeting network edge devices and virtualization infrastructure.",
+  "order": 4
+}

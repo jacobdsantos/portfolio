@@ -1,0 +1,9 @@
+{
+  "name": "Skadi",
+  "fullName": "Threat Intelligence Platform",
+  "description": "Full-featured Streamlit platform for threat analysis, URL reputation lookups, AI-powered intelligence assessment, and automated Confluence documentation.",
+  "impact": "Unified TI workflow for the entire team",
+  "tech": ["Python", "Streamlit", "Azure OpenAI", "Confluence API"],
+  "status": "Production",
+  "order": 2
+}

@@ -1,0 +1,9 @@
+{
+  "name": "TITAs",
+  "fullName": "Threat Inquiries Triage & Automation",
+  "description": "AI-powered 9-phase pipeline automating the entire threat inquiry lifecycle: intake, OSINT, IOC enrichment, response generation, visual creation, and documentation publishing.",
+  "impact": "Reduced inquiry response time from hours to minutes",
+  "tech": ["Python", "Claude AI", "VirusTotal API", "Confluence API"],
+  "status": "Production",
+  "order": 1
+}

@@ -1,0 +1,94 @@
+---
+const contacts = [
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>`,
+    label: 'Email',
+    value: 'jacobsantos.d@gmail.com',
+    href: 'mailto:jacobsantos.d@gmail.com',
+  },
+  {
+    icon: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`,
+    label: 'GitHub',
+    value: 'jacobdsantos',
+    href: 'https://github.com/jacobdsantos',
+  },
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>`,
+    label: 'Location',
+    value: 'Philippines',
+    href: null,
+  },
+];
+
+const stats = [
+  { value: '9+', label: 'Articles' },
+  { value: '5+', label: 'Countries' },
+  { value: '10+', label: 'Tools' },
+];
+---
+
+<div class="sidebar-card">
+  <!-- Avatar & identity -->
+  <div class="text-center mb-5">
+    <div class="w-24 h-24 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 border border-accent-primary/20 flex items-center justify-center">
+      <span class="text-3xl font-bold bg-gradient-to-br from-accent-primary to-accent-secondary bg-clip-text text-transparent font-mono">JS</span>
+    </div>
+    <h1 class="text-xl font-semibold text-text-primary">Jacob Santos</h1>
+    <div class="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-lg bg-bg-secondary text-xs font-mono text-text-secondary">
+      <span class="relative flex h-1.5 w-1.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-success opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-success"></span>
+      </span>
+      Senior Threat Researcher
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Contact info -->
+  <div class="space-y-3">
+    {contacts.map(contact => (
+      <div class="info-row">
+        <div class="info-icon" set:html={contact.icon} />
+        <div class="min-w-0">
+          <p class="text-text-muted text-[10px] uppercase tracking-wider">{contact.label}</p>
+          {contact.href ? (
+            <a href={contact.href} target={contact.href.startsWith('http') ? '_blank' : undefined} rel={contact.href.startsWith('http') ? 'noopener' : undefined}
+              class="text-text-secondary text-xs hover:text-accent-primary transition-colors truncate block">
+              {contact.value}
+            </a>
+          ) : (
+            <p class="text-text-secondary text-xs">{contact.value}</p>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Quick stats -->
+  <div class="grid grid-cols-3 gap-2">
+    {stats.map(stat => (
+      <div class="text-center py-2 rounded-lg bg-bg-secondary">
+        <div class="text-base font-bold text-accent-primary font-mono">{stat.value}</div>
+        <div class="text-text-muted text-[10px] mt-0.5">{stat.label}</div>
+      </div>
+    ))}
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Specializations -->
+  <div>
+    <h3 class="text-text-muted text-[10px] uppercase tracking-wider mb-3">Specializations</h3>
+    <div class="flex flex-wrap gap-1.5">
+      <span class="tag-blue">Ransomware</span>
+      <span class="tag-blue">APT Tracking</span>
+      <span class="tag-cyan">Threat Hunting</span>
+      <span class="tag-amber">BYOVD</span>
+      <span class="tag-cyan">Automation</span>
+      <span class="tag-blue">MITRE ATT&CK</span>
+    </div>
+  </div>
+</div>

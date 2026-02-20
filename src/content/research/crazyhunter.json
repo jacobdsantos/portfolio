@@ -1,0 +1,9 @@
+{
+  "title": "CrazyHunter Targets Taiwanese Critical Sectors",
+  "date": "Apr 2025",
+  "role": "Author",
+  "url": "https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html",
+  "tags": ["Ransomware", "Taiwan", "BYOVD"],
+  "description": "Identified CrazyHunter targeting Taiwanese healthcare and education using 80% open-source tooling and BYOVD attacks.",
+  "order": 5
+}

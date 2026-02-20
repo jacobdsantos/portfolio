@@ -1,0 +1,9 @@
+{
+  "type": "Training",
+  "title": "Advanced Threat Defense & Malware Analysis",
+  "org": "Government Agency",
+  "location": "Japan",
+  "flag": "JP",
+  "description": "Multi-day hands-on training covering advanced persistent threats, malware analysis techniques, and enterprise defense strategies.",
+  "order": 1
+}

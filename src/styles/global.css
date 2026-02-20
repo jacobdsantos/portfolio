@@ -20,28 +20,40 @@
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-bg-primary;
+    @apply bg-transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-accent-primary/30 rounded-full;
+    @apply bg-accent-primary/20 rounded-full;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent-primary/50;
+    @apply bg-accent-primary/40;
   }
 }
 
 @layer components {
+  /* Sidebar card */
+  .sidebar-card {
+    @apply bg-bg-card border border-white/[0.06] rounded-2xl p-6 shadow-xl shadow-black/20;
+  }
+
+  /* Content panel card */
+  .content-card {
+    @apply bg-bg-card border border-white/[0.06] rounded-2xl p-6 md:p-8 shadow-xl shadow-black/20;
+  }
+
+  /* Generic inner card */
   .card {
-    @apply bg-bg-card border border-white/5 rounded-lg p-6
+    @apply bg-bg-secondary/50 border border-white/[0.06] rounded-xl p-5
            transition-all duration-300 hover:border-accent-primary/20
            hover:bg-bg-hover hover:shadow-lg hover:shadow-accent-primary/5;
   }
 
+  /* Tags */
   .tag {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono
+    @apply inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wide
            border transition-colors duration-200;
   }
 
@@ -65,19 +77,54 @@
     @apply tag bg-accent-success/10 text-accent-success border-accent-success/20;
   }
 
-  .section-heading {
-    @apply text-2xl font-semibold text-text-primary mb-2 flex items-center gap-3;
+  /* Section headings inside content */
+  .section-title {
+    @apply text-2xl font-semibold text-text-primary mb-6;
   }
 
-  .section-subheading {
-    @apply text-text-secondary mb-8 max-w-2xl;
+  /* Nav tab */
+  .nav-tab {
+    @apply px-4 py-2.5 text-sm font-medium text-text-muted rounded-xl
+           transition-all duration-200 cursor-pointer select-none
+           hover:text-text-primary hover:bg-white/5;
   }
 
-  .grid-line {
-    @apply absolute inset-0 pointer-events-none;
-    background-image:
-      linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .nav-tab.active {
+    @apply text-accent-primary bg-accent-primary/10;
+  }
+
+  /* Separator */
+  .sep {
+    @apply border-t border-white/[0.06] my-4;
+  }
+
+  /* Info row */
+  .info-row {
+    @apply flex items-center gap-3 text-sm;
+  }
+
+  .info-icon {
+    @apply w-8 h-8 rounded-lg bg-bg-secondary flex items-center justify-center text-accent-primary shrink-0;
+  }
+
+  /* Tab content panel animation */
+  .tab-panel {
+    display: none;
+    animation: fadeSlideIn 0.3s ease-out;
+  }
+
+  .tab-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

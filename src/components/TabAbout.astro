@@ -1,0 +1,78 @@
+---
+const whatIDo = [
+  {
+    title: 'Threat Research',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`,
+    description: 'Deep-dive analysis of ransomware families, APT campaigns, and adversary tooling. Published findings on Trend Micro research blog.',
+  },
+  {
+    title: 'Security Automation',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
+    description: 'Building AI-powered tools that multiply team capability — inquiry pipelines, threat intel platforms, report generators.',
+  },
+  {
+    title: 'International Training',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>`,
+    description: 'Training government agencies and law enforcement across Asia, the Middle East, and online for INTERPOL.',
+  },
+  {
+    title: 'Tool Development',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
+    description: '10+ production tools used daily — from MCP servers and AI pipelines to desktop applications and Confluence integrations.',
+  },
+];
+
+const timeline = [
+  { year: 'Present', title: 'Senior Threat Researcher', org: 'Trend Micro', detail: 'Leading ransomware research, publishing threat intelligence, building automation, training international defenders' },
+  { year: 'Previous', title: 'Threat Analyst', org: 'Trend Micro', detail: 'Threat hunting, inquiry processing, IOC enrichment, SPOT reporting' },
+];
+---
+
+<div class="content-card">
+  <h2 class="section-title">About Me</h2>
+
+  <p class="text-text-secondary leading-relaxed mb-4">
+    I'm a Senior Threat Researcher at <span class="text-text-primary font-medium">Trend Micro</span>, working with the Philippines Threat Hunting Team.
+    My work sits at the intersection of three areas: deep-dive threat research, operational automation, and knowledge transfer.
+  </p>
+  <p class="text-text-secondary leading-relaxed mb-4">
+    On the research side, I track ransomware families and APT groups, analyze their evolving tradecraft,
+    and publish findings that help defenders worldwide. I've documented everything from novel EDR evasion
+    techniques to cross-platform ransomware targeting critical infrastructure.
+  </p>
+  <p class="text-text-secondary leading-relaxed mb-8">
+    Beyond research and building, I train defenders internationally — from government agencies in Japan
+    and Oman to online sessions with INTERPOL. Sharing knowledge is how we collectively raise the bar
+    against adversaries.
+  </p>
+
+  <!-- What I'm doing -->
+  <h3 class="text-lg font-semibold text-text-primary mb-4">What I'm Doing</h3>
+  <div class="grid sm:grid-cols-2 gap-4 mb-8">
+    {whatIDo.map(item => (
+      <div class="card !p-4">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center text-accent-primary shrink-0" set:html={item.icon} />
+          <div>
+            <h4 class="text-text-primary font-medium text-sm mb-1">{item.title}</h4>
+            <p class="text-text-muted text-xs leading-relaxed">{item.description}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Career timeline -->
+  <h3 class="text-lg font-semibold text-text-primary mb-4">Experience</h3>
+  <div class="border-l-2 border-white/10 ml-3 space-y-5">
+    {timeline.map(item => (
+      <div class="relative pl-7">
+        <div class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-bg-primary border-2 border-accent-primary"></div>
+        <span class="text-accent-primary text-xs font-mono">{item.year}</span>
+        <h4 class="text-text-primary font-medium text-sm">{item.title}</h4>
+        <p class="text-accent-secondary text-xs font-mono">{item.org}</p>
+        <p class="text-text-muted text-xs mt-1 leading-relaxed">{item.detail}</p>
+      </div>
+    ))}
+  </div>
+</div>

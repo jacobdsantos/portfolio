@@ -1,0 +1,9 @@
+{
+  "name": "OpenCTI MCP Server",
+  "fullName": "Threat Intelligence Integration",
+  "description": "Model Context Protocol server connecting AI assistants directly to OpenCTI threat intelligence platform for natural language queries against indicators and campaigns.",
+  "impact": "Bridged AI tooling with production threat intel",
+  "tech": ["Python", "FastMCP", "pycti", "OpenCTI"],
+  "status": "Production",
+  "order": 5
+}

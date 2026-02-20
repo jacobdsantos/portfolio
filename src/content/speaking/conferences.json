@@ -1,0 +1,9 @@
+{
+  "type": "Speaker",
+  "title": "Cybersecurity Conference Presentations",
+  "org": "Various Conferences",
+  "location": "Multiple",
+  "flag": "CONF",
+  "description": "Speaking engagements at cybersecurity conferences covering ransomware trends, threat hunting methodologies, and adversary tradecraft.",
+  "order": 4
+}

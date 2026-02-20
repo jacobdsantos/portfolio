@@ -1,0 +1,9 @@
+{
+  "type": "Training",
+  "title": "Cybersecurity Training for Government",
+  "org": "Government Agency",
+  "location": "Oman",
+  "flag": "OM",
+  "description": "Cybersecurity training program covering threat detection, incident response, and security operations for government personnel.",
+  "order": 2
+}

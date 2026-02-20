@@ -1,0 +1,9 @@
+{
+  "name": "Claude Code Desktop",
+  "fullName": "AI Development Environment",
+  "description": "Desktop GUI wrapping Claude CLI with autonomous pipeline orchestration, multi-model routing across 70+ models from 5 providers, and SQLite-backed sessions.",
+  "impact": "Personal dev environment for AI-assisted security research",
+  "tech": ["Node.js", "Express", "WebSocket", "xterm.js", "SQLite"],
+  "status": "Active Dev",
+  "order": 6
+}

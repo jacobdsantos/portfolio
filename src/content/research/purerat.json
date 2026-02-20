@@ -1,0 +1,9 @@
+{
+  "title": "PureRAT via Foxit PDF DLL Side-loading",
+  "date": "Dec 2025",
+  "role": "Author",
+  "url": "https://www.trendmicro.com/en_us/research/25/l/valleyrat-campaign.html",
+  "tags": ["RAT", "Social Engineering", "DLL Sideloading"],
+  "description": "Uncovered PureRAT targeting job seekers using renamed Foxit PDF Reader for DLL side-loading and Python-based shellcode loaders.",
+  "order": 6
+}

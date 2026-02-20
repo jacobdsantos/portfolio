@@ -1,0 +1,9 @@
+{
+  "type": "Training",
+  "title": "Cybersecurity Training Program",
+  "org": "INTERPOL",
+  "location": "Online",
+  "flag": "INTL",
+  "description": "Online training sessions with INTERPOL on cybersecurity techniques, threat intelligence sharing, and cross-border cyber investigation.",
+  "order": 3
+}

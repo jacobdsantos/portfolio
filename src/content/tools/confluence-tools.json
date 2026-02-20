@@ -1,0 +1,9 @@
+{
+  "name": "Confluence Tools Suite",
+  "fullName": "13+ Automation Tools",
+  "description": "Collection of 13+ tools for RAG-powered report generation, malware-as-a-service analysis, PowerPoint analysis, AI chatbot, BEC investigation, and log analysis.",
+  "impact": "Eliminated repetitive documentation tasks",
+  "tech": ["Python", "Azure OpenAI", "Confluence API", "RAG"],
+  "status": "Production",
+  "order": 4
+}

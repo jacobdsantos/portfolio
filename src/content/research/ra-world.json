@@ -1,0 +1,9 @@
+{
+  "title": "Multistage RA World Ransomware",
+  "date": "Mar 2024",
+  "role": "Author",
+  "url": "https://www.trendmicro.com/en_us/research/24/c/multistage-ra-world-ransomware.html",
+  "tags": ["Ransomware", "GPO Abuse", "Safe Mode"],
+  "description": "Analyzed RA World using GPO-distributed payloads, Safe Mode abuse for defense evasion, and Babuk-derived encryption.",
+  "order": 8
+}

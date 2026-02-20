@@ -1,22 +1,78 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import Research from '../components/Research.astro';
-import Tools from '../components/Tools.astro';
-import Speaking from '../components/Speaking.astro';
-import About from '../components/About.astro';
-import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import TabAbout from '../components/TabAbout.astro';
+import TabResearch from '../components/TabResearch.astro';
+import TabTools from '../components/TabTools.astro';
+import TabSpeaking from '../components/TabSpeaking.astro';
 ---
 
 <BaseLayout>
-  <Nav />
-  <main>
-    <Hero />
-    <Research />
-    <Tools />
-    <Speaking />
-    <About />
-  </main>
-  <Footer />
+  <div class="min-h-screen p-4 md:p-6 lg:p-10">
+    <div class="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-6">
+
+      <!-- Sidebar -->
+      <aside class="lg:w-[320px] lg:shrink-0">
+        <div class="lg:sticky lg:top-6">
+          <Sidebar />
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main class="flex-1 min-w-0">
+        <!-- Navigation tabs -->
+        <nav class="content-card !p-3 mb-6">
+          <div class="flex gap-1 overflow-x-auto" id="tab-nav">
+            <button class="nav-tab active" data-tab="about">About</button>
+            <button class="nav-tab" data-tab="research">Research</button>
+            <button class="nav-tab" data-tab="tools">Tools</button>
+            <button class="nav-tab" data-tab="speaking">Speaking</button>
+          </div>
+        </nav>
+
+        <!-- Tab panels -->
+        <div id="tab-content">
+          <div class="tab-panel active" data-panel="about">
+            <TabAbout />
+          </div>
+          <div class="tab-panel" data-panel="research">
+            <TabResearch />
+          </div>
+          <div class="tab-panel" data-panel="tools">
+            <TabTools />
+          </div>
+          <div class="tab-panel" data-panel="speaking">
+            <TabSpeaking />
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Tab switching script -->
+  <script>
+    const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
+    const panels = document.querySelectorAll<HTMLDivElement>('[data-panel]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+
+        // Update tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update panels
+        panels.forEach(p => {
+          p.classList.remove('active');
+          if (p.dataset.panel === target) {
+            p.classList.add('active');
+          }
+        });
+
+        // Scroll to top on mobile
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
 </BaseLayout>

@@ -1,0 +1,9 @@
+{
+  "title": "Unmasking The Gentlemen Ransomware",
+  "date": "Sep 2025",
+  "role": "Lead Author",
+  "url": "https://www.trendmicro.com/en_us/research/25/i/unmasking-the-gentlemen-ransomware.html",
+  "tags": ["Ransomware", "BYOVD", "Defense Evasion"],
+  "description": "Analysis of a new ransomware group with adaptive defense evasion — custom-patching anti-AV tools mid-attack based on target recon.",
+  "order": 1
+}

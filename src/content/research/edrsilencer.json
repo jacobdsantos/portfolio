@@ -1,0 +1,9 @@
+{
+  "title": "EDRSilencer Disrupting Endpoint Security",
+  "date": "Oct 2024",
+  "role": "Lead Author",
+  "url": "https://www.trendmicro.com/en_us/research/24/j/edrsilencer-disrupting-endpoint-security-solutions.html",
+  "tags": ["Red Team Tools", "EDR Evasion", "WFP"],
+  "description": "First to document EDRSilencer weaponized in the wild — a red team tool using Windows Filtering Platform to blind EDR solutions.",
+  "order": 7
+}
