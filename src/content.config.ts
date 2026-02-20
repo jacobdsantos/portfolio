@@ -5,10 +5,12 @@ const research = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    role: z.enum(['Lead Author', 'Co-Lead', 'Author']),
     url: z.string().url(),
     tags: z.array(z.string()),
     description: z.string(),
+    summary: z.string().optional(),
+    image: z.string().optional(),
+    source: z.string().optional(),
     order: z.number().optional(),
   }),
 });

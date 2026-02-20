@@ -20,14 +20,16 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "string", hint: "e.g. Sep 2025" }
-      - { label: "Role", name: "role", widget: "select", options: ["Lead Author", "Co-Lead", "Author"] }
       - { label: "URL", name: "url", widget: "string" }
       - label: "Tags"
         name: "tags"
         widget: "list"
         allow_add: true
         field: { label: "Tag", name: "tag", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Short Description", name: "description", widget: "text", hint: "1-2 sentence card preview" }
+      - { label: "Full Summary", name: "summary", widget: "text", required: false, hint: "Detailed 3-5 sentence summary for the article modal" }
+      - { label: "Source", name: "source", widget: "string", required: false, default: "Trend Micro Research Blog", hint: "Where this was published" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Optional article thumbnail" }
       - { label: "Sort Order", name: "order", widget: "number", value_type: "int", default: 99, hint: "Lower = appears first" }
 
   - name: tools

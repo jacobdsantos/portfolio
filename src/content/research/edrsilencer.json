@@ -1,9 +1,10 @@
 {
   "title": "EDRSilencer Disrupting Endpoint Security",
   "date": "Oct 2024",
-  "role": "Lead Author",
   "url": "https://www.trendmicro.com/en_us/research/24/j/edrsilencer-disrupting-endpoint-security-solutions.html",
   "tags": ["Red Team Tools", "EDR Evasion", "WFP"],
   "description": "First to document EDRSilencer weaponized in the wild — a red team tool using Windows Filtering Platform to blind EDR solutions.",
+  "summary": "EDRSilencer was originally developed as a red team tool, but this article documents the first observed cases of it being weaponized by real threat actors in the wild. The tool abuses the Windows Filtering Platform (WFP) — a legitimate Windows networking framework — to silently block EDR telemetry from reaching its cloud console. By inserting WFP filters, attackers effectively blind security teams without triggering alerts or crashing the EDR process. This research covers the technical mechanism, affected EDR products, detection strategies using ETW and kernel callbacks, and mitigation approaches. The article gained significant industry attention and was widely cited.",
+  "source": "Trend Micro Research Blog",
   "order": 7
 }

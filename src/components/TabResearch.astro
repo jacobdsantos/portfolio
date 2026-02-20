@@ -86,8 +86,9 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
         data-url={article.url}
         data-title={article.title}
         data-description={article.description}
+        data-summary={article.summary || article.description}
         data-date={article.date}
-        data-role={article.role}
+        data-source={article.source || 'Trend Micro Research Blog'}
         data-gradient={gradients[idx % gradients.length]}
         data-all-tags={JSON.stringify(article.tags)}
       >
@@ -97,13 +98,6 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
           <div class="research-thumb absolute inset-0 flex items-center justify-center text-white/20">
             <Fragment set:html={getIcon(article.tags)} />
           </div>
-          {(article.role === 'Lead Author' || article.role === 'Co-Lead') && (
-            <div class="absolute top-3 left-3">
-              <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-[10px] font-mono font-semibold text-accent-primary border border-accent-primary/20">
-                {article.role === 'Lead Author' ? 'LEAD' : 'CO-LEAD'}
-              </span>
-            </div>
-          )}
           <div class="absolute top-3 right-3">
             <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-[10px] font-mono text-text-secondary">
               {article.date}
@@ -279,9 +273,9 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
       const el = card as HTMLElement;
       const url = el.dataset.url || '';
       const title = el.dataset.title || '';
-      const description = el.dataset.description || '';
+      const summary = el.dataset.summary || el.dataset.description || '';
       const date = el.dataset.date || '';
-      const role = el.dataset.role || '';
+      const source = el.dataset.source || 'Trend Micro Research Blog';
       const tags: string[] = JSON.parse(el.dataset.allTags || '[]');
       const gradient = gradientClasses[idx % gradientClasses.length];
 
@@ -292,16 +286,13 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
       modalIcon.innerHTML = getModalIcon(tags);
 
       // Update badges
-      let badgesHtml = '';
-      if (role === 'Lead Author' || role === 'Co-Lead') {
-        badgesHtml += `<span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-sm text-[11px] font-mono font-semibold text-accent-primary border border-accent-primary/20">${role === 'Lead Author' ? 'LEAD AUTHOR' : 'CO-LEAD'}</span>`;
-      }
+      let badgesHtml = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-sm text-[11px] font-mono text-accent-primary border border-accent-primary/20"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>${source}</span>`;
       badgesHtml += `<span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-sm text-[11px] font-mono text-text-secondary">${date}</span>`;
       modalBadges.innerHTML = badgesHtml;
 
       // Update content
       modalTitle.textContent = title;
-      modalDescription.textContent = description;
+      modalDescription.textContent = summary;
       modalReadBtn.href = url;
 
       // Update tags
