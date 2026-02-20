@@ -14,9 +14,11 @@
   body {
     @apply bg-bg-primary text-text-primary font-sans;
     background-image:
-      linear-gradient(rgba(0, 223, 162, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 223, 162, 0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
+      radial-gradient(ellipse at 20% 0%, rgba(0, 223, 162, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(108, 92, 231, 0.02) 0%, transparent 50%),
+      linear-gradient(rgba(0, 223, 162, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 223, 162, 0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
   }
 
   ::selection {
@@ -43,7 +45,8 @@
     @apply bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] rounded-2xl p-6;
     box-shadow:
       0 0 0 1px rgba(0, 223, 162, 0.04),
-      0 20px 50px -12px rgba(0, 0, 0, 0.5);
+      0 20px 50px -12px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
   /* Content panel card */
@@ -51,7 +54,8 @@
     @apply bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] rounded-2xl p-6 md:p-8;
     box-shadow:
       0 0 0 1px rgba(0, 223, 162, 0.04),
-      0 20px 50px -12px rgba(0, 0, 0, 0.5);
+      0 20px 50px -12px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
   /* Generic inner card */
@@ -206,6 +210,28 @@
       transform: scale(1) translateY(0);
     }
   }
+
+  /* Entrance animation for staggered card reveals */
+  .stagger-in {
+    animation: staggerFadeIn 0.5s ease-out both;
+  }
+
+  @keyframes staggerFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Focus ring for keyboard nav */
+*:focus-visible {
+  @apply outline-2 outline-accent-primary/50 outline-offset-2;
+  outline-style: solid;
 }
 
 /* Print styles */

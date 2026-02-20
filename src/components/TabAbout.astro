@@ -5,14 +5,15 @@ const whatIDo = [
     color: 'from-red-500/20 to-orange-500/10',
     accent: 'text-red-400 bg-red-500/10 border-red-500/15',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`,
-    description: 'Deep-dive analysis of ransomware families, APT campaigns, and adversary tooling. Published findings on Trend Micro research blog.',
+    description: 'Deep-dive analysis of ransomware families, APT campaigns, and adversary tooling. Published research reaching global security teams.',
   },
   {
     title: 'Security Automation',
     color: 'from-emerald-500/20 to-teal-500/10',
     accent: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/15',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
-    description: 'Building AI-powered tools that multiply team capability — inquiry pipelines, threat intel platforms, report generators.',
+    description: 'Building AI-powered tools that multiply team capability — inquiry pipelines, threat intel platforms, MCP servers, and report generators.',
+    link: '#tools',
   },
   {
     title: 'International Training',
@@ -36,28 +37,51 @@ const timeline = [
   { year: 'Present', title: 'Senior Threat Researcher', org: 'Trend Micro', detail: 'Leading ransomware research, publishing threat intelligence, building automation, training international defenders' },
   { year: 'Previous', title: 'Threat Analyst', org: 'Trend Micro', detail: 'Threat hunting, inquiry processing, IOC enrichment, SPOT reporting' },
 ];
+
+const valuePillars = [
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>`,
+    title: 'Research-Driven',
+    desc: 'Published findings on novel ransomware TTPs, EDR evasion techniques, and cross-platform threats targeting critical infrastructure.',
+    color: 'text-red-400',
+    bg: 'bg-red-500/8',
+  },
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>`,
+    title: 'Builder Mentality',
+    desc: 'Designed and shipped 10+ production tools — AI pipelines, MCP servers, and desktop apps that save hundreds of hours monthly.',
+    color: 'text-accent-primary',
+    bg: 'bg-accent-primary/8',
+  },
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347"/></svg>`,
+    title: 'Knowledge Multiplier',
+    desc: 'Trained INTERPOL, government agencies, and enterprise teams across 4 countries. Knowledge shared becomes collective defense.',
+    color: 'text-violet-400',
+    bg: 'bg-violet-500/8',
+  },
+];
 ---
 
 <div class="content-card">
   <h2 class="section-title">About Me</h2>
-  <p class="section-subtitle">A brief introduction to who I am and what drives my work.</p>
+  <p class="section-subtitle">Threat researcher who publishes, builds, and teaches.</p>
 
-  <p class="text-text-secondary leading-relaxed mb-4">
-    I'm a Senior Threat Researcher at <span class="text-accent-primary font-medium">Trend Micro</span>, working with the Philippines Threat Hunting Team.
-    My work sits at the intersection of three areas: deep-dive threat research, operational automation, and knowledge transfer.
-  </p>
-  <p class="text-text-secondary leading-relaxed mb-4">
-    On the research side, I track ransomware families and APT groups, analyze their evolving tradecraft,
-    and publish findings that help defenders worldwide. I've documented everything from novel EDR evasion
-    techniques to cross-platform ransomware targeting critical infrastructure.
-  </p>
-  <p class="text-text-secondary leading-relaxed mb-8">
-    Beyond research and building, I train defenders — from government agencies in the Philippines and Japan
-    to online sessions with INTERPOL. I've delivered programs in Oman, keynoted at Philippine Airlines, and
-    trained financial sector security teams. Sharing knowledge is how we collectively raise the bar.
-  </p>
+  <!-- Value Proposition - the first thing recruiters see -->
+  <div class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-5 md:p-6 mb-8">
+    <p class="text-text-primary text-[15px] leading-relaxed font-medium">
+      I work at the intersection of <span class="text-accent-primary">deep-dive threat research</span>,
+      <span class="text-accent-tertiary">operational automation</span>, and
+      <span class="text-violet-400">knowledge transfer</span>.
+    </p>
+    <p class="text-text-secondary text-sm leading-relaxed mt-2">
+      I track ransomware families and APT groups, analyze their evolving tradecraft,
+      and publish findings that help defenders worldwide. Then I build tools to automate what I've learned
+      and train others to defend against what I've found.
+    </p>
+  </div>
 
-  <!-- Key Highlights -->
+  <!-- Key Highlights - impact metrics -->
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
     <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-primary/15 transition-all">
       <div class="text-2xl font-bold text-accent-primary font-mono mb-0.5">17</div>
@@ -73,8 +97,22 @@ const timeline = [
     </div>
     <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-warning/15 transition-all">
       <div class="text-2xl font-bold text-accent-warning font-mono mb-0.5">10+</div>
-      <div class="text-text-muted text-[9px] uppercase tracking-widest">Talks</div>
+      <div class="text-text-muted text-[9px] uppercase tracking-widest">Talks & Training</div>
     </div>
+  </div>
+
+  <!-- What I Bring - value pillars for recruiters -->
+  <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">What I Bring</h3>
+  <div class="space-y-3 mb-8">
+    {valuePillars.map(pillar => (
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-bg-surface/40 border border-white/[0.04] hover:border-white/[0.08] transition-all">
+        <div class={`w-9 h-9 rounded-xl ${pillar.bg} border border-white/[0.06] flex items-center justify-center shrink-0 ${pillar.color}`} set:html={pillar.icon} />
+        <div>
+          <h4 class={`${pillar.color} font-semibold text-sm mb-0.5`}>{pillar.title}</h4>
+          <p class="text-text-muted text-xs leading-relaxed">{pillar.desc}</p>
+        </div>
+      </div>
+    ))}
   </div>
 
   <!-- What I'm doing -->
@@ -98,7 +136,7 @@ const timeline = [
     ))}
   </div>
 
-  <!-- Focus Areas -->
+  <!-- Research Focus -->
   <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">Research Focus</h3>
   <div class="space-y-2.5 mb-8">
     <div class="group">
