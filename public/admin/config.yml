@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: auth
+  site_domain: glistening-kashata-8d2c27.netlify.app
 
 media_folder: public/images
 public_folder: /images
