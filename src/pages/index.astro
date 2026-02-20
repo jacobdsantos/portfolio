@@ -5,6 +5,11 @@ import TabAbout from '../components/TabAbout.astro';
 import TabResearch from '../components/TabResearch.astro';
 import TabTools from '../components/TabTools.astro';
 import TabSpeaking from '../components/TabSpeaking.astro';
+import { getCollection } from 'astro:content';
+
+const researchCount = (await getCollection('research')).length;
+const toolsCount = (await getCollection('tools')).length;
+const speakingCount = (await getCollection('speaking')).length;
 ---
 
 <BaseLayout>
@@ -24,9 +29,9 @@ import TabSpeaking from '../components/TabSpeaking.astro';
         <nav class="content-card !p-3 mb-6">
           <div class="flex gap-1 overflow-x-auto" id="tab-nav">
             <button class="nav-tab active" data-tab="about">About</button>
-            <button class="nav-tab" data-tab="research">Research</button>
-            <button class="nav-tab" data-tab="tools">Tools</button>
-            <button class="nav-tab" data-tab="speaking">Speaking</button>
+            <button class="nav-tab" data-tab="research">Research <span class="ml-1 text-[9px] font-mono opacity-50">{researchCount}</span></button>
+            <button class="nav-tab" data-tab="tools">Tools <span class="ml-1 text-[9px] font-mono opacity-50">{toolsCount}</span></button>
+            <button class="nav-tab" data-tab="speaking">Speaking <span class="ml-1 text-[9px] font-mono opacity-50">{speakingCount}</span></button>
           </div>
         </nav>
 

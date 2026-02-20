@@ -147,6 +147,11 @@ const articlesWithRelated = articles.map((article, idx) => {
             <Fragment set:html={getIcon(article.tags)} />
           </div>
           <div class="absolute top-3 right-3 flex gap-1.5">
+            {(article.date.includes('2026')) && (
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-accent-primary/20 backdrop-blur-sm text-[10px] font-mono text-accent-primary border border-accent-primary/20 animate-pulse">
+                New
+              </span>
+            )}
             {(article.type === 'microstory') && (
               <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-sky-500/20 backdrop-blur-sm text-[10px] font-mono text-sky-300 border border-sky-400/20">
                 <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
