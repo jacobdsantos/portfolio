@@ -1,0 +1,14 @@
+{
+  "title": "Agenda Ransomware Adopts TrueSightKiller for EDR Evasion",
+  "date": "Mar 2025",
+  "url": "https://x.com/TrendMicroRSRCH/status/1899671696979702103",
+  "tags": [
+    "Ransomware",
+    "BYOVD",
+    "EDR Evasion"
+  ],
+  "description": "X/Twitter thread detailing how Agenda ransomware operators adopted TrueSightKiller, a BYOVD tool, to disable endpoint security products.",
+  "source": "X/Twitter (@TrendMicroRSRCH)",
+  "type": "microstory",
+  "order": 21
+}

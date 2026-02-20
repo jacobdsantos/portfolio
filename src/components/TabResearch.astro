@@ -55,13 +55,13 @@ const getIconLg = (tags: string[]) => {
   return topicIconsLg['Ransomware'];
 };
 
-const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
+const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
 ---
 
 <div class="content-card">
   <h2 class="section-title">Published Research</h2>
   <p class="section-subtitle">
-    Threat research published on Trend Micro's research blog.
+    Threat research published on Trend Micro's research blog and X/Twitter microstories.
     <span class="text-text-muted">Much of my work is internal threat intelligence under TLP:AMBER.</span>
   </p>
 
@@ -89,6 +89,7 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
         data-summary={article.summary || article.description}
         data-date={article.date}
         data-source={article.source || 'Trend Micro Research Blog'}
+        data-type={article.type || 'blog'}
         data-gradient={gradients[idx % gradients.length]}
         data-all-tags={JSON.stringify(article.tags)}
       >
@@ -98,7 +99,13 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
           <div class="research-thumb absolute inset-0 flex items-center justify-center text-white/20">
             <Fragment set:html={getIcon(article.tags)} />
           </div>
-          <div class="absolute top-3 right-3">
+          <div class="absolute top-3 right-3 flex gap-1.5">
+            {(article.type === 'microstory') && (
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-sky-500/20 backdrop-blur-sm text-[10px] font-mono text-sky-300 border border-sky-400/20">
+                <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Thread
+              </span>
+            )}
             <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-[10px] font-mono text-text-secondary">
               {article.date}
             </span>
@@ -228,6 +235,7 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
     'Ransomware': ['Ransomware'],
     'APT': ['APT', 'APT Crossover', 'China-Nexus', 'Espionage'],
     'Tools & RAT': ['Red Team Tools', 'EDR Evasion', 'RAT', 'Social Engineering'],
+    'Microstories': [], // Special filter handled by type
   };
 
   filterBtns.forEach(btn => {
@@ -246,6 +254,8 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
         const el = card as HTMLElement;
         if (filter === 'All') {
           el.style.display = '';
+        } else if (filter === 'Microstories') {
+          el.style.display = el.dataset.type === 'microstory' ? '' : 'none';
         } else {
           const tags = (el.dataset.tags || '').split(',');
           el.style.display = matchTags.some(t => tags.includes(t)) ? '' : 'none';
@@ -276,6 +286,7 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
       const summary = el.dataset.summary || el.dataset.description || '';
       const date = el.dataset.date || '';
       const source = el.dataset.source || 'Trend Micro Research Blog';
+      const contentType = el.dataset.type || 'blog';
       const tags: string[] = JSON.parse(el.dataset.allTags || '[]');
       const gradient = gradientClasses[idx % gradientClasses.length];
 
@@ -294,6 +305,11 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
       modalTitle.textContent = title;
       modalDescription.textContent = summary;
       modalReadBtn.href = url;
+      // Update button label based on content type
+      const isMicrostory = contentType === 'microstory';
+      modalReadBtn.innerHTML = isMicrostory
+        ? `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>View Thread`
+        : `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>Read Full Article`;
 
       // Update tags
       modalTags.innerHTML = tags.map(tag =>

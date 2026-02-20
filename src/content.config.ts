@@ -11,6 +11,7 @@ const research = defineCollection({
     summary: z.string().optional(),
     image: z.string().optional(),
     source: z.string().optional(),
+    type: z.enum(['blog', 'microstory']).optional().default('blog'),
     order: z.number().optional(),
   }),
 });

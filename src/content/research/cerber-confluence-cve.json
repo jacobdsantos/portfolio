@@ -9,5 +9,5 @@
   "description": "Documented Cerber ransomware operators rapidly weaponizing CVE-2023-22518 in Atlassian Confluence for initial access and encryption deployment.",
   "summary": "Cerber ransomware operators were observed rapidly weaponizing CVE-2023-22518, a critical vulnerability in Atlassian Confluence Server, to gain initial access to enterprise environments. The attack chain exploits the improper authorization vulnerability to upload a malicious plugin, establishing a web shell for persistent access before deploying the Cerber ransomware payload. This research documents the speed of exploitation following public disclosure, the full infection chain from Confluence compromise to encryption, and provides detection signatures and mitigation guidance for exposed Confluence instances.",
   "source": "Trend Micro Research Blog",
-  "order": 17
+  "order": 31
 }

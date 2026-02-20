@@ -10,5 +10,5 @@
   "description": "Identified CrazyHunter targeting Taiwanese healthcare and education using 80% open-source tooling and BYOVD attacks.",
   "summary": "CrazyHunter is a ransomware campaign specifically targeting critical sectors in Taiwan — healthcare institutions and educational organizations. What makes this group notable is their heavy reliance on open-source offensive tools, with approximately 80% of their toolset being publicly available. They employ BYOVD (Bring Your Own Vulnerable Driver) attacks to disable security products, use Prince ransomware as their encryption payload, and leverage tools like SharpGPOAbuse for lateral movement via Group Policy. This article details the full attack chain, victimology analysis, and provides sector-specific mitigation guidance.",
   "source": "Trend Micro Research Blog",
-  "order": 12
+  "order": 19
 }

@@ -1,0 +1,13 @@
+{
+  "title": "Play Ransomware's Linux Variant Targets ESXi",
+  "date": "Jul 2024",
+  "url": "https://x.com/TrendMicroRSRCH/status/1798293694786801962",
+  "tags": [
+    "Ransomware",
+    "Cross-Platform"
+  ],
+  "description": "X/Twitter thread on the discovery of Play ransomware's first Linux variant targeting ESXi virtualization environments.",
+  "source": "X/Twitter (@TrendMicroRSRCH)",
+  "type": "microstory",
+  "order": 27
+}

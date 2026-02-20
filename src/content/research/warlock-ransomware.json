@@ -9,5 +9,5 @@
   "description": "Traced the Warlock ransomware campaign from initial SharePoint vulnerability exploit through lateral movement to enterprise-wide encryption.",
   "summary": "Warlock ransomware exploits unpatched Microsoft SharePoint vulnerabilities to gain initial access, then escalates privileges, steals credentials, moves laterally, and deploys ransomware with data exfiltration across enterprise networks. This research traces the complete attack chain from SharePoint compromise to domain-wide encryption, documenting the specific tools and techniques used at each stage. The campaign demonstrates how a single unpatched web application can lead to full enterprise compromise.",
   "source": "Trend Micro Research Blog",
-  "order": 8
+  "order": 11
 }
