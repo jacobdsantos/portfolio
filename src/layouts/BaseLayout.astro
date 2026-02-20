@@ -31,7 +31,33 @@ const {
     <meta name="twitter:description" content={description} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://jacobsantos.pages.dev/" />
     <title>{title}</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jacob Santos",
+      "jobTitle": "Senior Threat Researcher",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Trend Micro"
+      },
+      "url": "https://jacobsantos.pages.dev",
+      "sameAs": [
+        "https://github.com/jacobdsantos"
+      ],
+      "knowsAbout": [
+        "Ransomware Analysis",
+        "Advanced Persistent Threats",
+        "Threat Intelligence",
+        "MITRE ATT&CK",
+        "Malware Analysis",
+        "Security Automation"
+      ],
+      "description": description
+    })} />
   </head>
   <body class="min-h-screen">
     <slot />

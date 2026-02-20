@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Admin panel - keep out
+Disallow: /_ctrl/
+
+Sitemap: https://jacobsantos.pages.dev/sitemap.xml

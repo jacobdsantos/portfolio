@@ -65,6 +65,22 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
     <span class="text-text-muted">Much of my work is internal threat intelligence under TLP:AMBER.</span>
   </p>
 
+  <!-- Research stats bar -->
+  <div class="flex items-center gap-4 mb-5 text-[10px] font-mono text-text-muted">
+    <span class="flex items-center gap-1.5">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent-danger"></span>
+      <span><span class="text-text-secondary font-semibold">{articles.filter(a => a.type !== 'microstory').length}</span> Blog Articles</span>
+    </span>
+    <span class="flex items-center gap-1.5">
+      <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+      <span><span class="text-text-secondary font-semibold">{articles.filter(a => a.type === 'microstory').length}</span> Microstories</span>
+    </span>
+    <span class="flex items-center gap-1.5">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent-primary"></span>
+      <span><span class="text-text-secondary font-semibold">{articles.length}</span> Total</span>
+    </span>
+  </div>
+
   <!-- Filter bar -->
   <div class="flex gap-2 mb-6 overflow-x-auto pb-1" id="research-filters">
     {categories.map((cat, i) => (
@@ -171,17 +187,29 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
         <div class="border-t border-white/[0.06] mb-5"></div>
 
         <!-- Action buttons -->
-        <div class="flex items-center gap-3">
-          <a id="modal-read-btn" href="#" target="_blank" rel="noopener"
-            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
-            Read Full Article
-          </a>
-          <button id="modal-close-btn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-muted text-sm font-medium hover:text-text-primary hover:border-white/10 transition-all">
-            Close
-          </button>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <a id="modal-read-btn" href="#" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+              Read Full Article
+            </a>
+            <button id="modal-close-btn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-muted text-sm font-medium hover:text-text-primary hover:border-white/10 transition-all">
+              Close
+            </button>
+          </div>
+          <!-- Prev/Next navigation -->
+          <div class="flex items-center gap-1.5">
+            <button id="modal-prev-btn" class="w-8 h-8 rounded-lg bg-bg-surface border border-white/[0.06] flex items-center justify-center text-text-muted hover:text-accent-primary hover:border-accent-primary/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed" title="Previous (←)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+            </button>
+            <span id="modal-counter" class="text-text-muted text-[10px] font-mono min-w-[3rem] text-center"></span>
+            <button id="modal-next-btn" class="w-8 h-8 rounded-lg bg-bg-surface border border-white/[0.06] flex items-center justify-center text-text-muted hover:text-accent-primary hover:border-accent-primary/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed" title="Next (→)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -276,10 +304,14 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
   const modalReadBtn = document.getElementById('modal-read-btn') as HTMLAnchorElement;
   const modalClose = document.getElementById('modal-close')!;
   const modalCloseBtn = document.getElementById('modal-close-btn')!;
+  const modalPrevBtn = document.getElementById('modal-prev-btn') as HTMLButtonElement;
+  const modalNextBtn = document.getElementById('modal-next-btn') as HTMLButtonElement;
+  const modalCounter = document.getElementById('modal-counter')!;
 
   // Open modal on card click
   cards.forEach((card, idx) => {
     card.addEventListener('click', () => {
+      currentCardIndex = idx;
       const el = card as HTMLElement;
       const url = el.dataset.url || '';
       const title = el.dataset.title || '';
@@ -316,16 +348,60 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
         `<span class="${tagColorMap[tag] || 'tag-green'}">${tag}</span>`
       ).join('');
 
+      // Update navigation counter
+      const visible = getVisibleCards();
+      const pos = visible.indexOf(idx);
+      modalCounter.textContent = `${pos + 1} / ${visible.length}`;
+      modalPrevBtn.disabled = pos <= 0;
+      modalNextBtn.disabled = pos >= visible.length - 1;
+
       // Show modal
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     });
   });
 
+  // Prev/Next button handlers
+  modalPrevBtn.addEventListener('click', () => {
+    const visible = getVisibleCards();
+    const currentPos = visible.indexOf(currentCardIndex);
+    if (currentPos > 0) openCardByIndex(visible[currentPos - 1]);
+  });
+
+  modalNextBtn.addEventListener('click', () => {
+    const visible = getVisibleCards();
+    const currentPos = visible.indexOf(currentCardIndex);
+    if (currentPos < visible.length - 1) openCardByIndex(visible[currentPos + 1]);
+  });
+
+  // Track current article index for keyboard navigation
+  let currentCardIndex = -1;
+  const allCards = Array.from(cards);
+
+  const openCardByIndex = (idx: number) => {
+    if (idx < 0 || idx >= allCards.length) return;
+    const card = allCards[idx] as HTMLElement;
+    // Only navigate to visible cards
+    if (card.style.display === 'none') {
+      // Find next visible card in direction
+      return;
+    }
+    currentCardIndex = idx;
+    card.click();
+  };
+
+  const getVisibleCards = (): number[] => {
+    return allCards.reduce<number[]>((acc, card, idx) => {
+      if ((card as HTMLElement).style.display !== 'none') acc.push(idx);
+      return acc;
+    }, []);
+  };
+
   // Close modal
   const closeModal = () => {
     modal.classList.add('hidden');
     document.body.style.overflow = '';
+    currentCardIndex = -1;
   };
 
   modalClose.addEventListener('click', closeModal);
@@ -335,5 +411,19 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
+    if (!modal.classList.contains('hidden')) {
+      const visible = getVisibleCards();
+      const currentPos = visible.indexOf(currentCardIndex);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        const nextPos = currentPos + 1;
+        if (nextPos < visible.length) openCardByIndex(visible[nextPos]);
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prevPos = currentPos - 1;
+        if (prevPos >= 0) openCardByIndex(visible[prevPos]);
+      }
+    }
   });
 </script>

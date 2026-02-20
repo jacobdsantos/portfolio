@@ -4,6 +4,7 @@
   "org": "Government Agency",
   "location": "Japan",
   "flag": "JP",
+  "year": "2024",
   "description": "Multi-day hands-on training covering advanced persistent threats, malware analysis techniques, and enterprise defense strategies.",
   "order": 1
 }

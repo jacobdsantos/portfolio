@@ -38,6 +38,7 @@ const speaking = defineCollection({
     location: z.string(),
     flag: z.string(),
     description: z.string(),
+    year: z.string().optional(),
     order: z.number().optional(),
   }),
 });

@@ -49,7 +49,10 @@ const defaultFlag = `<div class="w-6 h-4 bg-bg-surface rounded-sm"></div>`;
                 <h3 class="text-text-primary font-semibold text-sm group-hover:text-accent-primary transition-colors">{eng.title}</h3>
                 <span class={typeColors[eng.type]}>{eng.type}</span>
               </div>
-              <p class="text-accent-secondary text-xs font-mono mb-1.5">{eng.org} — {eng.location}</p>
+              <p class="text-accent-secondary text-xs font-mono mb-1.5">
+                {eng.org} — {eng.location}
+                {eng.year && <span class="text-text-muted ml-2">({eng.year})</span>}
+              </p>
               <p class="text-text-muted text-xs leading-relaxed">{eng.description}</p>
             </div>
           </div>

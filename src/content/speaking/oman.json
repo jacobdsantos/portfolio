@@ -4,6 +4,7 @@
   "org": "Government Agency",
   "location": "Oman",
   "flag": "OM",
+  "year": "2024",
   "description": "Cybersecurity training program covering threat detection, incident response, and security operations for government personnel.",
   "order": 2
 }
