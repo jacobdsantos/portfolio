@@ -2,9 +2,7 @@ backend:
   name: github
   repo: jacobdsantos/portfolio
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  site_domain: glistening-kashata-8d2c27.netlify.app
+  base_url: https://sveltia-cms-auth.jacobsantos-d.workers.dev
 
 media_folder: public/images
 public_folder: /images
