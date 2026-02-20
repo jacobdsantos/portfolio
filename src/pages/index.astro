@@ -112,6 +112,19 @@ import TabSpeaking from '../components/TabSpeaking.astro';
       }
     });
 
+    // Cross-tab navigation links (from About cards)
+    document.querySelectorAll('[data-nav-link]').forEach(el => {
+      const link = (el as HTMLElement).dataset.navLink;
+      if (link) {
+        el.addEventListener('click', () => {
+          const target = link.replace('#', '');
+          switchTab(target);
+          history.replaceState(null, '', `#${target}`);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    });
+
     // Back to top button
     const backToTop = document.getElementById('back-to-top');
     if (backToTop) {

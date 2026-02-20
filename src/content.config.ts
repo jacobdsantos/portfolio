@@ -32,13 +32,15 @@ const tools = defineCollection({
 const speaking = defineCollection({
   type: 'data',
   schema: z.object({
-    type: z.enum(['Training', 'Speaker']),
+    type: z.enum(['Training', 'Speaker', 'Panelist']),
     title: z.string(),
     org: z.string(),
     location: z.string(),
     flag: z.string(),
     description: z.string(),
     year: z.string().optional(),
+    audience: z.string().optional(),
+    topics: z.array(z.string()).optional(),
     order: z.number().optional(),
   }),
 });

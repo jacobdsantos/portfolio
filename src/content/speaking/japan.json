@@ -2,9 +2,11 @@
   "type": "Training",
   "title": "Advanced Threat Defense & Malware Analysis",
   "org": "Government Agency",
-  "location": "Japan",
+  "location": "Tokyo, Japan",
   "flag": "JP",
   "year": "2024",
-  "description": "Multi-day hands-on training covering advanced persistent threats, malware analysis techniques, and enterprise defense strategies.",
+  "audience": "Government cybersecurity analysts",
+  "topics": ["APT Analysis", "Malware Reverse Engineering", "Enterprise Defense"],
+  "description": "Multi-day hands-on training program covering advanced persistent threats, live malware analysis workshops, and enterprise defense strategies for national cybersecurity personnel.",
   "order": 1
 }

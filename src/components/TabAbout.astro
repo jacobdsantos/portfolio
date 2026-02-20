@@ -20,6 +20,7 @@ const whatIDo = [
     accent: 'text-violet-400 bg-violet-500/10 border-violet-500/15',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>`,
     description: 'Training government agencies and law enforcement across Asia, the Middle East, and online for INTERPOL.',
+    link: '#speaking',
   },
   {
     title: 'Tool Development',
@@ -27,6 +28,7 @@ const whatIDo = [
     accent: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/15',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
     description: '10+ production tools used daily — from MCP servers and AI pipelines to desktop applications and Confluence integrations.',
+    link: '#tools',
   },
 ];
 
@@ -79,11 +81,16 @@ const timeline = [
   <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">What I'm Doing</h3>
   <div class="grid sm:grid-cols-2 gap-3 mb-8">
     {whatIDo.map(item => (
-      <div class="card !p-4">
+      <div class={`card !p-4 ${item.link ? 'cursor-pointer' : ''}`} data-nav-link={item.link || ''}>
         <div class="flex items-start gap-3">
           <div class={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${item.accent}`} set:html={item.icon} />
-          <div>
-            <h4 class="text-text-primary font-semibold text-sm mb-1">{item.title}</h4>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <h4 class="text-text-primary font-semibold text-sm mb-1">{item.title}</h4>
+              {item.link && (
+                <svg class="w-3 h-3 text-text-muted/40 shrink-0 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+              )}
+            </div>
             <p class="text-text-muted text-xs leading-relaxed">{item.description}</p>
           </div>
         </div>

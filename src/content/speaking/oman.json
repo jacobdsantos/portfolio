@@ -1,10 +1,12 @@
 {
   "type": "Training",
-  "title": "Cybersecurity Training for Government",
+  "title": "Cybersecurity Operations & Threat Detection",
   "org": "Government Agency",
-  "location": "Oman",
+  "location": "Muscat, Oman",
   "flag": "OM",
   "year": "2024",
-  "description": "Cybersecurity training program covering threat detection, incident response, and security operations for government personnel.",
+  "audience": "Government security operations teams",
+  "topics": ["Threat Detection", "Incident Response", "Security Operations"],
+  "description": "Comprehensive cybersecurity training covering real-world threat detection techniques, incident response playbooks, and SOC operations for government security personnel.",
   "order": 2
 }

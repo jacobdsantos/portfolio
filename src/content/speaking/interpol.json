@@ -1,10 +1,12 @@
 {
   "type": "Training",
-  "title": "Cybersecurity Training Program",
+  "title": "Cyber Investigation & Threat Intelligence",
   "org": "INTERPOL",
-  "location": "Online",
+  "location": "Online (Global)",
   "flag": "INTL",
   "year": "2023 — 2025",
-  "description": "Online training sessions with INTERPOL on cybersecurity techniques, threat intelligence sharing, and cross-border cyber investigation.",
+  "audience": "International law enforcement officers",
+  "topics": ["Threat Intelligence", "Cross-Border Investigation", "Ransomware Forensics"],
+  "description": "Recurring online training sessions with INTERPOL covering cybersecurity techniques, threat intelligence sharing methodologies, and cross-border cyber investigation procedures for international law enforcement.",
   "order": 3
 }

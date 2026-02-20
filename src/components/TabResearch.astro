@@ -43,7 +43,7 @@ const getIcon = (tags: string[]) => {
 // Large modal icons
 const topicIconsLg: Record<string, string> = {
   'Ransomware': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`,
-  'APT': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>`,
+  'APT': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3"/></svg>`,
   'Red Team Tools': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>`,
   'RAT': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75c1.148 0 2.278.08 3.383.237 1.037.146 1.866.966 1.866 2.013 0 3.728-2.35 6.75-5.25 6.75S6.75 18.728 6.75 15c0-1.046.83-1.867 1.866-2.013A24.204 24.204 0 0112 12.75z"/></svg>`,
 };
@@ -56,6 +56,20 @@ const getIconLg = (tags: string[]) => {
 };
 
 const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
+
+// Pre-compute related articles (by shared tags) for each article
+const articlesWithRelated = articles.map((article, idx) => {
+  const related = articles
+    .map((other, otherIdx) => {
+      if (otherIdx === idx) return null;
+      const shared = article.tags.filter(t => other.tags.includes(t));
+      return shared.length > 0 ? { title: other.title, url: other.url, sharedTags: shared.length, idx: otherIdx } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => (b?.sharedTags || 0) - (a?.sharedTags || 0))
+    .slice(0, 3);
+  return { ...article, related };
+});
 ---
 
 <div class="content-card">
@@ -81,6 +95,21 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
     </span>
   </div>
 
+  <!-- Search bar -->
+  <div class="relative mb-4">
+    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+    </svg>
+    <input
+      type="text"
+      id="research-search"
+      placeholder="Search articles, tags, topics..."
+      class="w-full pl-10 pr-20 py-2.5 rounded-xl bg-bg-surface/60 border border-white/[0.06] text-text-primary text-sm placeholder:text-text-muted/50 focus:outline-none focus:border-accent-primary/30 focus:bg-bg-surface transition-all font-mono"
+    />
+    <span id="search-count" class="absolute right-12 top-1/2 -translate-y-1/2 text-[10px] font-mono text-text-muted hidden"></span>
+    <kbd class="absolute right-3 top-1/2 -translate-y-1/2 text-[9px] font-mono text-text-muted/40 bg-bg-surface/80 px-1.5 py-0.5 rounded border border-white/[0.06] pointer-events-none" id="search-kbd">/</kbd>
+  </div>
+
   <!-- Filter bar -->
   <div class="flex gap-2 mb-6 overflow-x-auto pb-1" id="research-filters">
     {categories.map((cat, i) => (
@@ -95,7 +124,7 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
 
   <!-- Article grid -->
   <div class="grid sm:grid-cols-2 gap-4" id="research-list">
-    {articles.map((article, idx) => (
+    {articlesWithRelated.map((article, idx) => (
       <div
         class="research-card group cursor-pointer"
         data-tags={article.tags.join(',')}
@@ -108,6 +137,8 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
         data-type={article.type || 'blog'}
         data-gradient={gradients[idx % gradients.length]}
         data-all-tags={JSON.stringify(article.tags)}
+        data-related={JSON.stringify(article.related)}
+        data-search-text={`${article.title} ${article.description} ${article.tags.join(' ')} ${article.summary || ''}`}
       >
         <!-- Gradient thumbnail -->
         <div class={`relative h-36 bg-gradient-to-br ${gradients[idx % gradients.length]} overflow-hidden`}>
@@ -153,6 +184,15 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
       </div>
     ))}
   </div>
+
+  <!-- No results message -->
+  <div id="no-results" class="hidden text-center py-12">
+    <svg class="w-12 h-12 text-text-muted/30 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+    </svg>
+    <p class="text-text-muted text-sm">No articles match your search</p>
+    <button id="clear-search" class="mt-2 text-accent-primary text-xs font-mono hover:underline">Clear search</button>
+  </div>
 </div>
 
 <!-- Article Detail Modal -->
@@ -176,12 +216,25 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
       </div>
 
       <!-- Content body -->
-      <div class="p-6 -mt-8 relative">
+      <div class="p-6 -mt-8 relative overflow-y-auto">
         <h2 class="text-text-primary text-xl font-bold leading-tight mb-3 tracking-tight" id="modal-title"></h2>
         <p class="text-text-secondary text-sm leading-relaxed mb-5" id="modal-description"></p>
 
         <!-- Tags -->
         <div class="flex flex-wrap gap-1.5 mb-6" id="modal-tags"></div>
+
+        <!-- Related Research -->
+        <div id="modal-related" class="hidden mb-6">
+          <div class="border-t border-white/[0.06] mb-4 pt-4">
+            <div class="flex items-center gap-2 mb-3">
+              <svg class="w-3.5 h-3.5 text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.813a4.5 4.5 0 00-6.364-6.364L4.5 8.25a4.5 4.5 0 006.364 6.364l4.5-4.5z"/>
+              </svg>
+              <span class="text-text-secondary text-xs font-semibold">Related Research</span>
+            </div>
+            <div id="modal-related-list" class="space-y-2"></div>
+          </div>
+        </div>
 
         <!-- Divider -->
         <div class="border-t border-white/[0.06] mb-5"></div>
@@ -257,6 +310,10 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
   // Research filters
   const filterBtns = document.querySelectorAll('#research-filters button');
   const cards = document.querySelectorAll('#research-list .research-card');
+  const searchInput = document.getElementById('research-search') as HTMLInputElement;
+  const searchCount = document.getElementById('search-count')!;
+  const noResults = document.getElementById('no-results')!;
+  const clearSearchBtn = document.getElementById('clear-search');
 
   const categoryMap: Record<string, string[]> = {
     'All': [],
@@ -266,9 +323,51 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
     'Microstories': [], // Special filter handled by type
   };
 
+  let activeFilter = 'All';
+  let searchQuery = '';
+
+  const applyFilters = () => {
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const el = card as HTMLElement;
+      const tags = (el.dataset.tags || '').split(',');
+      const searchText = (el.dataset.searchText || '').toLowerCase();
+      const type = el.dataset.type || 'blog';
+
+      let matchesFilter = true;
+      if (activeFilter === 'Microstories') {
+        matchesFilter = type === 'microstory';
+      } else if (activeFilter !== 'All') {
+        const matchTags = categoryMap[activeFilter] || [];
+        matchesFilter = matchTags.some(t => tags.includes(t));
+      }
+
+      let matchesSearch = true;
+      if (searchQuery) {
+        matchesSearch = searchText.includes(searchQuery.toLowerCase());
+      }
+
+      const visible = matchesFilter && matchesSearch;
+      el.style.display = visible ? '' : 'none';
+      if (visible) visibleCount++;
+    });
+
+    // Update search count
+    if (searchQuery) {
+      searchCount.textContent = `${visibleCount} found`;
+      searchCount.classList.remove('hidden');
+    } else {
+      searchCount.classList.add('hidden');
+    }
+
+    // Show/hide no results
+    noResults.classList.toggle('hidden', visibleCount > 0);
+  };
+
+  // Filter buttons
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const filter = (btn as HTMLElement).dataset.filter || 'All';
+      activeFilter = (btn as HTMLElement).dataset.filter || 'All';
       filterBtns.forEach(b => {
         b.className = b.className
           .replace(/bg-accent-primary\/15 text-accent-primary border-accent-primary\/25/g,
@@ -277,19 +376,42 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
       btn.className = btn.className
         .replace(/text-text-muted border-white\/10 hover:text-text-primary hover:border-white\/20/g,
           'bg-accent-primary/15 text-accent-primary border-accent-primary/25');
-      const matchTags = categoryMap[filter] || [];
-      cards.forEach(card => {
-        const el = card as HTMLElement;
-        if (filter === 'All') {
-          el.style.display = '';
-        } else if (filter === 'Microstories') {
-          el.style.display = el.dataset.type === 'microstory' ? '' : 'none';
-        } else {
-          const tags = (el.dataset.tags || '').split(',');
-          el.style.display = matchTags.some(t => tags.includes(t)) ? '' : 'none';
-        }
-      });
+      applyFilters();
     });
+  });
+
+  // Search input
+  let searchTimeout: ReturnType<typeof setTimeout>;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      searchQuery = searchInput.value.trim();
+      applyFilters();
+    }, 150);
+  });
+
+  // Keyboard shortcut: "/" to focus search (like GitHub)
+  const searchKbd = document.getElementById('search-kbd');
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !modal.classList.contains('hidden') === false) {
+      const active = document.activeElement;
+      if (active?.tagName !== 'INPUT' && active?.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    }
+  });
+  searchInput.addEventListener('focus', () => searchKbd && (searchKbd.style.display = 'none'));
+  searchInput.addEventListener('blur', () => {
+    if (!searchInput.value) searchKbd && (searchKbd.style.display = '');
+  });
+
+  // Clear search
+  clearSearchBtn?.addEventListener('click', () => {
+    searchInput.value = '';
+    searchQuery = '';
+    applyFilters();
+    searchInput.focus();
   });
 
   // Modal elements
@@ -307,6 +429,8 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
   const modalPrevBtn = document.getElementById('modal-prev-btn') as HTMLButtonElement;
   const modalNextBtn = document.getElementById('modal-next-btn') as HTMLButtonElement;
   const modalCounter = document.getElementById('modal-counter')!;
+  const modalRelated = document.getElementById('modal-related')!;
+  const modalRelatedList = document.getElementById('modal-related-list')!;
 
   // Open modal on card click
   cards.forEach((card, idx) => {
@@ -321,6 +445,7 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
       const contentType = el.dataset.type || 'blog';
       const tags: string[] = JSON.parse(el.dataset.allTags || '[]');
       const gradient = gradientClasses[idx % gradientClasses.length];
+      const related: Array<{title: string; url: string; sharedTags: number; idx: number}> = JSON.parse(el.dataset.related || '[]');
 
       // Update hero gradient
       modalHero.className = `relative h-48 bg-gradient-to-br ${gradient} overflow-hidden`;
@@ -347,6 +472,20 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
       modalTags.innerHTML = tags.map(tag =>
         `<span class="${tagColorMap[tag] || 'tag-green'}">${tag}</span>`
       ).join('');
+
+      // Update related research
+      if (related && related.length > 0) {
+        modalRelated.classList.remove('hidden');
+        modalRelatedList.innerHTML = related.map(r =>
+          `<a href="${r.url}" target="_blank" rel="noopener" class="flex items-center gap-3 p-2.5 rounded-lg bg-bg-surface/40 border border-white/[0.04] hover:border-accent-primary/15 hover:bg-bg-hover/60 transition-all group/related">
+            <svg class="w-3.5 h-3.5 text-text-muted group-hover/related:text-accent-primary shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+            <span class="text-text-secondary text-xs group-hover/related:text-text-primary transition-colors truncate">${r.title}</span>
+            <svg class="w-3 h-3 text-text-muted/40 shrink-0 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+          </a>`
+        ).join('');
+      } else {
+        modalRelated.classList.add('hidden');
+      }
 
       // Update navigation counter
       const visible = getVisibleCards();
@@ -381,11 +520,7 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
   const openCardByIndex = (idx: number) => {
     if (idx < 0 || idx >= allCards.length) return;
     const card = allCards[idx] as HTMLElement;
-    // Only navigate to visible cards
-    if (card.style.display === 'none') {
-      // Find next visible card in direction
-      return;
-    }
+    if (card.style.display === 'none') return;
     currentCardIndex = idx;
     card.click();
   };

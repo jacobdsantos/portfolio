@@ -1,0 +1,12 @@
+{
+  "type": "Training",
+  "title": "Threat Hunting Fundamentals for Enterprise Defense",
+  "org": "Trend Micro (Internal)",
+  "location": "Manila, Philippines",
+  "flag": "PH",
+  "year": "2023 — 2025",
+  "audience": "Internal threat analysts and new team members",
+  "topics": ["Threat Hunting", "IOC Analysis", "Inquiry Processing"],
+  "description": "Ongoing internal training program for the Philippines Threat Hunting Team, onboarding new analysts on inquiry triage, IOC enrichment workflows, and threat hunting methodologies.",
+  "order": 6
+}
