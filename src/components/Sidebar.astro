@@ -32,8 +32,10 @@ const stats = [
   <div class="text-center mb-5">
     <div class="relative w-24 h-24 mx-auto mb-4">
       <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary/30 via-accent-secondary/20 to-accent-danger/20 animate-glow"></div>
-      <div class="relative w-full h-full rounded-2xl bg-bg-secondary border border-accent-primary/20 flex items-center justify-center overflow-hidden">
+      <div class="relative w-full h-full rounded-2xl bg-bg-secondary border border-accent-primary/20 flex items-center justify-center overflow-hidden group">
         <span class="text-3xl font-bold bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent font-mono tracking-tighter">JS</span>
+        <!-- Scanline effect -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-primary/[0.03] to-transparent h-8 animate-float pointer-events-none"></div>
       </div>
     </div>
     <h1 class="text-xl font-bold text-text-primary tracking-tight">Jacob Santos</h1>
@@ -92,6 +94,19 @@ const stats = [
       <span class="tag-amber">BYOVD</span>
       <span class="tag-cyan">Automation</span>
       <span class="tag-purple">MITRE ATT&CK</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Organization -->
+  <div class="flex items-center gap-3">
+    <div class="w-9 h-9 rounded-xl bg-accent-danger/[0.06] border border-accent-danger/10 flex items-center justify-center shrink-0">
+      <svg class="w-4 h-4 text-accent-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
+    </div>
+    <div class="min-w-0">
+      <p class="text-text-muted text-[10px] uppercase tracking-widest font-mono">Organization</p>
+      <p class="text-text-secondary text-xs font-medium">Trend Micro &middot; PH THT</p>
     </div>
   </div>
 </div>

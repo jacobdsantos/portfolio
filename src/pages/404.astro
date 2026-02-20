@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Not Found">
+  <div class="min-h-screen flex items-center justify-center p-6">
+    <div class="text-center max-w-md">
+      <!-- Glitch-style 404 -->
+      <div class="relative mb-6">
+        <span class="text-8xl font-bold font-mono bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent">404</span>
+      </div>
+
+      <h1 class="text-xl font-bold text-text-primary mb-2 tracking-tight">Page Not Found</h1>
+      <p class="text-text-muted text-sm mb-8 leading-relaxed">
+        The page you're looking for doesn't exist or has been moved.
+        Maybe it's classified under TLP:RED.
+      </p>
+
+      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to Home
+      </a>
+
+      <!-- Decorative grid -->
+      <div class="mt-12 opacity-20">
+        <div class="inline-grid grid-cols-5 gap-1">
+          {Array.from({ length: 25 }).map((_, i) => (
+            <div class={`w-2 h-2 rounded-sm ${i % 7 === 0 ? 'bg-accent-primary' : i % 5 === 0 ? 'bg-accent-secondary' : 'bg-white/20'}`}></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
