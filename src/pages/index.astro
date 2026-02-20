@@ -67,6 +67,13 @@ import TabSpeaking from '../components/TabSpeaking.astro';
     </footer>
   </div>
 
+  <!-- Back to top button (mobile) -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 z-40 w-10 h-10 rounded-xl bg-accent-primary/90 text-bg-primary shadow-lg shadow-accent-primary/20 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 hover:shadow-accent-primary/30 lg:hidden" aria-label="Back to top">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+  </button>
+
   <!-- Tab switching script -->
   <script>
     const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
@@ -104,5 +111,22 @@ import TabSpeaking from '../components/TabSpeaking.astro';
         switchTab(h);
       }
     });
+
+    // Back to top button
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backToTop.style.opacity = '1';
+          backToTop.style.pointerEvents = 'auto';
+        } else {
+          backToTop.style.opacity = '0';
+          backToTop.style.pointerEvents = 'none';
+        }
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   </script>
 </BaseLayout>
