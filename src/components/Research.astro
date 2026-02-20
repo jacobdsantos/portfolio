@@ -1,0 +1,140 @@
+---
+const articles = [
+  {
+    title: 'Unmasking The Gentlemen Ransomware: Tactics, Techniques, and Procedures Revealed',
+    date: 'Sep 9, 2025',
+    role: 'Lead Author',
+    url: 'https://www.trendmicro.com/en_us/research/25/i/unmasking-the-gentlemen-ransomware.html',
+    tags: ['Ransomware', 'BYOVD', 'Defense Evasion'],
+    description: 'Analysis of a new ransomware group with adaptive defense evasion — custom-patching anti-AV tools mid-attack based on target reconnaissance.',
+  },
+  {
+    title: 'New LockBit 5.0 Targets Windows, Linux, ESXi',
+    date: 'Sep 25, 2025',
+    role: 'Co-Lead',
+    url: 'https://www.trendmicro.com/en_us/research/25/i/lockbit-5-targets-windows-linux-esxi.html',
+    tags: ['Ransomware', 'Cross-Platform', 'LockBit'],
+    description: 'Technical analysis of LockBit 5.0 — cross-platform ransomware with heavy obfuscation, anti-analysis techniques, and geopolitical safeguards.',
+  },
+  {
+    title: 'New Ransomware Charon Uses Earth Baxia APT Techniques',
+    date: 'Aug 12, 2025',
+    role: 'Lead Author',
+    url: 'https://www.trendmicro.com/en_us/research/25/h/new-ransomware-charon.html',
+    tags: ['Ransomware', 'APT Crossover', 'DLL Sideloading'],
+    description: 'Discovered Charon ransomware using APT-grade techniques — DLL sideloading via Edge.exe, hybrid Curve25519/ChaCha20 encryption.',
+  },
+  {
+    title: 'Revisiting UNC3886 Tactics to Defend Against Present Risk',
+    date: 'Jul 28, 2025',
+    role: 'Author',
+    url: 'https://www.trendmicro.com/en_us/research/25/g/revisiting-unc3886.html',
+    tags: ['APT', 'China-Nexus', 'Espionage'],
+    description: 'Revisiting the tactics of UNC3886, a China-nexus threat actor targeting network edge devices and virtualization infrastructure.',
+  },
+  {
+    title: 'CrazyHunter Campaign Targets Taiwanese Critical Sectors',
+    date: 'Apr 16, 2025',
+    role: 'Author',
+    url: 'https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html',
+    tags: ['Ransomware', 'Taiwan', 'BYOVD'],
+    description: 'Identified CrazyHunter — a ransomware group targeting Taiwanese healthcare and education using 80% open-source tooling and BYOVD attacks.',
+  },
+  {
+    title: 'PureRAT Campaign Targets Job Seekers via Foxit PDF DLL Side-loading',
+    date: 'Dec 3, 2025',
+    role: 'Author',
+    url: 'https://www.trendmicro.com/en_us/research/25/l/valleyrat-campaign.html',
+    tags: ['RAT', 'Social Engineering', 'DLL Sideloading'],
+    description: 'Uncovered a PureRAT campaign targeting job seekers using renamed Foxit PDF Reader for DLL side-loading and Python-based shellcode loaders.',
+  },
+  {
+    title: 'Silent Threat: Red Team Tool EDRSilencer Disrupting Endpoint Security',
+    date: 'Oct 15, 2024',
+    role: 'Lead Author',
+    url: 'https://www.trendmicro.com/en_us/research/24/j/edrsilencer-disrupting-endpoint-security-solutions.html',
+    tags: ['Red Team Tools', 'EDR Evasion', 'WFP'],
+    description: 'First to document EDRSilencer being weaponized in the wild — a red team tool using Windows Filtering Platform to blind EDR solutions.',
+  },
+  {
+    title: 'Multistage RA World Ransomware Uses Anti-AV Tactics, Exploits GPO',
+    date: 'Mar 4, 2024',
+    role: 'Author',
+    url: 'https://www.trendmicro.com/en_us/research/24/c/multistage-ra-world-ransomware.html',
+    tags: ['Ransomware', 'GPO Abuse', 'Safe Mode'],
+    description: 'Analyzed RA World ransomware using GPO-distributed payloads, Safe Mode abuse for defense evasion, and Babuk-derived encryption.',
+  },
+];
+
+const tagColors: Record<string, string> = {
+  'Ransomware': 'tag-red',
+  'BYOVD': 'tag-amber',
+  'Defense Evasion': 'tag-amber',
+  'Cross-Platform': 'tag-cyan',
+  'LockBit': 'tag-red',
+  'APT Crossover': 'tag-blue',
+  'DLL Sideloading': 'tag-amber',
+  'APT': 'tag-blue',
+  'China-Nexus': 'tag-blue',
+  'Espionage': 'tag-blue',
+  'Taiwan': 'tag-cyan',
+  'RAT': 'tag-red',
+  'Social Engineering': 'tag-amber',
+  'Red Team Tools': 'tag-amber',
+  'EDR Evasion': 'tag-red',
+  'WFP': 'tag-cyan',
+  'GPO Abuse': 'tag-amber',
+  'Safe Mode': 'tag-amber',
+};
+---
+
+<section id="research" class="relative py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-1 h-6 bg-accent-primary rounded-full"></div>
+      <h2 class="section-heading">Published Research</h2>
+    </div>
+    <p class="section-subheading">
+      Threat research published on Trend Micro's research blog. These are the articles I can share publicly
+      <span class="text-text-muted">— much of my work is internal threat intelligence under TLP:AMBER.</span>
+    </p>
+
+    <div class="grid gap-4">
+      {articles.map(article => (
+        <a
+          href={article.url}
+          target="_blank"
+          rel="noopener"
+          class="card group block"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-text-muted text-xs font-mono shrink-0">{article.date}</span>
+                {article.role === 'Lead Author' && (
+                  <span class="tag-green text-[10px] uppercase tracking-wider">Lead</span>
+                )}
+              </div>
+              <h3 class="text-text-primary font-medium group-hover:text-accent-primary transition-colors mb-2 leading-snug">
+                {article.title}
+              </h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-3">
+                {article.description}
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                {article.tags.map(tag => (
+                  <span class={tagColors[tag] || 'tag-blue'}>{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div class="shrink-0 text-text-muted group-hover:text-accent-primary transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

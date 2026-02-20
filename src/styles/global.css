@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-sans;
+  }
+
+  ::selection {
+    @apply bg-accent-primary/30 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-primary;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent-primary/30 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-primary/50;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-bg-card border border-white/5 rounded-lg p-6
+           transition-all duration-300 hover:border-accent-primary/20
+           hover:bg-bg-hover hover:shadow-lg hover:shadow-accent-primary/5;
+  }
+
+  .tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono
+           border transition-colors duration-200;
+  }
+
+  .tag-blue {
+    @apply tag bg-accent-primary/10 text-accent-primary border-accent-primary/20;
+  }
+
+  .tag-cyan {
+    @apply tag bg-accent-secondary/10 text-accent-secondary border-accent-secondary/20;
+  }
+
+  .tag-amber {
+    @apply tag bg-accent-warning/10 text-accent-warning border-accent-warning/20;
+  }
+
+  .tag-red {
+    @apply tag bg-accent-danger/10 text-accent-danger border-accent-danger/20;
+  }
+
+  .tag-green {
+    @apply tag bg-accent-success/10 text-accent-success border-accent-success/20;
+  }
+
+  .section-heading {
+    @apply text-2xl font-semibold text-text-primary mb-2 flex items-center gap-3;
+  }
+
+  .section-subheading {
+    @apply text-text-secondary mb-8 max-w-2xl;
+  }
+
+  .grid-line {
+    @apply absolute inset-0 pointer-events-none;
+    background-image:
+      linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}

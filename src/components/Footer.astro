@@ -1,0 +1,15 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/5 py-8 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 text-text-muted text-sm">
+      <div class="w-6 h-6 rounded bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center text-accent-primary font-mono text-[10px] font-bold">JS</div>
+      <span>&copy; {year} Jacob Santos</span>
+    </div>
+    <p class="text-text-muted text-xs font-mono">
+      Built with Astro + Tailwind. Hosted on Cloudflare Pages.
+    </p>
+  </div>
+</footer>

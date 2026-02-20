@@ -1,0 +1,89 @@
+---
+const engagements = [
+  {
+    type: 'Training',
+    title: 'Advanced Threat Defense & Malware Analysis',
+    org: 'Government Agency',
+    location: 'Japan',
+    flag: 'JP',
+    description: 'Multi-day hands-on training covering advanced persistent threats, malware analysis techniques, and enterprise defense strategies.',
+  },
+  {
+    type: 'Training',
+    title: 'Cybersecurity Training for Government',
+    org: 'Government Agency',
+    location: 'Oman',
+    flag: 'OM',
+    description: 'Cybersecurity training program covering threat detection, incident response, and security operations for government personnel.',
+  },
+  {
+    type: 'Training',
+    title: 'Cybersecurity Training Program',
+    org: 'INTERPOL',
+    location: 'Online',
+    flag: 'INTL',
+    description: 'Online training sessions with INTERPOL on cybersecurity techniques, threat intelligence sharing, and cross-border cyber investigation.',
+  },
+  {
+    type: 'Speaker',
+    title: 'Cybersecurity Conference Presentations',
+    org: 'Various Conferences',
+    location: 'Multiple',
+    flag: 'CONF',
+    description: 'Speaking engagements at cybersecurity conferences covering ransomware trends, threat hunting methodologies, and adversary tradecraft.',
+  },
+];
+
+const flagEmoji: Record<string, string> = {
+  'JP': '<svg class="w-5 h-3.5" viewBox="0 0 640 480"><rect width="640" height="480" fill="#fff"/><circle cx="320" cy="240" r="120" fill="#bc002d"/></svg>',
+  'OM': '<div class="w-5 h-3.5 bg-gradient-to-b from-white via-green-600 to-red-600 rounded-sm border border-white/20"></div>',
+  'INTL': '<div class="w-5 h-3.5 bg-blue-600 rounded-sm flex items-center justify-center text-[6px] text-white font-bold border border-white/20">INTL</div>',
+  'CONF': '<div class="w-5 h-3.5 bg-accent-primary/20 rounded-sm flex items-center justify-center border border-accent-primary/30"><svg class="w-3 h-3 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>',
+};
+
+const typeColors: Record<string, string> = {
+  'Training': 'tag-amber',
+  'Speaker': 'tag-blue',
+};
+---
+
+<section id="speaking" class="relative py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-1 h-6 bg-accent-warning rounded-full"></div>
+      <h2 class="section-heading">Speaking & Training</h2>
+    </div>
+    <p class="section-subheading">
+      International cybersecurity trainer for government agencies and law enforcement.
+      I don't just find threats — I teach others how to defend against them.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      {engagements.map(eng => (
+        <div class="card">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div set:html={flagEmoji[eng.flag]} />
+              <div>
+                <span class="text-text-muted text-xs font-mono">{eng.location}</span>
+              </div>
+            </div>
+            <span class={typeColors[eng.type]}>{eng.type}</span>
+          </div>
+          <h3 class="text-text-primary font-medium mb-1">{eng.title}</h3>
+          <p class="text-accent-secondary text-xs font-mono mb-2">{eng.org}</p>
+          <p class="text-text-secondary text-sm leading-relaxed">{eng.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- World reach note -->
+    <div class="mt-6 bg-bg-card/30 border border-white/5 rounded-lg p-4 text-center">
+      <p class="text-text-muted text-sm">
+        Training delivered across <span class="text-accent-primary font-medium">Asia</span>,
+        <span class="text-accent-primary font-medium">Middle East</span>, and
+        <span class="text-accent-primary font-medium">online</span> for international law enforcement
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+const stats = [
+  { value: '9+', label: 'Published Articles' },
+  { value: '5+', label: 'Countries Trained' },
+  { value: '8+', label: 'Ransomware Families' },
+  { value: '10+', label: 'Tools Built' },
+];
+---
+
+<section class="relative pt-32 pb-20 px-6">
+  <!-- Gradient orb -->
+  <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-accent-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto relative">
+    <div class="max-w-3xl">
+      <!-- Status indicator -->
+      <div class="flex items-center gap-2 mb-6">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-success opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-success"></span>
+        </span>
+        <span class="text-accent-success text-sm font-mono">Senior Threat Researcher @ Trend Micro</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+        <span class="text-text-primary">I hunt threats,</span><br/>
+        <span class="text-text-primary">build </span>
+        <span class="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">intel automation,</span><br/>
+        <span class="text-text-secondary text-3xl sm:text-4xl lg:text-5xl">& train defenders worldwide.</span>
+      </h1>
+
+      <p class="text-text-secondary text-lg leading-relaxed mb-10 max-w-2xl">
+        Published threat researcher covering ransomware, APT campaigns, and adversary tooling.
+        International cybersecurity trainer for government agencies and law enforcement.
+        Builder of threat intelligence automation that multiplies team capability.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mb-16">
+        <a href="#research" class="px-5 py-2.5 bg-accent-primary text-white rounded font-medium text-sm hover:bg-accent-primary/90 transition-colors">
+          View Research
+        </a>
+        <a href="#about" class="px-5 py-2.5 bg-white/5 text-text-primary rounded font-medium text-sm border border-white/10 hover:bg-white/10 transition-colors">
+          About Me
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {stats.map(stat => (
+        <div class="bg-bg-card/50 border border-white/5 rounded-lg px-5 py-4">
+          <div class="text-2xl font-bold text-accent-primary font-mono">{stat.value}</div>
+          <div class="text-text-muted text-sm mt-1">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
