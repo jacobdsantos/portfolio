@@ -1,0 +1,71 @@
+backend:
+  name: github
+  repo: jacobdsantos/portfolio
+  branch: main
+  base_url: https://sveltia-cms-auth.jacobsantos-d.workers.dev
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: research
+    label: "Research Articles"
+    folder: src/content/research
+    extension: json
+    format: json
+    create: true
+    slug: "{{fields.title | slugify}}"
+    summary: "{{fields.title}} ({{fields.date}})"
+    sortable_fields: ['order', 'date', 'title']
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "string", hint: "e.g. Sep 2025" }
+      - { label: "Role", name: "role", widget: "select", options: ["Lead Author", "Co-Lead", "Author"] }
+      - { label: "URL", name: "url", widget: "string" }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        allow_add: true
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Sort Order", name: "order", widget: "number", value_type: "int", default: 99, hint: "Lower = appears first" }
+
+  - name: tools
+    label: "Tools"
+    folder: src/content/tools
+    extension: json
+    format: json
+    create: true
+    slug: "{{fields.name | slugify}}"
+    summary: "{{fields.name}} — {{fields.status}}"
+    sortable_fields: ['order', 'name']
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Full Name", name: "fullName", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Impact", name: "impact", widget: "string" }
+      - label: "Tech Stack"
+        name: "tech"
+        widget: "list"
+        allow_add: true
+        field: { label: "Technology", name: "tech", widget: "string" }
+      - { label: "Status", name: "status", widget: "select", options: ["Production", "Active Dev", "Planned"] }
+      - { label: "Sort Order", name: "order", widget: "number", value_type: "int", default: 99, hint: "Lower = appears first" }
+
+  - name: speaking
+    label: "Speaking & Training"
+    folder: src/content/speaking
+    extension: json
+    format: json
+    create: true
+    slug: "{{fields.title | slugify}}"
+    summary: "{{fields.title}} ({{fields.location}})"
+    sortable_fields: ['order', 'title']
+    fields:
+      - { label: "Type", name: "type", widget: "select", options: ["Training", "Speaker"] }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Organization", name: "org", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Flag Code", name: "flag", widget: "string", hint: "JP, OM, INTL, CONF, or any code" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Sort Order", name: "order", widget: "number", value_type: "int", default: 99, hint: "Lower = appears first" }
