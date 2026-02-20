@@ -15,7 +15,6 @@ const tagColors: Record<string, string> = {
   'EDR Evasion': 'tag-red', 'WFP': 'tag-cyan', 'GPO Abuse': 'tag-amber', 'Safe Mode': 'tag-amber',
 };
 
-// Each article gets a unique gradient for its visual thumbnail
 const gradients = [
   'from-red-500/30 via-orange-500/20 to-yellow-500/10',
   'from-violet-500/30 via-purple-500/20 to-fuchsia-500/10',
@@ -27,7 +26,6 @@ const gradients = [
   'from-cyan-500/30 via-blue-500/20 to-indigo-500/10',
 ];
 
-// Topic icons (SVG) for each article type
 const topicIcons: Record<string, string> = {
   'Ransomware': `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`,
   'APT': `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>`,
@@ -40,6 +38,21 @@ const getIcon = (tags: string[]) => {
     if (topicIcons[tag]) return topicIcons[tag];
   }
   return topicIcons['Ransomware'];
+};
+
+// Large modal icons
+const topicIconsLg: Record<string, string> = {
+  'Ransomware': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`,
+  'APT': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>`,
+  'Red Team Tools': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>`,
+  'RAT': `<svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="0.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75c1.148 0 2.278.08 3.383.237 1.037.146 1.866.966 1.866 2.013 0 3.728-2.35 6.75-5.25 6.75S6.75 18.728 6.75 15c0-1.046.83-1.867 1.866-2.013A24.204 24.204 0 0112 12.75z"/></svg>`,
+};
+
+const getIconLg = (tags: string[]) => {
+  for (const tag of tags) {
+    if (topicIconsLg[tag]) return topicIconsLg[tag];
+  }
+  return topicIconsLg['Ransomware'];
 };
 
 const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
@@ -68,20 +81,22 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
   <div class="grid sm:grid-cols-2 gap-4" id="research-list">
     {articles.map((article, idx) => (
       <div
-        class="research-card group"
+        class="research-card group cursor-pointer"
         data-tags={article.tags.join(',')}
         data-url={article.url}
         data-title={article.title}
+        data-description={article.description}
+        data-date={article.date}
+        data-role={article.role}
+        data-gradient={gradients[idx % gradients.length]}
+        data-all-tags={JSON.stringify(article.tags)}
       >
         <!-- Gradient thumbnail -->
         <div class={`relative h-36 bg-gradient-to-br ${gradients[idx % gradients.length]} overflow-hidden`}>
-          <!-- Grid overlay -->
           <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px;"></div>
-          <!-- Topic icon -->
           <div class="research-thumb absolute inset-0 flex items-center justify-center text-white/20">
             <Fragment set:html={getIcon(article.tags)} />
           </div>
-          <!-- Role badge -->
           {(article.role === 'Lead Author' || article.role === 'Co-Lead') && (
             <div class="absolute top-3 left-3">
               <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-[10px] font-mono font-semibold text-accent-primary border border-accent-primary/20">
@@ -89,17 +104,16 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
               </span>
             </div>
           )}
-          <!-- Date -->
           <div class="absolute top-3 right-3">
             <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-[10px] font-mono text-text-secondary">
               {article.date}
             </span>
           </div>
-          <!-- External link indicator on hover -->
           <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div class="w-8 h-8 rounded-lg bg-accent-primary/90 flex items-center justify-center">
               <svg class="w-4 h-4 text-bg-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
           </div>
@@ -124,38 +138,93 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
   </div>
 </div>
 
-<!-- Article Modal -->
+<!-- Article Detail Modal -->
 <div id="article-modal" class="hidden">
   <div class="modal-overlay" id="modal-overlay">
-    <div class="modal-content">
-      <!-- Modal header -->
-      <div class="flex items-center justify-between p-4 border-b border-white/[0.06]">
-        <h3 class="text-text-primary text-sm font-semibold truncate pr-4" id="modal-title">Article</h3>
-        <div class="flex items-center gap-2 shrink-0">
-          <a id="modal-external" href="#" target="_blank" rel="noopener"
-            class="w-8 h-8 rounded-lg bg-bg-surface border border-white/[0.06] flex items-center justify-center text-text-muted hover:text-accent-primary hover:border-accent-primary/20 transition-colors"
-            title="Open in new tab">
+    <div class="modal-content !max-w-2xl">
+      <!-- Gradient hero header -->
+      <div id="modal-hero" class="relative h-48 bg-gradient-to-br from-red-500/30 via-orange-500/20 to-yellow-500/10 overflow-hidden">
+        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 24px 24px;"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-white/15" id="modal-icon"></div>
+        <!-- Close button -->
+        <button id="modal-close" class="absolute top-4 right-4 w-9 h-9 rounded-xl bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 transition-all z-10">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <!-- Role + Date badges -->
+        <div class="absolute top-4 left-4 flex gap-2" id="modal-badges"></div>
+        <!-- Bottom gradient fade -->
+        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-bg-card to-transparent"></div>
+      </div>
+
+      <!-- Content body -->
+      <div class="p-6 -mt-8 relative">
+        <h2 class="text-text-primary text-xl font-bold leading-tight mb-3 tracking-tight" id="modal-title"></h2>
+        <p class="text-text-secondary text-sm leading-relaxed mb-5" id="modal-description"></p>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-1.5 mb-6" id="modal-tags"></div>
+
+        <!-- Divider -->
+        <div class="border-t border-white/[0.06] mb-5"></div>
+
+        <!-- Action buttons -->
+        <div class="flex items-center gap-3">
+          <a id="modal-read-btn" href="#" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
             </svg>
+            Read Full Article
           </a>
-          <button id="modal-close"
-            class="w-8 h-8 rounded-lg bg-bg-surface border border-white/[0.06] flex items-center justify-center text-text-muted hover:text-accent-danger hover:border-accent-danger/20 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+          <button id="modal-close-btn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-muted text-sm font-medium hover:text-text-primary hover:border-white/10 transition-all">
+            Close
           </button>
         </div>
-      </div>
-      <!-- Modal body (iframe) -->
-      <div class="flex-1 overflow-hidden bg-white">
-        <iframe id="modal-iframe" class="w-full h-full min-h-[60vh]" src="" frameborder="0" loading="lazy"></iframe>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+  // Tag color map for modal
+  const tagColorMap: Record<string, string> = {
+    'Ransomware': 'tag-red', 'BYOVD': 'tag-amber', 'Defense Evasion': 'tag-amber',
+    'Cross-Platform': 'tag-cyan', 'LockBit': 'tag-red', 'APT Crossover': 'tag-purple',
+    'DLL Sideloading': 'tag-amber', 'APT': 'tag-purple', 'China-Nexus': 'tag-purple',
+    'Espionage': 'tag-purple', 'Taiwan': 'tag-cyan', 'RAT': 'tag-red',
+    'Social Engineering': 'tag-amber', 'Red Team Tools': 'tag-amber',
+    'EDR Evasion': 'tag-red', 'WFP': 'tag-cyan', 'GPO Abuse': 'tag-amber', 'Safe Mode': 'tag-amber',
+  };
+
+  // Icon SVGs for modal (large)
+  const iconMap: Record<string, string> = {
+    'Ransomware': `<svg class="w-20 h-20" fill="none" stroke="currentColor" stroke-width="0.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`,
+    'APT': `<svg class="w-20 h-20" fill="none" stroke="currentColor" stroke-width="0.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3"/></svg>`,
+    'Red Team Tools': `<svg class="w-20 h-20" fill="none" stroke="currentColor" stroke-width="0.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>`,
+    'RAT': `<svg class="w-20 h-20" fill="none" stroke="currentColor" stroke-width="0.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75c1.148 0 2.278.08 3.383.237 1.037.146 1.866.966 1.866 2.013 0 3.728-2.35 6.75-5.25 6.75S6.75 18.728 6.75 15c0-1.046.83-1.867 1.866-2.013A24.204 24.204 0 0112 12.75z"/></svg>`,
+  };
+
+  const getModalIcon = (tags: string[]): string => {
+    for (const tag of tags) {
+      if (iconMap[tag]) return iconMap[tag];
+    }
+    return iconMap['Ransomware'];
+  };
+
+  // Gradient classes for modal hero
+  const gradientClasses = [
+    'from-red-500/30 via-orange-500/20 to-yellow-500/10',
+    'from-violet-500/30 via-purple-500/20 to-fuchsia-500/10',
+    'from-red-600/30 via-rose-500/20 to-pink-500/10',
+    'from-blue-500/30 via-indigo-500/20 to-violet-500/10',
+    'from-amber-500/30 via-orange-500/20 to-red-500/10',
+    'from-emerald-500/30 via-teal-500/20 to-cyan-500/10',
+    'from-rose-500/30 via-red-500/20 to-orange-500/10',
+    'from-cyan-500/30 via-blue-500/20 to-indigo-500/10',
+  ];
+
   // Research filters
   const filterBtns = document.querySelectorAll('#research-filters button');
   const cards = document.querySelectorAll('#research-list .research-card');
@@ -170,7 +239,6 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = (btn as HTMLElement).dataset.filter || 'All';
-
       filterBtns.forEach(b => {
         b.className = b.className
           .replace(/bg-accent-primary\/15 text-accent-primary border-accent-primary\/25/g,
@@ -179,7 +247,6 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
       btn.className = btn.className
         .replace(/text-text-muted border-white\/10 hover:text-text-primary hover:border-white\/20/g,
           'bg-accent-primary/15 text-accent-primary border-accent-primary/25');
-
       const matchTags = categoryMap[filter] || [];
       cards.forEach(card => {
         const el = card as HTMLElement;
@@ -193,24 +260,56 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
     });
   });
 
-  // Modal functionality
+  // Modal elements
   const modal = document.getElementById('article-modal')!;
   const overlay = document.getElementById('modal-overlay')!;
+  const modalHero = document.getElementById('modal-hero')!;
+  const modalIcon = document.getElementById('modal-icon')!;
+  const modalBadges = document.getElementById('modal-badges')!;
   const modalTitle = document.getElementById('modal-title')!;
-  const modalIframe = document.getElementById('modal-iframe') as HTMLIFrameElement;
-  const modalExternal = document.getElementById('modal-external') as HTMLAnchorElement;
+  const modalDescription = document.getElementById('modal-description')!;
+  const modalTags = document.getElementById('modal-tags')!;
+  const modalReadBtn = document.getElementById('modal-read-btn') as HTMLAnchorElement;
   const modalClose = document.getElementById('modal-close')!;
+  const modalCloseBtn = document.getElementById('modal-close-btn')!;
 
   // Open modal on card click
-  cards.forEach(card => {
+  cards.forEach((card, idx) => {
     card.addEventListener('click', () => {
       const el = card as HTMLElement;
       const url = el.dataset.url || '';
       const title = el.dataset.title || '';
+      const description = el.dataset.description || '';
+      const date = el.dataset.date || '';
+      const role = el.dataset.role || '';
+      const tags: string[] = JSON.parse(el.dataset.allTags || '[]');
+      const gradient = gradientClasses[idx % gradientClasses.length];
 
+      // Update hero gradient
+      modalHero.className = `relative h-48 bg-gradient-to-br ${gradient} overflow-hidden`;
+
+      // Update icon
+      modalIcon.innerHTML = getModalIcon(tags);
+
+      // Update badges
+      let badgesHtml = '';
+      if (role === 'Lead Author' || role === 'Co-Lead') {
+        badgesHtml += `<span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-sm text-[11px] font-mono font-semibold text-accent-primary border border-accent-primary/20">${role === 'Lead Author' ? 'LEAD AUTHOR' : 'CO-LEAD'}</span>`;
+      }
+      badgesHtml += `<span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-sm text-[11px] font-mono text-text-secondary">${date}</span>`;
+      modalBadges.innerHTML = badgesHtml;
+
+      // Update content
       modalTitle.textContent = title;
-      modalIframe.src = url;
-      modalExternal.href = url;
+      modalDescription.textContent = description;
+      modalReadBtn.href = url;
+
+      // Update tags
+      modalTags.innerHTML = tags.map(tag =>
+        `<span class="${tagColorMap[tag] || 'tag-green'}">${tag}</span>`
+      ).join('');
+
+      // Show modal
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     });
@@ -219,11 +318,11 @@ const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT'];
   // Close modal
   const closeModal = () => {
     modal.classList.add('hidden');
-    modalIframe.src = '';
     document.body.style.overflow = '';
   };
 
   modalClose.addEventListener('click', closeModal);
+  modalCloseBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeModal();
   });
