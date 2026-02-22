@@ -1,0 +1,29 @@
+---
+/**
+ * Generic page section with a title, optional subtitle, and content slot.
+ * Uses the existing `section-title` and `section-subtitle` utility classes
+ * defined in global.css.
+ *
+ * Usage:
+ *   <Section title="Research" subtitle="Published threat intelligence" id="research">
+ *     <ResearchGrid />
+ *   </Section>
+ */
+
+interface Props {
+  /** Section heading text. */
+  title: string;
+  /** Optional descriptive subtitle. */
+  subtitle?: string;
+  /** Optional HTML id for anchor linking. */
+  id?: string;
+}
+
+const { title, subtitle, id } = Astro.props;
+---
+
+<section id={id} class="mb-10">
+  <h2 class="section-title">{title}</h2>
+  {subtitle && <p class="section-subtitle">{subtitle}</p>}
+  <slot />
+</section>

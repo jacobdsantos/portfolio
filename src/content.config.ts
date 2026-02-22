@@ -45,4 +45,17 @@ const speaking = defineCollection({
   }),
 });
 
-export const collections = { research, tools, speaking };
+const blog = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.string(),
+    excerpt: z.string(),
+    tags: z.array(z.string()),
+    coverImage: z.string().optional(),
+    featured: z.boolean().optional().default(false),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+export const collections = { research, tools, speaking, blog };

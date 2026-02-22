@@ -1,0 +1,138 @@
+---
+import '../../styles/global.css';
+import Header from './Header.astro';
+import SidebarNav from './SidebarNav.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  jsonLd?: object;
+  breadcrumbs?: Array<{label: string; href?: string}>;
+}
+
+const {
+  title = 'Jacob Santos — Senior Threat Researcher',
+  description = 'Senior cybersecurity threat researcher, automation builder, and international trainer.',
+  canonical,
+  ogImage,
+  jsonLd,
+  breadcrumbs,
+} = Astro.props;
+
+const siteUrl = 'https://jacobsantos.pages.dev';
+const fullTitle = title.includes('Jacob Santos') ? title : `${title} | Jacob Santos`;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = ogImage || '/og/default.png';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="description" content={description} />
+    <meta name="author" content="Jacob Santos" />
+    <meta name="keywords" content="threat researcher, ransomware, cybersecurity, threat intelligence, malware analysis, Trend Micro, MITRE ATT&CK, security automation, APT, BYOVD" />
+    <meta name="theme-color" content="#07090f" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImageUrl, siteUrl).href} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Jacob Santos" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImageUrl, siteUrl).href} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{fullTitle}</title>
+
+    <!-- JSON-LD Structured Data -->
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+  </head>
+  <body class="min-h-screen">
+    <!-- Skip to main content link for accessibility -->
+    <a
+      href="#main-content"
+      class="fixed top-0 left-0 z-[100] px-4 py-2 bg-accent-primary text-bg-primary font-semibold text-sm rounded-br-xl transform -translate-y-full focus:translate-y-0 transition-transform duration-200"
+    >
+      Skip to main content
+    </a>
+
+    <div class="min-h-screen flex flex-col">
+      <!-- Header (top nav bar) -->
+      <Header />
+
+      <div class="flex-1 p-4 md:p-6 lg:p-10">
+        <div class="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-6">
+          <!-- Sidebar (desktop only) -->
+          <aside class="hidden lg:block lg:w-[320px] lg:shrink-0">
+            <div class="lg:sticky lg:top-6">
+              <SidebarNav />
+            </div>
+          </aside>
+
+          <!-- Main content area -->
+          <main id="main-content" class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            {breadcrumbs && breadcrumbs.length > 0 && (
+              <nav aria-label="Breadcrumb" class="mb-4">
+                <ol class="flex items-center gap-1.5 text-xs font-mono text-text-muted">
+                  {breadcrumbs.map((crumb, idx) => (
+                    <li class="flex items-center gap-1.5">
+                      {idx > 0 && (
+                        <svg class="w-3 h-3 text-text-muted/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                      )}
+                      {crumb.href ? (
+                        <a href={crumb.href} class="hover:text-accent-primary transition-colors">{crumb.label}</a>
+                      ) : (
+                        <span class="text-text-secondary">{crumb.label}</span>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+
+            <slot />
+          </main>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <Footer />
+    </div>
+
+    <!-- Command palette keyboard listener -->
+    <script>
+      document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          const searchInput = document.getElementById('cmd-search');
+          if (searchInput) {
+            searchInput.focus();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

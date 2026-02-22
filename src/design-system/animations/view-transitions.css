@@ -1,0 +1,117 @@
+/*
+ * View Transition API styles for Astro page transitions.
+ *
+ * These pseudo-element rules control the outgoing (::view-transition-old)
+ * and incoming (::view-transition-new) snapshots during a navigation.
+ *
+ * Includes a prefers-reduced-motion fallback that replaces slide+fade
+ * with an instant crossfade so users who have requested reduced motion
+ * still get a smooth (but non-distracting) transition.
+ */
+
+/* -----------------------------------------------------------------------
+ * Default: fade + slide transition
+ * ----------------------------------------------------------------------- */
+
+::view-transition-old(root) {
+  animation: vt-fade-out 220ms cubic-bezier(0.4, 0, 0.2, 1) both,
+             vt-slide-out 220ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in 320ms cubic-bezier(0.0, 0, 0.2, 1) 90ms both,
+             vt-slide-in 320ms cubic-bezier(0.0, 0, 0.2, 1) 90ms both;
+}
+
+/* Outgoing snapshot fades out */
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Incoming snapshot fades in */
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Outgoing snapshot slides up slightly */
+@keyframes vt-slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+/* Incoming snapshot slides up from below */
+@keyframes vt-slide-in {
+  from {
+    transform: translateY(12px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------------------------------------------------
+ * Named transition groups
+ * Use with Astro's `transition:name` directive, e.g.
+ *   <h1 transition:name="heading">Page Title</h1>
+ * ----------------------------------------------------------------------- */
+
+::view-transition-old(heading) {
+  animation: vt-fade-out 180ms ease both;
+}
+
+::view-transition-new(heading) {
+  animation: vt-fade-in 280ms ease 80ms both;
+}
+
+::view-transition-old(hero) {
+  animation: vt-fade-out 200ms ease both,
+             vt-slide-out 200ms ease both;
+}
+
+::view-transition-new(hero) {
+  animation: vt-fade-in 350ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both,
+             vt-slide-in 350ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+}
+
+::view-transition-old(card) {
+  animation: vt-fade-out 160ms ease both;
+}
+
+::view-transition-new(card) {
+  animation: vt-fade-in 240ms ease 60ms both;
+}
+
+/* -----------------------------------------------------------------------
+ * Reduced motion fallback
+ * Replaces all slide + fade with a simple, brief crossfade.
+ * ----------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-old(heading),
+  ::view-transition-old(hero),
+  ::view-transition-old(card) {
+    animation: vt-fade-out 0ms linear both;
+  }
+
+  ::view-transition-new(root),
+  ::view-transition-new(heading),
+  ::view-transition-new(hero),
+  ::view-transition-new(card) {
+    animation: vt-fade-in 0ms linear both;
+  }
+}

@@ -1,0 +1,73 @@
+---
+/**
+ * Breadcrumb navigation with schema.org BreadcrumbList structured data.
+ *
+ * Usage:
+ *   <Breadcrumbs items={[
+ *     { label: 'Home', href: '/' },
+ *     { label: 'Research' },
+ *   ]} />
+ */
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    ...(item.href ? { item: item.href } : {}),
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class="text-sm font-sans">
+  <ol class="flex flex-wrap items-center gap-1.5" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {items.map((crumb, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li
+          class="flex items-center gap-1.5"
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          {crumb.href && !isLast ? (
+            <a
+              href={crumb.href}
+              class="text-text-secondary hover:text-accent-primary transition-colors duration-200"
+              itemprop="item"
+            >
+              <span itemprop="name">{crumb.label}</span>
+            </a>
+          ) : (
+            <span
+              class={isLast ? 'text-text-muted' : 'text-text-secondary'}
+              itemprop="name"
+              aria-current={isLast ? 'page' : undefined}
+            >
+              {crumb.label}
+            </span>
+          )}
+          <meta itemprop="position" content={String(index + 1)} />
+          {!isLast && (
+            <span class="text-text-muted select-none" aria-hidden="true">/</span>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

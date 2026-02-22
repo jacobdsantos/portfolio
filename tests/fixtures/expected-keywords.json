@@ -1,0 +1,22 @@
+[
+  { "term": "threat intelligence", "weight": 12.0 },
+  { "term": "ransomware", "weight": 12.0 },
+  { "term": "malware analysis", "weight": 9.0 },
+  { "term": "mitre att&ck", "weight": 6.0 },
+  { "term": "threat hunting", "weight": 6.0 },
+  { "term": "python", "weight": 6.0 },
+  { "term": "osint", "weight": 5.0 },
+  { "term": "defense evasion", "weight": 5.0 },
+  { "term": "automation", "weight": 4.0 },
+  { "term": "edr", "weight": 5.0 },
+  { "term": "opencti", "weight": 4.0 },
+  { "term": "byovd", "weight": 2.5 },
+  { "term": "virustotal", "weight": 2.0 },
+  { "term": "incident response", "weight": 2.5 },
+  { "term": "training", "weight": 3.0 },
+  { "term": "cybersecurity", "weight": 2.0 },
+  { "term": "technical writing", "weight": 1.5 },
+  { "term": "typescript", "weight": 1.8 },
+  { "term": "esxi", "weight": 2.0 },
+  { "term": "linux", "weight": 1.8 }
+]

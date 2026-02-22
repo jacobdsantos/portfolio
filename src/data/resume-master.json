@@ -1,0 +1,346 @@
+{
+  "basics": {
+    "name": "Jacob Santos",
+    "label": "Senior Threat Researcher",
+    "email": "jacobsantos.d@gmail.com",
+    "location": "Philippines",
+    "links": [
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/jacob-santos-046313198/" },
+      { "label": "GitHub", "url": "https://github.com/jacobdsantos" },
+      { "label": "Portfolio", "url": "https://jacobsantos.pages.dev" }
+    ]
+  },
+  "summaries": [
+    {
+      "id": "summary-threat-research",
+      "label": "Threat Research Focus",
+      "text": "Senior threat researcher with deep expertise in ransomware analysis, APT campaign tracking, and defense evasion techniques. Published 17 research articles reaching global security teams. Designed and shipped 10+ production-grade security automation tools. Delivered advanced threat defense training internationally for INTERPOL, government agencies across 4 countries, and enterprise organizations. Combines deep technical research with a builder mentality and a commitment to elevating collective defense through knowledge transfer.",
+      "keywords": ["ransomware", "apt", "threat research", "malware analysis", "defense evasion", "threat intelligence", "mitre att&ck", "training", "published research"]
+    },
+    {
+      "id": "summary-tool-builder",
+      "label": "Tool Builder Focus",
+      "text": "Security engineer and researcher who builds AI-powered tools that multiply team capability. Designed and deployed 10+ production tools including AI inquiry pipelines, MCP servers, threat intelligence platforms, and desktop applications, collectively saving hundreds of analyst-hours monthly. Published 17 research articles on ransomware, APT campaigns, and EDR evasion. Delivered advanced threat defense training for INTERPOL and government agencies across 4 countries.",
+      "keywords": ["python", "automation", "ai", "llm", "mcp", "node.js", "security automation", "tool development", "pipeline", "api"]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Threat Hunting & Research",
+      "items": [
+        "Ransomware Analysis",
+        "APT Campaign Tracking",
+        "MITRE ATT&CK",
+        "IOC Enrichment",
+        "Threat Hunting",
+        "OSINT",
+        "Malware Analysis",
+        "Defense Evasion",
+        "BYOVD Analysis",
+        "Kill Chain Analysis"
+      ]
+    },
+    {
+      "group": "Programming & Development",
+      "items": [
+        "Python",
+        "Node.js",
+        "TypeScript",
+        "JavaScript",
+        "FastMCP",
+        "MCP SDK",
+        "Streamlit",
+        "Express",
+        "SQLite",
+        "WebSocket",
+        "REST APIs"
+      ]
+    },
+    {
+      "group": "AI & Automation",
+      "items": [
+        "Claude AI",
+        "Azure OpenAI",
+        "Gemini API",
+        "LLM Pipelines",
+        "Prompt Engineering",
+        "Multi-Model Routing",
+        "RAG",
+        "AI Agent Development"
+      ]
+    },
+    {
+      "group": "Platforms & Tools",
+      "items": [
+        "VirusTotal",
+        "OpenCTI",
+        "Confluence",
+        "Jira",
+        "Trend Vision One",
+        "Linux",
+        "Git",
+        "Splunk",
+        "Elastic"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-senior-threat-researcher",
+      "company": "Trend Micro",
+      "role": "Senior Threat Researcher",
+      "location": "Philippines (Threat Hunting Team)",
+      "startDate": "2024",
+      "endDate": "Present",
+      "tags": ["threat research", "ransomware", "automation", "training", "ai"],
+      "bullets": [
+        {
+          "id": "exp1-b1",
+          "text": "Published 17 research articles on the company research blog covering novel ransomware families, APT campaigns, cross-platform threats, and EDR evasion techniques reaching global security operations teams",
+          "keywords": ["ransomware", "apt", "research", "edr", "defense evasion", "cross-platform", "published", "threat intelligence"],
+          "metrics": ["17 articles", "global reach"]
+        },
+        {
+          "id": "exp1-b2",
+          "text": "Authored 14 X/Twitter microstory threads translating complex threat intelligence into actionable, widely-shared analyst content",
+          "keywords": ["threat intelligence", "communication", "technical writing"],
+          "metrics": ["14 threads"]
+        },
+        {
+          "id": "exp1-b3",
+          "text": "Designed, built, and deployed 10+ production tools including AI-powered threat inquiry pipelines, MCP servers, Streamlit-based analysis platforms, and a desktop GUI application, collectively saving hundreds of analyst-hours monthly",
+          "keywords": ["python", "automation", "ai", "llm", "mcp", "streamlit", "tool development", "pipeline"],
+          "metrics": ["10+ tools", "hundreds of hours saved monthly"]
+        },
+        {
+          "id": "exp1-b4",
+          "text": "Delivered INTERPOL cybercrime training programs including Operation Synergia and Advanced Threat Defense to international law enforcement officers across APAC, Africa, EU, and MENA regions",
+          "keywords": ["training", "interpol", "law enforcement", "cybercrime", "international"],
+          "metrics": ["4 regions"]
+        },
+        {
+          "id": "exp1-b5",
+          "text": "Led Advanced Threat Defense training curriculum internationally in Japan, Oman, and the Philippines for government agencies (DICT, USAID BEACON/CPIT) and financial sector enterprises",
+          "keywords": ["training", "threat defense", "government", "international", "leadership"],
+          "metrics": ["3 countries", "6+ organizations"]
+        },
+        {
+          "id": "exp1-b6",
+          "text": "Keynoted at Philippine Airlines for Cybersecurity Awareness Month and presented at DECODE flagship cybersecurity conference, DOST ICT Summit, and CIRQIT enterprise security events",
+          "keywords": ["presentation", "keynote", "conference", "cybersecurity", "communication"],
+          "metrics": ["4+ speaking engagements"]
+        },
+        {
+          "id": "exp1-b7",
+          "text": "Tracked and documented evolving ransomware tradecraft including BYOVD, GPO abuse, safe mode exploitation, and cross-platform targeting of ESXi and Linux infrastructure",
+          "keywords": ["ransomware", "byovd", "defense evasion", "esxi", "linux", "threat hunting", "mitre att&ck"],
+          "metrics": []
+        }
+      ]
+    },
+    {
+      "id": "exp-threat-analyst",
+      "company": "Trend Micro",
+      "role": "Threat Analyst",
+      "location": "Philippines (Threat Hunting Team)",
+      "startDate": "2022",
+      "endDate": "2024",
+      "tags": ["threat analysis", "ioc", "osint", "incident response"],
+      "bullets": [
+        {
+          "id": "exp2-b1",
+          "text": "Investigated and triaged threat inquiries across the full threat hunting pipeline from IOC enrichment and OSINT analysis to SPOT report generation and customer-facing advisories",
+          "keywords": ["threat hunting", "ioc", "osint", "incident response", "triage", "report writing"],
+          "metrics": []
+        },
+        {
+          "id": "exp2-b2",
+          "text": "Tracked emerging ransomware families and APT campaigns, contributing threat intelligence to internal and external-facing security advisories",
+          "keywords": ["ransomware", "apt", "threat intelligence", "threat hunting"],
+          "metrics": []
+        },
+        {
+          "id": "exp2-b3",
+          "text": "Enriched indicators of compromise using VirusTotal, WRS, and internal threat intelligence platforms for accurate threat classification and response prioritization",
+          "keywords": ["ioc", "virustotal", "threat intelligence", "malware analysis", "indicator of compromise"],
+          "metrics": []
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-titas",
+      "name": "TITAs",
+      "summary": "9-phase AI-powered threat inquiry automation pipeline with OSINT, IOC enrichment, and automated response generation",
+      "tags": ["python", "ai", "automation", "threat intelligence"],
+      "bullets": [
+        {
+          "id": "proj-titas-b1",
+          "text": "Architected a 9-phase pipeline automating the entire threat inquiry lifecycle: intake, OSINT collection, IOC merging, WRS lookups, VirusTotal enrichment, response drafting, visual generation, and Confluence publishing",
+          "keywords": ["python", "automation", "pipeline", "osint", "ioc", "virustotal", "ai", "threat intelligence"]
+        },
+        {
+          "id": "proj-titas-b2",
+          "text": "Reduced threat inquiry response time from hours to minutes by integrating Claude AI for automated analysis and response generation with human review checkpoints",
+          "keywords": ["ai", "llm", "automation", "claude", "prompt engineering"],
+          "metrics": ["hours to minutes"]
+        }
+      ]
+    },
+    {
+      "id": "proj-skadi",
+      "name": "Skadi",
+      "summary": "Full-featured Streamlit threat intelligence platform with AI analysis, URL reputation lookups, and Confluence integration",
+      "tags": ["python", "streamlit", "ai", "threat intelligence"],
+      "bullets": [
+        {
+          "id": "proj-skadi-b1",
+          "text": "Built a Streamlit-based threat intelligence platform providing AI-powered analysis, WRS URL reputation lookups, and automated Confluence documentation for the entire threat hunting team",
+          "keywords": ["python", "streamlit", "ai", "threat intelligence", "automation", "confluence"]
+        },
+        {
+          "id": "proj-skadi-b2",
+          "text": "Unified threat intelligence workflows across the team into a single platform, enabling consistent analysis methodology and shared enrichment results",
+          "keywords": ["threat intelligence", "collaboration", "automation", "tool development"]
+        }
+      ]
+    },
+    {
+      "id": "proj-spot-engine",
+      "name": "SPOT Report Engine",
+      "summary": "AI agent system transforming raw threat intel into structured SPOT reports and publication-ready blog articles",
+      "tags": ["ai", "automation", "report writing", "threat intelligence"],
+      "bullets": [
+        {
+          "id": "proj-spot-b1",
+          "text": "Developed an AI agent system that transforms raw threat intelligence into structured SPOT reports with automatic PII redaction and publication-ready blog format generation",
+          "keywords": ["ai", "automation", "threat intelligence", "report writing", "llm"]
+        },
+        {
+          "id": "proj-spot-b2",
+          "text": "Standardized threat reporting format across the team, ensuring consistent quality and enabling faster dissemination of threat advisories",
+          "keywords": ["report writing", "technical writing", "threat intelligence", "automation"]
+        }
+      ]
+    },
+    {
+      "id": "proj-confluence-tools",
+      "name": "Confluence Tools Suite",
+      "summary": "13+ automation tools including RAG report generator, AI chatbot, PPT analyzer, and BEC analysis tools",
+      "tags": ["python", "ai", "automation", "confluence"],
+      "bullets": [
+        {
+          "id": "proj-conf-b1",
+          "text": "Built 13+ tools for RAG-powered report generation, malware-as-a-service analysis, PowerPoint analysis, AI chatbot, BEC investigation, and security log analysis",
+          "keywords": ["python", "rag", "ai", "automation", "malware analysis", "report writing"],
+          "metrics": ["13+ tools"]
+        },
+        {
+          "id": "proj-conf-b2",
+          "text": "Eliminated repetitive documentation tasks by automating Confluence page creation, template application, and cross-referencing for threat research outputs",
+          "keywords": ["automation", "confluence", "documentation", "tool development"]
+        }
+      ]
+    },
+    {
+      "id": "proj-opencti-mcp",
+      "name": "OpenCTI MCP Server",
+      "summary": "Model Context Protocol server connecting AI assistants to OpenCTI for natural language threat intelligence queries",
+      "tags": ["python", "mcp", "opencti", "threat intelligence"],
+      "bullets": [
+        {
+          "id": "proj-opencti-b1",
+          "text": "Developed a FastMCP-based Model Context Protocol server enabling AI assistants to query OpenCTI threat intelligence platform using natural language for indicators, campaigns, and relationships",
+          "keywords": ["python", "mcp", "api", "opencti", "threat intelligence", "ai"]
+        }
+      ]
+    },
+    {
+      "id": "proj-claude-desktop",
+      "name": "Claude Code Desktop",
+      "summary": "Desktop GUI wrapping Claude CLI with multi-model routing across 70+ models, pipeline orchestration, and dual WebSocket architecture",
+      "tags": ["node.js", "express", "websocket", "ai", "typescript"],
+      "bullets": [
+        {
+          "id": "proj-claude-b1",
+          "text": "Built a desktop application wrapping Claude CLI with autonomous pipeline orchestration, multi-model routing across 70+ models from 5 providers, SQLite session persistence, and dual WebSocket architecture",
+          "keywords": ["node.js", "typescript", "express", "websocket", "ai", "llm", "sqlite", "api"],
+          "metrics": ["70+ models", "5 providers"]
+        }
+      ]
+    },
+    {
+      "id": "proj-obsidian-mcp",
+      "name": "Obsidian MCP Server",
+      "summary": "MCP server providing full CRUD access to Obsidian vault containing threat research with 11 tools",
+      "tags": ["node.js", "mcp", "typescript"],
+      "bullets": [
+        {
+          "id": "proj-obsidian-b1",
+          "text": "Created an MCP server with 11 tools providing search, read, create, update, delete, tags, backlinks, and template operations for an Obsidian-based threat research knowledge base",
+          "keywords": ["node.js", "typescript", "mcp", "api", "knowledge management"]
+        }
+      ]
+    },
+    {
+      "id": "proj-imagegen-mcp",
+      "name": "ImageGen MCP Server",
+      "summary": "AI image generation MCP server via Gemini for threat report visuals, attack chain diagrams, and branded presentation assets",
+      "tags": ["node.js", "mcp", "ai", "typescript"],
+      "bullets": [
+        {
+          "id": "proj-imagegen-b1",
+          "text": "Built an MCP server for AI-powered image generation using Gemini API, producing threat report visuals, attack chain diagrams, and presentation assets with brand styling support",
+          "keywords": ["node.js", "typescript", "mcp", "ai", "api", "gemini"]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-bs",
+      "school": "University of the Philippines",
+      "degree": "Bachelor of Science in Information Technology",
+      "date": "2022"
+    }
+  ],
+  "certifications": [],
+  "publications": [
+    {
+      "id": "pub-edrsilencer",
+      "title": "EDRSilencer: Disrupting Endpoint Security Solutions",
+      "publisher": "Trend Micro Research Blog",
+      "date": "Oct 2024",
+      "url": "https://www.trendmicro.com/en_us/research/24/j/edrsilencer-disrupting-endpoint-security-solutions.html"
+    },
+    {
+      "id": "pub-crazyhunter",
+      "title": "CrazyHunter: BYOVD-Driven Ransomware Targeting Taiwanese Critical Sectors",
+      "publisher": "Trend Micro Research Blog",
+      "date": "Apr 2025",
+      "url": "https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html"
+    },
+    {
+      "id": "pub-play-linux",
+      "title": "Play Ransomware: New Linux/ESXi Variant Targets Enterprise Infrastructure",
+      "publisher": "Trend Micro Research Blog",
+      "date": "Jul 2024",
+      "url": "https://www.trendmicro.com/en_ph/research/24/g/new-play-ransomware-linux-variant-targets-esxi-shows-ties-with-p.html"
+    },
+    {
+      "id": "pub-agenda-netxloader",
+      "title": "Agenda Ransomware Group Adds SmokeLoader and NETXLOADER",
+      "publisher": "Trend Micro Research Blog",
+      "date": "May 2025",
+      "url": "https://www.trendmicro.com/en_us/research/25/e/agenda-ransomware-group-adds-smokeloader-and-netxloader-to-their.html"
+    },
+    {
+      "id": "pub-warlock",
+      "title": "Warlock: From SharePoint Exploit to Enterprise Ransomware",
+      "publisher": "Trend Micro Research Blog",
+      "date": "Aug 2025",
+      "url": "https://www.trendmicro.com/en_ph/research/25/h/warlock-ransomware.html"
+    }
+  ]
+}

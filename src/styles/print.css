@@ -1,0 +1,162 @@
+/* Resume print styles + general print rules */
+@media print {
+  /* === Global print reset === */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html {
+    font-size: 11pt;
+  }
+
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: #1a1a1a !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* === Hide non-print elements === */
+  .no-print,
+  .print-hidden,
+  nav:not(.resume-nav),
+  header:not(.resume-header),
+  footer:not(.resume-footer),
+  .sidebar-card,
+  .command-palette,
+  #back-to-top,
+  [data-island],
+  .skip-link {
+    display: none !important;
+  }
+
+  /* === Links === */
+  a {
+    color: #333 !important;
+    text-decoration: none !important;
+  }
+
+  a[href^="http"]::after {
+    content: none !important; /* Don't append URLs in resume print */
+  }
+
+  /* === Resume-specific print === */
+  .resume-page {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .resume-preview {
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    padding: 0.5cm !important;
+  }
+
+  .resume-section-title {
+    color: #1a1a1a !important;
+    border-bottom-color: #ccc !important;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    padding-bottom: 3pt;
+    margin-bottom: 6pt;
+  }
+
+  .resume-bullets li {
+    color: #333 !important;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    page-break-inside: avoid;
+  }
+
+  .resume-bullets li::before {
+    background: #333 !important;
+  }
+
+  /* === Template-specific print === */
+  .template-clean .resume-header {
+    border-bottom: 2pt solid #1a1a1a;
+    padding-bottom: 8pt;
+    margin-bottom: 10pt;
+  }
+
+  .template-harvard .resume-header {
+    text-align: center;
+    border-bottom: 1pt solid #666;
+  }
+
+  .template-technical .resume-header {
+    border-left: 3pt solid #333;
+    padding-left: 8pt;
+  }
+
+  .template-executive .resume-header {
+    border-bottom: 2pt double #333;
+    padding-bottom: 10pt;
+  }
+
+  /* === Skills grid print === */
+  .skills-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4pt !important;
+  }
+
+  /* === Page breaks === */
+  .resume-section {
+    page-break-inside: avoid;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* === Matched keyword highlights (remove in print) === */
+  .keyword-matched {
+    background: none !important;
+    font-weight: inherit !important;
+    color: inherit !important;
+  }
+
+  /* === Page setup === */
+  @page {
+    margin: 1cm;
+    size: A4 portrait;
+  }
+
+  @page :first {
+    margin-top: 0.5cm;
+  }
+
+  /* === Card elements === */
+  .card,
+  .content-card,
+  .sidebar-card,
+  .research-card {
+    background: white !important;
+    border-color: #e0e0e0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* === Text color overrides === */
+  .text-text-primary { color: #1a1a1a !important; }
+  .text-text-secondary { color: #444 !important; }
+  .text-text-muted { color: #888 !important; }
+  .text-accent-primary { color: #00a67e !important; }
+  .text-accent-secondary { color: #5b4cc4 !important; }
+
+  /* === Tags === */
+  .tag {
+    border-color: #ccc !important;
+    background: #f5f5f5 !important;
+    color: #555 !important;
+  }
+}

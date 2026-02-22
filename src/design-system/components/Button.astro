@@ -1,0 +1,60 @@
+---
+/**
+ * Multi-variant button / link component.
+ * Renders an `<a>` when `href` is provided, otherwise a `<button>`.
+ *
+ * Variants:
+ *   - primary  : Solid accent-primary background, dark text.
+ *   - secondary: Surface background with subtle border.
+ *   - ghost    : Transparent, subtle hover background.
+ *
+ * Usage:
+ *   <Button variant="primary" href="/contact">Get in touch</Button>
+ *   <Button variant="ghost">Cancel</Button>
+ */
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  /** When provided the component renders as an anchor. */
+  href?: string;
+  /** Additional CSS classes. */
+  class?: string;
+  /** Button type attribute (only applies to `<button>`). */
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const {
+  variant = 'primary',
+  href,
+  class: className,
+  type = 'button',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const base =
+  'inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-accent-primary/50 focus-visible:outline-offset-2';
+
+const variants: Record<NonNullable<Props['variant']>, string> = {
+  primary:
+    'bg-accent-primary text-bg-primary hover:brightness-110 active:brightness-95',
+  secondary:
+    'bg-bg-surface border border-white/[0.06] text-text-primary hover:border-accent-primary/15 hover:bg-bg-hover/80',
+  ghost:
+    'bg-transparent text-text-secondary hover:bg-white/[0.04] hover:text-text-primary',
+};
+
+const linkProps = href
+  ? {
+      href,
+      ...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {}),
+    }
+  : { type };
+---
+
+<Tag
+  class:list={[base, variants[variant], className]}
+  {...linkProps}
+>
+  <slot />
+</Tag>

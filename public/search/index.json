@@ -1,0 +1,519 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-22T14:42:34.679Z",
+  "items": [
+    {
+      "type": "blog",
+      "title": "Building MCP Servers for Threat Intelligence",
+      "excerpt": "How I built Model Context Protocol servers to bridge AI assistants with threat intelligence platforms.",
+      "tags": [
+        "mcp",
+        "ai",
+        "automation",
+        "threat-intelligence"
+      ],
+      "url": "/blog/2026-01-15-building-mcp-servers",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Agenda Ransomware Deploys Linux Variant on Windows Systems",
+      "excerpt": "Discovered Agenda ransomware deploying Linux variants on Windows systems via remote management tools and BYOVD techniques for cross-platform evasion.",
+      "tags": [
+        "Ransomware",
+        "Cross-Platform",
+        "Defense Evasion"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/j/agenda-ransomware-deploys-linux-variant-on-windows-systems.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Agenda Ransomware Adds SmokeLoader and NETXLOADER",
+      "excerpt": "Uncovered Agenda ransomware group adopting SmokeLoader and a new loader named NETXLOADER for improved delivery and evasion.",
+      "tags": [
+        "Ransomware",
+        "Defense Evasion",
+        "Cross-Platform"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/e/agenda-ransomware-group-adds-smokeloader-and-netxloader-to-their.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Cerber Ransomware Exploits Atlassian Confluence CVE-2023-22518",
+      "excerpt": "Documented Cerber ransomware operators rapidly weaponizing CVE-2023-22518 in Atlassian Confluence for initial access and encryption deployment.",
+      "tags": [
+        "Ransomware",
+        "Defense Evasion"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/23/k/cerber-ransomware-exploits-cve-2023-22518.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "New Ransomware Charon Uses Earth Baxia APT Techniques",
+      "excerpt": "Discovered Charon ransomware using APT-grade techniques — DLL sideloading via Edge.exe, hybrid Curve25519/ChaCha20 encryption.",
+      "tags": [
+        "Ransomware",
+        "APT Crossover",
+        "DLL Sideloading"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/h/new-ransomware-charon.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "CrazyHunter Targets Taiwanese Critical Sectors",
+      "excerpt": "Identified CrazyHunter targeting Taiwanese healthcare and education using 80% open-source tooling and BYOVD attacks.",
+      "tags": [
+        "Ransomware",
+        "Taiwan",
+        "BYOVD"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/d/crazyhunter-campaign.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Crypto24 Ransomware Blends Legitimate Tools for Stealth",
+      "excerpt": "Analyzed Crypto24 ransomware group's technique of blending legitimate tools with custom malware to bypass EDR and security technologies.",
+      "tags": [
+        "Ransomware",
+        "Defense Evasion"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/h/crypto24-ransomware-stealth-attacks.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "EDRSilencer Disrupting Endpoint Security",
+      "excerpt": "First to document EDRSilencer weaponized in the wild — a red team tool using Windows Filtering Platform to blind EDR solutions.",
+      "tags": [
+        "Red Team Tools",
+        "EDR Evasion",
+        "WFP"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/24/j/edrsilencer-disrupting-endpoint-security-solutions.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "AI-Assisted Fake GitHub Repos Distribute LummaStealer",
+      "excerpt": "Uncovered AI-generated fake GitHub repositories distributing SmartLoader and LummaStealer through convincing but malicious code projects.",
+      "tags": [
+        "Social Engineering",
+        "RAT",
+        "Defense Evasion"
+      ],
+      "url": "https://www.trendmicro.com/en_ph/research/25/c/ai-assisted-fake-github-repositories.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Unmasking The Gentlemen Ransomware",
+      "excerpt": "Analysis of a new ransomware group with adaptive defense evasion — custom-patching anti-AV tools mid-attack based on target recon.",
+      "tags": [
+        "Ransomware",
+        "BYOVD",
+        "Defense Evasion"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/i/unmasking-the-gentlemen-ransomware.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "New LockBit 5.0 Targets Windows, Linux, ESXi",
+      "excerpt": "Technical analysis of LockBit 5.0 — cross-platform ransomware with heavy obfuscation, anti-analysis, and geopolitical safeguards.",
+      "tags": [
+        "Ransomware",
+        "Cross-Platform",
+        "LockBit"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/i/lockbit-5-targets-windows-linux-esxi.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Agenda Ransomware Adopts TrueSightKiller for EDR Evasion",
+      "excerpt": "X/Twitter thread detailing how Agenda ransomware operators adopted TrueSightKiller, a BYOVD tool, to disable endpoint security products.",
+      "tags": [
+        "Ransomware",
+        "BYOVD",
+        "EDR Evasion"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1899671696979702103",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Evolving Agenda Ransomware: .NET Arsenal Expansion",
+      "excerpt": "X/Twitter thread analyzing Agenda (Qilin) ransomware's evolving .NET-based toolkit and expanding cross-platform capabilities.",
+      "tags": [
+        "Ransomware",
+        "Cross-Platform"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1856049259407196673",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "MedusaLocker Ransomware's Three-Pronged Attack Strategy",
+      "excerpt": "X/Twitter thread detailing MedusaLocker ransomware's multi-vector attack strategy combining encryption, data theft, and extortion.",
+      "tags": [
+        "Ransomware",
+        "Defense Evasion"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1841025262152040480",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Morpheus Ransomware's Red Pill Strategy vs EDR",
+      "excerpt": "X/Twitter thread on Morpheus ransomware's advanced EDR evasion techniques and its 'Red Pill' strategy for bypassing endpoint detection.",
+      "tags": [
+        "Ransomware",
+        "EDR Evasion"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1880329246129664112",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Nitrogen Ransomware: New Threat Landscape Entry",
+      "excerpt": "X/Twitter thread analyzing the Nitrogen ransomware group's emergence, infection vectors, and operational characteristics.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1970669518834799022",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Play Ransomware's Linux Variant Targets ESXi",
+      "excerpt": "X/Twitter thread on the discovery of Play ransomware's first Linux variant targeting ESXi virtualization environments.",
+      "tags": [
+        "Ransomware",
+        "Cross-Platform"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1798293694786801962",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "SmokeLoader Deploys W3CryptoLocker Through Steganography",
+      "excerpt": "X/Twitter thread analyzing SmokeLoader's use of steganography techniques to deliver W3CryptoLocker ransomware payloads while evading detection.",
+      "tags": [
+        "Ransomware",
+        "Defense Evasion"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Threat Intelligence Research Thread (Aug 2025)",
+      "excerpt": "X/Twitter research thread covering active threat campaigns and ransomware intelligence from the Trend Micro Threat Hunting Team.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1972949541633528089",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Threat Intelligence Research Thread (Jul 2025)",
+      "excerpt": "X/Twitter research thread covering ransomware threat intelligence findings and tactical analysis.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1947408258660024816",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Threat Intelligence Research Thread (Jul 2025)",
+      "excerpt": "X/Twitter research thread sharing emerging threat intelligence and analysis with the cybersecurity community.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1953730711233372470",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Threat Intelligence Research Thread (Jun 2025)",
+      "excerpt": "X/Twitter research thread sharing threat intelligence findings and analysis from the Trend Micro Threat Hunting Team.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1942720354390081694",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Trend AI Research Thread (Feb 2026)",
+      "excerpt": "X/Twitter research thread from Trend AI's dedicated research account covering multiple active ransomware campaigns and threat intelligence.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/trendai_RSRCH/status/2015666010666189121",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Trend AI Research Thread (Feb 2026)",
+      "excerpt": "Solo-authored X/Twitter research thread analyzing ransomware threat intelligence and providing tactical insights for defenders.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/trendai_RSRCH/status/2016753174011334782",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Werewolves Ransomware: A New Breed of Threat",
+      "excerpt": "X/Twitter thread analyzing the Werewolves ransomware group's emergence, tactics, and impact on targeted organizations.",
+      "tags": [
+        "Ransomware"
+      ],
+      "url": "https://x.com/TrendMicroRSRCH/status/1748280823046910200",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Play Ransomware Linux Variant Targets ESXi",
+      "excerpt": "First discovery of Play ransomware's Linux variant targeting ESXi, with infrastructure ties to Prolific Puma link-shortening service.",
+      "tags": [
+        "Ransomware",
+        "Cross-Platform",
+        "Defense Evasion"
+      ],
+      "url": "https://www.trendmicro.com/en_ph/research/24/g/new-play-ransomware-linux-variant-targets-esxi-shows-ties-with-p.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "PureRAT via Foxit PDF DLL Side-loading",
+      "excerpt": "Uncovered PureRAT targeting job seekers using renamed Foxit PDF Reader for DLL side-loading and Python-based shellcode loaders.",
+      "tags": [
+        "RAT",
+        "Social Engineering",
+        "DLL Sideloading"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/l/valleyrat-campaign.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Multistage RA World Ransomware",
+      "excerpt": "Analyzed RA World using GPO-distributed payloads, Safe Mode abuse for defense evasion, and Babuk-derived encryption.",
+      "tags": [
+        "Ransomware",
+        "GPO Abuse",
+        "Safe Mode"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/24/c/multistage-ra-world-ransomware.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Proactive Security Insights for SharePoint Attacks",
+      "excerpt": "Provided proactive security analysis of CVE-2025-53770 and CVE-2025-53771 — SharePoint vulnerabilities enabling unauthenticated remote code execution.",
+      "tags": [
+        "Defense Evasion",
+        "Red Team Tools"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/g/cve-2025-53770-and-cve-2025-53771-sharepoint-attacks.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Revisiting UNC3886 Tactics",
+      "excerpt": "Revisiting the tactics of UNC3886, a China-nexus threat actor targeting network edge devices and virtualization infrastructure.",
+      "tags": [
+        "APT",
+        "China-Nexus",
+        "Espionage"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/g/revisiting-unc3886-tactics-to-defend-against-present-risk.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Warlock: From SharePoint Exploit to Enterprise Ransomware",
+      "excerpt": "Traced the Warlock ransomware campaign from initial SharePoint vulnerability exploit through lateral movement to enterprise-wide encryption.",
+      "tags": [
+        "Ransomware",
+        "Defense Evasion"
+      ],
+      "url": "https://www.trendmicro.com/en_ph/research/25/h/warlock-ransomware.html",
+      "keywords": []
+    },
+    {
+      "type": "research",
+      "title": "Self-Propagating Malware Spreading Via WhatsApp",
+      "excerpt": "Identified an active campaign spreading self-propagating malware via WhatsApp ZIP attachments, targeting Brazilian users with persistence and account hijacking.",
+      "tags": [
+        "RAT",
+        "Social Engineering"
+      ],
+      "url": "https://www.trendmicro.com/en_us/research/25/j/self-propagating-malware-spreads-via-whatsapp.html",
+      "keywords": []
+    },
+    {
+      "type": "tool",
+      "title": "Claude Code Desktop",
+      "excerpt": "Desktop GUI wrapping Claude CLI with autonomous pipeline orchestration, multi-model routing across 70+ models from 5 providers, and SQLite-backed sessions.",
+      "tags": [
+        "Node.js",
+        "Express",
+        "WebSocket",
+        "xterm.js",
+        "SQLite"
+      ],
+      "url": "/tools/claude-code-desktop",
+      "keywords": [
+        "Active Dev",
+        "Node.js",
+        "Express",
+        "WebSocket",
+        "xterm.js",
+        "SQLite"
+      ]
+    },
+    {
+      "type": "tool",
+      "title": "Confluence Tools Suite",
+      "excerpt": "Collection of 13+ tools for RAG-powered report generation, malware-as-a-service analysis, PowerPoint analysis, AI chatbot, BEC investigation, and log analysis.",
+      "tags": [
+        "Python",
+        "Azure OpenAI",
+        "Confluence API",
+        "RAG"
+      ],
+      "url": "/tools/confluence-tools",
+      "keywords": [
+        "Production",
+        "Python",
+        "Azure OpenAI",
+        "Confluence API",
+        "RAG"
+      ]
+    },
+    {
+      "type": "tool",
+      "title": "ImageGen MCP",
+      "excerpt": "MCP server for AI-powered image generation via Gemini, used for creating threat report visuals, attack chain diagrams, and presentation assets with Trend AI brand styling.",
+      "tags": [
+        "Node.js",
+        "MCP SDK",
+        "Gemini API",
+        "LiteLLM"
+      ],
+      "url": "/tools/imagegen-mcp",
+      "keywords": [
+        "Production",
+        "Node.js",
+        "MCP SDK",
+        "Gemini API",
+        "LiteLLM"
+      ]
+    },
+    {
+      "type": "tool",
+      "title": "Obsidian MCP",
+      "excerpt": "MCP server providing full CRUD access to an Obsidian vault containing threat research, SPOT reports, and campaign analysis. 11 tools: search, read, create, update, tags, backlinks.",
+      "tags": [
+        "Node.js",
+        "MCP SDK",
+        "Obsidian",
+        "Markdown"
+      ],
+      "url": "/tools/obsidian-mcp",
+      "keywords": [
+        "Production",
+        "Node.js",
+        "MCP SDK",
+        "Obsidian",
+        "Markdown"
+      ]
+    },
+    {
+      "type": "tool",
+      "title": "OpenCTI MCP Server",
+      "excerpt": "Model Context Protocol server connecting AI assistants directly to OpenCTI threat intelligence platform for natural language queries against indicators and campaigns.",
+      "tags": [
+        "Python",
+        "FastMCP",
+        "pycti",
+        "OpenCTI"
+      ],
+      "url": "/tools/opencti-mcp",
+      "keywords": [
+        "Production",
+        "Python",
+        "FastMCP",
+        "pycti",
+        "OpenCTI"
+      ]
+    },
+    {
+      "type": "tool",
+      "title": "Skadi",
+      "excerpt": "Full-featured Streamlit platform for threat analysis, URL reputation lookups, AI-powered intelligence assessment, and automated Confluence documentation.",
+      "tags": [
+        "Python",
+        "Streamlit",
+        "Azure OpenAI",
+        "Confluence API"
+      ],
+      "url": "/tools/skadi",
+      "keywords": [
+        "Production",
+        "Python",
+        "Streamlit",
+        "Azure OpenAI",
+        "Confluence API"
+      ]
+    },
+    {
+      "type": "tool",
+      "title": "SPOT Report Engine",
+      "excerpt": "AI agent system that transforms raw threat intelligence into structured SPOT reports and publication-ready blog articles with auto-redaction.",
+      "tags": [
+        "Claude AI",
+        "Markdown",
+        "Obsidian",
+        "MCP"
+      ],
+      "url": "/tools/spot-engine",
+      "keywords": [
+        "Production",
+        "Claude AI",
+        "Markdown",
+        "Obsidian",
+        "MCP"
+      ]
+    },
+    {
+      "type": "tool",
+      "title": "TITAs",
+      "excerpt": "AI-powered 9-phase pipeline automating the entire threat inquiry lifecycle: intake, OSINT, IOC enrichment, response generation, visual creation, and documentation publishing.",
+      "tags": [
+        "Python",
+        "Claude AI",
+        "VirusTotal API",
+        "Confluence API"
+      ],
+      "url": "/tools/titas",
+      "keywords": [
+        "Production",
+        "Python",
+        "Claude AI",
+        "VirusTotal API",
+        "Confluence API"
+      ]
+    }
+  ]
+}

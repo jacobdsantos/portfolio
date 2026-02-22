@@ -1,152 +1,268 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Sidebar from '../components/Sidebar.astro';
-import TabAbout from '../components/TabAbout.astro';
-import TabResearch from '../components/TabResearch.astro';
-import TabTools from '../components/TabTools.astro';
-import TabSpeaking from '../components/TabSpeaking.astro';
+import AppShell from '../design-system/components/AppShell.astro';
+import Carousel from '../design-system/components/Carousel.astro';
 import { getCollection } from 'astro:content';
 
-const researchCount = (await getCollection('research')).length;
-const toolsCount = (await getCollection('tools')).length;
-const speakingCount = (await getCollection('speaking')).length;
+const allResearch = await getCollection('research');
+const allTools = await getCollection('tools');
+const allSpeaking = await getCollection('speaking');
+
+const researchCount = allResearch.length;
+const toolsCount = allTools.length;
+const speakingCount = allSpeaking.length;
+
+// Featured research: top 4 by order (lowest order = highest priority)
+const featuredResearch = allResearch
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .slice(0, 4)
+  .map(entry => ({
+    title: entry.data.title,
+    description: entry.data.description,
+    href: entry.data.url,
+    tags: entry.data.tags,
+  }));
+
+// Latest research (most recent 3 by order)
+const latestResearch = allResearch
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .slice(0, 3)
+  .map(entry => entry.data);
+
+const tagColors: Record<string, string> = {
+  'Ransomware': 'tag-red', 'BYOVD': 'tag-amber', 'Defense Evasion': 'tag-amber',
+  'Cross-Platform': 'tag-cyan', 'LockBit': 'tag-red', 'APT Crossover': 'tag-purple',
+  'DLL Sideloading': 'tag-amber', 'APT': 'tag-purple', 'China-Nexus': 'tag-purple',
+  'Espionage': 'tag-purple', 'Taiwan': 'tag-cyan', 'RAT': 'tag-red',
+  'Social Engineering': 'tag-amber', 'Red Team Tools': 'tag-amber',
+  'EDR Evasion': 'tag-red', 'WFP': 'tag-cyan', 'GPO Abuse': 'tag-amber', 'Safe Mode': 'tag-amber',
+};
+
+const gradients = [
+  'from-red-500/30 via-orange-500/20 to-yellow-500/10',
+  'from-violet-500/30 via-purple-500/20 to-fuchsia-500/10',
+  'from-emerald-500/30 via-teal-500/20 to-cyan-500/10',
+];
+
+const whatIDo = [
+  {
+    title: 'Threat Research',
+    color: 'from-red-500/20 to-orange-500/10',
+    accent: 'text-red-400 bg-red-500/10 border-red-500/15',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`,
+    description: 'Deep-dive analysis of ransomware families, APT campaigns, and adversary tooling. Published research reaching global security teams.',
+    link: '/research',
+  },
+  {
+    title: 'Security Automation',
+    color: 'from-emerald-500/20 to-teal-500/10',
+    accent: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/15',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
+    description: 'Building AI-powered tools that multiply team capability -- inquiry pipelines, threat intel platforms, MCP servers, and report generators.',
+    link: '/tools',
+  },
+  {
+    title: 'International Training',
+    color: 'from-violet-500/20 to-purple-500/10',
+    accent: 'text-violet-400 bg-violet-500/10 border-violet-500/15',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>`,
+    description: 'Training government agencies, law enforcement, and enterprises across Japan, Oman, Philippines, and online for INTERPOL.',
+    link: '/speaking',
+  },
+  {
+    title: 'Tool Development',
+    color: 'from-cyan-500/20 to-blue-500/10',
+    accent: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/15',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
+    description: '10+ production tools used daily -- from MCP servers and AI pipelines to desktop applications and Confluence integrations.',
+    link: '/tools',
+  },
+];
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jacob Santos",
+  "jobTitle": "Senior Threat Researcher",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Trend Micro"
+  },
+  "url": "https://jacobsantos.pages.dev",
+  "sameAs": [
+    "https://github.com/jacobdsantos",
+    "https://www.linkedin.com/in/jacob-santos-046313198/"
+  ],
+  "knowsAbout": [
+    "Ransomware Analysis",
+    "Advanced Persistent Threats",
+    "Threat Intelligence",
+    "MITRE ATT&CK",
+    "Malware Analysis",
+    "Security Automation"
+  ],
+  "description": "Senior cybersecurity threat researcher, automation builder, and international trainer."
+};
 ---
 
-<BaseLayout>
-  <div class="min-h-screen p-4 md:p-6 lg:p-10">
-    <div class="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-6">
+<AppShell jsonLd={personJsonLd}>
 
-      <!-- Sidebar -->
-      <aside class="lg:w-[320px] lg:shrink-0">
-        <div class="lg:sticky lg:top-6">
-          <Sidebar />
+  <!-- Hero Section -->
+  <section class="content-card mb-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div class="flex-1">
+        <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-lg bg-accent-primary/[0.06] border border-accent-primary/10 text-xs font-mono text-accent-primary">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-primary"></span>
+          </span>
+          Available for speaking & collaboration
         </div>
-      </aside>
-
-      <!-- Main content -->
-      <main class="flex-1 min-w-0">
-        <!-- Navigation tabs -->
-        <nav class="content-card !p-3 mb-6">
-          <div class="flex gap-1 overflow-x-auto" id="tab-nav">
-            <button class="nav-tab active" data-tab="about">About</button>
-            <button class="nav-tab" data-tab="research">Research <span class="ml-1 text-[9px] font-mono opacity-50">{researchCount}</span></button>
-            <button class="nav-tab" data-tab="tools">Tools <span class="ml-1 text-[9px] font-mono opacity-50">{toolsCount}</span></button>
-            <button class="nav-tab" data-tab="speaking">Speaking <span class="ml-1 text-[9px] font-mono opacity-50">{speakingCount}</span></button>
-          </div>
-        </nav>
-
-        <!-- Tab panels -->
-        <div id="tab-content">
-          <div class="tab-panel active" data-panel="about">
-            <TabAbout />
-          </div>
-          <div class="tab-panel" data-panel="research">
-            <TabResearch />
-          </div>
-          <div class="tab-panel" data-panel="tools">
-            <TabTools />
-          </div>
-          <div class="tab-panel" data-panel="speaking">
-            <TabSpeaking />
-          </div>
-        </div>
-      </main>
-    </div>
-
-    <!-- Footer -->
-    <footer class="max-w-[1200px] mx-auto mt-8 mb-4">
-      <div class="border-t border-white/[0.04] pt-4 px-2 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <p class="text-text-muted text-[10px] font-mono">
-          &copy; 2026 Jacob Santos &middot; Senior Threat Researcher
+        <h1 class="text-3xl md:text-4xl font-bold text-text-primary tracking-tight mb-3">
+          Hi, I'm <span class="bg-gradient-to-r from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent">Jacob Santos</span>
+        </h1>
+        <p class="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl">
+          Senior threat researcher who <span class="text-accent-primary font-medium">publishes</span> deep-dive analysis,
+          <span class="text-accent-tertiary font-medium">builds</span> operational security tools, and
+          <span class="text-violet-400 font-medium">trains</span> defenders worldwide.
         </p>
-        <div class="flex items-center gap-4">
-          <a href="https://www.linkedin.com/in/jacob-santos-046313198/" target="_blank" rel="noopener" class="text-text-muted hover:text-accent-primary transition-colors" title="LinkedIn">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <div class="flex flex-wrap gap-3 mt-6">
+          <a href="/about" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            Learn More
           </a>
-          <a href="https://github.com/jacobdsantos" target="_blank" rel="noopener" class="text-text-muted hover:text-accent-primary transition-colors" title="GitHub">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          </a>
-          <a href="mailto:jacobsantos.d@gmail.com" class="text-text-muted hover:text-accent-primary transition-colors" title="Email">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          <a href="/resume" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-secondary text-sm font-medium hover:text-text-primary hover:border-white/10 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+            View Resume
           </a>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
 
-  <!-- Back to top button (mobile) -->
-  <button id="back-to-top" class="fixed bottom-6 right-6 z-40 w-10 h-10 rounded-xl bg-accent-primary/90 text-bg-primary shadow-lg shadow-accent-primary/20 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 hover:shadow-accent-primary/30 lg:hidden" aria-label="Back to top">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-    </svg>
-  </button>
+  <!-- Quick Stats Bar -->
+  <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-primary/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+      <div class="text-2xl font-bold text-accent-primary font-mono mb-0.5">17</div>
+      <div class="text-text-muted text-[9px] uppercase tracking-widest">Blog Articles</div>
+    </div>
+    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-secondary/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+      <div class="text-2xl font-bold text-accent-secondary font-mono mb-0.5">14</div>
+      <div class="text-text-muted text-[9px] uppercase tracking-widest">Microstories</div>
+    </div>
+    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-tertiary/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+      <div class="text-2xl font-bold text-accent-tertiary font-mono mb-0.5">10+</div>
+      <div class="text-text-muted text-[9px] uppercase tracking-widest">Tools Built</div>
+    </div>
+    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-warning/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+      <div class="text-2xl font-bold text-accent-warning font-mono mb-0.5">10+</div>
+      <div class="text-text-muted text-[9px] uppercase tracking-widest">Talks & Training</div>
+    </div>
+  </section>
 
-  <!-- Tab switching script -->
-  <script>
-    const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab]');
-    const panels = document.querySelectorAll<HTMLDivElement>('[data-panel]');
+  <!-- Featured Research Carousel -->
+  <section class="content-card mb-6">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="section-title !mb-0">Featured Research</h2>
+        <p class="text-text-muted text-xs mt-1">Latest published threat analysis and intelligence</p>
+      </div>
+      <a href="/research" class="inline-flex items-center gap-1.5 text-accent-primary text-xs font-medium hover:underline shrink-0">
+        View all
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </a>
+    </div>
+    <Carousel items={featuredResearch} />
+  </section>
 
-    const switchTab = (target: string) => {
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => {
-        p.classList.remove('active');
-        if (p.dataset.panel === target) p.classList.add('active');
-      });
-      const activeTab = document.querySelector(`[data-tab="${target}"]`);
-      if (activeTab) activeTab.classList.add('active');
-    };
+  <!-- What I Do Grid -->
+  <section class="content-card mb-6">
+    <h2 class="section-title">What I Do</h2>
+    <p class="section-subtitle">Combining deep research with automation and knowledge transfer.</p>
+    <div class="grid sm:grid-cols-2 gap-3">
+      {whatIDo.map(item => (
+        <a href={item.link} class="card !p-4 group block">
+          <div class="flex items-start gap-3">
+            <div class={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${item.accent}`} set:html={item.icon} />
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <h3 class="text-text-primary font-semibold text-sm mb-1 group-hover:text-accent-primary transition-colors">{item.title}</h3>
+                <svg class="w-3 h-3 text-text-muted/40 shrink-0 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+              </div>
+              <p class="text-text-muted text-xs leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab!;
-        switchTab(target);
-        history.replaceState(null, '', `#${target}`);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
+  <!-- Latest Research Cards -->
+  <section class="content-card mb-6">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="section-title !mb-0">Recent Activity</h2>
+        <p class="text-text-muted text-xs mt-1">Latest published research and threat analysis</p>
+      </div>
+      <a href="/research" class="inline-flex items-center gap-1.5 text-accent-primary text-xs font-medium hover:underline shrink-0">
+        All research
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </a>
+    </div>
+    <div class="space-y-3">
+      {latestResearch.map((article, idx) => (
+        <a href={article.url} target="_blank" rel="noopener" class="card !p-0 overflow-hidden group block">
+          <div class={`h-1 bg-gradient-to-r ${gradients[idx % gradients.length]}`}></div>
+          <div class="p-4">
+            <div class="flex items-start gap-4">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="text-text-primary font-semibold text-sm group-hover:text-accent-primary transition-colors line-clamp-2">{article.title}</h3>
+                  <span class="text-text-muted text-[10px] font-mono shrink-0">{article.date}</span>
+                </div>
+                <p class="text-text-muted text-xs leading-relaxed mb-2 line-clamp-2">{article.description}</p>
+                <div class="flex flex-wrap gap-1">
+                  {article.tags.slice(0, 3).map(tag => (
+                    <span class={`${tagColors[tag] || 'tag-green'} !text-[8px]`}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg class="w-4 h-4 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 
-    // Handle URL hash on load
-    const hash = window.location.hash.slice(1);
-    if (hash && ['about', 'research', 'tools', 'speaking'].includes(hash)) {
-      switchTab(hash);
-    }
+  <!-- CTA Section -->
+  <section class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-6 md:p-8 text-center" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 20px 50px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);">
+    <h2 class="text-xl font-bold text-text-primary mb-2 tracking-tight">Interested in working together?</h2>
+    <p class="text-text-secondary text-sm max-w-md mx-auto mb-5">
+      I'm open to speaking engagements, research collaboration, and security training opportunities.
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a href="/contact" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+        Get in Touch
+      </a>
+      <a href="/speaking" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-secondary text-sm font-medium hover:text-text-primary hover:border-white/10 transition-all">
+        Speaking Engagements
+      </a>
+    </div>
+  </section>
 
-    // Handle browser back/forward
-    window.addEventListener('hashchange', () => {
-      const h = window.location.hash.slice(1);
-      if (h && ['about', 'research', 'tools', 'speaking'].includes(h)) {
-        switchTab(h);
-      }
-    });
-
-    // Cross-tab navigation links (from About cards)
-    document.querySelectorAll('[data-nav-link]').forEach(el => {
-      const link = (el as HTMLElement).dataset.navLink;
-      if (link) {
-        el.addEventListener('click', () => {
-          const target = link.replace('#', '');
-          switchTab(target);
-          history.replaceState(null, '', `#${target}`);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-    });
-
-    // Back to top button
-    const backToTop = document.getElementById('back-to-top');
-    if (backToTop) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-          backToTop.style.opacity = '1';
-          backToTop.style.pointerEvents = 'auto';
-        } else {
-          backToTop.style.opacity = '0';
-          backToTop.style.pointerEvents = 'none';
-        }
-      });
-      backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
-  </script>
-</BaseLayout>
+</AppShell>

@@ -1,0 +1,304 @@
+---
+import AppShell from '../../design-system/components/AppShell.astro';
+import { getCollection } from 'astro:content';
+
+const allResearch = await getCollection('research');
+const articles = allResearch
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const blogArticles = articles.filter(a => a.data.type !== 'microstory');
+const microstories = articles.filter(a => a.data.type === 'microstory');
+
+const tagColors: Record<string, string> = {
+  'Ransomware': 'tag-red', 'BYOVD': 'tag-amber', 'Defense Evasion': 'tag-amber',
+  'Cross-Platform': 'tag-cyan', 'LockBit': 'tag-red', 'APT Crossover': 'tag-purple',
+  'DLL Sideloading': 'tag-amber', 'APT': 'tag-purple', 'China-Nexus': 'tag-purple',
+  'Espionage': 'tag-purple', 'Taiwan': 'tag-cyan', 'RAT': 'tag-red',
+  'Social Engineering': 'tag-amber', 'Red Team Tools': 'tag-amber',
+  'EDR Evasion': 'tag-red', 'WFP': 'tag-cyan', 'GPO Abuse': 'tag-amber', 'Safe Mode': 'tag-amber',
+};
+
+const gradients = [
+  'from-red-500/30 via-orange-500/20 to-yellow-500/10',
+  'from-violet-500/30 via-purple-500/20 to-fuchsia-500/10',
+  'from-red-600/30 via-rose-500/20 to-pink-500/10',
+  'from-blue-500/30 via-indigo-500/20 to-violet-500/10',
+  'from-amber-500/30 via-orange-500/20 to-red-500/10',
+  'from-emerald-500/30 via-teal-500/20 to-cyan-500/10',
+  'from-rose-500/30 via-red-500/20 to-orange-500/10',
+  'from-cyan-500/30 via-blue-500/20 to-indigo-500/10',
+];
+
+const topicIcons: Record<string, string> = {
+  'Ransomware': `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`,
+  'APT': `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>`,
+  'Red Team Tools': `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>`,
+  'RAT': `<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75c1.148 0 2.278.08 3.383.237 1.037.146 1.866.966 1.866 2.013 0 3.728-2.35 6.75-5.25 6.75S6.75 18.728 6.75 15c0-1.046.83-1.867 1.866-2.013A24.204 24.204 0 0112 12.75z"/></svg>`,
+};
+
+const getIcon = (tags: string[]) => {
+  for (const tag of tags) {
+    if (topicIcons[tag]) return topicIcons[tag];
+  }
+  return topicIcons['Ransomware'];
+};
+
+const categories = ['All', 'Ransomware', 'APT', 'Tools & RAT', 'Microstories'];
+
+const categoryMap: Record<string, string[]> = {
+  'All': [],
+  'Ransomware': ['Ransomware'],
+  'APT': ['APT', 'APT Crossover', 'China-Nexus', 'Espionage'],
+  'Tools & RAT': ['Red Team Tools', 'EDR Evasion', 'RAT', 'Social Engineering'],
+  'Microstories': [],
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Published Research",
+  "description": "Threat research articles and microstories by Jacob Santos covering ransomware, APT campaigns, defense evasion, and red team tool abuse.",
+  "url": "https://jacobsantos.pages.dev/research",
+  "author": {
+    "@type": "Person",
+    "name": "Jacob Santos",
+    "jobTitle": "Senior Threat Researcher"
+  },
+  "numberOfItems": articles.length,
+};
+---
+
+<AppShell
+  title="Published Research"
+  description="Threat research articles and microstories by Jacob Santos covering ransomware, APT campaigns, defense evasion, and red team tool abuse."
+  jsonLd={jsonLd}
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Research' },
+  ]}
+>
+  <div class="content-card">
+    <h1 class="section-title">Published Research</h1>
+    <p class="section-subtitle">
+      Published threat research articles and X/Twitter microstories.
+      <span class="text-text-muted">Much of my work is internal threat intelligence under TLP:AMBER.</span>
+    </p>
+
+    <!-- Research stats bar -->
+    <div class="flex items-center gap-4 mb-5 text-[10px] font-mono text-text-muted">
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-danger"></span>
+        <span><span class="text-text-secondary font-semibold">{blogArticles.length}</span> Blog Articles</span>
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+        <span><span class="text-text-secondary font-semibold">{microstories.length}</span> Microstories</span>
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-primary"></span>
+        <span><span class="text-text-secondary font-semibold">{articles.length}</span> Total</span>
+      </span>
+    </div>
+
+    <!-- Search bar -->
+    <div class="relative mb-4">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+      </svg>
+      <input
+        type="text"
+        id="research-search"
+        placeholder="Search articles, tags, topics..."
+        class="w-full pl-10 pr-20 py-2.5 rounded-xl bg-bg-surface/60 border border-white/[0.06] text-text-primary text-sm placeholder:text-text-muted/50 focus:outline-none focus:border-accent-primary/30 focus:bg-bg-surface transition-all font-mono"
+      />
+      <span id="search-count" class="absolute right-12 top-1/2 -translate-y-1/2 text-[10px] font-mono text-text-muted hidden"></span>
+      <kbd class="absolute right-3 top-1/2 -translate-y-1/2 text-[9px] font-mono text-text-muted/40 bg-bg-surface/80 px-1.5 py-0.5 rounded border border-white/[0.06] pointer-events-none" id="search-kbd">/</kbd>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="flex gap-2 mb-6 overflow-x-auto pb-1" id="research-filters">
+      {categories.map((cat, i) => (
+        <button
+          class={`tag cursor-pointer transition-all ${i === 0 ? 'bg-accent-primary/15 text-accent-primary border-accent-primary/25' : 'text-text-muted border-white/10 hover:text-text-primary hover:border-white/20'}`}
+          data-filter={cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Article grid -->
+    <div class="grid sm:grid-cols-2 gap-4" id="research-list">
+      {articles.map((entry, idx) => {
+        const article = entry.data;
+        return (
+          <a
+            href={`/research/${entry.id}`}
+            class="research-card group block"
+            data-tags={article.tags.join(',')}
+            data-type={article.type || 'blog'}
+            data-search-text={`${article.title} ${article.description} ${article.tags.join(' ')} ${article.summary || ''}`}
+          >
+            <!-- Gradient thumbnail -->
+            <div class={`relative h-36 bg-gradient-to-br ${gradients[idx % gradients.length]} overflow-hidden`}>
+              <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px;"></div>
+              <div class="research-thumb absolute inset-0 flex items-center justify-center text-white/20">
+                <Fragment set:html={getIcon(article.tags)} />
+              </div>
+              <div class="absolute top-3 right-3 flex gap-1.5">
+                {(article.date.includes('2026')) && (
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-accent-primary/20 backdrop-blur-sm text-[10px] font-mono text-accent-primary border border-accent-primary/20 animate-pulse">
+                    New
+                  </span>
+                )}
+                {(article.type === 'microstory') && (
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-sky-500/20 backdrop-blur-sm text-[10px] font-mono text-sky-300 border border-sky-400/20">
+                    <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Thread
+                  </span>
+                )}
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-[10px] font-mono text-text-secondary">
+                  {article.date}
+                </span>
+              </div>
+              <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="w-8 h-8 rounded-lg bg-accent-primary/90 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-bg-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card content -->
+            <div class="p-4">
+              <h2 class="text-text-primary text-sm font-semibold group-hover:text-accent-primary transition-colors mb-2 leading-snug line-clamp-2">
+                {article.title}
+              </h2>
+              <p class="text-text-muted text-xs leading-relaxed mb-3 line-clamp-2">
+                {article.description}
+              </p>
+              <div class="flex flex-wrap gap-1">
+                {article.tags.slice(0, 3).map(tag => (
+                  <span class={`${tagColors[tag] || 'tag-green'} !text-[8px]`}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- No results message -->
+    <div id="no-results" class="hidden text-center py-12">
+      <svg class="w-12 h-12 text-text-muted/30 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+      </svg>
+      <p class="text-text-muted text-sm">No articles match your search</p>
+      <button id="clear-search" class="mt-2 text-accent-primary text-xs font-mono hover:underline">Clear search</button>
+    </div>
+  </div>
+</AppShell>
+
+<script>
+  const categoryMap: Record<string, string[]> = {
+    'All': [],
+    'Ransomware': ['Ransomware'],
+    'APT': ['APT', 'APT Crossover', 'China-Nexus', 'Espionage'],
+    'Tools & RAT': ['Red Team Tools', 'EDR Evasion', 'RAT', 'Social Engineering'],
+    'Microstories': [],
+  };
+
+  const filterBtns = document.querySelectorAll('#research-filters button');
+  const cards = document.querySelectorAll('#research-list .research-card');
+  const searchInput = document.getElementById('research-search') as HTMLInputElement;
+  const searchCount = document.getElementById('search-count')!;
+  const noResults = document.getElementById('no-results')!;
+  const clearSearchBtn = document.getElementById('clear-search');
+  const searchKbd = document.getElementById('search-kbd');
+
+  let activeFilter = 'All';
+  let searchQuery = '';
+
+  const applyFilters = () => {
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const el = card as HTMLElement;
+      const tags = (el.dataset.tags || '').split(',');
+      const searchText = (el.dataset.searchText || '').toLowerCase();
+      const type = el.dataset.type || 'blog';
+
+      let matchesFilter = true;
+      if (activeFilter === 'Microstories') {
+        matchesFilter = type === 'microstory';
+      } else if (activeFilter !== 'All') {
+        const matchTags = categoryMap[activeFilter] || [];
+        matchesFilter = matchTags.some(t => tags.includes(t));
+      }
+
+      let matchesSearch = true;
+      if (searchQuery) {
+        matchesSearch = searchText.includes(searchQuery.toLowerCase());
+      }
+
+      const visible = matchesFilter && matchesSearch;
+      el.style.display = visible ? '' : 'none';
+      if (visible) visibleCount++;
+    });
+
+    if (searchQuery) {
+      searchCount.textContent = `${visibleCount} found`;
+      searchCount.classList.remove('hidden');
+    } else {
+      searchCount.classList.add('hidden');
+    }
+
+    noResults.classList.toggle('hidden', visibleCount > 0);
+  };
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = (btn as HTMLElement).dataset.filter || 'All';
+      filterBtns.forEach(b => {
+        b.className = b.className
+          .replace(/bg-accent-primary\/15 text-accent-primary border-accent-primary\/25/g,
+            'text-text-muted border-white/10 hover:text-text-primary hover:border-white/20');
+      });
+      btn.className = btn.className
+        .replace(/text-text-muted border-white\/10 hover:text-text-primary hover:border-white\/20/g,
+          'bg-accent-primary/15 text-accent-primary border-accent-primary/25');
+      applyFilters();
+    });
+  });
+
+  let searchTimeout: ReturnType<typeof setTimeout>;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      searchQuery = searchInput.value.trim();
+      applyFilters();
+    }, 150);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/') {
+      const active = document.activeElement;
+      if (active?.tagName !== 'INPUT' && active?.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    }
+  });
+
+  searchInput.addEventListener('focus', () => searchKbd && (searchKbd.style.display = 'none'));
+  searchInput.addEventListener('blur', () => {
+    if (!searchInput.value) searchKbd && (searchKbd.style.display = '');
+  });
+
+  clearSearchBtn?.addEventListener('click', () => {
+    searchInput.value = '';
+    searchQuery = '';
+    applyFilters();
+    searchInput.focus();
+  });
+</script>

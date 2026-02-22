@@ -1,0 +1,231 @@
+---
+import AppShell from '../design-system/components/AppShell.astro';
+
+const valuePillars = [
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>`,
+    title: 'Research-Driven',
+    desc: 'Published findings on novel ransomware TTPs, EDR evasion techniques, and cross-platform threats targeting critical infrastructure.',
+    color: 'text-red-400',
+    bg: 'bg-red-500/8',
+  },
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>`,
+    title: 'Builder Mentality',
+    desc: 'Designed and shipped 10+ production tools -- AI pipelines, MCP servers, and desktop apps that save hundreds of hours monthly.',
+    color: 'text-accent-primary',
+    bg: 'bg-accent-primary/8',
+  },
+  {
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347"/></svg>`,
+    title: 'Knowledge Multiplier',
+    desc: 'Trained INTERPOL, government agencies, and enterprise teams across 4 countries. Knowledge shared becomes collective defense.',
+    color: 'text-violet-400',
+    bg: 'bg-violet-500/8',
+  },
+];
+
+const timeline = [
+  {
+    year: 'Present',
+    title: 'Senior Threat Researcher',
+    org: 'Trend Micro',
+    bullets: [
+      'Published 17 research articles on ransomware families, APT campaigns, and defense evasion techniques reaching global security teams',
+      'Designed and shipped 10+ production tools -- AI-powered inquiry pipelines, MCP servers, and desktop applications -- saving hundreds of analyst-hours monthly',
+      'Delivered advanced threat defense training internationally for INTERPOL, government agencies (Japan, Oman, Philippines), and enterprise teams including major financial institutions',
+      'Keynoted at Philippine Airlines for Cybersecurity Awareness Month and spoke at DECODE, DOST ICT Summit, and CIRQIT conferences',
+    ],
+  },
+  {
+    year: 'Previous',
+    title: 'Threat Analyst',
+    org: 'Trend Micro',
+    bullets: [
+      'Investigated and triaged threat inquiries across the threat hunting pipeline -- from IOC enrichment and OSINT analysis to SPOT report generation',
+      'Tracked emerging ransomware families and APT campaigns, contributing threat intelligence to internal and customer-facing advisories',
+    ],
+  },
+];
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jacob Santos",
+  "jobTitle": "Senior Threat Researcher",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Trend Micro"
+  },
+  "url": "https://jacobsantos.pages.dev",
+  "sameAs": [
+    "https://github.com/jacobdsantos",
+    "https://www.linkedin.com/in/jacob-santos-046313198/"
+  ],
+  "knowsAbout": [
+    "Ransomware Analysis",
+    "Advanced Persistent Threats",
+    "Threat Intelligence",
+    "MITRE ATT&CK",
+    "Malware Analysis",
+    "Security Automation"
+  ],
+  "description": "Senior cybersecurity threat researcher, automation builder, and international trainer."
+};
+---
+
+<AppShell
+  title="About"
+  description="Learn about Jacob Santos -- senior threat researcher specializing in ransomware analysis, security automation, and international cybersecurity training."
+  jsonLd={personJsonLd}
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'About' },
+  ]}
+>
+
+  <div class="content-card">
+    <h1 class="section-title">About Me</h1>
+    <p class="section-subtitle">Threat researcher who publishes, builds, and teaches.</p>
+
+    <!-- Value Proposition -->
+    <div class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-5 md:p-6 mb-8">
+      <p class="text-text-primary text-[15px] leading-relaxed font-medium">
+        I work at the intersection of <span class="text-accent-primary">deep-dive threat research</span>,
+        <span class="text-accent-tertiary">operational automation</span>, and
+        <span class="text-violet-400">knowledge transfer</span>.
+      </p>
+      <p class="text-text-secondary text-sm leading-relaxed mt-2">
+        I track ransomware families and APT groups, analyze their evolving tradecraft,
+        and publish findings that help defenders worldwide. Then I build tools to automate what I've learned
+        and train others to defend against what I've found.
+      </p>
+    </div>
+
+    <!-- Key Highlights -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-primary/15 transition-all">
+        <div class="text-2xl font-bold text-accent-primary font-mono mb-0.5">17</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest">Blog Articles</div>
+      </div>
+      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-secondary/15 transition-all">
+        <div class="text-2xl font-bold text-accent-secondary font-mono mb-0.5">14</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest">Microstories</div>
+      </div>
+      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-tertiary/15 transition-all">
+        <div class="text-2xl font-bold text-accent-tertiary font-mono mb-0.5">10+</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest">Tools Built</div>
+      </div>
+      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-warning/15 transition-all">
+        <div class="text-2xl font-bold text-accent-warning font-mono mb-0.5">10+</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest">Talks & Training</div>
+      </div>
+    </div>
+
+    <!-- What I Bring -->
+    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">What I Bring</h3>
+    <div class="space-y-3 mb-8">
+      {valuePillars.map(pillar => (
+        <div class="flex items-start gap-4 p-4 rounded-xl bg-bg-surface/40 border border-white/[0.04] hover:border-white/[0.08] transition-all">
+          <div class={`w-9 h-9 rounded-xl ${pillar.bg} border border-white/[0.06] flex items-center justify-center shrink-0 ${pillar.color}`} set:html={pillar.icon} />
+          <div>
+            <h4 class={`${pillar.color} font-semibold text-sm mb-0.5`}>{pillar.title}</h4>
+            <p class="text-text-muted text-xs leading-relaxed">{pillar.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Research Focus -->
+    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">Research Focus</h3>
+    <div class="space-y-2.5 mb-8">
+      <div class="group">
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-text-secondary font-medium">Ransomware Families</span>
+          <span class="text-accent-danger font-mono">Primary</span>
+        </div>
+        <div class="h-1.5 rounded-full bg-bg-surface overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-accent-danger to-red-400 transition-all duration-1000" style="width: 95%"></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-text-secondary font-medium">BYOVD & Defense Evasion</span>
+          <span class="text-accent-warning font-mono">Active</span>
+        </div>
+        <div class="h-1.5 rounded-full bg-bg-surface overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-accent-warning to-amber-400 transition-all duration-1000" style="width: 80%"></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-text-secondary font-medium">Cross-Platform Threats</span>
+          <span class="text-accent-tertiary font-mono">Active</span>
+        </div>
+        <div class="h-1.5 rounded-full bg-bg-surface overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-accent-tertiary to-cyan-400 transition-all duration-1000" style="width: 70%"></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-text-secondary font-medium">APT Campaigns & Espionage</span>
+          <span class="text-accent-secondary font-mono">Active</span>
+        </div>
+        <div class="h-1.5 rounded-full bg-bg-surface overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-accent-secondary to-violet-400 transition-all duration-1000" style="width: 65%"></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-text-secondary font-medium">Red Team Tools & Loaders</span>
+          <span class="text-accent-primary font-mono">Growing</span>
+        </div>
+        <div class="h-1.5 rounded-full bg-bg-surface overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-accent-primary to-emerald-400 transition-all duration-1000" style="width: 55%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Career Timeline -->
+    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">Experience</h3>
+    <div class="border-l-2 border-accent-primary/20 ml-3 space-y-6 mb-8">
+      {timeline.map(item => (
+        <div class="relative pl-7">
+          <div class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-bg-primary border-2 border-accent-primary"></div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-accent-primary text-xs font-mono font-semibold">{item.year}</span>
+            <span class="text-text-muted text-[10px]">&middot;</span>
+            <span class="text-accent-secondary text-xs font-mono">{item.org}</span>
+          </div>
+          <h4 class="text-text-primary font-semibold text-sm mt-0.5">{item.title}</h4>
+          <ul class="mt-2 space-y-1.5">
+            {item.bullets.map(bullet => (
+              <li class="flex items-start gap-2">
+                <span class="w-1 h-1 rounded-full bg-accent-primary/40 mt-1.5 shrink-0"></span>
+                <span class="text-text-muted text-xs leading-relaxed">{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Disclosure notice -->
+    <div class="rounded-xl bg-accent-warning/[0.04] border border-accent-warning/10 p-4">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-accent-warning/10 border border-accent-warning/15 flex items-center justify-center shrink-0">
+          <svg class="w-4 h-4 text-accent-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-accent-warning text-xs font-semibold mb-1">Note on Published Work</p>
+          <p class="text-text-muted text-[11px] leading-relaxed">
+            The research showcased here represents my publicly available work. A significant portion of my daily output -- inquiry responses, SPOT reports, threat advisories -- is internal-only under TLP:AMBER and not included here.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</AppShell>

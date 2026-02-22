@@ -1,0 +1,24 @@
+---
+/**
+ * Outputs `color-scheme` and `theme-color` meta tags so browsers, PWA
+ * shells, and mobile task-switchers render the correct chrome colour.
+ *
+ * Place inside `<head>`:
+ *   <ThemeMeta />
+ */
+
+interface Props {
+  /** The `color-scheme` value. Defaults to `dark`. */
+  colorScheme?: string;
+  /** The `theme-color` value for browser chrome. Defaults to the site's bg-primary. */
+  themeColor?: string;
+}
+
+const {
+  colorScheme = 'dark',
+  themeColor = '#07090f',
+} = Astro.props;
+---
+
+<meta name="color-scheme" content={colorScheme} />
+<meta name="theme-color" content={themeColor} />

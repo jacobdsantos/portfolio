@@ -1,0 +1,89 @@
+---
+/**
+ * Callout / admonition box for highlighting important information.
+ *
+ * Variants:
+ *   - info    : Cyan left-border, info icon
+ *   - warning : Amber left-border, warning icon
+ *   - danger  : Red left-border, alert icon
+ *   - success : Green left-border, check icon
+ *
+ * Usage:
+ *   <Callout type="warning" title="Heads up">
+ *     This technique requires admin privileges.
+ *   </Callout>
+ */
+
+interface Props {
+  type: 'info' | 'warning' | 'danger' | 'success';
+  /** Optional heading above the callout body. */
+  title?: string;
+}
+
+const { type, title } = Astro.props;
+
+const config: Record<
+  Props['type'],
+  { border: string; bg: string; iconColor: string; titleColor: string; icon: string }
+> = {
+  info: {
+    border: 'border-accent-tertiary',
+    bg: 'bg-accent-tertiary/[0.06]',
+    iconColor: 'text-accent-tertiary',
+    titleColor: 'text-accent-tertiary',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>',
+  },
+  warning: {
+    border: 'border-accent-warning',
+    bg: 'bg-accent-warning/[0.06]',
+    iconColor: 'text-accent-warning',
+    titleColor: 'text-accent-warning',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>',
+  },
+  danger: {
+    border: 'border-accent-danger',
+    bg: 'bg-accent-danger/[0.06]',
+    iconColor: 'text-accent-danger',
+    titleColor: 'text-accent-danger',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>',
+  },
+  success: {
+    border: 'border-accent-success',
+    bg: 'bg-accent-success/[0.06]',
+    iconColor: 'text-accent-success',
+    titleColor: 'text-accent-success',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+  },
+};
+
+const c = config[type];
+---
+
+<div
+  class:list={[
+    'rounded-xl border-l-[3px] p-4 my-4',
+    c.border,
+    c.bg,
+  ]}
+  role="note"
+>
+  <div class="flex gap-3">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      class:list={['w-5 h-5 shrink-0 mt-0.5', c.iconColor]}
+      aria-hidden="true"
+      set:html={c.icon}
+    />
+    <div class="min-w-0">
+      {title && (
+        <p class:list={['text-sm font-semibold mb-1', c.titleColor]}>{title}</p>
+      )}
+      <div class="text-sm text-text-secondary leading-relaxed">
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>

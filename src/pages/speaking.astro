@@ -1,0 +1,195 @@
+---
+import AppShell from '../design-system/components/AppShell.astro';
+import { getCollection } from 'astro:content';
+
+const allSpeaking = await getCollection('speaking');
+const engagements = allSpeaking
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .map(entry => entry.data);
+
+const typeColors: Record<string, string> = {
+  'Training': 'tag-amber',
+  'Speaker': 'tag-purple',
+  'Panelist': 'tag-cyan',
+};
+
+const engAccents = [
+  'from-red-500/20 to-orange-500/10',
+  'from-emerald-500/20 to-teal-500/10',
+  'from-blue-500/20 to-indigo-500/10',
+  'from-violet-500/20 to-purple-500/10',
+  'from-cyan-500/20 to-sky-500/10',
+  'from-amber-500/20 to-yellow-500/10',
+  'from-rose-500/20 to-pink-500/10',
+  'from-teal-500/20 to-emerald-500/10',
+];
+
+const flagIcons: Record<string, string> = {
+  'JP': `<svg class="w-6 h-4" viewBox="0 0 640 480"><rect width="640" height="480" fill="#fff"/><circle cx="320" cy="240" r="120" fill="#bc002d"/></svg>`,
+  'OM': `<div class="w-6 h-4 rounded-sm overflow-hidden flex flex-col"><div class="flex-1 bg-white"></div><div class="flex-1 bg-green-600"></div><div class="flex-1 bg-red-600"></div></div>`,
+  'INTL': `<div class="w-6 h-4 bg-blue-600/80 rounded-sm flex items-center justify-center text-[7px] text-white font-bold font-mono">INTL</div>`,
+  'CONF': `<div class="w-6 h-4 bg-accent-primary/15 rounded-sm flex items-center justify-center border border-accent-primary/20"><svg class="w-3 h-3 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>`,
+  'TW': `<div class="w-6 h-4 rounded-sm overflow-hidden relative"><div class="absolute inset-0 bg-red-600"></div><div class="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-800 flex items-center justify-center"><svg class="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 2l1.5 4h4l-3 3 1.5 4-4-2.5L8 13l1.5-4-3-3h4z"/></svg></div></div>`,
+  'PH': `<div class="w-6 h-4 rounded-sm overflow-hidden flex flex-col"><div class="flex-1 bg-blue-700"></div><div class="flex-1 bg-red-600"></div><div class="absolute left-0 w-0 h-0 border-l-[10px] border-l-white border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent"></div></div>`,
+};
+
+const defaultFlag = `<div class="w-6 h-4 bg-bg-surface rounded-sm"></div>`;
+
+// Aggregate topics for dynamic tag cloud
+const allTopics: Record<string, number> = {};
+engagements.forEach(eng => {
+  (eng.topics || []).forEach(topic => {
+    allTopics[topic] = (allTopics[topic] || 0) + 1;
+  });
+});
+const sortedTopics = Object.entries(allTopics).sort((a, b) => b[1] - a[1]);
+
+// Count types
+const speakerCount = engagements.filter(e => e.type === 'Speaker').length;
+const trainingCount = engagements.filter(e => e.type === 'Training').length;
+const panelistCount = engagements.filter(e => e.type === 'Panelist').length;
+
+const topicTagColors = ['tag-red', 'tag-purple', 'tag-amber', 'tag-cyan', 'tag-green'];
+---
+
+<AppShell
+  title="Speaking & Training"
+  description="International cybersecurity trainer for government agencies, law enforcement, and enterprises. INTERPOL, Japan, Oman, Philippines, and more."
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Speaking' },
+  ]}
+>
+
+  <div class="content-card mb-6">
+    <h1 class="section-title">Speaking & Training</h1>
+    <p class="section-subtitle">
+      International cybersecurity trainer for government agencies and law enforcement.
+      <span class="text-text-muted">I don't just find threats -- I teach others how to defend against them.</span>
+    </p>
+
+    <!-- Speaking stats bar -->
+    <div class="flex flex-wrap items-center gap-4 mb-5 text-[10px] font-mono text-text-muted">
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-secondary"></span>
+        <span><span class="text-text-secondary font-semibold">{speakerCount}</span> Conference Talks</span>
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-warning"></span>
+        <span><span class="text-text-secondary font-semibold">{trainingCount}</span> Training Programs</span>
+      </span>
+      {panelistCount > 0 && (
+        <span class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent-tertiary"></span>
+          <span><span class="text-text-secondary font-semibold">{panelistCount}</span> Panels</span>
+        </span>
+      )}
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-primary"></span>
+        <span><span class="text-text-secondary font-semibold">{engagements.length}</span> Total</span>
+      </span>
+    </div>
+
+    <!-- Engagement cards -->
+    <div class="space-y-3">
+      {engagements.map((eng, idx) => (
+        <div class="card !p-0 overflow-hidden group">
+          <!-- Gradient accent bar -->
+          <div class={`h-1 bg-gradient-to-r ${engAccents[idx % engAccents.length]}`}></div>
+          <div class="p-4">
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 mt-0.5 w-11 h-11 rounded-xl bg-bg-secondary/80 border border-white/[0.06] flex items-center justify-center transition-transform duration-300 group-hover:scale-110" set:html={flagIcons[eng.flag] || defaultFlag} />
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="text-text-primary font-semibold text-sm group-hover:text-accent-primary transition-colors">{eng.title}</h3>
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    <span class={typeColors[eng.type]}>{eng.type}</span>
+                  </div>
+                </div>
+                <p class="text-accent-secondary text-xs font-mono mb-1.5">
+                  {eng.org} -- {eng.location}
+                  {eng.year && <span class="text-text-muted ml-2">({eng.year})</span>}
+                </p>
+                <p class="text-text-muted text-xs leading-relaxed mb-2">{eng.description}</p>
+
+                {/* Audience badge */}
+                {eng.audience && (
+                  <div class="flex items-center gap-1.5 mb-2">
+                    <svg class="w-3 h-3 text-text-muted shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
+                    </svg>
+                    <span class="text-text-muted text-[10px] font-mono">{eng.audience}</span>
+                  </div>
+                )}
+
+                {/* Topic tags */}
+                {eng.topics && eng.topics.length > 0 && (
+                  <div class="flex flex-wrap gap-1">
+                    {eng.topics.map((topic, tidx) => (
+                      <span class={`${topicTagColors[tidx % topicTagColors.length]} !text-[8px]`}>{topic}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Topics Covered -->
+    <div class="mt-6 rounded-xl bg-bg-secondary/50 border border-white/[0.06] p-5 mb-4">
+      <div class="flex items-center gap-2 mb-3">
+        <svg class="w-4 h-4 text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342"/>
+        </svg>
+        <span class="text-text-primary text-xs font-semibold">Topics Covered</span>
+        <span class="text-text-muted text-[9px] font-mono ml-auto">{sortedTopics.length} topics</span>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        {sortedTopics.map(([topic, count], idx) => (
+          <span class={`${topicTagColors[idx % topicTagColors.length]} flex items-center gap-1`}>
+            {topic}
+            {count > 1 && <span class="opacity-60 text-[8px]">{count}x</span>}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Global reach stats -->
+    <div class="rounded-xl bg-bg-secondary/50 border border-white/[0.06] p-5">
+      <div class="flex items-center gap-2 mb-4">
+        <svg class="w-4 h-4 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582" />
+        </svg>
+        <span class="text-text-primary text-xs font-semibold">Global Reach</span>
+      </div>
+      <p class="text-text-muted text-xs mb-4">
+        Speaking and training delivered across
+        <span class="text-accent-primary font-medium">Japan</span>,
+        <span class="text-accent-primary font-medium">Oman</span>,
+        <span class="text-accent-primary font-medium">Philippines</span>, and
+        <span class="text-accent-primary font-medium">online globally</span> for INTERPOL, government agencies, and enterprise organizations
+      </p>
+      <div class="grid grid-cols-4 gap-3">
+        <div class="text-center py-3 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
+          <div class="text-lg font-bold text-accent-primary font-mono">{engagements.length}</div>
+          <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">Events</div>
+        </div>
+        <div class="text-center py-3 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
+          <div class="text-lg font-bold text-accent-secondary font-mono">{speakerCount}</div>
+          <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">Talks</div>
+        </div>
+        <div class="text-center py-3 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
+          <div class="text-lg font-bold text-accent-warning font-mono">Gov</div>
+          <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">Agencies</div>
+        </div>
+        <div class="text-center py-3 rounded-xl bg-bg-surface/60 border border-white/[0.04]">
+          <div class="text-lg font-bold text-accent-tertiary font-mono">INTL</div>
+          <div class="text-text-muted text-[9px] uppercase tracking-widest mt-0.5">Partner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</AppShell>

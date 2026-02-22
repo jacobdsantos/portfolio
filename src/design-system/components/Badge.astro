@@ -1,0 +1,28 @@
+---
+/**
+ * Coloured badge / tag pill.
+ * Maps variant names to the existing `tag-*` utility classes from global.css.
+ *
+ * Usage:
+ *   <Badge variant="green" text="Ransomware" />
+ *   <Badge variant="purple" text="APT" />
+ */
+
+interface Props {
+  variant: 'green' | 'purple' | 'cyan' | 'amber' | 'red' | 'blue';
+  text: string;
+}
+
+const { variant, text } = Astro.props;
+
+const variantClass: Record<Props['variant'], string> = {
+  green: 'tag-green',
+  purple: 'tag-purple',
+  cyan: 'tag-cyan',
+  amber: 'tag-amber',
+  red: 'tag-red',
+  blue: 'tag-blue',
+};
+---
+
+<span class={variantClass[variant]}>{text}</span>

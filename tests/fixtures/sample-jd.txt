@@ -1,0 +1,45 @@
+Senior Threat Intelligence Researcher
+
+Location: Remote / Asia Pacific
+Department: Threat Research & Intelligence
+
+About the Role:
+We are seeking an experienced Senior Threat Intelligence Researcher to join our global threat research team. In this role, you will conduct deep-dive analysis of ransomware families, APT campaigns, and emerging cyber threats. You will publish original research, develop detection methodologies, and collaborate with security operations teams worldwide.
+
+Responsibilities:
+- Conduct in-depth malware analysis and reverse engineering of ransomware payloads, loaders, and post-exploitation tools
+- Track and document advanced persistent threat (APT) campaigns, including TTPs mapped to the MITRE ATT&CK framework
+- Perform threat hunting across telemetry data to identify novel attack patterns and indicators of compromise (IOCs)
+- Publish technical research articles and threat advisories for internal and external audiences
+- Develop YARA rules, Sigma detections, and hunting queries for emerging threats
+- Investigate defense evasion techniques including BYOVD (Bring Your Own Vulnerable Driver), EDR bypass, and process injection
+- Collaborate with incident response teams to provide threat intelligence context during active investigations
+- Enrich indicators of compromise using platforms such as VirusTotal, OpenCTI, and OSINT sources
+- Build and maintain automation tools and scripts (Python) to streamline threat intelligence workflows
+- Deliver training and knowledge transfer sessions to SOC analysts, incident responders, and partner organizations
+- Monitor threat actor infrastructure and track ransomware-as-a-service (RaaS) ecosystems
+
+Requirements:
+- 3+ years of experience in threat intelligence, malware analysis, or security research
+- Strong understanding of the MITRE ATT&CK framework and cyber kill chain methodology
+- Proficiency in Python for scripting, automation, and tool development
+- Experience with threat intelligence platforms (OpenCTI, MISP, or similar)
+- Hands-on experience with malware analysis tools and sandboxing environments
+- Familiarity with EDR solutions and endpoint detection technologies
+- Knowledge of ransomware families, their TTPs, and evolution across Windows, Linux, and ESXi platforms
+- Experience analyzing cross-platform threats targeting enterprise virtualization infrastructure
+- Strong technical writing skills with published research or blog articles
+- Experience with OSINT techniques and IOC enrichment workflows
+
+Nice to Have:
+- Experience with AI/LLM integration for threat intelligence automation
+- Familiarity with Model Context Protocol (MCP) or similar AI tooling frameworks
+- Experience building Streamlit or web-based security analysis dashboards
+- Node.js or TypeScript development experience
+- Background in delivering cybersecurity training to law enforcement or government agencies
+- Conference speaking experience
+- Confluence and Jira proficiency for documentation and project tracking
+- Experience with cloud security platforms (AWS, Azure, or GCP)
+- Knowledge of network security and traffic analysis
+
+We offer a collaborative research environment, opportunities to publish original research, and the chance to make a meaningful impact on global cybersecurity defense.

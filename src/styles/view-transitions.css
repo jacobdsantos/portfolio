@@ -1,0 +1,131 @@
+/* View Transitions CSS */
+
+/* Default view transition animations */
+::view-transition-old(root) {
+  animation: fade-out 0.2s ease-out forwards;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.3s ease-in forwards;
+}
+
+/* Named transitions for specific elements */
+::view-transition-old(page-content) {
+  animation: slide-out-left 0.25s ease-out forwards;
+}
+
+::view-transition-new(page-content) {
+  animation: slide-in-right 0.3s ease-out forwards;
+}
+
+::view-transition-old(sidebar) {
+  animation: none;
+}
+
+::view-transition-new(sidebar) {
+  animation: none;
+}
+
+/* Card transitions */
+::view-transition-old(card) {
+  animation: scale-out 0.2s ease-out forwards;
+}
+
+::view-transition-new(card) {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* Keyframes */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content),
+  ::view-transition-old(card),
+  ::view-transition-new(card) {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Reveal animations for intersection observer */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

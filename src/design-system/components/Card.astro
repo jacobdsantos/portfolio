@@ -1,0 +1,32 @@
+---
+/**
+ * Reusable card component that renders as a `<div>` or an `<a>` depending
+ * on whether an `href` prop is supplied. Applies the existing `.card` class
+ * from global.css which provides bg, border, rounded corners, and hover
+ * effects.
+ *
+ * Usage:
+ *   <Card>Static content</Card>
+ *   <Card href="/research/article-slug">Linked content</Card>
+ */
+
+interface Props {
+  /** When provided the card renders as an anchor tag. */
+  href?: string;
+  /** Additional CSS classes merged onto the root element. */
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+const Tag = href ? 'a' : 'div';
+const linkProps = href
+  ? {
+      href,
+      ...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {}),
+    }
+  : {};
+---
+
+<Tag class:list={['card', className]} {...linkProps}>
+  <slot />
+</Tag>

@@ -4,14 +4,52 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run build:search && astro build",
+    "build:astro": "astro build",
+    "build:search": "node scripts/build-search-index.mjs",
+    "build:github": "node scripts/build-github-snapshot.mjs",
+    "build:og": "node scripts/build-og.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "verify:budgets": "node scripts/verify-budgets.mjs",
+    "verify:meta": "node scripts/verify-meta.mjs",
+    "verify:slugs": "node scripts/verify-slugs.mjs",
+    "verify": "npm run verify:slugs && npm run verify:budgets && npm run verify:meta",
+    "ci": "npm run check && npm run test && npm run build && npm run verify"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.2",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
     "astro": "^5.17.1",
-    "tailwindcss": "^3.4.19"
+    "clsx": "^2.1.1",
+    "fuse.js": "^7.1.0",
+    "html2pdf.js": "^0.14.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "shiki": "^3.22.0",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^3.4.19",
+    "zod": "^3.25.76",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   }
 }
