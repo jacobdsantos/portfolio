@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Resume Builder — Admin</title>
+  <style>
+    body { margin: 0; background: #07090f; color: #e8edf5; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .banner {
+      background: linear-gradient(90deg, rgba(0,223,162,0.08), rgba(108,92,231,0.08));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+    .banner a { color: #00dfa2; text-decoration: none; }
+    .banner a:hover { text-decoration: underline; }
+    .label { color: #545d68; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .redirect-msg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+      text-align: center;
+      gap: 1rem;
+    }
+    .redirect-msg h2 { font-size: 1.5rem; font-weight: 700; }
+    .redirect-msg p { color: #8b949e; max-width: 500px; line-height: 1.6; }
+    .redirect-msg a.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #00dfa2;
+      color: #07090f;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .redirect-msg a.btn:hover { box-shadow: 0 0 30px -5px rgba(0,223,162,0.4); transform: scale(1.02); }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div>
+      <span class="label">Admin</span>
+      &nbsp;&nbsp;Resume Builder (JD Matching)
+    </div>
+    <div>
+      <a href="/_ctrl/">Dashboard</a>
+      &nbsp;&middot;&nbsp;
+      <a href="/resume" target="_blank">Public Resume</a>
+    </div>
+  </div>
+
+  <div class="redirect-msg">
+    <h2>Resume Builder</h2>
+    <p>
+      The interactive resume builder with JD paste-and-match, ATS scoring, and template switching
+      has been moved to a dedicated Astro page for full React island support.
+    </p>
+    <a href="/resume-builder" class="btn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+      Open Resume Builder
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+---
+/**
+ * Vertical timeline component with connected nodes.
+ * Each item is passed as a slot, wrapped in timeline styling.
+ *
+ * Usage:
+ *   <Timeline>
+ *     <TimelineItem date="2024" title="Senior Researcher" accent="green">
+ *       <p>Details here</p>
+ *     </TimelineItem>
+ *   </Timeline>
+ */
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['timeline relative', className]}>
+  <div class="absolute left-[15px] top-0 bottom-0 w-px bg-gradient-to-b from-accent-primary/40 via-accent-secondary/20 to-transparent"></div>
+  <div class="space-y-6">
+    <slot />
+  </div>
+</div>

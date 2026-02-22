@@ -1,0 +1,61 @@
+---
+/**
+ * Modal overlay + content container.
+ * Uses existing .modal-overlay and .modal-content classes from global.css.
+ * Controlled via JS by toggling a data-open attribute or hidden class.
+ *
+ * Usage:
+ *   <Modal id="article-modal">
+ *     <h2>Title</h2>
+ *     <p>Content</p>
+ *   </Modal>
+ */
+
+interface Props {
+  id: string;
+  class?: string;
+}
+
+const { id, class: className } = Astro.props;
+---
+
+<div
+  id={id}
+  class="modal-overlay hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${id}-title`}
+>
+  <div class:list={['modal-content', className]}>
+    <button
+      class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-bg-surface/80 border border-white/[0.06] flex items-center justify-center text-text-muted hover:text-text-primary hover:border-white/10 transition-all z-10"
+      aria-label="Close modal"
+      data-modal-close
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <slot />
+  </div>
+</div>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    // Close button
+    if (target.closest('[data-modal-close]')) {
+      target.closest('.modal-overlay')?.classList.add('hidden');
+    }
+    // Overlay background click
+    if (target.classList.contains('modal-overlay')) {
+      target.classList.add('hidden');
+    }
+  });
+  // ESC key to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay:not(.hidden)').forEach((el) => el.classList.add('hidden'));
+    }
+  });
+</script>

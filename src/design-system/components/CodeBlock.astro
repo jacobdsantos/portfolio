@@ -1,0 +1,28 @@
+---
+/**
+ * Code block wrapper with copy button and optional language label.
+ * Wraps Shiki-highlighted code and adds the CopyCodeButton React island.
+ *
+ * Usage:
+ *   <CodeBlock lang="typescript">
+ *     <pre><code>const x = 1;</code></pre>
+ *   </CodeBlock>
+ */
+
+interface Props {
+  lang?: string;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="code-block relative group rounded-xl overflow-hidden border border-white/[0.06] bg-bg-secondary/80">
+  {lang && (
+    <div class="flex items-center justify-between px-4 py-2 border-b border-white/[0.06] bg-bg-surface/40">
+      <span class="text-text-muted text-[10px] font-mono uppercase tracking-wider">{lang}</span>
+    </div>
+  )}
+  <div class="overflow-x-auto">
+    <slot />
+  </div>
+</div>

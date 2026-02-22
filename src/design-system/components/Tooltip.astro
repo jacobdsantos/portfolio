@@ -1,0 +1,47 @@
+---
+/**
+ * CSS-only tooltip that shows on hover.
+ * Positions above the trigger element by default.
+ *
+ * Usage:
+ *   <Tooltip text="More info about this">
+ *     <span>Hover me</span>
+ *   </Tooltip>
+ */
+
+interface Props {
+  text: string;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+}
+
+const { text, position = 'top' } = Astro.props;
+
+const positionClasses: Record<string, string> = {
+  top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
+  bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
+  left: 'right-full top-1/2 -translate-y-1/2 mr-2',
+  right: 'left-full top-1/2 -translate-y-1/2 ml-2',
+};
+---
+
+<span class="tooltip-wrapper relative inline-flex">
+  <slot />
+  <span
+    role="tooltip"
+    class:list={[
+      'tooltip-text pointer-events-none absolute z-50 px-2.5 py-1.5 rounded-lg text-[11px] font-mono',
+      'bg-bg-card border border-white/[0.08] text-text-secondary shadow-lg',
+      'opacity-0 transition-opacity duration-200 whitespace-nowrap',
+      positionClasses[position],
+    ]}
+  >
+    {text}
+  </span>
+</span>
+
+<style>
+  .tooltip-wrapper:hover .tooltip-text,
+  .tooltip-wrapper:focus-within .tooltip-text {
+    opacity: 1;
+  }
+</style>

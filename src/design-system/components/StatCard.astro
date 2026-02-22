@@ -1,0 +1,37 @@
+---
+/**
+ * Stat display card with large number and label.
+ * Used for impact metrics on landing and about pages.
+ *
+ * Usage:
+ *   <StatCard value="17" label="Articles" accent="primary" />
+ */
+
+interface Props {
+  value: string;
+  label: string;
+  accent?: 'primary' | 'secondary' | 'tertiary' | 'warning';
+}
+
+const { value, label, accent = 'primary' } = Astro.props;
+
+const accentClasses: Record<string, { text: string; border: string }> = {
+  primary: { text: 'text-accent-primary', border: 'hover:border-accent-primary/15' },
+  secondary: { text: 'text-accent-secondary', border: 'hover:border-accent-secondary/15' },
+  tertiary: { text: 'text-accent-tertiary', border: 'hover:border-accent-tertiary/15' },
+  warning: { text: 'text-accent-warning', border: 'hover:border-accent-warning/15' },
+};
+
+const colors = accentClasses[accent] || accentClasses.primary;
+---
+
+<div
+  class:list={[
+    'text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] transition-all',
+    colors.border,
+  ]}
+  style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);"
+>
+  <div class:list={['text-2xl font-bold font-mono mb-0.5 stat-value', colors.text]} data-value={value}>{value}</div>
+  <div class="text-text-muted text-[9px] uppercase tracking-widest">{label}</div>
+</div>
