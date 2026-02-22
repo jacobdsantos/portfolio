@@ -4,10 +4,11 @@ import { resolve } from 'path';
 
 import { validateResumeMaster } from '../schema';
 import { extractKeywords } from '../keyword-extract';
-import { buildMatchedResume } from '../match';
+import { generateTailoredResume } from '../generate';
+import type { GenerateInput } from '../generate';
 import { tokenize, normalize, removeStopwords, extractBigrams, simpleHash } from '../text';
 import { computeAtsScore, getAtsGrade, findMissingKeywords } from '../ats';
-import type { MatchInput, ResumeMaster } from '../types';
+import type { ResumeMaster } from '../types';
 
 // Load test fixtures
 const fixturesDir = resolve(__dirname, '../../../../tests/fixtures');
@@ -282,17 +283,16 @@ describe('keyword extraction', () => {
   });
 });
 
-// --- buildMatchedResume ---
+// --- generateTailoredResume ---
 
-describe('buildMatchedResume', () => {
-  function makeInput(): MatchInput {
+describe('generateTailoredResume', () => {
+  function makeInput(): GenerateInput {
     const master = loadResumeMaster() as ResumeMaster;
     const jdText = loadSampleJD();
     return {
       master,
       jobDescriptionText: jdText,
       options: {
-        bulletStyle: 'natural',
         maxPages: 2,
         includeSections: {
           summary: true,
@@ -309,7 +309,7 @@ describe('buildMatchedResume', () => {
 
   it('should produce a valid render model', () => {
     const input = makeInput();
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
 
     expect(output.renderModel).toBeDefined();
     expect(output.renderModel.meta).toBeDefined();
@@ -320,7 +320,7 @@ describe('buildMatchedResume', () => {
 
   it('should include all requested sections', () => {
     const input = makeInput();
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
     const sectionTypes = output.renderModel.sections.map((s) => s.type);
 
     expect(sectionTypes).toContain('summary');
@@ -335,7 +335,7 @@ describe('buildMatchedResume', () => {
     const input = makeInput();
     input.options.includeSections.projects = false;
     input.options.includeSections.certifications = false;
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
     const sectionTypes = output.renderModel.sections.map((s) => s.type);
 
     expect(sectionTypes).not.toContain('projects');
@@ -344,46 +344,41 @@ describe('buildMatchedResume', () => {
 
   it('should compute an ATS score between 0 and 100', () => {
     const input = makeInput();
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
 
-    expect(output.renderModel.meta.atsScore).toBeGreaterThanOrEqual(0);
-    expect(output.renderModel.meta.atsScore).toBeLessThanOrEqual(100);
+    expect(output.analysis.atsScore).toBeGreaterThanOrEqual(0);
+    expect(output.analysis.atsScore).toBeLessThanOrEqual(100);
   });
 
   it('should achieve a reasonable ATS score for a matching JD', () => {
     const input = makeInput();
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
 
     // Jacob's resume should match well against a threat researcher JD
-    expect(output.renderModel.meta.atsScore).toBeGreaterThanOrEqual(30);
+    expect(output.analysis.atsScore).toBeGreaterThanOrEqual(30);
   });
 
-  it('should provide debug data with bullet scores', () => {
+  it('should provide analysis with detected focus areas', () => {
     const input = makeInput();
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
 
-    expect(output.debug).toBeDefined();
-    expect(output.debug.extractedKeywords.length).toBeGreaterThan(0);
-    expect(Object.keys(output.debug.bulletScores).length).toBeGreaterThan(0);
+    expect(output.analysis).toBeDefined();
+    expect(output.analysis.extractedKeywords.length).toBeGreaterThan(0);
+    expect(output.analysis.detectedFocusAreas.length).toBeGreaterThan(0);
+    expect(Object.keys(output.analysis.bulletSelections).length).toBeGreaterThan(0);
   });
 
   it('should be deterministic (same input produces same output, except timestamp)', () => {
     const input = makeInput();
 
-    const output1 = buildMatchedResume(input);
-    const output2 = buildMatchedResume(input);
+    const output1 = generateTailoredResume(input);
+    const output2 = generateTailoredResume(input);
 
-    // Compare everything except generatedAt timestamp
-    expect(output1.renderModel.meta.atsScore).toBe(output2.renderModel.meta.atsScore);
-    expect(output1.renderModel.meta.jdHash).toBe(output2.renderModel.meta.jdHash);
-    expect(output1.renderModel.meta.matchedKeywords).toEqual(
-      output2.renderModel.meta.matchedKeywords,
-    );
-    expect(output1.renderModel.meta.missingKeywords).toEqual(
-      output2.renderModel.meta.missingKeywords,
-    );
-    expect(output1.debug.bulletScores).toEqual(output2.debug.bulletScores);
-    expect(output1.debug.extractedKeywords).toEqual(output2.debug.extractedKeywords);
+    expect(output1.analysis.atsScore).toBe(output2.analysis.atsScore);
+    expect(output1.analysis.matchedKeywords).toEqual(output2.analysis.matchedKeywords);
+    expect(output1.analysis.missingKeywords).toEqual(output2.analysis.missingKeywords);
+    expect(output1.analysis.detectedFocusAreas).toEqual(output2.analysis.detectedFocusAreas);
+    expect(output1.analysis.bulletSelections).toEqual(output2.analysis.bulletSelections);
 
     // Sections should be identical
     expect(output1.renderModel.sections.length).toBe(
@@ -403,7 +398,7 @@ describe('buildMatchedResume', () => {
 
     try {
       const input = makeInput();
-      buildMatchedResume(input);
+      generateTailoredResume(input);
       expect(mockFetch).not.toHaveBeenCalled();
     } finally {
       globalThis.fetch = originalFetch;
@@ -412,7 +407,7 @@ describe('buildMatchedResume', () => {
 
   it('should set correct header information', () => {
     const input = makeInput();
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
 
     expect(output.renderModel.header.name).toBe('Jacob Santos');
     expect(output.renderModel.header.contactLines).toContain(
@@ -421,35 +416,10 @@ describe('buildMatchedResume', () => {
     expect(output.renderModel.header.links.length).toBeGreaterThan(0);
   });
 
-  it('should annotate experience bullets with match status', () => {
-    const input = makeInput();
-    const output = buildMatchedResume(input);
-
-    const expSection = output.renderModel.sections.find(
-      (s) => s.type === 'experience',
-    );
-    expect(expSection).toBeDefined();
-
-    if (expSection && expSection.type === 'experience') {
-      for (const item of expSection.items) {
-        for (const bullet of item.bullets) {
-          expect(typeof bullet.matched).toBe('boolean');
-          expect(Array.isArray(bullet.matchedTerms)).toBe(true);
-        }
-      }
-      // At least some bullets should be matched for a relevant JD
-      const totalMatched = expSection.items.reduce(
-        (sum, item) => sum + item.bullets.filter((b) => b.matched).length,
-        0,
-      );
-      expect(totalMatched).toBeGreaterThan(0);
-    }
-  });
-
-  it('should handle single-page mode by trimming bullets', () => {
+  it('should handle single-page mode by trimming content', () => {
     const input = makeInput();
     input.options.maxPages = 1;
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
 
     // In single page mode, total bullets should be limited
     let totalBullets = 0;
@@ -472,8 +442,19 @@ describe('buildMatchedResume', () => {
   it('should use targetRole as header label when provided', () => {
     const input = makeInput();
     input.options.targetRole = 'Threat Intelligence Engineer';
-    const output = buildMatchedResume(input);
+    const output = generateTailoredResume(input);
 
     expect(output.renderModel.header.label).toBe('Threat Intelligence Engineer');
+  });
+
+  it('should detect research-related focus areas for a threat intel JD', () => {
+    const input = makeInput();
+    const output = generateTailoredResume(input);
+
+    // A threat researcher JD should detect research or threat_intel focus
+    const hasThreatFocus = output.analysis.detectedFocusAreas.some(
+      (f) => ['research', 'threat_intel', 'engineering'].includes(f),
+    );
+    expect(hasThreatFocus).toBe(true);
   });
 });
