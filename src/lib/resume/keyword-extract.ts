@@ -2,7 +2,15 @@ import { KEYWORD_WEIGHTS } from './constants';
 import { tokenize, removeStopwords, extractBigrams, normalize } from './text';
 
 /** Maximum number of keywords to return from extraction. */
-const MAX_KEYWORDS = 50;
+const MAX_KEYWORDS = 35;
+
+/**
+ * Minimum weight threshold for a keyword to be included.
+ * Terms with only 1 occurrence and no domain weight (score = 1.0) are likely
+ * generic filler. We require at least this score to include a term.
+ * Domain terms get a multiplier ≥1.3, and terms appearing 2+ times get score ≥2.0.
+ */
+const MIN_KEYWORD_SCORE = 1.2;
 
 /**
  * Extract weighted keywords from a job description text.
@@ -97,8 +105,11 @@ export function extractKeywords(
     }
   });
 
-  // Sort by weight descending, then alphabetically for stability
+  // Filter out terms below the minimum score threshold.
+  // This removes single-occurrence generic words that aren't in the domain dictionary.
+  // Sort by weight descending, then alphabetically for stability.
   const entries = Array.from(scored.entries())
+    .filter(([, weight]) => weight >= MIN_KEYWORD_SCORE)
     .map(([term, weight]) => ({ term, weight: Math.round(weight * 100) / 100 }))
     .sort((a, b) => {
       if (b.weight !== a.weight) return b.weight - a.weight;

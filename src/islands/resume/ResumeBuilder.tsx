@@ -159,6 +159,147 @@ function APISettings() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  AI Assessment Panel                                                */
+/* ------------------------------------------------------------------ */
+
+const FIT_CONFIG: Record<string, { color: string; label: string; bg: string }> = {
+  strong:   { color: '#00dfa2', label: 'Strong Fit',   bg: '#00dfa2' },
+  good:     { color: '#00dfa2', label: 'Good Fit',     bg: '#00dfa2' },
+  moderate: { color: '#f0b429', label: 'Moderate Fit',  bg: '#f0b429' },
+  stretch:  { color: '#f56565', label: 'Stretch Role',  bg: '#f56565' },
+};
+
+function AIAssessmentPanel() {
+  const getEffectiveOutput = useResumeStore((s) => s.getEffectiveOutput);
+  const generationMode = useResumeStore((s) => s.generationMode);
+  const effectiveOutput = getEffectiveOutput();
+
+  if (!effectiveOutput || generationMode !== 'ai' || !effectiveOutput.aiAssessment) {
+    // For local generation, show a simpler data-driven summary
+    if (effectiveOutput && generationMode === 'local') {
+      const { analysis } = effectiveOutput;
+      return (
+        <div className="space-y-3 rounded-lg border border-[#2a3140] bg-[#0a0e14] p-3">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#545d68]" style={FONT}>
+              Local Generation Summary
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="rounded-md bg-[#0d1117] px-2.5 py-2 text-center">
+              <div className="text-lg font-bold" style={{ color: analysis.atsScore >= 60 ? '#00dfa2' : analysis.atsScore >= 40 ? '#f0b429' : '#f56565', ...FONT }}>
+                {analysis.atsScore}
+              </div>
+              <div className="text-[9px] text-[#545d68]">ATS Score</div>
+            </div>
+            <div className="rounded-md bg-[#0d1117] px-2.5 py-2 text-center">
+              <div className="text-lg font-bold text-[#8b949e]" style={FONT}>
+                {analysis.matchedKeywords.length}/{analysis.matchedKeywords.length + analysis.missingKeywords.length}
+              </div>
+              <div className="text-[9px] text-[#545d68]">Keywords</div>
+            </div>
+          </div>
+          <p className="text-[10px] leading-relaxed text-[#3a4250]">
+            Rule-based generation matched keywords by string analysis. Use AI mode for intelligent bullet rewriting and deeper JD alignment.
+          </p>
+        </div>
+      );
+    }
+    return null;
+  }
+
+  const { aiAssessment, analysis } = effectiveOutput;
+  const fit = FIT_CONFIG[aiAssessment.overallFit] ?? FIT_CONFIG.moderate;
+
+  return (
+    <div className="space-y-3 rounded-lg border border-[#2a3140] bg-[#0a0e14] p-3">
+      {/* Header with fit badge */}
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#545d68]" style={FONT}>
+          AI Assessment
+        </span>
+        <span
+          className="rounded-full px-2 py-0.5 text-[10px] font-semibold"
+          style={{ backgroundColor: `${fit.bg}15`, color: fit.color }}
+        >
+          {fit.label}
+        </span>
+      </div>
+
+      {/* ATS + Keywords row */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className="rounded-md bg-[#0d1117] px-2.5 py-2 text-center">
+          <div className="text-lg font-bold" style={{ color: analysis.atsScore >= 60 ? '#00dfa2' : analysis.atsScore >= 40 ? '#f0b429' : '#f56565', ...FONT }}>
+            {analysis.atsScore}
+          </div>
+          <div className="text-[9px] text-[#545d68]">ATS Score</div>
+        </div>
+        <div className="rounded-md bg-[#0d1117] px-2.5 py-2 text-center">
+          <div className="text-lg font-bold text-[#8b949e]" style={FONT}>
+            {analysis.matchedKeywords.length}/{analysis.matchedKeywords.length + analysis.missingKeywords.length}
+          </div>
+          <div className="text-[9px] text-[#545d68]">Keywords</div>
+        </div>
+      </div>
+
+      {/* JD Analysis */}
+      <div>
+        <div className="mb-1 text-[10px] font-semibold uppercase text-[#545d68]" style={FONT}>
+          JD Analysis
+        </div>
+        <p className="text-[11px] leading-relaxed text-[#8b949e]">
+          {aiAssessment.jdAnalysis}
+        </p>
+      </div>
+
+      {/* Tailoring Approach */}
+      <div>
+        <div className="mb-1 text-[10px] font-semibold uppercase text-[#545d68]" style={FONT}>
+          Tailoring Approach
+        </div>
+        <p className="text-[11px] leading-relaxed text-[#8b949e]">
+          {aiAssessment.tailoringApproach}
+        </p>
+      </div>
+
+      {/* Strengths */}
+      {aiAssessment.strengths.length > 0 && (
+        <div>
+          <div className="mb-1 text-[10px] font-semibold uppercase text-[#545d68]" style={FONT}>
+            Strengths
+          </div>
+          <ul className="space-y-0.5">
+            {aiAssessment.strengths.map((s, i) => (
+              <li key={i} className="flex items-start gap-1.5 text-[11px] text-[#8b949e]">
+                <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-[#00dfa2]" />
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Gaps */}
+      {aiAssessment.gaps.length > 0 && (
+        <div>
+          <div className="mb-1 text-[10px] font-semibold uppercase text-[#545d68]" style={FONT}>
+            Gaps to Address
+          </div>
+          <ul className="space-y-0.5">
+            {aiAssessment.gaps.map((g, i) => (
+              <li key={i} className="flex items-start gap-1.5 text-[11px] text-[#8b949e]">
+                <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-[#f0b429]" />
+                {g}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Generate Tab                                                       */
 /* ------------------------------------------------------------------ */
 
@@ -251,6 +392,9 @@ function JDInputPanel() {
       <div className="text-[10px] text-[#3a4250]">
         {jdText.length.toLocaleString()} chars
       </div>
+
+      {/* AI Assessment Panel */}
+      <AIAssessmentPanel />
     </div>
   );
 }

@@ -28,6 +28,48 @@ export const STOPWORDS: Set<string> = new Set([
   'provide', 'put', 'right', 'run', 'say', 'see', 'set', 'show', 'since',
   'small', 'start', 'state', 'still', 'take', 'tell', 'think', 'time', 'top',
   'try', 'turn', 'two', 'want', 'way', 'work', 'world', 'year', 'years',
+
+  // JD-specific filler words (common in job postings but not meaningful for ATS matching)
+  'ability', 'activities', 'apply', 'application', 'applications', 'approach',
+  'appropriate', 'area', 'areas', 'available', 'benefit', 'benefits', 'business',
+  'candidate', 'candidates', 'career', 'challenge', 'challenges', 'change',
+  'client', 'clients', 'closely', 'company', 'compensation', 'complex',
+  'consultants', 'create', 'current', 'currently', 'customer', 'customers',
+  'deliver', 'department', 'description', 'desired', 'detail', 'details',
+  'develop', 'development', 'different', 'directly', 'drive', 'driven',
+  'duties', 'duty', 'dynamic', 'effectively', 'effort', 'efforts', 'employ',
+  'employer', 'employment', 'environment', 'equal', 'essential', 'establish',
+  'evaluate', 'excellent', 'exciting', 'execute', 'existing', 'expect',
+  'expected', 'fast', 'focus', 'follow', 'following', 'function', 'functions',
+  'grow', 'growing', 'growth', 'guide', 'handle', 'hire', 'hiring', 'ideal',
+  'identify', 'impact', 'implement', 'implementation', 'important', 'improve',
+  'improvement', 'include', 'individual', 'individuals', 'industry', 'information',
+  'initiative', 'initiatives', 'innovative', 'interaction', 'interactions',
+  'interest', 'internal', 'involved', 'issue', 'issues', 'job', 'join',
+  'level', 'leverage', 'life', 'location', 'maintain', 'manage', 'management',
+  'manager', 'meet', 'member', 'members', 'minimum', 'mission', 'multiple',
+  'necessary', 'office', 'operate', 'operation', 'operations', 'opportunity',
+  'opportunities', 'order', 'organization', 'organizational', 'other', 'outcome',
+  'outcomes', 'overall', 'oversee', 'participate', 'partner', 'partners',
+  'passion', 'pay', 'people', 'perform', 'performance', 'plan', 'plans',
+  'play', 'plus', 'position', 'practice', 'practices', 'preferred', 'present',
+  'primary', 'process', 'processes', 'product', 'products', 'professional',
+  'professionals', 'program', 'programs', 'progress', 'project', 'projects',
+  'proven', 'qualifications', 'qualified', 'range', 'receive', 'related',
+  'relevant', 'report', 'reports', 'required', 'requirement', 'requirements',
+  'requires', 'resource', 'resources', 'responsible', 'responsibilities',
+  'responsibility', 'result', 'results', 'review', 'role', 'salary', 'scale',
+  'seeking', 'senior', 'serve', 'service', 'services', 'share', 'skills',
+  'solution', 'solutions', 'specific', 'staff', 'stakeholder', 'stakeholders',
+  'standard', 'standards', 'status', 'strategy', 'strong', 'structure',
+  'success', 'successful', 'successfully', 'support', 'system', 'systems',
+  'task', 'tasks', 'team', 'teams', 'technical', 'technology', 'three',
+  'together', 'tool', 'tools', 'track', 'understand', 'understanding',
+  'unit', 'updates', 'value', 'various', 'well', 'working',
+
+  // Geographic / demographic filler
+  'america', 'americas', 'united', 'states', 'north', 'south', 'east', 'west',
+  'remote', 'hybrid', 'onsite', 'office',
 ]);
 
 /**
@@ -135,6 +177,37 @@ export const KEYWORD_WEIGHTS: Record<string, number> = {
   'collaboration': 1.2,
   'leadership': 1.3,
   'communication': 1.2,
+
+  // Forensics & IR
+  'forensics': 2.2,
+  'digital forensics': 2.5,
+  'dfir': 2.5,
+  'memory forensics': 2.5,
+  'disk forensics': 2.2,
+  'network forensics': 2.2,
+  'triage': 2.0,
+
+  // Extended Platforms
+  'xdr': 2.2,
+  'ndr': 2.0,
+  'crowdstrike': 2.0,
+  'carbon black': 2.0,
+  'palo alto': 1.8,
+  'sentinel': 2.0,
+  'qradar': 2.0,
+  'suricata': 2.0,
+  'snort': 2.0,
+  'wireshark': 1.8,
+  'ida pro': 2.0,
+  'ghidra': 2.0,
+
+  // Methodologies & Frameworks
+  'threat modeling': 2.2,
+  'diamond model': 2.0,
+  'stix': 2.0,
+  'taxii': 2.0,
+  'cyber threat intelligence': 3.0,
+  'cti': 2.5,
 
   // Security Domains
   'cybersecurity': 2.0,

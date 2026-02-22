@@ -224,7 +224,7 @@ function buildFromAI(
 
   const matchedKeywords = Array.from(allResumeKeywords);
   const missingKeywords = findMissingKeywords(jdTerms, matchedKeywords);
-  const atsScore = computeAtsScore(matchedKeywords, jdTerms);
+  const atsScore = computeAtsScore(matchedKeywords, jdTerms, extractedKeywords);
 
   const renderModel: ResumeRenderModel = {
     meta: {
@@ -259,6 +259,7 @@ function buildFromAI(
       missingKeywords,
       bulletSelections: {},
     },
+    aiAssessment: ai.assessment ?? undefined,
   };
 }
 
@@ -355,7 +356,7 @@ function applyEdits(
 
   const matchedKeywords = Array.from(allResumeKeywords);
   const missingKeywords = findMissingKeywords(jdTerms, matchedKeywords);
-  const atsScore = computeAtsScore(matchedKeywords, jdTerms);
+  const atsScore = computeAtsScore(matchedKeywords, jdTerms, extractedKeywords);
 
   return {
     renderModel: {

@@ -16,6 +16,14 @@ export interface AIGenerateInput {
   targetRole?: string;
 }
 
+export interface AIAssessment {
+  jdAnalysis: string;
+  tailoringApproach: string;
+  strengths: string[];
+  gaps: string[];
+  overallFit: 'strong' | 'good' | 'moderate' | 'stretch';
+}
+
 export interface AIGenerateResult {
   summary: string;
   targetRole: string;
@@ -26,6 +34,7 @@ export interface AIGenerateResult {
   skillGroups: Array<{ group: string; items: string[] }>;
   projectOrder: string[];
   publicationOrder: string[];
+  assessment: AIAssessment;
 }
 
 /* ------------------------------------------------------------------ */
@@ -173,32 +182,65 @@ export function getProviderDefaults(providerId: ProviderId): { endpoint: string;
 /*  Prompt (shared across all providers)                               */
 /* ------------------------------------------------------------------ */
 
-const SYSTEM_PROMPT = `You are an expert resume writer specializing in ATS-optimized cybersecurity and threat intelligence resumes.
+const SYSTEM_PROMPT = `You are an expert resume writer specializing in ATS-optimized cybersecurity and threat intelligence resumes. Your goal is to maximize ATS keyword match rates while keeping content 100% truthful.
 
 STRICT RULES:
 1. ONLY use facts from the provided master resume data. NEVER fabricate experience, skills, metrics, or achievements.
-2. Rewrite each experience bullet to naturally incorporate keywords from the job description where truthful.
+2. Rewrite EVERY experience bullet to incorporate as many JD keywords as possible while sounding natural. Each bullet should contain 2-4 JD keywords minimum.
 3. Use strong Harvard-style action verbs (Spearheaded, Architected, Engineered, Investigated, Deployed, Pioneered, etc.).
 4. PRESERVE all quantitative metrics from the original data (e.g., "17 articles", "10+ tools", "4 regions", "100+ officers").
 5. Front-load the most JD-relevant information in each bullet.
-6. For skills: reorder to prioritize JD-matched terms. You may add recognized synonyms the candidate demonstrably has (e.g., add "SIEM" if they list Splunk/Elastic).
-7. For the summary: write 3-4 impactful sentences directly addressing the target role's key requirements using the candidate's actual accomplishments.
+6. For skills: reorder to prioritize JD-matched terms. You MUST add recognized synonyms the candidate demonstrably has (e.g., add "SIEM" if they mention Splunk/Elastic; add "threat modeling" if they do threat analysis). Be aggressive — add every legitimate skill variant.
+7. For the summary: write 3-4 impactful sentences that PACK IN as many JD keywords as possible while referencing the candidate's actual accomplishments. The summary is prime ATS real estate — use it.
 8. For projectOrder and publicationOrder: rank by JD relevance, most relevant first.
-9. Return ONLY valid JSON — no markdown fences, no commentary, no explanation.`;
+9. Include an "assessment" object with your analysis of the JD, how you tailored the resume, candidate strengths, gaps, and overall fit rating.
+10. Return ONLY valid JSON — no markdown fences, no commentary, no explanation.
+11. ATS OPTIMIZATION: Extract the top technical terms, tools, methodologies, and domain keywords from the JD. Make sure at least 70% of these appear somewhere in the resume — in bullets, skills, summary, or project descriptions. Distribute keywords across sections for maximum coverage.`;
 
 function buildUserPrompt(input: AIGenerateInput): string {
   const { master, jobDescriptionText, targetRole } = input;
+
+  // Pre-extract key terms from the JD to guide the AI
+  const jdLower = jobDescriptionText.toLowerCase();
+  const techTerms = new Set<string>();
+  const importantPatterns = [
+    // Security domain
+    'threat intelligence', 'threat hunting', 'malware analysis', 'incident response',
+    'ransomware', 'phishing', 'vulnerability', 'penetration testing', 'red team',
+    'blue team', 'purple team', 'soc', 'siem', 'soar', 'edr', 'xdr', 'ndr',
+    'mitre att&ck', 'mitre', 'kill chain', 'ioc', 'osint', 'dfir', 'forensics',
+    'detection engineering', 'threat modeling', 'risk assessment', 'compliance',
+    'devsecops', 'appsec', 'cloud security', 'network security', 'endpoint',
+    // Tech
+    'python', 'javascript', 'typescript', 'node.js', 'react', 'sql', 'api',
+    'rest', 'graphql', 'docker', 'kubernetes', 'aws', 'azure', 'gcp', 'ci/cd',
+    'automation', 'machine learning', 'ai', 'llm', 'nlp',
+    // Platforms
+    'splunk', 'elastic', 'virustotal', 'opencti', 'jira', 'confluence',
+    'sentinel', 'crowdstrike', 'carbon black', 'palo alto',
+    // Process
+    'research', 'published', 'training', 'mentoring', 'leadership',
+    'cross-functional', 'collaboration', 'technical writing', 'presentation',
+  ];
+
+  for (const term of importantPatterns) {
+    if (jdLower.includes(term)) techTerms.add(term);
+  }
+
+  const keyTermsList = techTerms.size > 0
+    ? `\n## Key JD Terms to Incorporate\nThese terms were detected in the JD. Maximize their presence across your output:\n${Array.from(techTerms).join(', ')}\n`
+    : '';
 
   return `## Candidate Master Resume Data
 ${JSON.stringify(master, null, 2)}
 
 ## Target Job Description
 ${jobDescriptionText}
-
+${keyTermsList}
 ${targetRole ? `## Target Role Title\n${targetRole}` : '## Infer the most appropriate role title from the JD.'}
 
 ## Task
-Rewrite this candidate's resume content to maximize ATS keyword alignment with the target JD while staying 100% truthful to their actual experience.
+Rewrite this candidate's resume content to maximize ATS keyword alignment with the target JD while staying 100% truthful to their actual experience. Your goal is to achieve the highest possible keyword match rate (aim for 70%+ of domain-specific JD terms appearing in the resume).
 
 Return this exact JSON structure (no markdown, no code fences):
 {
@@ -216,7 +258,14 @@ Return this exact JSON structure (no markdown, no code fences):
     { "group": "group name", "items": ["skill1", "skill2"] }
   ],
   "projectOrder": ["project-id-most-relevant-first"],
-  "publicationOrder": ["pub-id-most-relevant-first"]
+  "publicationOrder": ["pub-id-most-relevant-first"],
+  "assessment": {
+    "jdAnalysis": "2-3 sentence analysis of what this JD is really looking for — the core competencies, seniority level, and team context",
+    "tailoringApproach": "2-3 sentence explanation of how you tailored the resume — what you emphasized, reworded, or reordered and why",
+    "strengths": ["3-5 specific areas where the candidate strongly matches the JD"],
+    "gaps": ["1-3 areas where the candidate's experience is weaker relative to the JD, with honest assessment"],
+    "overallFit": "strong|good|moderate|stretch — honest rating of candidate-JD alignment"
+  }
 }`;
 }
 

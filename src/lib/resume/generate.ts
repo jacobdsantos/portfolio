@@ -127,6 +127,14 @@ export interface GenerateOutput {
     missingKeywords: string[];
     bulletSelections: Record<string, string>;
   };
+  /** AI assessment of JD fit — only present for AI-generated resumes */
+  aiAssessment?: {
+    jdAnalysis: string;
+    tailoringApproach: string;
+    strengths: string[];
+    gaps: string[];
+    overallFit: 'strong' | 'good' | 'moderate' | 'stretch';
+  };
 }
 
 /**
@@ -235,7 +243,7 @@ export function generateTailoredResume(input: GenerateInput): GenerateOutput {
   const matchedKeywords = Array.from(allResumeKeywords);
   const jdTerms = extractedKeywords.map((k) => k.term);
   const missingKeywords = findMissingKeywords(jdTerms, matchedKeywords);
-  const atsScore = computeAtsScore(matchedKeywords, jdTerms);
+  const atsScore = computeAtsScore(matchedKeywords, jdTerms, extractedKeywords);
 
   // Build render model
   const sections: ResumeSection[] = [];
