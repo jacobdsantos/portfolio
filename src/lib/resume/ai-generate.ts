@@ -237,54 +237,30 @@ export async function generateWithAI(
   const systemPrompt = SYSTEM_PROMPT;
   const userPrompt = buildUserPrompt(input);
 
-  let content: string;
-
-  if (apiKey) {
-    // Direct call — user provided their own API key
-    const endpoint = apiEndpoint.replace(/\/+$/, '');
-
-    const { url, init } = providerConfig.buildRequest({
-      endpoint,
-      apiKey,
+  // Always route through the Cloudflare Pages Function proxy.
+  // This avoids CORS issues with third-party API endpoints.
+  // The proxy makes the server-side call and returns the result.
+  const response = await fetch('/api/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      provider,
+      apiKey: apiKey || undefined,
       model,
+      endpoint: apiEndpoint ? apiEndpoint.replace(/\/+$/, '') : undefined,
       systemPrompt,
       userPrompt,
-    });
+    }),
+  });
 
-    const response = await fetch(url, init);
-
-    if (!response.ok) {
-      const body = await response.text().catch(() => 'unknown');
-      if (response.status === 401) throw new Error('Invalid API key. Check your key and try again.');
-      if (response.status === 429) throw new Error('Rate limited. Wait a moment and try again.');
-      if (response.status === 403) throw new Error('Access forbidden. Your API key may not have permission for this model.');
-      throw new Error(`API error ${response.status}: ${body.slice(0, 200)}`);
-    }
-
-    const data = await response.json();
-    content = providerConfig.extractText(data);
-  } else {
-    // Proxy call — use the Cloudflare Pages Function (server holds the key)
-    const response = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        provider,
-        model,
-        endpoint: apiEndpoint !== providerConfig.defaultEndpoint ? apiEndpoint : undefined,
-        systemPrompt,
-        userPrompt,
-      }),
-    });
-
-    if (!response.ok) {
-      const data = await response.json().catch(() => ({ error: `HTTP ${response.status}` }));
-      throw new Error((data as { error?: string }).error ?? `Proxy error ${response.status}`);
-    }
-
-    const data = await response.json() as { text: string };
-    content = data.text;
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({ error: `HTTP ${response.status}` }));
+    const msg = (data as { error?: string }).error ?? `API error ${response.status}`;
+    throw new Error(msg);
   }
+
+  const responseData = await response.json() as { text: string };
+  const content = responseData.text;
 
   if (!content) {
     throw new Error('Empty response from API. Try again.');

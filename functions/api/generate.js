@@ -157,7 +157,7 @@ export async function onRequestPost(context) {
     return errorResponse('Invalid JSON body');
   }
 
-  const { provider, model, endpoint, systemPrompt, userPrompt } = body;
+  const { provider, model, endpoint, apiKey: clientKey, systemPrompt, userPrompt } = body;
 
   if (!provider || !systemPrompt || !userPrompt) {
     return errorResponse('Missing required fields: provider, systemPrompt, userPrompt');
@@ -167,13 +167,13 @@ export async function onRequestPost(context) {
     return errorResponse(`Unknown provider: ${provider}`);
   }
 
-  // Look up the API key from environment secrets
+  // Use client-provided key first, then fall back to environment secrets
   const envKey = KEY_MAP[provider];
-  const apiKey = context.env[envKey];
+  const apiKey = clientKey || context.env[envKey];
 
   if (!apiKey) {
     return errorResponse(
-      `No API key configured for ${provider}. Set ${envKey} in Cloudflare Pages environment settings.`,
+      `No API key provided. Set your key in API Configuration, or configure ${envKey} in Cloudflare Pages environment settings.`,
       500,
     );
   }
