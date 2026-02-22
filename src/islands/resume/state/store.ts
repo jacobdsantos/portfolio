@@ -482,6 +482,13 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
 
     set({ isGenerating: true, error: null, editedSummary: null, editedBullets: {} });
 
+    // If no API key, skip AI and use local generation
+    if (!apiKey.trim()) {
+      set({ error: 'Set your API key and endpoint in API Configuration above to enable AI generation. Using local mode.' });
+      state.generateLocal();
+      return;
+    }
+
     try {
       const aiResult = await generateWithAI({
         provider,

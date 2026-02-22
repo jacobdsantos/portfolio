@@ -806,6 +806,9 @@ export default function ResumeBuilder() {
               <p className="mt-2 text-xs leading-relaxed text-[#3a4250]">
                 AI will rewrite your experience bullets, generate a custom summary, reorder your skills, and rank projects — all tailored to match the JD's keywords and requirements.
               </p>
+              <p className="mt-3 text-[10px] leading-relaxed text-[#3a4250] border-t border-[#2a3140] pt-3">
+                Set your API key and endpoint in <strong className="text-[#545d68]">API Configuration</strong> to enable AI generation. Without a key, the builder uses rule-based keyword matching.
+              </p>
             </div>
           </div>
         )}
