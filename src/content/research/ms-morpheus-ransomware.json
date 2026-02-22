@@ -1,12 +1,12 @@
 {
-  "title": "Morpheus Ransomware's Red Pill Strategy vs EDR",
+  "title": "Morpheus Ransomware Emerges with New Data-Leak Site",
   "date": "Jan 2025",
   "url": "https://x.com/TrendMicroRSRCH/status/1880329246129664112",
   "tags": [
     "Ransomware",
-    "EDR Evasion"
+    "Data Exfiltration"
   ],
-  "description": "X/Twitter thread on Morpheus ransomware's advanced EDR evasion techniques and its 'Red Pill' strategy for bypassing endpoint detection.",
+  "description": "Thread on the emergence of the Morpheus ransomware group and its new data-leak site, with early victims including an Australian pharmaceutical firm and a German electronics company.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 23

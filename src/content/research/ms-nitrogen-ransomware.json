@@ -1,11 +1,12 @@
 {
-  "title": "Nitrogen Ransomware: New Threat Landscape Entry",
-  "date": "Jul 2025",
+  "title": "Nitrogen Ransomware: Fake Updates and Malicious Browser Extensions",
+  "date": "Sep 2025",
   "url": "https://x.com/TrendMicroRSRCH/status/1970669518834799022",
   "tags": [
-    "Ransomware"
+    "Ransomware",
+    "Social Engineering"
   ],
-  "description": "X/Twitter thread analyzing the Nitrogen ransomware group's emergence, infection vectors, and operational characteristics.",
+  "description": "Thread on the rapidly evolving Nitrogen ransomware group using social engineering via fake updates and malicious browser extensions for initial access.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 12

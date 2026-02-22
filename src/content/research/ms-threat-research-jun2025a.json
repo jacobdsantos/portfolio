@@ -1,11 +1,13 @@
 {
-  "title": "Threat Intelligence Research Thread (Jun 2025)",
-  "date": "Jun 2025",
+  "title": "Agenda Ransomware Exploits MeshAgent and WSL for Cross-Platform Attacks",
+  "date": "Jul 2025",
   "url": "https://x.com/TrendMicroRSRCH/status/1942720354390081694",
   "tags": [
-    "Ransomware"
+    "Ransomware",
+    "Cross-Platform",
+    "Defense Evasion"
   ],
-  "description": "X/Twitter research thread sharing threat intelligence findings and analysis from the Trend Micro Threat Hunting Team.",
+  "description": "Thread on Agenda ransomware exploiting MeshAgent and Windows Subsystem for Linux (WSL) to deploy Linux payloads on Windows systems, raising the bar for cross-platform sophistication.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 17

@@ -1,12 +1,13 @@
 {
-  "title": "SmokeLoader Deploys W3CryptoLocker Through Steganography",
+  "title": "SmokeLoader Delivers W3CryptoLocker via Steganography",
   "date": "Mar 2025",
   "url": "https://x.com/TrendMicroRSRCH",
   "tags": [
     "Ransomware",
-    "Defense Evasion"
+    "Defense Evasion",
+    "Steganography"
   ],
-  "description": "X/Twitter thread analyzing SmokeLoader's use of steganography techniques to deliver W3CryptoLocker ransomware payloads while evading detection.",
+  "description": "Thread analyzing SmokeLoader's use of steganography techniques to deliver W3CryptoLocker ransomware payloads while evading detection mechanisms.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 22

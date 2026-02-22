@@ -1,11 +1,12 @@
 {
-  "title": "Trend AI Research Thread (Feb 2026)",
+  "title": "Agenda Ransomware: Continued Linux-on-Windows Campaign",
   "date": "Feb 2026",
   "url": "https://x.com/trendai_RSRCH/status/2016753174011334782",
   "tags": [
-    "Ransomware"
+    "Ransomware",
+    "Cross-Platform"
   ],
-  "description": "Solo-authored X/Twitter research thread analyzing ransomware threat intelligence and providing tactical insights for defenders.",
+  "description": "Thread on a new Agenda ransomware campaign continuing the group's use of Linux binaries on Windows systems, with new techniques and tooling building on earlier 2025 attacks.",
   "source": "X/Twitter (@trendai_RSRCH)",
   "type": "microstory",
   "order": 2

@@ -1,11 +1,12 @@
 {
-  "title": "Trend AI Research Thread (Feb 2026)",
+  "title": "Five New Rust-Based Ransomware Families Identified",
   "date": "Feb 2026",
   "url": "https://x.com/trendai_RSRCH/status/2015666010666189121",
   "tags": [
-    "Ransomware"
+    "Ransomware",
+    "Rust"
   ],
-  "description": "X/Twitter research thread from Trend AI's dedicated research account covering multiple active ransomware campaigns and threat intelligence.",
+  "description": "Thread analyzing five distinct ransomware groups written in Rust identified in early December 2025, signaling an accelerated shift in how threat actors build and scale attacks.",
   "source": "X/Twitter (@trendai_RSRCH)",
   "type": "microstory",
   "order": 1

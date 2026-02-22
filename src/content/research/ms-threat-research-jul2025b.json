@@ -1,11 +1,12 @@
 {
-  "title": "Threat Intelligence Research Thread (Jul 2025)",
-  "date": "Jul 2025",
+  "title": "Charon Ransomware: Advanced Breach and Lateral Movement",
+  "date": "Aug 2025",
   "url": "https://x.com/TrendMicroRSRCH/status/1953730711233372470",
   "tags": [
-    "Ransomware"
+    "Ransomware",
+    "APT Crossover"
   ],
-  "description": "X/Twitter research thread sharing emerging threat intelligence and analysis with the cybersecurity community.",
+  "description": "Thread exposing the newly identified Charon ransomware and its advanced methods for breaching and spreading within organizations.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 14

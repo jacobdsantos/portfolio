@@ -7,7 +7,7 @@
     "BYOVD",
     "EDR Evasion"
   ],
-  "description": "X/Twitter thread detailing how Agenda ransomware operators adopted TrueSightKiller, a BYOVD tool, to disable endpoint security products.",
+  "description": "Thread detailing how the Agenda ransomware group incorporated the open-source TrueSightKiller tool to disable antivirus and EDR systems via BYOVD techniques.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 21

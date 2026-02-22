@@ -1,12 +1,13 @@
 {
-  "title": "Evolving Agenda Ransomware: .NET Arsenal Expansion",
+  "title": "Agenda Ransomware Variant Uses Obfuscated .NET Loader with Reflective Loading",
   "date": "Nov 2024",
   "url": "https://x.com/TrendMicroRSRCH/status/1856049259407196673",
   "tags": [
     "Ransomware",
-    "Cross-Platform"
+    "Defense Evasion",
+    ".NET"
   ],
-  "description": "X/Twitter thread analyzing Agenda (Qilin) ransomware's evolving .NET-based toolkit and expanding cross-platform capabilities.",
+  "description": "Thread on an Agenda ransomware variant leveraging a highly obfuscated .NET loader using Reflective Loading and .NET Reactor for defense evasion.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 24

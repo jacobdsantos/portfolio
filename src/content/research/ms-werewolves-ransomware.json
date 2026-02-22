@@ -1,11 +1,11 @@
 {
-  "title": "Werewolves Ransomware: A New Breed of Threat",
+  "title": "Werewolves: Investigating a New Ransomware Player",
   "date": "Jan 2024",
   "url": "https://x.com/TrendMicroRSRCH/status/1748280823046910200",
   "tags": [
     "Ransomware"
   ],
-  "description": "X/Twitter thread analyzing the Werewolves ransomware group's emergence, tactics, and impact on targeted organizations.",
+  "description": "Thread investigating the newly identified Werewolves ransomware group after an external researcher's blog post caught the Threat Hunting team's attention.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
   "order": 30
