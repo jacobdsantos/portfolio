@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useResumeStore } from './state/store';
 import TemplateCleanModern from './templates/TemplateCleanModern';
 import TemplateHarvardClassic from './templates/TemplateHarvardClassic';
@@ -6,9 +6,25 @@ import TemplateTechnical from './templates/TemplateTechnical';
 import TemplateExecutive from './templates/TemplateExecutive';
 import type { TemplateId, ResumeRenderModel } from '../../lib/resume/types';
 
-type SidebarTab = 'generate' | 'customize' | 'analysis';
+/* ------------------------------------------------------------------ */
+/*  Shared styles                                                      */
+/* ------------------------------------------------------------------ */
 
-function ResumePreview({ renderModel, templateId }: { renderModel: ResumeRenderModel; templateId: TemplateId }) {
+const FONT = { fontFamily: "'Space Grotesk', sans-serif" };
+const LABEL = 'mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#8b949e]';
+const INPUT =
+  'w-full rounded-lg border border-[#2a3140] bg-[#0d1117] px-3 py-2 text-sm text-[#e8edf5] placeholder-[#545d68] outline-none transition-colors focus:border-[#00dfa2]/50';
+const BTN_PRIMARY =
+  'rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40';
+const BTN_SECONDARY =
+  'rounded-lg border border-[#2a3140] px-3 py-2 text-xs font-medium text-[#8b949e] transition-colors hover:border-[#3a4250] hover:text-[#e8edf5]';
+
+/* ------------------------------------------------------------------ */
+/*  Resume Preview (read-only, used in print/PDF)                      */
+/* ------------------------------------------------------------------ */
+
+function ResumePreview({ renderModel }: { renderModel: ResumeRenderModel; templateId?: TemplateId }) {
+  const templateId = renderModel.meta.templateId;
   switch (templateId) {
     case 'clean':
       return <TemplateCleanModern renderModel={renderModel} />;
@@ -23,107 +39,408 @@ function ResumePreview({ renderModel, templateId }: { renderModel: ResumeRenderM
   }
 }
 
-function JDInputPanel() {
-  const jdText = useResumeStore((s) => s.jdText);
-  const setJdText = useResumeStore((s) => s.setJdText);
-  const generate = useResumeStore((s) => s.generate);
-  const isGenerating = useResumeStore((s) => s.isGenerating);
-  const targetRole = useResumeStore((s) => s.targetRole);
-  const setTargetRole = useResumeStore((s) => s.setTargetRole);
-  const generateOutput = useResumeStore((s) => s.generateOutput);
+/* ------------------------------------------------------------------ */
+/*  API Settings (collapsible)                                         */
+/* ------------------------------------------------------------------ */
 
-  const charCount = jdText.length;
+function APISettings() {
+  const apiKey = useResumeStore((s) => s.apiKey);
+  const apiEndpoint = useResumeStore((s) => s.apiEndpoint);
+  const model = useResumeStore((s) => s.model);
+  const setApiKey = useResumeStore((s) => s.setApiKey);
+  const setApiEndpoint = useResumeStore((s) => s.setApiEndpoint);
+  const setModel = useResumeStore((s) => s.setModel);
+
+  const [open, setOpen] = useState(!apiKey);
 
   return (
-    <div className="space-y-3">
-      <label className="block">
-        <span
-          className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#8b949e]"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
-          Target Role (optional)
+    <div className="rounded-lg border border-[#2a3140] bg-[#0a0e14] overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-3 py-2.5 text-xs font-medium text-[#8b949e] hover:text-[#e8edf5] transition-colors"
+        style={FONT}
+      >
+        <span className="flex items-center gap-2">
+          <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+          </svg>
+          API Configuration
+          {apiKey && (
+            <span className="rounded-full bg-[#00dfa2]/15 px-1.5 py-0.5 text-[10px] text-[#00dfa2]">
+              configured
+            </span>
+          )}
         </span>
-        <input
-          type="text"
-          value={targetRole}
-          onChange={(e) => setTargetRole(e.target.value)}
-          placeholder="Auto-detected from JD if blank"
-          className="w-full rounded-lg border border-[#2a3140] bg-[#0d1117] px-3 py-2 text-sm text-[#e8edf5] placeholder-[#545d68] outline-none transition-colors focus:border-[#00dfa2]/50"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        />
-      </label>
-
-      <label className="block">
-        <span
-          className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#8b949e]"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        <svg
+          className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24"
         >
-          Job Description
-        </span>
-        <textarea
-          value={jdText}
-          onChange={(e) => setJdText(e.target.value)}
-          placeholder="Paste the full job description here. The engine will analyze it and generate a tailored resume aligned to this role..."
-          rows={10}
-          className="w-full resize-y rounded-lg border border-[#2a3140] bg-[#0d1117] px-3 py-2 text-sm text-[#e8edf5] placeholder-[#545d68] outline-none transition-colors focus:border-[#00dfa2]/50"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        />
-      </label>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
 
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-[#545d68]">
-          {charCount.toLocaleString()} chars
-        </span>
-        <button
-          onClick={generate}
-          disabled={jdText.trim().length === 0 || isGenerating}
-          className="rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40"
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            backgroundColor: jdText.trim().length > 0 && !isGenerating ? '#00dfa2' : '#2a3140',
-            color: jdText.trim().length > 0 && !isGenerating ? '#07090f' : '#545d68',
-          }}
-        >
-          {isGenerating ? 'Generating...' : generateOutput ? 'Regenerate Resume' : 'Generate Tailored Resume'}
-        </button>
-      </div>
+      {open && (
+        <div className="space-y-2.5 border-t border-[#2a3140] px-3 py-3">
+          <label className="block">
+            <span className={LABEL} style={FONT}>API Key</span>
+            <input
+              type="password"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              placeholder="sk-ant-..."
+              className={INPUT}
+              style={FONT}
+            />
+          </label>
 
-      {/* Focus areas detected */}
-      {generateOutput && (
-        <div className="rounded-lg border border-[#2a3140] bg-[#0a0e14] p-3 mt-2">
-          <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Detected Focus Areas
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {generateOutput.analysis.detectedFocusAreas.map((focus) => (
-              <span
-                key={focus}
-                className="rounded-full bg-[#00dfa2]/10 px-2.5 py-0.5 text-xs font-medium text-[#00dfa2]"
-              >
-                {focus.replace(/_/g, ' ')}
-              </span>
-            ))}
-          </div>
+          <label className="block">
+            <span className={LABEL} style={FONT}>Endpoint</span>
+            <input
+              type="text"
+              value={apiEndpoint}
+              onChange={(e) => setApiEndpoint(e.target.value)}
+              placeholder="https://api.anthropic.com"
+              className={INPUT}
+              style={FONT}
+            />
+          </label>
+
+          <label className="block">
+            <span className={LABEL} style={FONT}>Model</span>
+            <input
+              type="text"
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+              placeholder="claude-sonnet-4-20250514"
+              className={INPUT}
+              style={FONT}
+            />
+          </label>
+
+          <p className="text-[10px] text-[#3a4250] leading-relaxed">
+            Key is stored in your browser only. Never sent anywhere except the API endpoint above.
+          </p>
         </div>
       )}
     </div>
   );
 }
 
-function AnalysisPanel() {
-  const generateOutput = useResumeStore((s) => s.generateOutput);
+/* ------------------------------------------------------------------ */
+/*  Generate Tab                                                       */
+/* ------------------------------------------------------------------ */
 
-  if (!generateOutput) {
+function JDInputPanel() {
+  const jdText = useResumeStore((s) => s.jdText);
+  const setJdText = useResumeStore((s) => s.setJdText);
+  const generate = useResumeStore((s) => s.generate);
+  const generateLocal = useResumeStore((s) => s.generateLocal);
+  const isGenerating = useResumeStore((s) => s.isGenerating);
+  const targetRole = useResumeStore((s) => s.targetRole);
+  const setTargetRole = useResumeStore((s) => s.setTargetRole);
+  const generateOutput = useResumeStore((s) => s.generateOutput);
+  const error = useResumeStore((s) => s.error);
+  const apiKey = useResumeStore((s) => s.apiKey);
+  const generationMode = useResumeStore((s) => s.generationMode);
+
+  return (
+    <div className="space-y-3">
+      <APISettings />
+
+      <label className="block">
+        <span className={LABEL} style={FONT}>Target Role (optional)</span>
+        <input
+          type="text"
+          value={targetRole}
+          onChange={(e) => setTargetRole(e.target.value)}
+          placeholder="Auto-detected from JD if blank"
+          className={INPUT}
+          style={FONT}
+        />
+      </label>
+
+      <label className="block">
+        <span className={LABEL} style={FONT}>Job Description</span>
+        <textarea
+          value={jdText}
+          onChange={(e) => setJdText(e.target.value)}
+          placeholder="Paste the full job description here..."
+          rows={8}
+          className={`${INPUT} resize-y`}
+          style={FONT}
+        />
+      </label>
+
+      {/* Error display */}
+      {error && (
+        <div className="rounded-lg border border-[#f56565]/30 bg-[#f56565]/10 px-3 py-2 text-xs text-[#f56565]">
+          {error}
+        </div>
+      )}
+
+      <div className="flex items-center gap-2">
+        <button
+          onClick={generate}
+          disabled={!jdText.trim() || isGenerating}
+          className={BTN_PRIMARY}
+          style={{
+            ...FONT,
+            backgroundColor: jdText.trim() && !isGenerating ? '#00dfa2' : '#2a3140',
+            color: jdText.trim() && !isGenerating ? '#07090f' : '#545d68',
+            flex: 1,
+          }}
+        >
+          {isGenerating
+            ? 'Generating...'
+            : apiKey
+              ? (generateOutput ? 'Regenerate with AI' : 'Generate with AI')
+              : (generateOutput ? 'Regenerate' : 'Generate')}
+        </button>
+
+        {apiKey && (
+          <button
+            onClick={generateLocal}
+            disabled={!jdText.trim() || isGenerating}
+            className={BTN_SECONDARY}
+            style={FONT}
+            title="Generate without AI (rule-based fallback)"
+          >
+            Local
+          </button>
+        )}
+      </div>
+
+      {/* Generation mode indicator */}
+      {generationMode && generateOutput && (
+        <div className="flex items-center gap-1.5 text-[10px] text-[#545d68]">
+          <span
+            className={`inline-block h-1.5 w-1.5 rounded-full ${generationMode === 'ai' ? 'bg-[#00dfa2]' : 'bg-[#f0b429]'}`}
+          />
+          {generationMode === 'ai' ? 'AI-generated' : 'Rule-based (local)'}
+        </div>
+      )}
+
+      {/* Char count */}
+      <div className="text-[10px] text-[#3a4250]">
+        {jdText.length.toLocaleString()} chars
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Edit Tab                                                           */
+/* ------------------------------------------------------------------ */
+
+function EditableText({
+  value,
+  onChange,
+  onReset,
+  isEdited,
+  rows = 3,
+  label,
+}: {
+  value: string;
+  onChange: (text: string) => void;
+  onReset?: () => void;
+  isEdited: boolean;
+  rows?: number;
+  label?: string;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [localValue, setLocalValue] = useState(value);
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
+  useEffect(() => {
+    if (editing && ref.current) {
+      ref.current.focus();
+      ref.current.setSelectionRange(ref.current.value.length, ref.current.value.length);
+    }
+  }, [editing]);
+
+  const handleBlur = () => {
+    setEditing(false);
+    if (localValue !== value) {
+      onChange(localValue);
+    }
+  };
+
+  if (editing) {
     return (
-      <div className="text-center py-8">
-        <p className="text-sm text-[#545d68]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          Generate a resume first to see the analysis
-        </p>
+      <textarea
+        ref={ref}
+        value={localValue}
+        onChange={(e) => setLocalValue(e.target.value)}
+        onBlur={handleBlur}
+        rows={rows}
+        className="w-full rounded border border-[#00dfa2]/30 bg-[#0d1117] px-2 py-1.5 text-xs text-[#e8edf5] outline-none"
+        style={FONT}
+      />
+    );
+  }
+
+  return (
+    <div className="group relative">
+      {label && (
+        <div className="mb-1 flex items-center justify-between">
+          <span className="text-[10px] font-medium uppercase text-[#545d68]" style={FONT}>
+            {label}
+          </span>
+          <div className="flex items-center gap-1">
+            {isEdited && onReset && (
+              <button
+                onClick={onReset}
+                className="text-[10px] text-[#f0b429] hover:text-[#f0b429]/80"
+                title="Reset to AI version"
+              >
+                reset
+              </button>
+            )}
+            {isEdited && (
+              <span className="rounded bg-[#f0b429]/15 px-1 py-0.5 text-[9px] text-[#f0b429]">
+                edited
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+      <div
+        onClick={() => setEditing(true)}
+        className="cursor-text rounded border border-transparent px-2 py-1.5 text-xs leading-relaxed text-[#c8d1dc] transition-colors hover:border-[#2a3140] hover:bg-[#0d1117]/50"
+      >
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function EditPanel() {
+  const generateOutput = useResumeStore((s) => s.generateOutput);
+  const editedSummary = useResumeStore((s) => s.editedSummary);
+  const editedBullets = useResumeStore((s) => s.editedBullets);
+  const editSummary = useResumeStore((s) => s.editSummary);
+  const editBullet = useResumeStore((s) => s.editBullet);
+  const resetEdit = useResumeStore((s) => s.resetEdit);
+  const resetAllEdits = useResumeStore((s) => s.resetAllEdits);
+  const getEffectiveOutput = useResumeStore((s) => s.getEffectiveOutput);
+
+  const effectiveOutput = getEffectiveOutput();
+
+  if (!effectiveOutput || !generateOutput) {
+    return (
+      <div className="py-8 text-center">
+        <p className="text-sm text-[#545d68]" style={FONT}>Generate a resume first to edit</p>
       </div>
     );
   }
 
-  const { analysis } = generateOutput;
+  const editCount = Object.keys(editedBullets).length + (editedSummary !== null ? 1 : 0);
+
+  // Get the current (edited or original) summary and experience
+  const summarySection = effectiveOutput.renderModel.sections.find((s) => s.type === 'summary');
+  const experienceSection = effectiveOutput.renderModel.sections.find((s) => s.type === 'experience');
+  const originalSummary = generateOutput.renderModel.sections.find((s) => s.type === 'summary');
+
+  const currentSummary =
+    editedSummary ??
+    (summarySection?.type === 'summary' ? summarySection.blocks[0] : '') ?? '';
+
+  return (
+    <div className="space-y-4">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-medium text-[#8b949e]" style={FONT}>
+          Click any text to edit
+        </span>
+        {editCount > 0 && (
+          <button onClick={resetAllEdits} className="text-[10px] text-[#f0b429] hover:underline">
+            Reset all ({editCount})
+          </button>
+        )}
+      </div>
+
+      {/* Summary */}
+      {summarySection?.type === 'summary' && (
+        <EditableText
+          label="Professional Summary"
+          value={currentSummary}
+          onChange={editSummary}
+          onReset={() => resetEdit('summary')}
+          isEdited={editedSummary !== null}
+          rows={5}
+        />
+      )}
+
+      {/* Experience bullets */}
+      {experienceSection?.type === 'experience' &&
+        experienceSection.items.map((exp) => (
+          <div key={exp.company + exp.role}>
+            <div className="mb-1.5 text-[10px] font-semibold uppercase text-[#545d68]" style={FONT}>
+              {exp.role} - {exp.company}
+            </div>
+            <div className="space-y-1">
+              {exp.bullets.map((bullet) => (
+                <EditableText
+                  key={bullet.id}
+                  value={editedBullets[bullet.id] ?? bullet.text}
+                  onChange={(text) => editBullet(bullet.id, text)}
+                  onReset={() => resetEdit(bullet.id)}
+                  isEdited={bullet.id in editedBullets}
+                  rows={3}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+
+      {/* Live ATS score */}
+      <div className="rounded-lg border border-[#2a3140] bg-[#0a0e14] px-3 py-2">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-[#545d68]" style={FONT}>Live ATS Score</span>
+          <span
+            className="text-sm font-bold"
+            style={{
+              ...FONT,
+              color:
+                effectiveOutput.analysis.atsScore >= 80
+                  ? '#00dfa2'
+                  : effectiveOutput.analysis.atsScore >= 60
+                    ? '#f0b429'
+                    : '#f56565',
+            }}
+          >
+            {effectiveOutput.analysis.atsScore}
+          </span>
+        </div>
+        <div className="mt-1 text-[10px] text-[#3a4250]">
+          {effectiveOutput.analysis.matchedKeywords.length} / {effectiveOutput.analysis.matchedKeywords.length + effectiveOutput.analysis.missingKeywords.length} keywords matched
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Analysis Tab                                                       */
+/* ------------------------------------------------------------------ */
+
+function AnalysisPanel() {
+  const getEffectiveOutput = useResumeStore((s) => s.getEffectiveOutput);
+  const effectiveOutput = getEffectiveOutput();
+
+  if (!effectiveOutput) {
+    return (
+      <div className="py-8 text-center">
+        <p className="text-sm text-[#545d68]" style={FONT}>Generate a resume first to see the analysis</p>
+      </div>
+    );
+  }
+
+  const { analysis } = effectiveOutput;
   const scoreColor = analysis.atsScore >= 80 ? '#00dfa2' : analysis.atsScore >= 60 ? '#f0b429' : '#f56565';
   const scoreLabel = analysis.atsScore >= 80 ? 'Excellent' : analysis.atsScore >= 60 ? 'Good' : analysis.atsScore >= 40 ? 'Fair' : 'Low';
 
@@ -131,13 +448,11 @@ function AnalysisPanel() {
     <div className="space-y-5">
       {/* ATS Score */}
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          ATS Compatibility Score
-        </div>
+        <div className={LABEL} style={FONT}>ATS Compatibility Score</div>
         <div className="flex items-center gap-4">
           <div
             className="flex h-16 w-16 items-center justify-center rounded-xl text-xl font-bold"
-            style={{ backgroundColor: `${scoreColor}15`, color: scoreColor, fontFamily: "'Space Grotesk', sans-serif" }}
+            style={{ backgroundColor: `${scoreColor}15`, color: scoreColor, ...FONT }}
           >
             {analysis.atsScore}
           </div>
@@ -152,14 +467,10 @@ function AnalysisPanel() {
 
       {/* Matched keywords */}
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          Matched Keywords ({analysis.matchedKeywords.length})
-        </div>
+        <div className={LABEL} style={FONT}>Matched Keywords ({analysis.matchedKeywords.length})</div>
         <div className="flex flex-wrap gap-1.5">
-          {analysis.matchedKeywords.slice(0, 20).map((kw) => (
-            <span key={kw} className="rounded bg-[#00dfa2]/10 px-2 py-0.5 text-xs text-[#00dfa2]">
-              {kw}
-            </span>
+          {analysis.matchedKeywords.slice(0, 25).map((kw) => (
+            <span key={kw} className="rounded bg-[#00dfa2]/10 px-2 py-0.5 text-xs text-[#00dfa2]">{kw}</span>
           ))}
         </div>
       </div>
@@ -167,38 +478,24 @@ function AnalysisPanel() {
       {/* Missing keywords */}
       {analysis.missingKeywords.length > 0 && (
         <div>
-          <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Missing Keywords ({analysis.missingKeywords.length})
-          </div>
+          <div className={LABEL} style={FONT}>Missing Keywords ({analysis.missingKeywords.length})</div>
           <div className="flex flex-wrap gap-1.5">
-            {analysis.missingKeywords.slice(0, 15).map((kw) => (
-              <span key={kw} className="rounded bg-[#f56565]/10 px-2 py-0.5 text-xs text-[#f56565]">
-                {kw}
-              </span>
+            {analysis.missingKeywords.slice(0, 20).map((kw) => (
+              <span key={kw} className="rounded bg-[#f56565]/10 px-2 py-0.5 text-xs text-[#f56565]">{kw}</span>
             ))}
           </div>
+          <p className="mt-2 text-[10px] text-[#3a4250] leading-relaxed">
+            Switch to the Edit tab to incorporate missing keywords into your bullets. ATS score updates live as you type.
+          </p>
         </div>
       )}
-
-      {/* Bullet variant selections */}
-      <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          Bullet Variants Selected
-        </div>
-        <div className="space-y-1">
-          {Object.entries(analysis.bulletSelections).map(([id, focus]) => (
-            <div key={id} className="flex items-center justify-between text-xs">
-              <span className="text-[#545d68] font-mono">{id}</span>
-              <span className="rounded bg-[#6c5ce7]/10 px-2 py-0.5 text-[#6c5ce7]">
-                {focus.replace(/_/g, ' ')}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/*  Customize Tab                                                      */
+/* ------------------------------------------------------------------ */
 
 function CustomizePanel() {
   const templateId = useResumeStore((s) => s.templateId);
@@ -207,21 +504,22 @@ function CustomizePanel() {
   const setMaxPages = useResumeStore((s) => s.setMaxPages);
   const includeSections = useResumeStore((s) => s.includeSections);
   const toggleSection = useResumeStore((s) => s.toggleSection);
-  const generateOutput = useResumeStore((s) => s.generateOutput);
+  const getEffectiveOutput = useResumeStore((s) => s.getEffectiveOutput);
   const master = useResumeStore((s) => s.master);
 
-  const [generating, setGenerating] = useState(false);
+  const effectiveOutput = getEffectiveOutput();
+  const [saving, setSaving] = useState(false);
   const filename = `${master.basics.name.replace(/\s+/g, '_')}_Resume.pdf`;
 
   const handlePdf = async () => {
-    setGenerating(true);
+    setSaving(true);
     try {
       const { exportPdf } = await import('./export/pdf');
       await exportPdf('resume-preview', filename);
     } catch (err) {
       console.error('PDF generation failed:', err);
     } finally {
-      setGenerating(false);
+      setSaving(false);
     }
   };
 
@@ -246,9 +544,7 @@ function CustomizePanel() {
     <div className="space-y-5">
       {/* Template */}
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          Template
-        </div>
+        <div className={LABEL} style={FONT}>Template</div>
         <div className="grid grid-cols-2 gap-2">
           {templates.map((t) => (
             <button
@@ -259,7 +555,7 @@ function CustomizePanel() {
                   ? 'border-[#00dfa2] bg-[#00dfa2]/10 text-[#00dfa2]'
                   : 'border-[#2a3140] text-[#545d68] hover:border-[#3a4250] hover:text-[#8b949e]'
               }`}
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={FONT}
             >
               {t.label}
             </button>
@@ -269,9 +565,7 @@ function CustomizePanel() {
 
       {/* Page Length */}
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          Page Length
-        </div>
+        <div className={LABEL} style={FONT}>Page Length</div>
         <div className="flex gap-2">
           {([1, 2] as const).map((pages) => (
             <button
@@ -282,7 +576,7 @@ function CustomizePanel() {
                   ? 'border-[#00dfa2] bg-[#00dfa2]/10 text-[#00dfa2]'
                   : 'border-[#2a3140] text-[#545d68] hover:border-[#3a4250]'
               }`}
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={FONT}
             >
               {pages} page{pages > 1 ? 's' : ''}
             </button>
@@ -292,14 +586,12 @@ function CustomizePanel() {
 
       {/* Section toggles */}
       <div>
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          Sections
-        </div>
+        <div className={LABEL} style={FONT}>Sections</div>
         <div className="space-y-1.5">
           {sectionKeys.map((s) => (
-            <label key={s.key} className="flex items-center gap-2.5 cursor-pointer group">
+            <label key={s.key} className="flex cursor-pointer items-center gap-2.5 group">
               <div
-                className={`h-4 w-4 rounded border flex items-center justify-center transition-colors ${
+                className={`flex h-4 w-4 items-center justify-center rounded border transition-colors ${
                   includeSections[s.key]
                     ? 'border-[#00dfa2] bg-[#00dfa2]'
                     : 'border-[#3a4250] group-hover:border-[#545d68]'
@@ -313,8 +605,8 @@ function CustomizePanel() {
                 )}
               </div>
               <span
-                className="text-xs text-[#8b949e] group-hover:text-[#e8edf5] transition-colors"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                className="text-xs text-[#8b949e] transition-colors group-hover:text-[#e8edf5]"
+                style={FONT}
                 onClick={() => toggleSection(s.key)}
               >
                 {s.label}
@@ -326,29 +618,28 @@ function CustomizePanel() {
 
       {/* Export */}
       <div className="border-t border-[#2a3140] pt-4">
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-          Export
-        </div>
+        <div className={LABEL} style={FONT}>Export</div>
         <div className="flex gap-2">
           <button
             onClick={() => window.print()}
-            disabled={!generateOutput}
-            className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-[#2a3140] px-3 py-2 text-xs font-medium text-[#e8edf5] transition-colors hover:border-[#00dfa2]/30 hover:text-[#00dfa2] disabled:cursor-not-allowed disabled:opacity-40"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            disabled={!effectiveOutput}
+            className={`flex-1 ${BTN_SECONDARY} disabled:cursor-not-allowed disabled:opacity-40`}
+            style={FONT}
           >
             Print
           </button>
           <button
             onClick={handlePdf}
-            disabled={!generateOutput || generating}
-            className="flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-40"
+            disabled={!effectiveOutput || saving}
+            className={BTN_PRIMARY}
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              backgroundColor: generateOutput && !generating ? '#00dfa2' : '#2a3140',
-              color: generateOutput && !generating ? '#07090f' : '#545d68',
+              ...FONT,
+              flex: 1,
+              backgroundColor: effectiveOutput && !saving ? '#00dfa2' : '#2a3140',
+              color: effectiveOutput && !saving ? '#07090f' : '#545d68',
             }}
           >
-            {generating ? 'Saving...' : 'Save PDF'}
+            {saving ? 'Saving...' : 'Save PDF'}
           </button>
         </div>
       </div>
@@ -356,18 +647,31 @@ function CustomizePanel() {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/*  Main Component                                                     */
+/* ------------------------------------------------------------------ */
+
+type SidebarTab = 'generate' | 'edit' | 'customize' | 'analysis';
+
 export default function ResumeBuilder() {
   const [activeTab, setActiveTab] = useState<SidebarTab>('generate');
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const generateOutput = useResumeStore((s) => s.generateOutput);
-  const templateId = useResumeStore((s) => s.templateId);
   const isGenerating = useResumeStore((s) => s.isGenerating);
+  const getEffectiveOutput = useResumeStore((s) => s.getEffectiveOutput);
+
+  const effectiveOutput = getEffectiveOutput();
+  const templateId = useResumeStore((s) => s.templateId);
 
   const tabs: { id: SidebarTab; label: string; icon: string }[] = [
     {
       id: 'generate',
       label: 'Generate',
       icon: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z',
+    },
+    {
+      id: 'edit',
+      label: 'Edit',
+      icon: 'M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10',
     },
     {
       id: 'customize',
@@ -383,7 +687,7 @@ export default function ResumeBuilder() {
 
   return (
     <div
-      className="flex min-h-[80vh] gap-0 rounded-xl border border-[#2a3140] overflow-hidden"
+      className="flex min-h-[80vh] gap-0 overflow-hidden rounded-xl border border-[#2a3140]"
       style={{ backgroundColor: '#0d1117' }}
     >
       {/* Sidebar */}
@@ -400,14 +704,14 @@ export default function ResumeBuilder() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex flex-1 items-center justify-center gap-1.5 px-3 py-3 text-xs font-medium transition-colors ${
+                className={`flex flex-1 items-center justify-center gap-1 px-2 py-3 text-[11px] font-medium transition-colors ${
                   activeTab === tab.id
                     ? 'border-b-2 border-[#00dfa2] text-[#00dfa2]'
                     : 'text-[#545d68] hover:text-[#8b949e]'
                 }`}
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={FONT}
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={tab.icon} />
                 </svg>
                 {tab.label}
@@ -418,13 +722,14 @@ export default function ResumeBuilder() {
           {/* Sidebar content */}
           <div className="flex-1 overflow-y-auto p-4">
             {activeTab === 'generate' && <JDInputPanel />}
+            {activeTab === 'edit' && <EditPanel />}
             {activeTab === 'customize' && <CustomizePanel />}
             {activeTab === 'analysis' && <AnalysisPanel />}
           </div>
         </div>
       </div>
 
-      {/* Toggle sidebar button */}
+      {/* Toggle sidebar */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
         className="flex w-6 shrink-0 items-center justify-center border-r border-[#2a3140] text-[#545d68] transition-colors hover:bg-[#161d27] hover:text-[#8b949e]"
@@ -432,10 +737,7 @@ export default function ResumeBuilder() {
       >
         <svg
           className={`h-4 w-4 transition-transform ${sidebarOpen ? '' : 'rotate-180'}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
@@ -447,45 +749,39 @@ export default function ResumeBuilder() {
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
               <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-[#2a3140] border-t-[#00dfa2]" />
-              <p className="mt-4 text-sm font-medium text-[#545d68]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <p className="mt-4 text-sm font-medium text-[#545d68]" style={FONT}>
                 Generating your tailored resume...
               </p>
               <p className="mt-1 text-xs text-[#3a4250]">
-                Analyzing JD, selecting bullet variants, reordering skills
+                Claude is rewriting your experience to match the JD
               </p>
             </div>
           </div>
-        ) : generateOutput ? (
+        ) : effectiveOutput ? (
           <div id="resume-preview">
-            <ResumePreview renderModel={generateOutput.renderModel} templateId={templateId} />
+            <ResumePreview renderModel={effectiveOutput.renderModel} />
           </div>
         ) : (
           <div className="flex h-full items-center justify-center">
-            <div className="text-center max-w-md">
+            <div className="max-w-md text-center">
               <svg
                 className="mx-auto h-16 w-16 text-[#2a3140]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
+                  strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
                   d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
                 />
               </svg>
-              <p
-                className="mt-4 text-sm font-medium text-[#545d68]"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
+              <p className="mt-4 text-sm font-medium text-[#545d68]" style={FONT}>
                 Paste a job description to generate a tailored resume
               </p>
-              <p className="mt-2 text-xs text-[#3a4250] leading-relaxed">
-                The engine analyzes the JD to detect focus areas, then generates a custom professional summary,
-                selects the best bullet variants for each experience, reorders your skills, and cherry-picks
-                relevant projects — all aligned to what the role needs.
+              <p className="mt-2 text-xs leading-relaxed text-[#3a4250]">
+                {useResumeStore.getState().apiKey ? (
+                  <>Claude AI will rewrite your experience bullets, generate a custom summary, reorder your skills, and rank projects — all tailored to match the JD's keywords and requirements.</>
+                ) : (
+                  <>Configure your API key in the settings above to enable AI-powered generation. Without a key, the builder falls back to rule-based keyword matching.</>
+                )}
               </p>
             </div>
           </div>
