@@ -54,15 +54,24 @@ const DEFAULT_MODELS = {
 /* ------------------------------------------------------------------ */
 
 function buildAnthropicRequest(endpoint, apiKey, model, systemPrompt, userPrompt) {
+  // Anthropic's own API uses x-api-key header.
+  // Third-party proxies (e.g. RDSec) use Authorization: Bearer.
+  const isNativeAnthropic = endpoint.includes('anthropic.com');
+  const headers = {
+    'Content-Type': 'application/json',
+    'anthropic-version': '2023-06-01',
+  };
+  if (isNativeAnthropic) {
+    headers['x-api-key'] = apiKey;
+  } else {
+    headers['Authorization'] = `Bearer ${apiKey}`;
+  }
+
   return {
     url: `${endpoint}/v1/messages`,
     init: {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-      },
+      headers,
       body: JSON.stringify({
         model,
         max_tokens: 4096,
