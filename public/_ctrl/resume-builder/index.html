@@ -30,6 +30,7 @@
     }
     .redirect-msg h2 { font-size: 1.5rem; font-weight: 700; }
     .redirect-msg p { color: #8b949e; max-width: 500px; line-height: 1.6; }
+    .badge { display: inline-block; font-size: 0.6rem; font-family: 'JetBrains Mono', monospace; padding: 0.2rem 0.6rem; border-radius: 6px; background: rgba(108,92,231,0.12); color: #6c5ce7; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.5rem; vertical-align: middle; }
     .redirect-msg a.btn {
       display: inline-flex;
       align-items: center;
@@ -43,13 +44,15 @@
       transition: all 0.2s;
     }
     .redirect-msg a.btn:hover { box-shadow: 0 0 30px -5px rgba(0,223,162,0.4); transform: scale(1.02); }
+    .features { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 0.5rem; }
+    .feat { font-size: 0.7rem; color: #545d68; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; background: rgba(19,25,32,0.8); }
   </style>
 </head>
 <body>
   <div class="banner">
     <div>
       <span class="label">Admin</span>
-      &nbsp;&nbsp;Resume Builder (JD Matching)
+      &nbsp;&nbsp;Resume Builder <span class="badge">AI-Powered</span>
     </div>
     <div>
       <a href="/_ctrl/">Dashboard</a>
@@ -61,9 +64,17 @@
   <div class="redirect-msg">
     <h2>Resume Builder</h2>
     <p>
-      The interactive resume builder with JD paste-and-match, ATS scoring, and template switching
-      has been moved to a dedicated Astro page for full React island support.
+      AI-powered resume generation with multi-provider support (Anthropic, OpenAI, Gemini),
+      weighted ATS scoring, inline editing, AI assessment panel, and PDF export.
     </p>
+    <div class="features">
+      <span class="feat">Multi-Provider AI</span>
+      <span class="feat">Weighted ATS Scoring</span>
+      <span class="feat">AI Assessment Panel</span>
+      <span class="feat">4 Templates</span>
+      <span class="feat">PDF Export</span>
+      <span class="feat">Live Editing</span>
+    </div>
     <a href="/resume-builder" class="btn">
       <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
       Open Resume Builder
