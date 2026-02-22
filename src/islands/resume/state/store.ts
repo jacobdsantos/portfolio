@@ -2,8 +2,8 @@ import { create } from 'zustand';
 import type { ResumeMaster, TemplateId, ResumeRenderModel, ResumeSection } from '../../../lib/resume/types';
 import { generateTailoredResume } from '../../../lib/resume/generate';
 import type { GenerateOutput } from '../../../lib/resume/generate';
-import { generateWithAI } from '../../../lib/resume/ai-generate';
-import type { AIGenerateResult } from '../../../lib/resume/ai-generate';
+import { generateWithAI, getProviderDefaults, getProviders } from '../../../lib/resume/ai-generate';
+import type { AIGenerateResult, ProviderId } from '../../../lib/resume/ai-generate';
 import { extractKeywords } from '../../../lib/resume/keyword-extract';
 import { computeAtsScore, findMissingKeywords } from '../../../lib/resume/ats';
 import { simpleHash, normalize } from '../../../lib/resume/text';
@@ -46,6 +46,7 @@ export interface ResumeState {
   master: ResumeMaster;
 
   // API config (persisted to localStorage)
+  provider: ProviderId;
   apiKey: string;
   apiEndpoint: string;
   model: string;
@@ -68,6 +69,7 @@ export interface ResumeState {
   editedBullets: Record<string, string>;
 
   // Actions — config
+  setProvider: (provider: ProviderId) => void;
   setApiKey: (key: string) => void;
   setApiEndpoint: (endpoint: string) => void;
   setModel: (model: string) => void;
@@ -378,6 +380,7 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
   master: masterData as unknown as ResumeMaster,
 
   // API config — persisted
+  provider: (loadString('resume-api-provider', 'anthropic') as ProviderId),
   apiKey: loadString('resume-api-key', ''),
   apiEndpoint: loadString('resume-api-endpoint', 'https://api.anthropic.com'),
   model: loadString('resume-api-model', 'claude-sonnet-4-20250514'),
@@ -408,6 +411,14 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
   editedBullets: {},
 
   /* -- Config actions -- */
+
+  setProvider: (provider) => {
+    saveString('resume-api-provider', provider);
+    const defaults = getProviderDefaults(provider);
+    saveString('resume-api-endpoint', defaults.endpoint);
+    saveString('resume-api-model', defaults.model);
+    set({ provider, apiEndpoint: defaults.endpoint, model: defaults.model });
+  },
 
   setApiKey: (key) => {
     saveString('resume-api-key', key);
@@ -465,20 +476,15 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
 
   generate: async () => {
     const state = get();
-    const { apiKey, apiEndpoint, model, master, jdText, includeSections, maxPages, templateId, targetRole } = state;
+    const { provider, apiKey, apiEndpoint, model, master, jdText, includeSections, maxPages, templateId, targetRole } = state;
 
     if (!jdText.trim()) return;
 
     set({ isGenerating: true, error: null, editedSummary: null, editedBullets: {} });
 
-    // If no API key, fall back to local
-    if (!apiKey.trim()) {
-      state.generateLocal();
-      return;
-    }
-
     try {
       const aiResult = await generateWithAI({
+        provider,
         apiKey,
         apiEndpoint,
         model,

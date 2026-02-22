@@ -5,6 +5,8 @@ import TemplateHarvardClassic from './templates/TemplateHarvardClassic';
 import TemplateTechnical from './templates/TemplateTechnical';
 import TemplateExecutive from './templates/TemplateExecutive';
 import type { TemplateId, ResumeRenderModel } from '../../lib/resume/types';
+import { getProviders } from '../../lib/resume/ai-generate';
+import type { ProviderId } from '../../lib/resume/ai-generate';
 
 /* ------------------------------------------------------------------ */
 /*  Shared styles                                                      */
@@ -43,15 +45,24 @@ function ResumePreview({ renderModel }: { renderModel: ResumeRenderModel; templa
 /*  API Settings (collapsible)                                         */
 /* ------------------------------------------------------------------ */
 
+const PROVIDERS = getProviders();
+
 function APISettings() {
+  const provider = useResumeStore((s) => s.provider);
   const apiKey = useResumeStore((s) => s.apiKey);
   const apiEndpoint = useResumeStore((s) => s.apiEndpoint);
   const model = useResumeStore((s) => s.model);
+  const setProvider = useResumeStore((s) => s.setProvider);
   const setApiKey = useResumeStore((s) => s.setApiKey);
   const setApiEndpoint = useResumeStore((s) => s.setApiEndpoint);
   const setModel = useResumeStore((s) => s.setModel);
 
   const [open, setOpen] = useState(!apiKey);
+
+  const keyPlaceholder =
+    provider === 'anthropic' ? 'sk-ant-...' :
+    provider === 'openai' ? 'sk-...' :
+    'AIza...';
 
   return (
     <div className="rounded-lg border border-[#2a3140] bg-[#0a0e14] overflow-hidden">
@@ -67,7 +78,7 @@ function APISettings() {
           API Configuration
           {apiKey && (
             <span className="rounded-full bg-[#00dfa2]/15 px-1.5 py-0.5 text-[10px] text-[#00dfa2]">
-              configured
+              {PROVIDERS.find((p) => p.id === provider)?.label ?? 'configured'}
             </span>
           )}
         </span>
@@ -81,13 +92,34 @@ function APISettings() {
 
       {open && (
         <div className="space-y-2.5 border-t border-[#2a3140] px-3 py-3">
+          {/* Provider selector */}
+          <div>
+            <span className={LABEL} style={FONT}>Provider</span>
+            <div className="flex gap-1.5">
+              {PROVIDERS.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => setProvider(p.id)}
+                  className={`flex-1 rounded-lg border px-2 py-1.5 text-[11px] font-medium transition-colors ${
+                    provider === p.id
+                      ? 'border-[#00dfa2] bg-[#00dfa2]/10 text-[#00dfa2]'
+                      : 'border-[#2a3140] text-[#545d68] hover:border-[#3a4250] hover:text-[#8b949e]'
+                  }`}
+                  style={FONT}
+                >
+                  {p.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <label className="block">
             <span className={LABEL} style={FONT}>API Key</span>
             <input
               type="password"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
-              placeholder="sk-ant-..."
+              placeholder={keyPlaceholder}
               className={INPUT}
               style={FONT}
             />
@@ -99,7 +131,7 @@ function APISettings() {
               type="text"
               value={apiEndpoint}
               onChange={(e) => setApiEndpoint(e.target.value)}
-              placeholder="https://api.anthropic.com"
+              placeholder={PROVIDERS.find((p) => p.id === provider)?.defaultEndpoint ?? ''}
               className={INPUT}
               style={FONT}
             />
@@ -111,14 +143,14 @@ function APISettings() {
               type="text"
               value={model}
               onChange={(e) => setModel(e.target.value)}
-              placeholder="claude-sonnet-4-20250514"
+              placeholder={PROVIDERS.find((p) => p.id === provider)?.defaultModel ?? ''}
               className={INPUT}
               style={FONT}
             />
           </label>
 
           <p className="text-[10px] text-[#3a4250] leading-relaxed">
-            Key is stored in your browser only. Never sent anywhere except the API endpoint above.
+            Optional: provide your own key for direct API calls. Leave blank to use the server-side key.
           </p>
         </div>
       )}
@@ -140,7 +172,6 @@ function JDInputPanel() {
   const setTargetRole = useResumeStore((s) => s.setTargetRole);
   const generateOutput = useResumeStore((s) => s.generateOutput);
   const error = useResumeStore((s) => s.error);
-  const apiKey = useResumeStore((s) => s.apiKey);
   const generationMode = useResumeStore((s) => s.generationMode);
 
   return (
@@ -192,13 +223,10 @@ function JDInputPanel() {
         >
           {isGenerating
             ? 'Generating...'
-            : apiKey
-              ? (generateOutput ? 'Regenerate with AI' : 'Generate with AI')
-              : (generateOutput ? 'Regenerate' : 'Generate')}
+            : generateOutput ? 'Regenerate with AI' : 'Generate with AI'}
         </button>
 
-        {apiKey && (
-          <button
+        <button
             onClick={generateLocal}
             disabled={!jdText.trim() || isGenerating}
             className={BTN_SECONDARY}
@@ -207,7 +235,6 @@ function JDInputPanel() {
           >
             Local
           </button>
-        )}
       </div>
 
       {/* Generation mode indicator */}
@@ -777,11 +804,7 @@ export default function ResumeBuilder() {
                 Paste a job description to generate a tailored resume
               </p>
               <p className="mt-2 text-xs leading-relaxed text-[#3a4250]">
-                {useResumeStore.getState().apiKey ? (
-                  <>Claude AI will rewrite your experience bullets, generate a custom summary, reorder your skills, and rank projects — all tailored to match the JD's keywords and requirements.</>
-                ) : (
-                  <>Configure your API key in the settings above to enable AI-powered generation. Without a key, the builder falls back to rule-based keyword matching.</>
-                )}
+                AI will rewrite your experience bullets, generate a custom summary, reorder your skills, and rank projects — all tailored to match the JD's keywords and requirements.
               </p>
             </div>
           </div>

@@ -4,7 +4,10 @@ import type { ResumeMaster } from './types';
 /*  Types                                                              */
 /* ------------------------------------------------------------------ */
 
+export type ProviderId = 'anthropic' | 'openai' | 'gemini';
+
 export interface AIGenerateInput {
+  provider: ProviderId;
   apiKey: string;
   apiEndpoint: string;
   model: string;
@@ -26,7 +29,148 @@ export interface AIGenerateResult {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Prompt                                                             */
+/*  Provider abstraction                                               */
+/* ------------------------------------------------------------------ */
+
+interface ProviderConfig {
+  id: ProviderId;
+  label: string;
+  defaultEndpoint: string;
+  defaultModel: string;
+  /** Build the fetch URL and RequestInit for this provider */
+  buildRequest: (params: {
+    endpoint: string;
+    apiKey: string;
+    model: string;
+    systemPrompt: string;
+    userPrompt: string;
+  }) => { url: string; init: RequestInit };
+  /** Extract the text content from the provider's response JSON */
+  extractText: (data: unknown) => string;
+}
+
+const anthropicProvider: ProviderConfig = {
+  id: 'anthropic',
+  label: 'Anthropic (Claude)',
+  defaultEndpoint: 'https://api.anthropic.com',
+  defaultModel: 'claude-sonnet-4-20250514',
+  buildRequest({ endpoint, apiKey, model, systemPrompt, userPrompt }) {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+    };
+    if (endpoint.includes('anthropic.com')) {
+      headers['anthropic-dangerous-direct-browser-access'] = 'true';
+    }
+    return {
+      url: `${endpoint}/v1/messages`,
+      init: {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          model,
+          max_tokens: 4096,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: userPrompt }],
+        }),
+      },
+    };
+  },
+  extractText(data: unknown): string {
+    const d = data as { content?: Array<{ text?: string }> };
+    return d.content?.[0]?.text ?? '';
+  },
+};
+
+const openaiProvider: ProviderConfig = {
+  id: 'openai',
+  label: 'OpenAI (GPT)',
+  defaultEndpoint: 'https://api.openai.com',
+  defaultModel: 'gpt-4o',
+  buildRequest({ endpoint, apiKey, model, systemPrompt, userPrompt }) {
+    return {
+      url: `${endpoint}/v1/chat/completions`,
+      init: {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: 4096,
+          response_format: { type: 'json_object' },
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userPrompt },
+          ],
+        }),
+      },
+    };
+  },
+  extractText(data: unknown): string {
+    const d = data as { choices?: Array<{ message?: { content?: string } }> };
+    return d.choices?.[0]?.message?.content ?? '';
+  },
+};
+
+const geminiProvider: ProviderConfig = {
+  id: 'gemini',
+  label: 'Google (Gemini)',
+  defaultEndpoint: 'https://generativelanguage.googleapis.com',
+  defaultModel: 'gemini-2.5-flash',
+  buildRequest({ endpoint, apiKey, model, systemPrompt, userPrompt }) {
+    return {
+      url: `${endpoint}/v1beta/models/${model}:generateContent?key=${apiKey}`,
+      init: {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: systemPrompt }] },
+          contents: [{ parts: [{ text: userPrompt }] }],
+          generationConfig: {
+            responseMimeType: 'application/json',
+            maxOutputTokens: 4096,
+          },
+        }),
+      },
+    };
+  },
+  extractText(data: unknown): string {
+    const d = data as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
+    return d.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/*  Provider registry                                                  */
+/* ------------------------------------------------------------------ */
+
+const PROVIDERS: Record<ProviderId, ProviderConfig> = {
+  anthropic: anthropicProvider,
+  openai: openaiProvider,
+  gemini: geminiProvider,
+};
+
+/** Get the list of available providers for the UI */
+export function getProviders(): Array<{ id: ProviderId; label: string; defaultEndpoint: string; defaultModel: string }> {
+  return Object.values(PROVIDERS).map(({ id, label, defaultEndpoint, defaultModel }) => ({
+    id,
+    label,
+    defaultEndpoint,
+    defaultModel,
+  }));
+}
+
+/** Get default endpoint and model for a provider */
+export function getProviderDefaults(providerId: ProviderId): { endpoint: string; model: string } {
+  const p = PROVIDERS[providerId];
+  return { endpoint: p.defaultEndpoint, model: p.defaultModel };
+}
+
+/* ------------------------------------------------------------------ */
+/*  Prompt (shared across all providers)                               */
 /* ------------------------------------------------------------------ */
 
 const SYSTEM_PROMPT = `You are an expert resume writer specializing in ATS-optimized cybersecurity and threat intelligence resumes.
@@ -77,47 +221,70 @@ Return this exact JSON structure (no markdown, no code fences):
 }
 
 /* ------------------------------------------------------------------ */
-/*  API Call                                                           */
+/*  API Call (provider-agnostic)                                       */
 /* ------------------------------------------------------------------ */
 
 export async function generateWithAI(
   input: AIGenerateInput,
 ): Promise<AIGenerateResult> {
-  const { apiKey, apiEndpoint, model } = input;
-  const endpoint = apiEndpoint.replace(/\/+$/, '');
+  const { provider, apiKey, apiEndpoint, model } = input;
+  const providerConfig = PROVIDERS[provider];
 
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-    'x-api-key': apiKey,
-    'anthropic-version': '2023-06-01',
-  };
-
-  // Enable direct browser access for Anthropic's API
-  if (endpoint.includes('anthropic.com')) {
-    headers['anthropic-dangerous-direct-browser-access'] = 'true';
+  if (!providerConfig) {
+    throw new Error(`Unknown provider: ${provider}`);
   }
 
-  const response = await fetch(`${endpoint}/v1/messages`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
+  const systemPrompt = SYSTEM_PROMPT;
+  const userPrompt = buildUserPrompt(input);
+
+  let content: string;
+
+  if (apiKey) {
+    // Direct call — user provided their own API key
+    const endpoint = apiEndpoint.replace(/\/+$/, '');
+
+    const { url, init } = providerConfig.buildRequest({
+      endpoint,
+      apiKey,
       model,
-      max_tokens: 4096,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: 'user', content: buildUserPrompt(input) }],
-    }),
-  });
+      systemPrompt,
+      userPrompt,
+    });
 
-  if (!response.ok) {
-    const body = await response.text().catch(() => 'unknown');
-    if (response.status === 401) throw new Error('Invalid API key. Check your key and try again.');
-    if (response.status === 429) throw new Error('Rate limited. Wait a moment and try again.');
-    if (response.status === 403) throw new Error('Access forbidden. Your API key may not have permission for this model.');
-    throw new Error(`API error ${response.status}: ${body.slice(0, 200)}`);
+    const response = await fetch(url, init);
+
+    if (!response.ok) {
+      const body = await response.text().catch(() => 'unknown');
+      if (response.status === 401) throw new Error('Invalid API key. Check your key and try again.');
+      if (response.status === 429) throw new Error('Rate limited. Wait a moment and try again.');
+      if (response.status === 403) throw new Error('Access forbidden. Your API key may not have permission for this model.');
+      throw new Error(`API error ${response.status}: ${body.slice(0, 200)}`);
+    }
+
+    const data = await response.json();
+    content = providerConfig.extractText(data);
+  } else {
+    // Proxy call — use the Cloudflare Pages Function (server holds the key)
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        provider,
+        model,
+        endpoint: apiEndpoint !== providerConfig.defaultEndpoint ? apiEndpoint : undefined,
+        systemPrompt,
+        userPrompt,
+      }),
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({ error: `HTTP ${response.status}` }));
+      throw new Error((data as { error?: string }).error ?? `Proxy error ${response.status}`);
+    }
+
+    const data = await response.json() as { text: string };
+    content = data.text;
   }
-
-  const data = await response.json();
-  const content = data.content?.[0]?.text;
 
   if (!content) {
     throw new Error('Empty response from API. Try again.');
