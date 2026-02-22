@@ -383,7 +383,7 @@ export const useResumeStore = create<ResumeState>((set, get) => ({
   provider: (loadString('resume-api-provider', 'anthropic') as ProviderId),
   apiKey: loadString('resume-api-key', ''),
   apiEndpoint: loadString('resume-api-endpoint', 'https://api.anthropic.com'),
-  model: loadString('resume-api-model', 'claude-sonnet-4-20250514'),
+  model: loadString('resume-api-model', 'claude-4.6-opus'),
 
   // Inputs
   jdText: '',

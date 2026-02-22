@@ -53,7 +53,7 @@ const anthropicProvider: ProviderConfig = {
   id: 'anthropic',
   label: 'Anthropic (Claude)',
   defaultEndpoint: 'https://api.anthropic.com',
-  defaultModel: 'claude-sonnet-4-20250514',
+  defaultModel: 'claude-4.6-opus',
   buildRequest({ endpoint, apiKey, model, systemPrompt, userPrompt }) {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ const openaiProvider: ProviderConfig = {
   id: 'openai',
   label: 'OpenAI (GPT)',
   defaultEndpoint: 'https://api.openai.com',
-  defaultModel: 'gpt-4o',
+  defaultModel: 'gpt-5.2',
   buildRequest({ endpoint, apiKey, model, systemPrompt, userPrompt }) {
     return {
       url: `${endpoint}/v1/chat/completions`,
@@ -119,7 +119,7 @@ const geminiProvider: ProviderConfig = {
   id: 'gemini',
   label: 'Google (Gemini)',
   defaultEndpoint: 'https://generativelanguage.googleapis.com',
-  defaultModel: 'gemini-2.5-flash',
+  defaultModel: 'gemini-3-pro',
   buildRequest({ endpoint, apiKey, model, systemPrompt, userPrompt }) {
     return {
       url: `${endpoint}/v1beta/models/${model}:generateContent?key=${apiKey}`,

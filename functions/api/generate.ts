@@ -60,9 +60,9 @@ const DEFAULT_ENDPOINTS: Record<ProviderId, string> = {
 
 /** Default models per provider */
 const DEFAULT_MODELS: Record<ProviderId, string> = {
-  anthropic: 'claude-sonnet-4-20250514',
-  openai: 'gpt-4o',
-  gemini: 'gemini-2.5-flash',
+  anthropic: 'claude-4.6-opus',
+  openai: 'gpt-5.2',
+  gemini: 'gemini-3-pro',
 };
 
 /* ------------------------------------------------------------------ */
