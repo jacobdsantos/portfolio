@@ -107,33 +107,37 @@ const personJsonLd = {
 <AppShell jsonLd={personJsonLd}>
 
   <!-- Hero Section -->
-  <section class="content-card mb-6">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+  <section class="content-card mb-6 relative overflow-hidden">
+    <!-- Decorative gradient orb -->
+    <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-accent-primary/[0.06] to-accent-secondary/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-16 -left-16 w-40 h-40 bg-gradient-to-tr from-accent-tertiary/[0.04] to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
       <div class="flex-1">
-        <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-lg bg-accent-primary/[0.06] border border-accent-primary/10 text-xs font-mono text-accent-primary">
+        <div class="animate-fade-up inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-lg bg-accent-primary/[0.06] border border-accent-primary/10 text-xs font-mono text-accent-primary">
           <span class="relative flex h-1.5 w-1.5">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
             <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-primary"></span>
           </span>
           Available for speaking & collaboration
         </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-text-primary tracking-tight mb-3">
-          Hi, I'm <span class="bg-gradient-to-r from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent">Jacob Santos</span>
+        <h1 class="animate-fade-up-delay-1 text-3xl md:text-4xl font-bold text-text-primary tracking-tight mb-3" style="letter-spacing: -0.03em;">
+          Hi, I'm <span class="gradient-text-animated">Jacob Santos</span>
         </h1>
-        <p class="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl">
+        <p class="animate-fade-up-delay-2 text-text-secondary text-base md:text-lg leading-relaxed max-w-xl">
           Senior threat researcher who <span class="text-accent-primary font-medium">hunts</span> for emerging threats,
           <span class="text-accent-tertiary font-medium">builds</span> operational security tools, and
           <span class="text-violet-400 font-medium">shares</span> findings through research and workshops.
         </p>
-        <div class="flex flex-wrap gap-3 mt-6">
-          <a href="/about" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="animate-fade-up-delay-3 flex flex-wrap gap-3 mt-6">
+          <a href="/about" class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
+            <svg class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
             </svg>
             Learn More
           </a>
-          <a href="/resume" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-secondary text-sm font-medium hover:text-text-primary hover:border-white/10 transition-all">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <a href="/resume" class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-secondary text-sm font-medium hover:text-text-primary hover:border-white/[0.12] hover:bg-bg-hover transition-all duration-300">
+            <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
             </svg>
             View Resume
@@ -144,35 +148,35 @@ const personJsonLd = {
   </section>
 
   <!-- Quick Stats Bar -->
-  <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-primary/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+  <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6" data-reveal>
+    <div class="stat-card group" style="--stat-glow: rgba(0, 223, 162, 0.15);" data-reveal-delay="1">
       <div class="text-2xl font-bold text-accent-primary font-mono mb-0.5">17</div>
       <div class="text-text-muted text-[9px] uppercase tracking-widest">Blog Articles</div>
     </div>
-    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-secondary/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+    <div class="stat-card group" style="--stat-glow: rgba(124, 110, 240, 0.15);" data-reveal-delay="2">
       <div class="text-2xl font-bold text-accent-secondary font-mono mb-0.5">14</div>
       <div class="text-text-muted text-[9px] uppercase tracking-widest">Microstories</div>
     </div>
-    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-tertiary/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+    <div class="stat-card group" style="--stat-glow: rgba(0, 180, 216, 0.15);" data-reveal-delay="3">
       <div class="text-2xl font-bold text-accent-tertiary font-mono mb-0.5">10+</div>
       <div class="text-text-muted text-[9px] uppercase tracking-widest">Tools Built</div>
     </div>
-    <div class="text-center py-4 rounded-xl bg-bg-card/90 backdrop-blur-xl border border-white/[0.06] group hover:border-accent-warning/15 transition-all" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 10px 25px -6px rgba(0,0,0,0.3);">
+    <div class="stat-card group" style="--stat-glow: rgba(245, 158, 11, 0.15);" data-reveal-delay="4">
       <div class="text-2xl font-bold text-accent-warning font-mono mb-0.5">10+</div>
       <div class="text-text-muted text-[9px] uppercase tracking-widest">Talks & Training</div>
     </div>
   </section>
 
   <!-- Featured Research Carousel -->
-  <section class="content-card mb-6">
+  <section class="content-card mb-6" data-reveal>
     <div class="flex items-center justify-between mb-4">
       <div>
         <h2 class="section-title !mb-0">Featured Research</h2>
         <p class="text-text-muted text-xs mt-1">Latest published threat analysis and intelligence</p>
       </div>
-      <a href="/research" class="inline-flex items-center gap-1.5 text-accent-primary text-xs font-medium hover:underline shrink-0">
+      <a href="/research" class="inline-flex items-center gap-1.5 text-accent-primary text-xs font-medium hover:underline shrink-0 group">
         View all
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
       </a>
@@ -181,18 +185,18 @@ const personJsonLd = {
   </section>
 
   <!-- What I Do Grid -->
-  <section class="content-card mb-6">
+  <section class="content-card mb-6" data-reveal>
     <h2 class="section-title">What I Do</h2>
     <p class="section-subtitle">Combining threat research with automation and intelligence dissemination.</p>
     <div class="grid sm:grid-cols-2 gap-3">
-      {whatIDo.map(item => (
-        <a href={item.link} class="card !p-4 group block">
+      {whatIDo.map((item, idx) => (
+        <a href={item.link} class="card !p-4 group block" data-reveal data-reveal-delay={String(idx + 1)}>
           <div class="flex items-start gap-3">
-            <div class={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${item.accent}`} set:html={item.icon} />
+            <div class={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${item.accent} transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_15px_-3px_currentColor]`} set:html={item.icon} />
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2">
                 <h3 class="text-text-primary font-semibold text-sm mb-1 group-hover:text-accent-primary transition-colors">{item.title}</h3>
-                <svg class="w-3 h-3 text-text-muted/40 shrink-0 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                <svg class="w-3 h-3 text-text-muted/30 shrink-0 -mt-0.5 transition-all duration-300 group-hover:text-accent-primary/50 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
               </div>
               <p class="text-text-muted text-xs leading-relaxed">{item.description}</p>
             </div>
@@ -203,22 +207,22 @@ const personJsonLd = {
   </section>
 
   <!-- Latest Research Cards -->
-  <section class="content-card mb-6">
+  <section class="content-card mb-6" data-reveal>
     <div class="flex items-center justify-between mb-4">
       <div>
         <h2 class="section-title !mb-0">Recent Activity</h2>
         <p class="text-text-muted text-xs mt-1">Latest published research and threat analysis</p>
       </div>
-      <a href="/research" class="inline-flex items-center gap-1.5 text-accent-primary text-xs font-medium hover:underline shrink-0">
+      <a href="/research" class="inline-flex items-center gap-1.5 text-accent-primary text-xs font-medium hover:underline shrink-0 group">
         All research
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
       </a>
     </div>
     <div class="space-y-3">
       {latestResearch.map((article, idx) => (
-        <a href={article.url} target="_blank" rel="noopener" class="card !p-0 overflow-hidden group block">
+        <a href={article.url} target="_blank" rel="noopener" class="card !p-0 overflow-hidden group block" data-reveal data-reveal-delay={String(idx + 1)}>
           <div class={`h-1 bg-gradient-to-r ${gradients[idx % gradients.length]}`}></div>
           <div class="p-4">
             <div class="flex items-start gap-4">
@@ -234,7 +238,7 @@ const personJsonLd = {
                   ))}
                 </div>
               </div>
-              <div class="shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div class="shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0">
                 <svg class="w-4 h-4 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                 </svg>
@@ -247,21 +251,28 @@ const personJsonLd = {
   </section>
 
   <!-- CTA Section -->
-  <section class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-6 md:p-8 text-center" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 20px 50px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);">
-    <h2 class="text-xl font-bold text-text-primary mb-2 tracking-tight">Interested in working together?</h2>
-    <p class="text-text-secondary text-sm max-w-md mx-auto mb-5">
-      I'm open to speaking engagements, research collaboration, and workshop opportunities.
-    </p>
-    <div class="flex flex-wrap items-center justify-center gap-3">
-      <a href="/contact" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-        </svg>
-        Get in Touch
-      </a>
-      <a href="/speaking" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-secondary text-sm font-medium hover:text-text-primary hover:border-white/10 transition-all">
-        Speaking Engagements
-      </a>
+  <section class="relative rounded-2xl overflow-hidden border border-white/[0.06] p-6 md:p-8 text-center" data-reveal>
+    <!-- Background layers -->
+    <div class="absolute inset-0 bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04]"></div>
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 24px 24px;"></div>
+    <div class="absolute inset-0" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 20px 50px -12px rgba(0,0,0,0.5);"></div>
+
+    <div class="relative">
+      <h2 class="text-xl font-bold text-text-primary mb-2 tracking-tight">Interested in working together?</h2>
+      <p class="text-text-secondary text-sm max-w-md mx-auto mb-5">
+        I'm open to speaking engagements, research collaboration, and workshop opportunities.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="/contact" class="group inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+          Get in Touch
+        </a>
+        <a href="/speaking" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-bg-surface border border-white/[0.06] text-text-secondary text-sm font-medium hover:text-text-primary hover:border-white/[0.12] transition-all duration-300">
+          Speaking Engagements
+        </a>
+      </div>
     </div>
   </section>
 

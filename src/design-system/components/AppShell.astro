@@ -15,7 +15,7 @@ interface Props {
 
 const {
   title = 'Jacob Santos — Senior Threat Researcher',
-  description = 'Senior cybersecurity threat researcher, automation builder, and international trainer.',
+  description = 'Senior threat researcher specializing in ransomware analysis, security automation, and intelligence dissemination.',
   canonical,
   ogImage,
   jsonLd,
@@ -122,8 +122,9 @@ const ogImageUrl = ogImage || '/og/default.png';
       <Footer />
     </div>
 
-    <!-- Command palette keyboard listener -->
+    <!-- Command palette keyboard listener + scroll reveal -->
     <script>
+      // Cmd+K search
       document.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
           e.preventDefault();
@@ -133,6 +134,27 @@ const ogImageUrl = ogImage || '/og/default.png';
           }
         }
       });
+
+      // Scroll-triggered reveal animations
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealElements = document.querySelectorAll('[data-reveal]');
+
+      if (prefersReducedMotion) {
+        revealElements.forEach(el => el.classList.add('revealed'));
+      } else if (revealElements.length > 0) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -60px 0px', threshold: 0.1 }
+        );
+        revealElements.forEach(el => observer.observe(el));
+      }
     </script>
   </body>
 </html>

@@ -83,13 +83,13 @@ const personJsonLd = {
     "Security Automation",
     "AI-Assisted Analysis"
   ],
-  "description": "Senior threat researcher specializing in ransomware analysis, APT tracking, infrastructure hunting, and security automation. Patent holder, published researcher, and international trainer."
+  "description": "Senior threat researcher specializing in ransomware analysis, APT tracking, infrastructure hunting, and security automation."
 };
 ---
 
 <AppShell
   title="About"
-  description="Learn about Jacob Santos -- senior threat researcher specializing in ransomware analysis, APT tracking, infrastructure hunting, and security automation. Patent holder, published researcher, and certified international trainer."
+  description="Learn about Jacob Santos -- senior threat researcher specializing in ransomware analysis, APT tracking, infrastructure hunting, and security automation."
   jsonLd={personJsonLd}
   breadcrumbs={[
     { label: 'Home', href: '/' },
@@ -98,17 +98,18 @@ const personJsonLd = {
 >
 
   <div class="content-card">
-    <h1 class="section-title">About Me</h1>
-    <p class="section-subtitle">Threat researcher. Tool builder. Instructor.</p>
+    <h1 class="section-title animate-fade-up">About Me</h1>
+    <p class="section-subtitle animate-fade-up-delay-1">Threat researcher. Tool builder. Instructor.</p>
 
     <!-- Value Proposition -->
-    <div class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-5 md:p-6 mb-8">
-      <p class="text-text-primary text-[15px] leading-relaxed font-medium">
+    <div class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-5 md:p-6 mb-8 relative overflow-hidden animate-fade-up-delay-2">
+      <div class="absolute -top-10 -right-10 w-32 h-32 bg-accent-primary/[0.03] rounded-full blur-2xl pointer-events-none"></div>
+      <p class="text-text-primary text-[15px] leading-relaxed font-medium relative">
         I work at the intersection of <span class="text-accent-primary">threat research</span>,
         <span class="text-accent-tertiary">security automation</span>, and
         <span class="text-violet-400">intelligence dissemination</span>.
       </p>
-      <p class="text-text-secondary text-sm leading-relaxed mt-2">
+      <p class="text-text-secondary text-sm leading-relaxed mt-2 relative">
         I hunt for emerging threats, analyze malware, track campaigns, and build tools that make the team faster.
         I also deliver advanced threat defense workshops internationally for government agencies, law enforcement, and enterprises.
         What drives me is the investigation -- solving puzzles, connecting dots, and finding things that haven't been reported yet.
@@ -116,7 +117,7 @@ const personJsonLd = {
     </div>
 
     <!-- Key Highlights -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8" data-reveal>
       <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-primary/15 transition-all">
         <div class="text-2xl font-bold text-accent-primary font-mono mb-0.5">10+</div>
         <div class="text-text-muted text-[9px] uppercase tracking-widest">Tools Built</div>
@@ -136,8 +137,8 @@ const personJsonLd = {
     </div>
 
     <!-- What I Bring -->
-    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">What I Bring</h3>
-    <div class="space-y-3 mb-8">
+    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight" data-reveal>What I Bring</h3>
+    <div class="space-y-3 mb-8" data-reveal>
       {valuePillars.map(pillar => (
         <div class="flex items-start gap-4 p-4 rounded-xl bg-bg-surface/40 border border-white/[0.04] hover:border-white/[0.08] transition-all">
           <div class={`w-9 h-9 rounded-xl ${pillar.bg} border border-white/[0.06] flex items-center justify-center shrink-0 ${pillar.color}`} set:html={pillar.icon} />
@@ -150,8 +151,8 @@ const personJsonLd = {
     </div>
 
     <!-- Research Focus -->
-    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">Research Focus</h3>
-    <div class="space-y-2.5 mb-8">
+    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight" data-reveal>Research Focus</h3>
+    <div class="space-y-2.5 mb-8" data-reveal>
       <div class="group">
         <div class="flex items-center justify-between text-xs mb-1.5">
           <span class="text-text-secondary font-medium">Ransomware Families</span>
@@ -200,8 +201,8 @@ const personJsonLd = {
     </div>
 
     <!-- Career Timeline -->
-    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight">Experience</h3>
-    <div class="border-l-2 border-accent-primary/20 ml-3 space-y-6 mb-8">
+    <h3 class="text-lg font-bold text-text-primary mb-4 tracking-tight" data-reveal>Experience</h3>
+    <div class="border-l-2 border-accent-primary/20 ml-3 space-y-6 mb-8" data-reveal>
       {timeline.map(item => (
         <div class="relative pl-7">
           <div class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-bg-primary border-2 border-accent-primary"></div>
@@ -224,7 +225,7 @@ const personJsonLd = {
     </div>
 
     <!-- Disclosure notice -->
-    <div class="rounded-xl bg-accent-warning/[0.04] border border-accent-warning/10 p-4">
+    <div class="rounded-xl bg-accent-warning/[0.04] border border-accent-warning/10 p-4" data-reveal>
       <div class="flex items-start gap-3">
         <div class="w-8 h-8 rounded-lg bg-accent-warning/10 border border-accent-warning/15 flex items-center justify-center shrink-0">
           <svg class="w-4 h-4 text-accent-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">

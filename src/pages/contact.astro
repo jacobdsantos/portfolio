@@ -39,11 +39,11 @@ const contactMethods = [
 >
 
   <div class="content-card mb-6">
-    <h1 class="section-title">Contact</h1>
-    <p class="section-subtitle">Interested in collaborating? Here's how to reach me.</p>
+    <h1 class="section-title animate-fade-up">Contact</h1>
+    <p class="section-subtitle animate-fade-up-delay-1">Interested in collaborating? Here's how to reach me.</p>
 
     <!-- Contact methods -->
-    <div class="space-y-4 mb-8">
+    <div class="space-y-4 mb-8" data-reveal>
       {contactMethods.map(method => (
         <a
           href={method.href}
@@ -67,7 +67,7 @@ const contactMethods = [
     </div>
 
     <!-- Location -->
-    <div class="rounded-xl bg-bg-secondary/50 border border-white/[0.06] p-5 mb-8">
+    <div class="rounded-xl bg-bg-secondary/50 border border-white/[0.06] p-5 mb-8" data-reveal>
       <div class="flex items-center gap-3 mb-3">
         <div class="w-9 h-9 rounded-xl bg-accent-warning/10 border border-accent-warning/20 flex items-center justify-center text-accent-warning shrink-0">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
@@ -83,7 +83,7 @@ const contactMethods = [
     </div>
 
     <!-- Professional inquiries note -->
-    <div class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-5 md:p-6">
+    <div class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-5 md:p-6" data-reveal>
       <div class="flex items-start gap-3">
         <div class="w-9 h-9 rounded-xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center shrink-0">
           <svg class="w-4 h-4 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">

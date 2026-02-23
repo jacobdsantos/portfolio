@@ -11,26 +11,26 @@
 
 export const colors = {
   bg: {
-    primary: '#07090f',
-    secondary: '#0d1117',
-    card: '#131920',
-    hover: '#1a2230',
-    surface: '#161d27',
+    primary: '#06080e',
+    secondary: '#0c1018',
+    card: '#111822',
+    hover: '#182030',
+    surface: '#141c28',
   },
   accent: {
     primary: '#00dfa2',
-    secondary: '#6c5ce7',
+    secondary: '#7c6ef0',
     tertiary: '#00b4d8',
     glow: '#00ffbc',
-    warning: '#fbbf24',
-    danger: '#ff4757',
+    warning: '#f59e0b',
+    danger: '#ef4444',
     success: '#00dfa2',
-    hot: '#ff6b6b',
+    hot: '#f87171',
   },
   text: {
-    primary: '#e8edf5',
+    primary: '#edf2f7',
     secondary: '#8b949e',
-    muted: '#545d68',
+    muted: '#4a5568',
   },
 } as const;
 
