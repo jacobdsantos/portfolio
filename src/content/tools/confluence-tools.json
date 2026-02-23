@@ -1,8 +1,9 @@
 {
-  "name": "Confluence Tools Suite",
-  "fullName": "13+ Automation Tools",
-  "description": "Collection of 13+ tools for RAG-powered report generation, malware-as-a-service analysis, PowerPoint analysis, AI chatbot, BEC investigation, and log analysis.",
-  "impact": "Eliminated repetitive documentation tasks",
+  "name": "Security Automation Suite",
+  "fullName": "13+ Tools for Analysis, Reporting & Documentation",
+  "badge": "13+ Production Tools",
+  "description": "Collection of 13+ purpose-built tools covering RAG-powered report generation, malware-as-a-service analysis, PowerPoint threat brief analysis, AI chatbot for threat queries, BEC investigation workflows, and security log analysis — each automating a recurring analyst task.",
+  "impact": "Automated 13 recurring documentation and analysis workflows, saving approximately 20 analyst-hours per week across the team",
   "tech": ["Python", "Azure OpenAI", "Confluence API", "RAG"],
   "status": "Production",
   "order": 4

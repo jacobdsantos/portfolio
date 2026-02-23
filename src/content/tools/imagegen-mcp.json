@@ -1,8 +1,9 @@
 {
-  "name": "ImageGen MCP",
-  "fullName": "AI Image Generation Server",
-  "description": "MCP server for AI-powered image generation via Gemini, used for creating threat report visuals, attack chain diagrams, and presentation assets with Trend AI brand styling.",
-  "impact": "Automated visual asset creation for threat reports",
+  "name": "Threat Visual Generator",
+  "fullName": "AI-Powered Report & Presentation Graphics",
+  "badge": "Automated Visuals",
+  "description": "Server for AI-powered image generation, producing threat report visuals, attack chain diagrams, timeline graphics, and presentation assets with consistent brand styling — eliminating the manual creation of visual assets for security publications.",
+  "impact": "Automated visual asset creation for threat reports and presentations — diagrams that took 30+ minutes now generated in seconds",
   "tech": ["Node.js", "MCP SDK", "Gemini API", "LiteLLM"],
   "status": "Production",
   "order": 8

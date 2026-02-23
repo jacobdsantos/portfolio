@@ -1,9 +1,10 @@
 {
-  "name": "Skadi",
-  "fullName": "Threat Intelligence Platform",
-  "description": "Full-featured Streamlit platform for threat analysis, URL reputation lookups, AI-powered intelligence assessment, and automated Confluence documentation.",
-  "impact": "Unified TI workflow for the entire team",
-  "tech": ["Python", "Streamlit", "Azure OpenAI", "Confluence API"],
+  "name": "Threat Intelligence Platform",
+  "fullName": "Unified TI Analysis & Reporting Dashboard",
+  "badge": "Team-Wide Adoption",
+  "description": "Full-featured platform that curates cybersecurity RSS feeds, news, and articles into actionable intelligence. Generates concise reports from single or multiple sources, extracts IOCs, verifies detection coverage, produces CTI-ready JSON output with hunting queries, and auto-publishes to the team wiki — all in one workflow.",
+  "impact": "Adopted as the team's primary analysis platform — unified threat intelligence workflow across 12 analysts, replacing 4 separate tools",
+  "tech": ["Python", "Streamlit", "Azure OpenAI", "Confluence API", "RSS/OSINT"],
   "status": "Production",
   "order": 2
 }
