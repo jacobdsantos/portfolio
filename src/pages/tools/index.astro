@@ -78,7 +78,7 @@ const featuredStatus = statusConfig[featuredData.status] || statusConfig['Planne
               <div class="flex items-center gap-2.5 mb-3">
                 <div class={`w-10 h-10 rounded-xl ${featuredAccent.bg} border ${featuredAccent.border} flex items-center justify-center ${featuredAccent.text} shrink-0 transition-transform duration-300 group-hover:scale-110`} set:html={toolIcons[featuredData.name] || defaultIcon} />
                 <div>
-                  <h2 class="text-text-primary font-semibold text-[15px] group-hover:text-accent-primary transition-colors leading-tight font-display">{featuredData.name}</h2>
+                  <h2 class="text-text-primary font-medium text-[15px] group-hover:text-accent-primary transition-colors leading-tight font-display">{featuredData.name}</h2>
                   <p class="text-text-muted text-[10px] font-mono">{featuredData.fullName}</p>
                 </div>
               </div>
