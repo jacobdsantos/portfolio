@@ -6,7 +6,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "name": "Jacob Santos — Resume",
-  "description": "Senior Threat Researcher resume — threat research, security automation, international training.",
+  "description": "Senior Threat Researcher resume — threat research, security automation, intelligence dissemination.",
   "url": "https://jacobsantos.pages.dev/resume",
   "mainEntity": {
     "@type": "Person",
@@ -21,28 +21,32 @@ const jsonLd = {
   }
 };
 
-// Harvard-style action verb bullets — pre-written for maximum impact
 const harvardBullets = {
   senior: [
-    "Spearheaded publication of 17 peer-cited threat research articles dissecting novel ransomware TTPs, EDR evasion techniques, and cross-platform attack chains — intelligence leveraged by 50+ global SOC teams to fortify detection capabilities",
-    "Authored 14 X/Twitter microstory threads translating complex threat intelligence into concise, actionable analyst content — amplifying team research visibility across the security community",
-    "Architected and delivered 10+ production-grade security automation platforms — including AI-driven threat triage pipelines, Model Context Protocol servers, and a multi-model orchestration desktop application — collectively eliminating 200+ analyst-hours monthly",
-    "Orchestrated advanced cybercrime training curricula for INTERPOL operations spanning APAC, Africa, EU, and MENA — equipping 100+ international law enforcement officers with ransomware forensics and cross-border investigation methodologies",
-    "Pioneered international Advanced Threat Defense training programs across Japan (2x), Oman, and the Philippines — upskilling government agencies (DICT, USAID BEACON/CPIT) and financial sector enterprises in proactive threat hunting",
-    "Delivered keynote address at Philippine Airlines Cybersecurity Awareness Month and presented original research at DECODE, DOST ICT Summit, and CIRQIT — establishing thought leadership in ransomware defense",
-    "Tracked and documented evolving ransomware tradecraft including BYOVD exploitation, GPO abuse, safe mode persistence, and cross-platform targeting of ESXi/Linux infrastructure — contributing to proactive detection rule development",
+    "Lead ransomware spotlight research and APT campaign tracking using Diamond Model methodology for threat attribution beyond IOCs",
+    "Published research articles covering ransomware families, APT campaigns, cross-platform threats, and defense evasion techniques on the company research blog",
+    "Built and deployed production security tools adopted team-wide — AI-powered inquiry pipeline, threat intelligence platform, VirusTotal hunting automations, and MCP servers",
+    "Delivered advanced threat defense workshops internationally for multinational participants through INTERPOL and JICA programs, government agencies, and enterprises",
+    "Monitor critical global events for threat activity across dark web forums, newly registered domains, and internal telemetry in coordination with international teams",
+    "Introduced Generative AI workflows to the team including AI-assisted reverse engineering and AI-assisted forensics for threat investigations",
+    "Co-inventor on an approved patent for a threat intelligence pipeline with core components adopted into an enterprise platform",
   ],
-  analyst: [
-    "Investigated and triaged high-priority threat inquiries across the full threat hunting pipeline — from IOC enrichment and OSINT analysis to SPOT report generation and customer-facing security advisories",
-    "Tracked emerging ransomware families and APT campaigns, contributing actionable threat intelligence to both internal security operations and external-facing advisories distributed to enterprise customers",
-    "Enriched indicators of compromise leveraging VirusTotal, Web Reputation Services, and internal threat intelligence platforms — enabling accurate threat classification and accelerated response prioritization",
+  hunter: [
+    "Proactively hunted for emerging threats using OSINT and internal telemetry, writing YARA rules and performing malware analysis to identify undetected ransomware families",
+    "Built daily-refreshing hunting dashboards and VirusTotal automation tools for automated intelligence gathering, behavioral analysis, and ransomware note extraction",
+    "Performed malware analysis and reverse engineering across Win32, Win64, Linux, .NET, and packed binaries using IDA Pro, Ghidra, x64dbg, and behavioral analysis tools",
+    "Investigated infections from internal telemetry, building MITRE ATT&CK-mapped attack chains and timelines for spot reports and blog publications",
+    "Contributed threat intelligence to multiple ransomware spotlight publications through the threat intelligence building group",
+  ],
+  training: [
+    "Completed intensive 6-month malware analysis program covering assembly programming, reverse engineering, binary and non-binary analysis across all platforms with practical elimination-based exams",
   ],
 };
 ---
 
 <AppShell
   title="Resume"
-  description="Senior Threat Researcher resume — threat research, security automation, international training."
+  description="Senior Threat Researcher resume — threat research, security automation, intelligence dissemination."
   jsonLd={jsonLd}
   breadcrumbs={[
     { label: 'Home', href: '/' },
@@ -73,10 +77,10 @@ const harvardBullets = {
       <section class="mb-6">
         <h2 class="resume-section-title">Summary</h2>
         <p class="text-text-secondary text-sm leading-relaxed">
-          Senior threat researcher with deep expertise in ransomware analysis, APT campaign tracking, and defense evasion techniques.
-          Published 17 research articles reaching global security teams. Architected and deployed 10+ production-grade security automation tools.
-          Delivered advanced threat defense training internationally for INTERPOL, government agencies across 4 countries, and enterprise organizations.
-          Combines deep technical research with a builder mentality and a commitment to elevating collective defense through knowledge transfer.
+          Senior threat researcher with expertise in ransomware analysis, APT campaign tracking, and defense evasion techniques.
+          Published research articles on the company blog and authored numerous internal threat intelligence reports.
+          Built and deployed production security automation tools adopted team-wide.
+          Delivered advanced threat defense workshops internationally for multinational participants, government agencies, and enterprise organizations.
         </p>
       </section>
 
@@ -87,9 +91,9 @@ const harvardBullets = {
         <div class="mb-5">
           <div class="flex items-baseline justify-between flex-wrap gap-1">
             <h3 class="text-text-primary font-semibold text-[15px]">Senior Threat Researcher</h3>
-            <span class="text-text-muted text-xs font-mono">2024 — Present</span>
+            <span class="text-text-muted text-xs font-mono">Jan 2025 — Present</span>
           </div>
-          <p class="text-accent-secondary text-sm font-mono">Trend Micro &middot; Philippines Threat Hunting Team</p>
+          <p class="text-accent-secondary text-sm font-mono">Trend Micro &middot; Threat Hunting Team</p>
           <ul class="mt-2 space-y-1.5 resume-bullets">
             {harvardBullets.senior.map(bullet => (
               <li>{bullet}</li>
@@ -97,14 +101,27 @@ const harvardBullets = {
           </ul>
         </div>
 
+        <div class="mb-5">
+          <div class="flex items-baseline justify-between flex-wrap gap-1">
+            <h3 class="text-text-primary font-semibold text-[15px]">Threat Hunter / Threat Researcher</h3>
+            <span class="text-text-muted text-xs font-mono">Jun 2023 — Dec 2024</span>
+          </div>
+          <p class="text-accent-secondary text-sm font-mono">Trend Micro &middot; Threat Hunting Team</p>
+          <ul class="mt-2 space-y-1.5 resume-bullets">
+            {harvardBullets.hunter.map(bullet => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+        </div>
+
         <div>
           <div class="flex items-baseline justify-between flex-wrap gap-1">
-            <h3 class="text-text-primary font-semibold text-[15px]">Threat Analyst</h3>
-            <span class="text-text-muted text-xs font-mono">2022 — 2024</span>
+            <h3 class="text-text-primary font-semibold text-[15px]">Cybersecurity Threat Engineer</h3>
+            <span class="text-text-muted text-xs font-mono">Oct 2022 — May 2023</span>
           </div>
-          <p class="text-accent-secondary text-sm font-mono">Trend Micro &middot; Philippines Threat Hunting Team</p>
+          <p class="text-accent-secondary text-sm font-mono">Trend Micro &middot; TrendLabs Core Technology</p>
           <ul class="mt-2 space-y-1.5 resume-bullets">
-            {harvardBullets.analyst.map(bullet => (
+            {harvardBullets.training.map(bullet => (
               <li>{bullet}</li>
             ))}
           </ul>
@@ -147,19 +164,18 @@ const harvardBullets = {
             </li>
           ))}
           <li class="text-text-secondary italic">
-            + {31 - resumeData.publications.length} additional published articles and 14 research threads — see <a href="/research" class="text-accent-primary hover:underline">full research portfolio</a>
+            + additional published articles and research threads — see <a href="/research" class="text-accent-primary hover:underline">full research portfolio</a>
           </li>
         </ul>
       </section>
 
-      <!-- Speaking & Training -->
+      <!-- Speaking & Workshops -->
       <section class="mb-6">
-        <h2 class="resume-section-title">Speaking & Training</h2>
+        <h2 class="resume-section-title">Speaking & Workshops</h2>
         <ul class="space-y-1 text-sm text-text-secondary">
-          <li><span class="text-text-primary font-medium">INTERPOL</span> — Recurring trainer for international cybercrime programs: Operation Synergia (Ransomware), Advanced Threat Defense APAC</li>
-          <li><span class="text-text-primary font-medium">International Training</span> — Led Advanced Threat Defense programs in Japan (2x), Oman, Philippines for government and enterprise organizations</li>
-          <li><span class="text-text-primary font-medium">Conference Speaker</span> — DECODE 2024/2025, DOST ICT Summit, CIRQIT, PUP Quezon City</li>
-          <li><span class="text-text-primary font-medium">Enterprise Keynote</span> — Philippine Airlines Cybersecurity Awareness Month, Chinabank, BDO, SM</li>
+          <li><span class="text-text-primary font-medium">International Workshops</span> — Delivered Advanced Threat Defense programs for multinational participants through INTERPOL and JICA programs, and for government and enterprise organizations across multiple countries</li>
+          <li><span class="text-text-primary font-medium">Conference Speaker</span> — DECODE 2024/2025 (hands-on labs + CTF), DOST ICT Summit, CIRQIT, PUP Quezon City</li>
+          <li><span class="text-text-primary font-medium">Enterprise Talks</span> — Philippine Airlines, Chinabank, BDO, SM</li>
         </ul>
       </section>
 

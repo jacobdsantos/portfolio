@@ -49,7 +49,7 @@ const whatIDo = [
     color: 'from-red-500/20 to-orange-500/10',
     accent: 'text-red-400 bg-red-500/10 border-red-500/15',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`,
-    description: 'Deep-dive analysis of ransomware families, APT campaigns, and adversary tooling. Published research reaching global security teams.',
+    description: 'Deep-dive analysis of ransomware families, APT campaigns, and adversary tooling. Published on the company research blog.',
     link: '/research',
   },
   {
@@ -61,11 +61,11 @@ const whatIDo = [
     link: '/tools',
   },
   {
-    title: 'International Training',
+    title: 'Intelligence Dissemination',
     color: 'from-violet-500/20 to-purple-500/10',
     accent: 'text-violet-400 bg-violet-500/10 border-violet-500/15',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>`,
-    description: 'Training government agencies, law enforcement, and enterprises across Japan, Oman, Philippines, and online for INTERPOL.',
+    description: 'Delivering advanced threat defense workshops for multinational participants, government agencies, and enterprises across multiple countries.',
     link: '/speaking',
   },
   {
@@ -73,7 +73,7 @@ const whatIDo = [
     color: 'from-cyan-500/20 to-blue-500/10',
     accent: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/15',
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
-    description: '10+ production tools used daily -- from MCP servers and AI pipelines to desktop applications and Confluence integrations.',
+    description: 'Production tools used daily by the team -- MCP servers, AI pipelines, desktop applications, and Confluence integrations.',
     link: '/tools',
   },
 ];
@@ -100,7 +100,7 @@ const personJsonLd = {
     "Malware Analysis",
     "Security Automation"
   ],
-  "description": "Senior cybersecurity threat researcher, automation builder, and international trainer."
+  "description": "Senior threat researcher specializing in ransomware analysis, APT tracking, and security automation."
 };
 ---
 
@@ -121,9 +121,9 @@ const personJsonLd = {
           Hi, I'm <span class="bg-gradient-to-r from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent">Jacob Santos</span>
         </h1>
         <p class="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl">
-          Senior threat researcher who <span class="text-accent-primary font-medium">publishes</span> deep-dive analysis,
+          Senior threat researcher who <span class="text-accent-primary font-medium">hunts</span> for emerging threats,
           <span class="text-accent-tertiary font-medium">builds</span> operational security tools, and
-          <span class="text-violet-400 font-medium">trains</span> defenders worldwide.
+          <span class="text-violet-400 font-medium">shares</span> findings through research and workshops.
         </p>
         <div class="flex flex-wrap gap-3 mt-6">
           <a href="/about" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
@@ -183,7 +183,7 @@ const personJsonLd = {
   <!-- What I Do Grid -->
   <section class="content-card mb-6">
     <h2 class="section-title">What I Do</h2>
-    <p class="section-subtitle">Combining deep research with automation and knowledge transfer.</p>
+    <p class="section-subtitle">Combining threat research with automation and intelligence dissemination.</p>
     <div class="grid sm:grid-cols-2 gap-3">
       {whatIDo.map(item => (
         <a href={item.link} class="card !p-4 group block">
@@ -250,7 +250,7 @@ const personJsonLd = {
   <section class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-6 md:p-8 text-center" style="box-shadow: 0 0 0 1px rgba(0,223,162,0.04), 0 20px 50px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);">
     <h2 class="text-xl font-bold text-text-primary mb-2 tracking-tight">Interested in working together?</h2>
     <p class="text-text-secondary text-sm max-w-md mx-auto mb-5">
-      I'm open to speaking engagements, research collaboration, and security training opportunities.
+      I'm open to speaking engagements, research collaboration, and workshop opportunities.
     </p>
     <div class="flex flex-wrap items-center justify-center gap-3">
       <a href="/contact" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">

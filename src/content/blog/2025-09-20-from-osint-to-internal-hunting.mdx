@@ -1,0 +1,36 @@
+---
+title: "From OSINT to Internal Hunting"
+date: "2025-09-20"
+excerpt: "How shifting from external OSINT to internal telemetry hunting changed the way I approach threat research — and where most of my published work actually comes from."
+tags: ["threat-intelligence", "security"]
+featured: false
+draft: false
+---
+
+## Starting with OSINT
+
+When I first joined the threat hunting team, almost all of my hunting was external. VirusTotal, Malware Bazaar, ThreatFox, X/Twitter threads, news articles — the typical OSINT loop. Find a hash, check detection status, analyze the sample if it looked interesting, write it up if it was new.
+
+This works, and I still do it. But the scope of what you can find is limited by what is publicly available. You are always working with samples and indicators that someone else has already uploaded or shared.
+
+## The Shift
+
+The bigger change came when I started doing internal hunting — looking at our own telemetry through SPN and AWS Athena. This was a different skill set entirely.
+
+Instead of analyzing individual malware samples, I was reading logs. Distinguishing malicious command-line arguments from benign ones. Separating real infections from test machines, honeypots, and red team exercises. Building timelines from raw events. Constructing full attack chains with MITRE ATT&CK mappings.
+
+The learning curve was steep. In malware analysis, the sample tells you everything if you are patient enough. In telemetry hunting, you are working with fragments — a suspicious process here, an unusual network connection there — and you have to piece together what happened.
+
+## What Changed
+
+Most of my published research after this shift started from internal hunting, not OSINT. You find things in telemetry that nobody has reported yet because they only exist in your product's detection logs. That is where the genuinely new findings come from.
+
+It also changed how I think about tool building. The pain points are different when you are reading thousands of log entries versus analyzing a single binary. I started building log analyzers, regex search tools, and dashboards specifically for internal hunting workflows — things that did not exist because nobody on the team had needed them before.
+
+## The Practical Side
+
+MITRE ATT&CK went from theoretical knowledge to something I use daily. Not in the "let me categorize this after the fact" sense, but as an active framework while investigating. When you see a suspicious process chain in telemetry, you are mentally mapping it to techniques in real time to understand what the attacker was trying to do.
+
+The attack chains I build now — the ones that end up in spot reports and blog publications — almost always start from internal telemetry. The OSINT part comes later, when I pivot from internal findings to external infrastructure or check public reporting for context.
+
+Both skill sets matter. But learning to hunt internally is what turned threat hunting from "find interesting samples" into "find things nobody else has found yet."

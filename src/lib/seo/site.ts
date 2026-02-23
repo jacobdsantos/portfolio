@@ -14,7 +14,7 @@ export const site = {
 
   /** Default meta description when a page does not provide its own. */
   description:
-    'Senior cybersecurity threat researcher, automation builder, and international trainer. Published researcher covering ransomware, APT campaigns, defense evasion, and red team tool abuse.',
+    'Senior threat researcher specializing in ransomware analysis, APT campaign tracking, defense evasion, and security automation.',
 
   /** Professional title. */
   jobTitle: 'Senior Threat Researcher',

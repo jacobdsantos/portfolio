@@ -1,40 +1,42 @@
 ---
-title: "Building MCP Servers for Threat Intelligence"
+title: "MCP Servers for Threat Intelligence"
 date: "2026-01-15"
-excerpt: "How I built Model Context Protocol servers to bridge AI assistants with threat intelligence platforms."
+excerpt: "How I set up Model Context Protocol servers to bridge AI assistants with threat intelligence platforms — and what I learned about tool design along the way."
 tags: ["mcp", "ai", "automation", "threat-intelligence"]
 featured: true
 draft: false
 ---
 
-## The Problem with Context Switching
+## The Problem
 
-As threat researchers, we spend a disproportionate amount of time switching between tools. One moment you are enriching IOCs in OpenCTI, the next you are writing up findings in Confluence, and then pivoting to search your Obsidian vault for prior campaign notes. Each context switch carries cognitive overhead that compounds across a full investigation.
+Threat hunting involves a lot of context switching. You are enriching IOCs in OpenCTI, writing up findings in Confluence, checking your Obsidian vault for prior campaign notes, and generating images for reports — all in the same investigation. Each tool switch breaks your train of thought.
 
-When Anthropic released the Model Context Protocol specification, I saw an opportunity to collapse these tool boundaries. MCP provides a standardized way for AI assistants to interact with external data sources and tools through a structured server-client architecture. Instead of copying and pasting between platforms, an AI assistant could query them directly.
+When the Model Context Protocol specification came out, I saw it as a way to let an AI assistant query these platforms directly instead of me copying and pasting between browser tabs.
 
-## Architecture Decisions
+## What I Built
 
-I built three MCP servers, each targeting a critical workflow gap:
+I ended up with three MCP servers in the workflow, each targeting a specific gap:
 
-- **OpenCTI MCP** -- Bridges Claude with our TMCTI2 threat intelligence platform via `pycti`. Supports indicator queries, campaign searches, relationship traversal, and label management. Built with FastMCP in Python to leverage the existing `pycti` library.
+**OpenCTI MCP** — Connects Claude to our threat intelligence platform via `pycti`. Supports indicator queries, campaign searches, relationship traversal, and label management. I built it with FastMCP in Python because the existing `pycti` library made it straightforward. The platform holds over 500K indicators, so getting the query interface right was important.
 
-- **Obsidian MCP** -- Provides full CRUD access to our threat research vault. Eleven tools covering note search, creation, tag queries, backlink discovery, and template application. Built in Node.js with the MCP SDK to keep it lightweight and fast.
+**Obsidian MCP** — Full CRUD access to the threat research vault. Eleven tools covering note search, creation, tag queries, backlink discovery, and template application. Built in Node.js with the MCP SDK. This one gets the most daily use because I keep all my campaign research in Obsidian.
 
-- **ImageGen MCP** -- Connects to the RDSec LiteLLM endpoint for Gemini 3 Pro Image generation. Generates threat intelligence visuals (attack chain diagrams, MITRE heatmaps, process trees) directly from prompts. Supports Trend Micro brand styling via a `style: "trend"` parameter.
+**NanoBanana MCP** — Connects to a Gemini endpoint for AI image generation. Generates visuals like attack chain diagrams and MITRE heatmaps directly from prompts. Integrating this into the workflow saves a lot of time when writing reports that need diagrams.
 
-## Lessons Learned
+## What I Learned
 
-The hardest part was not building the servers themselves, but designing tool interfaces that produce useful results within the constraints of an LLM conversation. A few key takeaways:
+The servers themselves were not hard to build. The harder part was designing tool interfaces that actually produce useful results in conversation. A few things I picked up:
 
-**Keep tool outputs concise.** Early versions returned entire OpenCTI indicator objects with dozens of fields. The AI would then struggle to extract the relevant information. Trimming responses to essential fields dramatically improved downstream reasoning.
+**Keep outputs small.** The first version of the OpenCTI server returned full indicator objects with dozens of fields. The AI would get lost trying to extract the relevant pieces. Trimming responses to essential fields made a noticeable difference.
 
-**Schema design matters more than you think.** Each MCP tool has a JSON Schema for its parameters. Spending time on clear parameter descriptions and sensible defaults pays off because the AI uses these schemas to decide how to call your tools.
+**Parameter descriptions matter.** MCP tools have JSON Schema definitions for their parameters. The AI reads those descriptions to figure out how to call your tools. Spending time on clear descriptions and sensible defaults makes the tools more reliable.
 
-**Error handling needs to be graceful.** Network timeouts, rate limits, and malformed queries are inevitable. Returning structured error messages (rather than stack traces) helps the AI recover and retry intelligently.
+**Handle errors gracefully.** Network timeouts and rate limits happen. Returning structured error messages instead of stack traces lets the AI understand what went wrong and retry on its own.
 
-## Impact
+**Build for your actual workflow, not a general one.** The Obsidian MCP has a `search_by_tag` tool because I organize research by campaign tags. That is specific to how I work, and that specificity is what makes it useful.
 
-These three servers now form the backbone of our AI-assisted threat intelligence workflow. The TITAs pipeline uses them across its nine phases, and individual analysts use them daily through Claude Code for ad-hoc research. What used to require opening five browser tabs and manually copying data between them now happens in a single conversation.
+## How It Fits Together
 
-The MCP ecosystem is still young, but the pattern is clear: purpose-built, domain-specific servers that expose clean tool interfaces will become essential infrastructure for AI-augmented security operations.
+These servers now plug into the TITAs inquiry pipeline — the 9-phase automation I built for handling threat intelligence requests. They also get used individually through Claude Code for ad-hoc research. What used to mean opening multiple browser tabs and manually moving data between them now happens in one conversation.
+
+The MCP ecosystem is still early, but the pattern seems clear: small, purpose-built servers that expose clean tool interfaces for specific domains.

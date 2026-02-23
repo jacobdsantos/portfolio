@@ -3,23 +3,23 @@ import AppShell from '../design-system/components/AppShell.astro';
 
 const valuePillars = [
   {
-    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"/></svg>`,
-    title: 'Research-Driven',
-    desc: 'Published findings on novel ransomware TTPs, EDR evasion techniques, and cross-platform threats targeting critical infrastructure.',
+    icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`,
+    title: 'Proactive Hunter',
+    desc: 'Proactive threat hunting through YARA rules, infrastructure fingerprinting, and telemetry analysis -- from OSINT to APT attribution.',
     color: 'text-red-400',
     bg: 'bg-red-500/8',
   },
   {
     icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>`,
     title: 'Builder Mentality',
-    desc: 'Designed and shipped 10+ production tools -- AI pipelines, MCP servers, and desktop apps that save hundreds of hours monthly.',
+    desc: 'Every tool solves a real workflow problem -- from threat intelligence gathering to inquiry triage to automated detection. Built and shipped production tools adopted by the team.',
     color: 'text-accent-primary',
     bg: 'bg-accent-primary/8',
   },
   {
     icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347"/></svg>`,
-    title: 'Knowledge Multiplier',
-    desc: 'Trained INTERPOL, government agencies, and enterprise teams across 4 countries. Knowledge shared becomes collective defense.',
+    title: 'Threat Defense Instructor',
+    desc: 'Delivered hands-on workshops for multinational groups, government agencies, and enterprises across multiple countries. Created conference lab content for 2 consecutive years.',
     color: 'text-violet-400',
     bg: 'bg-violet-500/8',
   },
@@ -27,23 +27,31 @@ const valuePillars = [
 
 const timeline = [
   {
-    year: 'Present',
+    year: 'Jan 2025',
     title: 'Senior Threat Researcher',
     org: 'Trend Micro',
     bullets: [
-      'Published 17 research articles on ransomware families, APT campaigns, and defense evasion techniques reaching global security teams',
-      'Designed and shipped 10+ production tools -- AI-powered inquiry pipelines, MCP servers, and desktop applications -- saving hundreds of analyst-hours monthly',
-      'Delivered advanced threat defense training internationally for INTERPOL, government agencies (Japan, Oman, Philippines), and enterprise teams including major financial institutions',
-      'Keynoted at Philippine Airlines for Cybersecurity Awareness Month and spoke at DECODE, DOST ICT Summit, and CIRQIT conferences',
+      'Lead ransomware spotlight research and APT campaign tracking with Diamond Model attribution',
+      'Monitor critical global events for threat activity across dark web, domain registrations, and internal telemetry',
+      'Built and maintain production security tools adopted team-wide for threat intelligence and automation workflows',
+      'Deliver advanced threat defense workshops internationally for multinational groups, government agencies, and enterprises',
     ],
   },
   {
-    year: 'Previous',
-    title: 'Threat Analyst',
+    year: 'Jun 2023',
+    title: 'Threat Hunter / Threat Researcher',
     org: 'Trend Micro',
     bullets: [
-      'Investigated and triaged threat inquiries across the threat hunting pipeline -- from IOC enrichment and OSINT analysis to SPOT report generation',
-      'Tracked emerging ransomware families and APT campaigns, contributing threat intelligence to internal and customer-facing advisories',
+      'Proactively hunted emerging threats via OSINT and internal telemetry, writing YARA rules, building dashboards, and performing malware analysis on samples',
+      'Published research articles, authored numerous spot and threat intelligence reports, and contributed to ransomware spotlight publications',
+    ],
+  },
+  {
+    year: 'Oct 2022',
+    title: 'Cybersecurity Threat Engineer',
+    org: 'Trend Micro (Training)',
+    bullets: [
+      '6-month intensive malware analysis training: assembly programming, reverse engineering, binary/non-binary analysis across all platforms, with practical elimination-based exams',
     ],
   },
 ];
@@ -64,19 +72,24 @@ const personJsonLd = {
   ],
   "knowsAbout": [
     "Ransomware Analysis",
-    "Advanced Persistent Threats",
+    "APT Campaign Tracking",
     "Threat Intelligence",
     "MITRE ATT&CK",
     "Malware Analysis",
-    "Security Automation"
+    "Reverse Engineering",
+    "Infrastructure Hunting",
+    "Diamond Model",
+    "YARA Rules",
+    "Security Automation",
+    "AI-Assisted Analysis"
   ],
-  "description": "Senior cybersecurity threat researcher, automation builder, and international trainer."
+  "description": "Senior threat researcher specializing in ransomware analysis, APT tracking, infrastructure hunting, and security automation. Patent holder, published researcher, and international trainer."
 };
 ---
 
 <AppShell
   title="About"
-  description="Learn about Jacob Santos -- senior threat researcher specializing in ransomware analysis, security automation, and international cybersecurity training."
+  description="Learn about Jacob Santos -- senior threat researcher specializing in ransomware analysis, APT tracking, infrastructure hunting, and security automation. Patent holder, published researcher, and certified international trainer."
   jsonLd={personJsonLd}
   breadcrumbs={[
     { label: 'Home', href: '/' },
@@ -86,39 +99,39 @@ const personJsonLd = {
 
   <div class="content-card">
     <h1 class="section-title">About Me</h1>
-    <p class="section-subtitle">Threat researcher who publishes, builds, and teaches.</p>
+    <p class="section-subtitle">Threat researcher. Tool builder. Instructor.</p>
 
     <!-- Value Proposition -->
     <div class="rounded-2xl bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04] border border-white/[0.06] p-5 md:p-6 mb-8">
       <p class="text-text-primary text-[15px] leading-relaxed font-medium">
-        I work at the intersection of <span class="text-accent-primary">deep-dive threat research</span>,
-        <span class="text-accent-tertiary">operational automation</span>, and
-        <span class="text-violet-400">knowledge transfer</span>.
+        I work at the intersection of <span class="text-accent-primary">threat research</span>,
+        <span class="text-accent-tertiary">security automation</span>, and
+        <span class="text-violet-400">intelligence dissemination</span>.
       </p>
       <p class="text-text-secondary text-sm leading-relaxed mt-2">
-        I track ransomware families and APT groups, analyze their evolving tradecraft,
-        and publish findings that help defenders worldwide. Then I build tools to automate what I've learned
-        and train others to defend against what I've found.
+        I hunt for emerging threats, analyze malware, track campaigns, and build tools that make the team faster.
+        I also deliver advanced threat defense workshops internationally for government agencies, law enforcement, and enterprises.
+        What drives me is the investigation -- solving puzzles, connecting dots, and finding things that haven't been reported yet.
       </p>
     </div>
 
     <!-- Key Highlights -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
       <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-primary/15 transition-all">
-        <div class="text-2xl font-bold text-accent-primary font-mono mb-0.5">17</div>
-        <div class="text-text-muted text-[9px] uppercase tracking-widest">Blog Articles</div>
-      </div>
-      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-secondary/15 transition-all">
-        <div class="text-2xl font-bold text-accent-secondary font-mono mb-0.5">14</div>
-        <div class="text-text-muted text-[9px] uppercase tracking-widest">Microstories</div>
-      </div>
-      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-tertiary/15 transition-all">
-        <div class="text-2xl font-bold text-accent-tertiary font-mono mb-0.5">10+</div>
+        <div class="text-2xl font-bold text-accent-primary font-mono mb-0.5">10+</div>
         <div class="text-text-muted text-[9px] uppercase tracking-widest">Tools Built</div>
       </div>
+      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-danger/15 transition-all">
+        <div class="text-2xl font-bold text-accent-danger font-mono mb-0.5">17</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest">Published Research</div>
+      </div>
+      <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-secondary/15 transition-all">
+        <div class="text-2xl font-bold text-accent-secondary font-mono mb-0.5">5</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest">Countries</div>
+      </div>
       <div class="text-center py-4 rounded-xl bg-bg-surface/60 border border-white/[0.04] group hover:border-accent-warning/15 transition-all">
-        <div class="text-2xl font-bold text-accent-warning font-mono mb-0.5">10+</div>
-        <div class="text-text-muted text-[9px] uppercase tracking-widest">Talks & Training</div>
+        <div class="text-2xl font-bold text-accent-warning font-mono mb-0.5">1</div>
+        <div class="text-text-muted text-[9px] uppercase tracking-widest">Patent</div>
       </div>
     </div>
 
@@ -177,11 +190,11 @@ const personJsonLd = {
       </div>
       <div class="group">
         <div class="flex items-center justify-between text-xs mb-1.5">
-          <span class="text-text-secondary font-medium">Red Team Tools & Loaders</span>
-          <span class="text-accent-primary font-mono">Growing</span>
+          <span class="text-text-secondary font-medium">Infrastructure Hunting & C2 Mapping</span>
+          <span class="text-accent-primary font-mono">Active</span>
         </div>
         <div class="h-1.5 rounded-full bg-bg-surface overflow-hidden">
-          <div class="h-full rounded-full bg-gradient-to-r from-accent-primary to-emerald-400 transition-all duration-1000" style="width: 55%"></div>
+          <div class="h-full rounded-full bg-gradient-to-r from-accent-primary to-emerald-400 transition-all duration-1000" style="width: 60%"></div>
         </div>
       </div>
     </div>
@@ -221,7 +234,7 @@ const personJsonLd = {
         <div>
           <p class="text-accent-warning text-xs font-semibold mb-1">Note on Published Work</p>
           <p class="text-text-muted text-[11px] leading-relaxed">
-            The research showcased here represents my publicly available work. A significant portion of my daily output -- inquiry responses, SPOT reports, threat advisories -- is internal-only under TLP:AMBER and not included here.
+            The research showcased here represents my publicly available work. The rest is TLP:RED.
           </p>
         </div>
       </div>

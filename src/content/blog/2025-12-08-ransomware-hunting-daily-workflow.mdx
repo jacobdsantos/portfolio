@@ -1,0 +1,65 @@
+---
+title: "What Ransomware Hunting Actually Looks Like"
+date: "2025-12-08"
+excerpt: "The daily reality of proactive ransomware hunting — from YARA triggers and VirusTotal dashboards to naming new families and building attack chains from telemetry."
+tags: ["ransomware", "threat-intelligence", "security"]
+featured: false
+draft: false
+---
+
+## No Cases Assigned
+
+The first thing people ask when I explain my role is "what cases are you working on?" The answer is usually none — at least not in the traditional sense. Threat hunting on our team is fully proactive. Nobody assigns me a ticket with a hash to analyze. I go looking for things.
+
+That distinction matters because it shapes the entire workflow. You are not reacting to alerts. You are trying to find what has not been found yet.
+
+## The Daily Loop
+
+Most mornings start the same way. I check the hunting dashboards — custom-built panels that pull from YARA rule triggers, VirusTotal queries, and automated feeds. These dashboards refresh daily and surface newly uploaded samples that match patterns I have been tracking.
+
+When something interesting shows up — an undetected binary, a new extension pattern, a ransom note I have not seen before — the workflow kicks in:
+
+1. Check detection status across our product and competitors
+2. If undetected or new, pull the sample for analysis
+3. Static analysis first — strings, imports, PE headers, compiler artifacts
+4. Dynamic analysis in a sandbox — behavior, file operations, registry changes, network activity
+5. If it is ransomware: identify the family, check the ransom note format, document the encrypted file extension
+6. If it is a new family: name it based on extension, ransom note content, or behavioral characteristics
+7. Write a spot report with findings
+8. Escalate to a full blog article if the finding warrants public reporting
+
+This loop runs constantly. Some days produce nothing interesting. Other days surface something nobody has reported.
+
+## YARA Rules
+
+I write and maintain YARA rules for the families I track. Some are generic — detecting common ransomware techniques like volume shadow copy deletion or specific encryption library usage. Others are specific to individual families, targeting unique strings, configuration structures, or behavioral patterns.
+
+The rules are behavior-oriented, not just string matching. A ransomware family might change its payload with every build, but the way it enumerates drives, the order of operations during encryption, or the structure of its ransom note tends to stay consistent.
+
+These rules feed into the daily dashboards. When VirusTotal receives a new upload that matches, it shows up in my morning review.
+
+## Cross-Platform Analysis
+
+One of the more interesting trends is ransomware groups expanding from Windows to Linux and ESXi. The same group that targets Windows endpoints will release a Linux variant to hit VMware infrastructure — and the Linux version is often a different codebase, sometimes written in a different language entirely.
+
+Analyzing both variants for the same family is useful because it reveals what the group considers essential to their operation. The encryption routine, the ransom note template, the C2 communication pattern — these tend to be consistent even when everything else changes. That consistency is what lets you attribute a Linux sample to a known Windows-focused group.
+
+## Attack Chains from Telemetry
+
+The spot reports that carry the most weight are the ones built from internal telemetry — actual infection timelines from real environments. These are different from sample analysis because you see the full attack chain: initial access, lateral movement, privilege escalation, defense evasion, and finally the ransomware payload.
+
+Building these requires reading logs carefully. A suspicious PowerShell command here, a service installation there, a scheduled task created at an unusual time. You piece together what happened step by step, map each action to MITRE ATT&CK techniques, and construct a timeline that tells the story of the intrusion.
+
+These attack chains are what feed into the larger ransomware spotlight publications — comprehensive reference documents that cover a ransomware group's full lifecycle, victimology, and defensive strategies.
+
+## Naming New Families
+
+Occasionally you find something genuinely new — a ransomware binary that does not match any known family. The naming process is practical: check the encrypted file extension, read the ransom note, look for any embedded strings or project names. If none of those give a clear name, the behavioral characteristics or the threat actor's communication channels might.
+
+It sounds minor, but naming matters for the industry. Once a family has a name, other researchers can reference it, detection vendors can create signatures for it, and incident responders know what they are dealing with. Being the first to identify and name a family means your analysis becomes the initial reference point.
+
+## What Keeps It Interesting
+
+Ransomware hunting could feel repetitive — the loop is similar every day. But the samples are always different. Groups evolve their techniques, adopt new evasion methods, target new platforms, and form new partnerships with initial access brokers.
+
+The part I find most engaging is the investigation itself. Taking a raw binary or a set of telemetry logs and reconstructing what happened, who did it, and how — that puzzle-solving aspect is what got me into this work, and it has not gotten old.

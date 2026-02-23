@@ -1,0 +1,579 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-23",
+    "purpose": "Comprehensive career profile from in-depth interview. Source of truth for resume-master.json, about page, resume builder AI context, and portfolio content. Never repeat this interview — update this file instead."
+  },
+
+  "personal": {
+    "name": "Jacob Santos",
+    "age": 26,
+    "birthYear": 1999,
+    "languages": ["English", "Filipino"],
+    "location": "Philippines",
+    "email": "jacobsantos.d@gmail.com",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/jacob-santos-046313198/",
+      "github": "https://github.com/jacobdsantos",
+      "portfolio": "https://jacobsantos.pages.dev"
+    }
+  },
+
+  "identity": {
+    "tagline": "Threat researcher who hunts, builds, and teaches.",
+    "oneLiners": [
+      "26-year-old Senior Threat Researcher who went from zero cybersecurity background to naming ransomware families, tracking APT groups, and delivering international workshops — in 3 years.",
+      "I find threats before anyone else knows they exist, build tools that turn 8-hour workflows into 30 minutes, and share what I learn through workshops and research.",
+      "I discover, I build, I teach. That's the cycle."
+    ],
+    "whatDrivesMe": "The investigation process — solving puzzles, connecting dots, discovering things nobody has reported yet. Finding that first instance of something new in the wild.",
+    "builderPhilosophy": "Having the IDEA is the most important aspect, and it can only come from experience. The real purpose is: how do I make this task easier? Generative AI helped level up execution, but knowing WHAT to build comes from doing the work.",
+    "characterTraits": [
+      "Quick learner — completed a 2-year growth template in 1 year with zero prior background",
+      "Self-starter — built tools, pursued Gen AI adoption, and sought speaking opportunities without being asked",
+      "Persistent under pressure — survived an elimination-style 6-month training with zero failures",
+      "Problem-solver — every tool was born from a real operational pain point",
+      "Patient and thorough — willing to spend hours deep-diving malware samples and attack chains",
+      "Pragmatic — focused on outcomes and career growth, not just learning for learning's sake",
+      "Pioneer mindset — first on the team to adopt Gen AI, introduced AI-assisted reverse engineering company-wide",
+      "Knowledge sharer — naturally gravitates toward teaching and mentoring"
+    ],
+    "careerGoals": {
+      "targetRoles": ["Threat Hunting", "Threat Research", "Threat Intelligence", "Detection Engineering", "Security Architecture"],
+      "openTo": "Adjacent roles where job description aligns with existing skills, even if title differs",
+      "priorities": ["Compensation", "Title", "Scope of work", "Company size (same or larger than Trend Micro)"],
+      "companyPreference": "Same size or larger than Trend Micro for better compensation and scope"
+    }
+  },
+
+  "education": {
+    "degree": "Bachelor of Science in Computer Engineering",
+    "school": "Polytechnic University of the Philippines",
+    "graduationYear": 2022,
+    "notes": "Computer Engineering, NOT Information Technology. NOT University of the Philippines."
+  },
+
+  "preCareer": {
+    "internship": {
+      "type": "Web Penetration Testing Internship",
+      "duration": "1 month",
+      "location": "Singapore (remote, during pandemic)",
+      "organization": "ICPeP (Institute of Computer Engineers of the Philippines)",
+      "toolsLearned": ["Burp Suite"],
+      "focus": "Web penetration testing fundamentals",
+      "notes": "Only prior experience before Trend Micro. No other cybersecurity foundation."
+    },
+    "programmingBackground": "Had programming foundation from Computer Engineering degree, but not to the extent of what was built later. Learned to code specifically to solve operational problems at Trend Micro."
+  },
+
+  "careerTimeline": {
+    "hired": {
+      "date": "October 2022",
+      "title": "Cybersecurity Threat Engineer",
+      "method": "Applied during mass hiring program. Passed exams and technical interview.",
+      "age": 23
+    },
+    "training": {
+      "period": "October 2022 - May 2023",
+      "duration": "6 months",
+      "name": "TrendLabs / Cybersecurity Core Technology Training",
+      "structure": {
+        "evaluationSystem": "4 failure points. Module exam fail = 1 point, midterms/panel defense fail = 2 points, finals fail = automatic termination.",
+        "examType": "Practical exams — actual debugging, malware analysis, behavior identification with proof (parameters, registries, persistence, payloads). NOT multiple choice.",
+        "panelDefense": "Given a hard-to-debug sample. Must find ALL behaviors, present findings, answer panel questions covering entire execution chain."
+      },
+      "modules": {
+        "module0": {
+          "topics": ["Assembly programming (MASM)", "PE headers", "Magic numbers", "APIs", "MSDN", "Different kinds of APIs"],
+          "exams": "Actual coding exams in assembly"
+        },
+        "modules1to8": {
+          "topics": [
+            "Binary and non-binary malware analysis",
+            "Win32, Win64 EXE, DLL, Linux, script files (JS, VBS, PowerShell)",
+            "Packed files, obfuscated malware",
+            ".NET/MSIL, C++, Delphi, different compilers",
+            "Ransomware, backdoor, DLL sideloading, worm, trojan",
+            "Macros in Excel, malware in DOC, PDF, LNK files",
+            "Process hollowing, injection, just-in-time debugging",
+            "Email threats (phishing, BEC, scams)",
+            "Web threats (disease vectors, malware accomplice websites, classification)"
+          ],
+          "fileAnalysisTools": ["Process Hacker", "OllyDbg", "x64dbg", "x32dbg", "IDA Pro", "Ghidra", "ProcMon"],
+          "networkAnalysisTools": ["Wireshark", "TCPView", "Fiddler"]
+        }
+      },
+      "performance": {
+        "ranking": "Top student of the batch",
+        "failures": "Zero module exam failures",
+        "panelDefense": "Passed",
+        "notes": "No prior experience with assembly programming, debugging, or malware analysis before training. Achieved top ranking through intense interest in investigations and debugging."
+      }
+    },
+    "threatHuntingStart": {
+      "date": "June 2023",
+      "title": "Threat Hunter / Threat Researcher",
+      "onboarding": [
+        "Internal tools and detection capabilities",
+        "CTI processes",
+        "Advanced Linux Malware Analysis (week-long training)",
+        "Case handling immersion (malware tagging, detection, naming conventions, platforms, malware types)",
+        "OSINT training (VirusTotal, Malware Bazaar, Triage, ThreatFox, Twitter/X, Reddit communities)"
+      ]
+    },
+    "promotionEligible": {
+      "date": "July 2024",
+      "notes": "Completed stage 2 of growth template in 1 year (normally takes 2-3 years). Was doing work comparable to senior colleagues. Year-end accomplishments exceeded those of senior peers. Promotion declined due to tenure requirement."
+    },
+    "promoted": {
+      "date": "January 2025",
+      "title": "Senior Threat Researcher",
+      "age": 25,
+      "timeFromHire": "2 years 3 months",
+      "timeOnTeam": "1.5 years (minimum possible tenure)",
+      "newResponsibilities": [
+        "Technical leadership — recommendations, suggestions, insights, advice",
+        "Leading all team projects and automations",
+        "Leading threat intelligence building group",
+        "P0 (priority zero) incident handling",
+        "Critical Events monitoring (representing PH team alongside Japan and Cork)",
+        "Mentoring and onboarding new team members",
+        "International training delivery (sourced due to lack of training team resources)",
+        "Ransomware Spotlight leadership (Agenda/Qilin)",
+        "APT research report authorship for Vision One paid customers"
+      ]
+    }
+  },
+
+  "growthTemplate": {
+    "description": "Trend Micro Threat Hunting Team growth framework. Stages: - (training), 0, 1, 2, 3.",
+    "normalCompletion": "2-3 years for stages 0-2",
+    "jacobCompletion": "1 year for stages 0-2",
+    "stages": {
+      "minus": {
+        "title": "Training",
+        "skills": ["Malware Analysis", "Web and Email Threats Analysis", "Network Threats", "CTI and TMCTI", "Process and Systems", "Case Handling Immersion"]
+      },
+      "zero": {
+        "title": "Foundation",
+        "skills": ["THT process training", "Hunting methods (internal + external)", "Solution layers", "Malware analysis enrichment and documentation"]
+      },
+      "one": {
+        "title": "Intermediate",
+        "skills": ["Intermediate VT hunting (metadata, graphs, API)", "Intermediate SPN/Athena hunting", "Noteworthy technique identification", "TMCTI contribution and campaign entries", "VSAPI pattern training", "MITRE table and TTP generation", "Team sharing/internal speakership", "CBG and CSG swarming", "Automation project onboarding"]
+      },
+      "two": {
+        "title": "Advanced",
+        "skills": ["Expert VT hunting + YARA rule sharing", "New analysis techniques and tools", "Lead campaign report creation (CBG/CSG)", "Campaign reports for Project Heimdall", "Internal event speakership + educational content", "Creation of hunting tools"]
+      },
+      "three": {
+        "title": "Expert (Jacob was performing at this level before promotion)",
+        "skills": ["Expert hunting + community contributor", "External speakership (DECODE/TES/BlackHat)", "Coaching and skill development", "Devise new hunting automation", "Generative AI coaching and project development"]
+      }
+    }
+  },
+
+  "dailyWork": {
+    "proactiveHunting": {
+      "description": "No cases assigned — fully proactive. Monitors dashboards, YARA rule triggers, VT queries for newly uploaded samples. Checks detection status across own product and competitors.",
+      "sources": {
+        "external": ["VirusTotal", "Malware Bazaar", "AbuseCH", "ThreatFox", "X/Twitter", "Reddit", "Forums", "News articles", "DomainTools", "URLScan", "FOFA", "Shodan", "Censys"],
+        "internal": ["SPN (Smart Protection Network)", "AWS Athena", "Internal telemetry dashboards", "Product detection logs"]
+      },
+      "workflow": "Find hash/indicator → check detection status → if undetected/new → full malware analysis → name ransomware if new (based on extension/ransom note) → create SPOT or noteworthy report → escalate to blog if warranted"
+    },
+    "yaraRules": {
+      "description": "Writes and maintains YARA rules himself. Learned on the team, not in training.",
+      "scope": "Generic rules for different techniques + specific rules for monitored malware families",
+      "techniques": "Behavior-based rules, not just string matching",
+      "dashboard": "Built daily-refreshing dashboard for newly uploaded files matching rules. Modifications adopted team-wide.",
+      "platforms": "Elastic Kibana → OpenSearch → AWS (current)"
+    },
+    "internalHunting": {
+      "description": "Major career shift. Moved from OSINT-only to internal telemetry hunting.",
+      "capabilities": [
+        "Log reading and analysis (distinguishing malicious from benign)",
+        "Command-line argument analysis",
+        "MITRE ATT&CK framework application (practical, not theoretical)",
+        "Attack chain construction",
+        "Timeline building",
+        "Full infection analysis (start to end)",
+        "Distinguishing real infections from test machines, honeypots, red teaming"
+      ],
+      "impact": "Most published research stems from internal hunting. Led to ideas for tool building (log analyzers, dashboards, regex searches, automations)."
+    },
+    "inquiryHandling": {
+      "description": "Customer-facing teams send inquiry requests for threat hunting, coverage, and detection. Requestors: BU Managers, Regional Managers, Tech Support, Tech Marketing.",
+      "beforeTITAs": "Everything manual. Could take a full week to resolve. Emails often ignored.",
+      "afterTITAs": "Systematic triage, fast initial findings, structured follow-up. Notes what to do and where to look.",
+      "exampleTypes": [
+        "Vague: 'Tell us about UNC3886' triggered by government announcement",
+        "Specific: 'Check these 14 IOCs for Oyster Backdoor coverage'"
+      ]
+    },
+    "criticalEventsMonitoring": {
+      "description": "Represents PH Threat Hunting Team alongside Japan and Cork teams.",
+      "events": ["Osaka Expo (6 months)", "Elections", "Special Holidays", "FIFA", "World Cup", "Olympics"],
+      "activities": [
+        "Monitor newly created domains (DomainTools)",
+        "Monitor newly uploaded email attachments/files with event keywords",
+        "Dark web and underground forum monitoring",
+        "Internal telemetry monitoring for event-correlated detections",
+        "Share findings with government partners (police, cyberdefense) and media"
+      ]
+    },
+    "ransomwareSpotlights": {
+      "description": "Comprehensive reference publications on ransomware groups. Full MITRE ATT&CK mapping, attack lifecycle, victimology, infographics, defensive strategies.",
+      "contributed": ["Play", "DragonForce", "Water Ouroboros/Hunters International", "RansomHub", "INC", "LockBit", "8Base", "Rhysida", "Trigona", "Akira"],
+      "leading": "Agenda Ransomware (Qilin) — has the most information on this group, monitored for years",
+      "contributionSource": "Part of threat intelligence/campaign building group. SPOT reports and noteworthy reports feed into spotlights."
+    },
+    "aptTracking": {
+      "description": "Author for APT research reports distributed to paid Vision One customers and internally.",
+      "focus": "Warlock Group and its relation to Chinese APTs",
+      "origin": "Started from SharePoint CVE-2025-53770 analysis where Warlock abused the vulnerability",
+      "methodology": "Higher Pyramid of Pain levels — infrastructure, TTPs, Diamond Model for threat attribution. Not just IOCs/hashes.",
+      "continuousTracking": true
+    },
+    "toolBuilding": {
+      "description": "Builds tools to solve real operational problems. Every tool born from a pain point.",
+      "philosophy": "Having the IDEA is most important — comes from experience. Gen AI helps execution.",
+      "majorTools": {
+        "skadi": {
+          "problem": "Searching many websites for articles with IOCs, then manually reading, extracting, verifying, summarizing, and creating CTI reports. Took 8 hours.",
+          "solution": "RSS feeds with auto IOC detection, keyword/GPT/IOC scoring, auto-summarize, auto-retrieve hashes/IPs/domains, auto-check detections, auto-generate CTI JSON.",
+          "impact": "8 hours → 30 minutes. New recruits can now do in 30 min what took experienced analysts a full day.",
+          "adoption": "Team-wide, primary analysis workflow. Absorbed into patent-protected larger project."
+        },
+        "titas": {
+          "problem": "Customer-facing teams sending inquiry requests. Everything manual, took a week to resolve.",
+          "solution": "9-phase AI pipeline: intake → OSINT → IOC merge → WRS → VT → response → VT complete → visuals → Confluence publish.",
+          "impact": "Week-long responses → same-day initial findings + structured follow-up."
+        },
+        "vtAutomations": {
+          "vtIntel": "Automated daily VT searches for newly submitted malware. Predefined queries with time filters, enriched CSV output.",
+          "vtExtension": "Extended VT with behavioral analysis, file extension tracking, ransomware note extraction. Reduces testing workload, improves clustering.",
+          "vtYara": "Leverages VT YARA hunting notifications for real-time detection.",
+          "feeds": "ThreatFox, Malware Bazaar, Triage, RSS feeds — all automated collection and enrichment.",
+          "handler": "Jacob Santos",
+          "startDate": "May 2023 (VT Extension), Aug 2023 (VT YARA)"
+        },
+        "confluenceTools": "13+ tools: RAG report gen, MAAS analysis, PPT analyzer, AI chatbot, BEC investigation, log analysis.",
+        "mcpServers": "OpenCTI connector (500K+ indicators), Obsidian vault CRUD, ImageGen via Gemini.",
+        "claudeCodeApp": "Desktop GUI for Claude CLI with autonomous pipelines, multi-model routing, 70+ models."
+      },
+      "otherContributions": [
+        "Introduced IDA Pro and Ghidra MCPs company-wide — sparked AI-assisted reverse engineering adoption across teams",
+        "Improved team hunting dashboard — modifications adopted team-wide",
+        "Various smaller automations for workflow optimization"
+      ]
+    },
+    "mdrContribution": {
+      "description": "Shares hunting findings with MDR team for F.I.R.E. alerts to IR team and customer engagements.",
+      "impact": "Some contributions are critical finds that directly trigger incident response."
+    },
+    "mentoring": {
+      "description": "Onboards new team members. Teaches internal hunting techniques, processes, SPOT report and noteworthy report creation.",
+      "focus": "SPOT reports and noteworthy reports — highest value skills for the team."
+    },
+    "leadership": {
+      "type": "Technical leadership, not people management",
+      "activities": ["Recommendations", "Suggestions", "Providing insights", "Advising on approaches"],
+      "scope": "All team projects and automations, threat intelligence building group"
+    }
+  },
+
+  "trainingDelivery": {
+    "certifications": {
+      "internal": ["ATD 30X Certified Trainer"],
+      "external": "None — credential story built on published research, training delivery, and output"
+    },
+    "programs": {
+      "tcap": {
+        "name": "Trend Micro Certified Anti-Malware Professional Training",
+        "duration": "5 days",
+        "topics": ["Threat Concepts and Classification", "Payload Analysis", "Malware Analysis Techniques", "Advanced Malware Techniques"]
+      },
+      "amt": {
+        "name": "Advanced Malware Training",
+        "duration": "5 days",
+        "prerequisite": "TCAP",
+        "topics": ["Introduction to Malware Threats", "Disassembling and Debugging", "Debugging Packed Malware", "Propagation Techniques", "Payload Techniques"]
+      },
+      "oneMonthMalware": {
+        "name": "One Month Advanced Malware Training",
+        "duration": "30 days",
+        "prerequisite": "TCAP",
+        "topics": "Same as AMT but deeply expanded over 30 days",
+        "deliveredOnce": "Internally for other teams in Taiwan"
+      },
+      "atd20x": {
+        "name": "Advanced Threat Defence Training 20X",
+        "modules": ["ATD 201: Advanced Threat Security Essentials", "ATD 202: Cybercrime Operations and Attack Methodologies", "ATD 203: Advanced Threat Response"]
+      },
+      "atd30x": {
+        "name": "Advanced Threat Defence Training 30X",
+        "prerequisite": "ATD 20X",
+        "modules": ["ATD 301: Cyberdefense & Operations", "ATD 302: Adversary Emulation", "ATD 303: Advanced Incident Response"]
+      }
+    },
+    "engagements": {
+      "international": [
+        {
+          "audience": "INTERPOL (Operation Synergia)",
+          "location": "Remote (from hotel)",
+          "program": "ATD 20X + ATD 30X",
+          "participants": "International law enforcement officers",
+          "regions": ["APAC", "Africa", "EU", "MENA"]
+        },
+        {
+          "audience": "JICA Program",
+          "location": "Japan",
+          "date": "January 2026",
+          "program": "ATD 30X",
+          "participants": "International cybersecurity professionals from different countries"
+        },
+        {
+          "audience": "Trend Micro Internal (Japan)",
+          "location": "Japan",
+          "date": "April 2025",
+          "program": "ATD 30X"
+        },
+        {
+          "audience": "Trend Micro Internal (Taiwan)",
+          "location": "Taiwan",
+          "program": "One Month Advanced Malware Training",
+          "notes": "For other teams within Trend Micro"
+        },
+        {
+          "audience": "Petroleum Development Oman",
+          "location": "Oman",
+          "program": "ATD 20X",
+          "notes": "One of Oman's biggest providers"
+        }
+      ],
+      "government": [
+        {
+          "audience": "USAID-sponsored government cybersecurity professionals",
+          "program": "AMT + ATD 20X",
+          "notes": "Various government agencies, BEACON/CPIT"
+        },
+        {
+          "audience": "PNP (Philippine National Police)",
+          "program": "ATD 20X / AMT / ATD 30X"
+        },
+        {
+          "audience": "AFP (Armed Forces of the Philippines)",
+          "program": "ATD 20X / AMT / ATD 30X"
+        },
+        {
+          "audience": "NTC (National Telecommunications Commission)",
+          "program": "ATD 20X / AMT / ATD 30X"
+        },
+        {
+          "audience": "DICT (Department of Information and Communications Technology)",
+          "program": "ATD 20X / AMT / ATD 30X"
+        }
+      ],
+      "enterprise": [
+        { "audience": "BDO (Bank)", "program": "ATD 20X / ATD 30X / AMT" },
+        { "audience": "SM (Conglomerate)", "program": "ATD 20X / ATD 30X / AMT" },
+        { "audience": "ChinaBank", "program": "ATD 20X / ATD 30X / AMT" }
+      ]
+    }
+  },
+
+  "speakingEngagements": {
+    "keynote": [
+      {
+        "event": "Philippine Airlines Cybersecurity Awareness Month",
+        "role": "Keynote Speaker",
+        "coSpeakers": ["Forcepoint Senior Architect", "Kollab CTO", "NPC (National Privacy Commission) Lawyers"],
+        "notes": "Alongside senior industry leaders"
+      }
+    ],
+    "external": [
+      {
+        "event": "DECODE 2024",
+        "type": "Hands-on Lab + CTF",
+        "title": "From Attacker's Mindset to Defender Strategies",
+        "description": "Replicating red teaming commands, transitioning to Vision One for defense and investigations. Created all content, CTF challenges, virtual environments, documentation, manuals, slides.",
+        "notes": "Created the entire hands-on lab session. Also handled CTF events."
+      },
+      {
+        "event": "DECODE 2025",
+        "type": "Hands-on Lab + CTF",
+        "title": "AI's Momentum in Cyber Threat Investigations",
+        "description": "Usage of AI, hosting locally, advancing forensics capability — memory and disk forensics assisted by AI. Prepared everything: virtual environments, contents, documentation, manuals, slides.",
+        "notes": "Invited back because they liked the 2024 presentation. Created all content for 2nd year."
+      },
+      {
+        "event": "DOST ICT Summit",
+        "type": "Presentation",
+        "description": "Presented DECODE 2024 content (From Attacker's Mindset to Defender Strategies)"
+      }
+    ],
+    "internal": [
+      {
+        "event": "CIRQIT (Trend Micro Internal Conference)",
+        "type": "Track Sessions",
+        "description": "Presented multiple times to the whole company"
+      },
+      {
+        "event": "SHIFT++ (Trend Micro Internal Conference)",
+        "type": "Track Sessions",
+        "description": "Internal presentations"
+      },
+      {
+        "event": "Internal Director Presentations",
+        "type": "Project/Report Presentations",
+        "description": "Presented projects and reports directly to directors"
+      }
+    ]
+  },
+
+  "achievements": {
+    "patent": {
+      "status": "Approved",
+      "scope": "Threat intelligence building pipeline — from external reports to Vision One",
+      "jacobRole": "Most components created by Jacob (Skadi absorbed into larger project)",
+      "notes": "Internal/trade secret. Cannot disclose specifics."
+    },
+    "publications": {
+      "blogs": 17,
+      "spotReports": "80+",
+      "platform": "Trend Micro Research Blog",
+      "notablePublications": [
+        "Cerber Ransomware (first blog — Confluence vulnerability connection)",
+        "EDRSilencer: Disrupting Endpoint Security Solutions",
+        "CrazyHunter: BYOVD-Driven Ransomware Targeting Taiwanese Critical Sectors",
+        "Play Ransomware: New Linux/ESXi Variant",
+        "Agenda Ransomware Group Adds SmokeLoader and NETXLOADER",
+        "Warlock: From SharePoint Exploit to Enterprise Ransomware",
+        "LummaStealer through GitHub (presented internally)"
+      ],
+      "microstories": "14 X/Twitter threads",
+      "uncreditedWork": "Published blogs from Japan inquiries — info sourced from Jacob but not credited by name"
+    },
+    "genAIPioneer": {
+      "description": "First on the team to adopt and apply Generative AI to automations and tools — before senior colleagues.",
+      "impact": "Introduced IDA Pro and Ghidra MCPs to the entire company, sparking AI-assisted reverse engineering projects across teams."
+    },
+    "growthSpeed": {
+      "description": "Completed 2-year growth template in 1 year. Caught up to colleagues with 1 year head start. Year-end accomplishments exceeded senior peers.",
+      "promotedAt": "Minimum possible tenure"
+    },
+    "trainingTopStudent": {
+      "description": "Top student of batch in 6-month elimination-style malware training. Zero failures. No prior background.",
+      "notes": "Not to be included in public profile per Jacob's request, but important context for understanding capability."
+    }
+  },
+
+  "technicalSkills": {
+    "malwareAnalysis": {
+      "depth": "Expert",
+      "platforms": ["Win32", "Win64", "Linux", "Scripts (JS, VBS, PowerShell)"],
+      "fileTypes": ["EXE", "DLL", "LNK", "DOC", "PDF", "Macros", ".NET/MSIL", "Packed", "Obfuscated"],
+      "compilers": ["C++", "Delphi", ".NET", "Various"],
+      "techniques": ["Static analysis", "Dynamic analysis", "Debugging", "Disassembly", "Reverse engineering", "Process hollowing analysis", "Injection analysis", "JIT debugging"],
+      "tools": ["IDA Pro", "Ghidra", "OllyDbg", "x64dbg", "x32dbg", "Process Hacker", "ProcMon", "Wireshark", "TCPView", "Fiddler"],
+      "malwareTypes": ["Ransomware", "Backdoor", "Trojan", "Worm", "Stealer", "DLL sideloading", "Macro malware"]
+    },
+    "threatHunting": {
+      "depth": "Expert",
+      "methods": ["OSINT hunting", "Internal telemetry hunting", "YARA rule creation", "VT intelligence queries", "Infrastructure hunting", "Dashboard monitoring"],
+      "frameworks": ["MITRE ATT&CK (practical)", "Cyber Kill Chain", "Diamond Model", "Pyramid of Pain"],
+      "osintSources": ["VirusTotal", "Malware Bazaar", "AbuseCH", "ThreatFox", "X/Twitter", "Reddit", "URLScan", "DomainTools"],
+      "infrastructureHunting": ["Shodan", "Censys", "FOFA", "Passive DNS", "SSH key pivoting", "SSL certificate analysis", "HTTP header fingerprinting", "ASN attribution", "Cloud provider mapping", "GeoIP analysis"],
+      "internalTools": ["SPN", "AWS Athena", "Internal telemetry dashboards"]
+    },
+    "programming": {
+      "languages": ["Python", "JavaScript", "TypeScript", "Assembly (MASM — from training)"],
+      "frameworks": ["Streamlit", "Express", "Node.js", "FastMCP", "MCP SDK"],
+      "databases": ["SQLite", "Elasticsearch", "OpenSearch"],
+      "other": ["REST APIs", "WebSocket", "Git", "RAG", "Prompt Engineering"]
+    },
+    "ai": {
+      "models": ["Claude AI", "Azure OpenAI", "Gemini API"],
+      "applications": ["LLM pipelines", "Prompt engineering", "Multi-model routing", "AI agent development", "AI-assisted reverse engineering", "AI-assisted forensics (memory + disk)"],
+      "mcpDevelopment": ["FastMCP servers", "MCP protocol integration", "AI-CTI platform connectors"]
+    },
+    "platforms": {
+      "security": ["Trend Vision One", "OpenCTI", "Splunk", "Elastic/Kibana"],
+      "intelligence": ["VirusTotal", "Confluence", "Jira", "Intel 471", "AttackerKB"],
+      "infrastructure": ["AWS Athena", "DomainTools", "Maxmind GeoIP"]
+    },
+    "reporting": {
+      "types": ["SPOT reports", "Possible noteworthy reports", "Ransomware Spotlights", "APT research reports", "Blog articles", "Campaign reports", "Inquiry responses"],
+      "tlpClassification": ["TLP Green (publishable)", "TLP Amber+Strict (internal)"],
+      "tools": ["Confluence", "CTI platforms", "Custom automation (Skadi, TITAs)"]
+    },
+    "emailAndWebThreats": {
+      "email": ["Phishing analysis", "BEC analysis", "Scam identification", "Attachment analysis"],
+      "web": ["Disease vectors", "Malware accomplice websites", "Proper classification"]
+    }
+  },
+
+  "researchAreas": {
+    "primary": [
+      {
+        "area": "Ransomware Families",
+        "depth": "Expert — primary research focus",
+        "specifics": ["Play", "CrazyHunter", "Agenda/Qilin", "Warlock", "Cerber", "LockBit", "Gentleman", "Crypto24", "Charon", "Medusa Locker", "Morpheus", "W3CryptoLocker", "Nitrogen", "Werewolves"],
+        "capabilities": ["Name new ransomware families", "Full behavior analysis", "Cross-platform analysis (Windows, Linux, ESXi)", "Ransom note extraction", "Extension tracking"]
+      }
+    ],
+    "active": [
+      {
+        "area": "APT Campaigns & Attribution",
+        "depth": "Growing — active research",
+        "specifics": ["Warlock Group", "Chinese APTs", "COLDRIVER/LOSTKEYS", "UNC3886"],
+        "methodology": "Diamond Model, infrastructure pivoting, TTP attribution"
+      },
+      {
+        "area": "BYOVD & Defense Evasion",
+        "depth": "Active research",
+        "specifics": ["EDRSilencer", "CrazyHunter BYOVD", "TrueSightKiller", "GPO abuse", "Safe mode exploitation"]
+      },
+      {
+        "area": "Infrastructure Hunting",
+        "depth": "Active and growing",
+        "specifics": ["C2 server identification (Adaptix, COLDRIVER)", "SSL certificate pivoting", "FOFA/Shodan/Censys hunting", "Default configuration fingerprinting"]
+      },
+      {
+        "area": "Cross-Platform Threats",
+        "depth": "Active research",
+        "specifics": ["Play Ransomware Linux/ESXi", "Agenda Linux targeting", "Windows-to-Linux malware evolution"]
+      }
+    ],
+    "growing": [
+      {
+        "area": "Red Team Tools & Loaders",
+        "specifics": ["SmokeLoader", "NETXLOADER", "Oyster Backdoor/CleanUpLoader"]
+      },
+      {
+        "area": "AI-Assisted Analysis",
+        "specifics": ["AI-assisted reverse engineering", "AI-assisted memory/disk forensics", "LLM-powered threat intelligence"]
+      }
+    ]
+  },
+
+  "notableInvestigations": {
+    "adaptixC2Hunting": {
+      "description": "Set up Adaptix C2 from source, fingerprinted defaults (404 page, response headers, ports, certificates), hunted using FOFA, identified 28 live C2 servers in the wild.",
+      "technique": "Default configuration fingerprinting → FOFA hunting → verification"
+    },
+    "coldriverLostkeys": {
+      "description": "Analyzed COLDRIVER/LOSTKEYS APT malware stages. Wrote custom YARA rules for Stage 1 (ClickFix) and Stage 2 (Anti-VM). Discovered new low-detection sample. Pivoted from known C2 via URLScan DOM analysis, used FOFA to find new C2 infrastructure (mobilizationcenter.com.ua).",
+      "technique": "YARA rule creation → VT monitoring → URLScan pivoting → FOFA infrastructure discovery → DOM verification"
+    },
+    "cerberRansomware": {
+      "description": "First published blog. Traced attack chain from initial script → C2 connection → deobfuscated payload (PE file disguised as .txt) → identified as Cerber ransomware. Connected to Confluence vulnerability with team.",
+      "significance": "First blog publication, initiated by Jacob"
+    },
+    "unc3886": {
+      "description": "Handled urgent Singapore BU inquiry triggered by government minister announcement. Produced comprehensive analysis that became a published blog.",
+      "significance": "High-stakes, time-sensitive customer-driven research"
+    }
+  }
+}
