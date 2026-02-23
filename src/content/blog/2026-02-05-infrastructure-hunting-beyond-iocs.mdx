@@ -1,8 +1,8 @@
 ---
 title: "Infrastructure Hunting Beyond IOCs"
 date: "2026-02-05"
-excerpt: "Moving up the Pyramid of Pain — from hash-based detection to hunting adversary infrastructure through default configurations, SSL certificates, and response fingerprints."
-tags: ["threat-intelligence", "security", "tools"]
+excerpt: "Moving up the Pyramid of Pain — from hash-based detection to hunting adversary infrastructure through behavioral fingerprints and network patterns."
+tags: ["threat-intelligence", "security"]
 featured: false
 draft: false
 ---
@@ -15,22 +15,22 @@ Infrastructure sits higher on the pyramid. C2 servers, staging hosts, and distri
 
 Our team started expanding into infrastructure hunting after realizing that file-based detection, while necessary, only catches what has already been used. Finding the infrastructure catches what is being prepared.
 
-## The Approach
+## The General Approach
 
-The general pattern looks like this: take a known piece of adversary infrastructure, identify what makes it unique, then search for those characteristics at scale.
+The pattern is straightforward: take a known piece of adversary infrastructure, identify what makes it unique, then search for those characteristics at scale using internet scanning platforms.
 
-For one C2 framework, that meant setting up the tool from source and examining what the default deployment looks like. Every web server has fingerprints — the 404 page content, response headers, default ports, SSL certificate patterns. Most operators do not bother changing these defaults.
+Every web server has fingerprints — default page content, response headers, port configurations, certificate patterns. Most operators do not bother changing these defaults. That is what makes hunting possible.
 
-Armed with those fingerprints, you can query platforms like FOFA, Shodan, or Censys for matching servers. Not every match is malicious — you need to verify — but the hit rate can be surprisingly high.
+Not every match is malicious — verification is always needed — but the hit rate can be surprisingly high when you know what to look for.
 
-## A Practical Example
+## Chaining Techniques
 
-For one APT campaign, the pivot started differently. After analyzing the malware stages and writing YARA rules for the initial delivery and anti-VM components, I monitored VirusTotal for new matches. When a low-detection sample appeared, I used the known C2 domain to pivot through URLScan — specifically looking at the DOM content of scanned pages. That led to identifying structural patterns in how the group set up their infrastructure, which I then hunted for on FOFA to find additional C2 servers that had not been reported.
+Infrastructure hunting is rarely a single step. It is usually a chain: malware analysis gives you indicators, indicators give you infrastructure patterns, patterns give you new infrastructure, and new infrastructure gives you early warning.
 
-The takeaway was that infrastructure hunting is not a single technique. It is a chain: malware analysis gives you indicators, indicators give you infrastructure patterns, patterns give you new infrastructure, and new infrastructure gives you early warning.
+Sometimes the pivot starts from YARA rule matches on VirusTotal. Sometimes it starts from a known C2 domain and you work outward. The technique depends on what you have to start with, but the principle is the same — find the pattern, search at scale.
 
-## Tools for the Job
+## Practical Notes
 
-I built automation around parts of this workflow — scripts that query infrastructure search engines, correlate SSL certificates, track newly registered domains, and flag potential C2 servers based on known fingerprints. Some of this feeds into daily monitoring dashboards that the team uses.
+I built some automation around parts of this workflow — scripts that query scanning platforms, correlate certificates, and flag potential matches based on known fingerprints. The tooling is practical, not fancy. Most of it runs on a schedule and flags anomalies for manual review.
 
-The tooling is practical, not fancy. Most of it is Python scripts that run on a schedule, output CSVs, and flag anomalies. The value is not in the code but in knowing what patterns to look for — and that only comes from doing the analysis manually first.
+The value is not in the code itself but in knowing what patterns to look for. That knowledge only comes from doing the analysis manually first, understanding how specific threat actors set up their infrastructure, and recognizing the shortcuts they take.

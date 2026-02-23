@@ -26,8 +26,8 @@
     {
       "id": "summary-infra-hunting",
       "label": "Infrastructure & Vulnerability Hunting Focus",
-      "text": "Senior Threat Researcher specializing in adversary infrastructure hunting and APT attribution using Diamond Model methodology. Maps C2 infrastructure through Shodan, Censys, FOFA, passive DNS, SSL certificate pivoting, and default configuration fingerprinting. Published numerous research articles and leads ransomware spotlight publications. Built production security tools including VirusTotal hunting automations and YARA-driven detection dashboards. Certified threat defense instructor with international workshop delivery.",
-      "keywords": ["infrastructure hunting", "c2", "shodan", "censys", "passive dns", "ssl certificates", "vulnerability", "cve", "threat hunting", "osint", "network intelligence"]
+      "text": "Senior Threat Researcher specializing in adversary infrastructure hunting and APT attribution using Diamond Model methodology. Identifies C2 infrastructure through internet scanning platforms, passive DNS, and network fingerprinting. Published numerous research articles and leads ransomware spotlight publications. Built production security tools including hunting automations and detection dashboards. Delivers advanced threat defense workshops internationally.",
+      "keywords": ["infrastructure hunting", "c2", "passive dns", "threat hunting", "osint", "diamond model"]
     }
   ],
   "skills": [
@@ -36,41 +36,27 @@
       "items": [
         "Ransomware Analysis",
         "APT Campaign Tracking",
-        "MITRE ATT&CK",
-        "IOC Enrichment",
-        "Threat Hunting",
-        "OSINT",
         "Malware Analysis",
         "Reverse Engineering",
-        "Defense Evasion",
-        "BYOVD Analysis",
-        "Kill Chain Analysis",
-        "Infrastructure Hunting",
-        "C2 Server Identification",
-        "CVE Vulnerability Hunting",
+        "Threat Hunting",
+        "OSINT",
+        "MITRE ATT&CK",
         "Diamond Model",
         "YARA Rules",
+        "Infrastructure Hunting",
         "Detection Engineering",
-        "Threat Attribution",
-        "Spot Reports",
-        "Log Analysis"
+        "Threat Intelligence"
       ]
     },
     {
-      "group": "Infrastructure Intelligence",
+      "group": "Infrastructure Hunting",
       "items": [
         "Shodan",
         "Censys",
-        "FOFA",
         "Passive DNS",
-        "WHOIS Analysis",
-        "SSL Certificate Pivoting",
-        "Network Fingerprinting",
-        "SSH Key Pivoting",
-        "HTTP Header Analysis",
-        "Cloud Infrastructure Mapping",
-        "ASN Attribution",
-        "GeoIP Analysis"
+        "WHOIS",
+        "SSL Certificate Analysis",
+        "Network Fingerprinting"
       ]
     },
     {
@@ -92,14 +78,10 @@
     {
       "group": "AI & Automation",
       "items": [
-        "Claude AI",
-        "Azure OpenAI",
-        "Gemini API",
         "LLM Pipelines",
         "Prompt Engineering",
-        "Multi-Model Routing",
         "RAG",
-        "AI Agent Development"
+        "AI-Assisted Analysis"
       ]
     },
     {
@@ -108,11 +90,7 @@
         "IDA Pro",
         "Ghidra",
         "x64dbg",
-        "OllyDbg",
-        "Process Hacker",
-        "ProcMon",
         "Wireshark",
-        "Fiddler",
         "Burp Suite"
       ]
     },
@@ -123,20 +101,12 @@
         "OpenCTI",
         "Confluence",
         "Jira",
-        "Trend Vision One",
         "Linux",
         "Git",
         "Splunk",
         "Elastic/Kibana",
-        "AWS Athena",
-        "URLScan",
-        "ThreatFox",
         "Malware Bazaar",
-        "DomainTools",
-        "Triage",
-        "Intel 471",
-        "AttackerKB",
-        "Maxmind GeoIP"
+        "DomainTools"
       ]
     }
   ],
@@ -166,7 +136,7 @@
           "id": "exp1-b3",
           "text": "Designed, built, and deployed production security tools including an AI-powered threat inquiry pipeline, a unified threat intelligence platform adopted team-wide, VirusTotal hunting automations, and MCP protocol servers — reducing manual analysis time across the team",
           "keywords": ["python", "automation", "ai", "llm", "mcp", "streamlit", "tool development", "pipeline", "threat intelligence platform"],
-          "metrics": ["10+ tools", "hundreds of hours saved monthly", "8x faster inquiry response"]
+          "metrics": []
         },
         {
           "id": "exp1-b4",
@@ -194,8 +164,8 @@
         },
         {
           "id": "exp1-b8",
-          "text": "Conducted adversary infrastructure hunting using Shodan, Censys, FOFA, and passive DNS to identify and map C2 servers, leveraging SSH key pivoting, SSL certificate analysis, HTTP header fingerprinting, and ASN attribution to track threat actor deployment patterns",
-          "keywords": ["infrastructure hunting", "c2", "shodan", "censys", "passive dns", "ssl", "threat hunting", "osint", "network intelligence", "attribution"],
+          "text": "Conducted adversary infrastructure hunting using internet scanning platforms and passive DNS to identify C2 servers and track threat actor deployment patterns",
+          "keywords": ["infrastructure hunting", "c2", "shodan", "censys", "passive dns", "threat hunting", "osint"],
           "metrics": []
         },
         {
@@ -279,7 +249,7 @@
           "id": "exp2-b5",
           "text": "Contributed threat intelligence to Ransomware Spotlight publications covering Play, LockBit, Akira, Rhysida, RansomHub, and other major groups through the threat intelligence building group",
           "keywords": ["ransomware", "threat intelligence", "campaign tracking", "cti", "published research"],
-          "metrics": ["10+ ransomware spotlights contributed"]
+          "metrics": []
         }
       ]
     },
@@ -340,28 +310,28 @@
         },
         {
           "id": "proj-skadi-b2",
-          "text": "Platform adopted team-wide as the primary analysis workflow, unifying threat intelligence across 12 analysts and replacing 4 separate tools with a single integrated pipeline",
+          "text": "Platform adopted team-wide as the primary analysis workflow, replacing multiple separate tools with a single integrated pipeline",
           "keywords": ["threat intelligence", "collaboration", "automation", "tool development", "team adoption"],
-          "metrics": ["12 analysts", "replaced 4 tools"]
+          "metrics": []
         }
       ]
     },
     {
       "id": "proj-infra-hunting",
       "name": "Infrastructure Hunting Toolkit",
-      "summary": "Methodology and tooling for adversary infrastructure identification using Shodan, Censys, FOFA, and passive DNS to map C2 servers through SSH key pivoting, SSL certificate analysis, HTTP header fingerprinting, and ASN attribution",
-      "tags": ["python", "shodan", "censys", "passive dns", "osint", "infrastructure hunting", "c2", "threat hunting"],
+      "summary": "Methodology and tooling for adversary infrastructure identification using internet scanning platforms and passive DNS to track C2 servers and threat actor deployment patterns",
+      "tags": ["python", "osint", "infrastructure hunting", "c2", "threat hunting"],
       "bullets": [
         {
           "id": "proj-infra-b1",
-          "text": "Built infrastructure hunting tooling leveraging Shodan, Censys, FOFA, and passive DNS to identify and map C2 servers across ransomware campaigns using SSH key pivoting, SSL certificate analysis, HTTP header fingerprinting, and ASN attribution",
-          "keywords": ["python", "shodan", "censys", "passive dns", "infrastructure hunting", "c2", "osint", "threat hunting", "ssl", "network intelligence"]
+          "text": "Built infrastructure hunting tooling leveraging internet scanning platforms and passive DNS to identify and track C2 servers across ransomware and APT campaigns",
+          "keywords": ["python", "infrastructure hunting", "c2", "osint", "threat hunting"]
         },
         {
           "id": "proj-infra-b2",
-          "text": "Developed network fingerprinting techniques combining cloud provider mapping, GeoIP analysis, and hosting pattern correlation to track threat actor deployment patterns and identify related infrastructure across campaigns",
-          "keywords": ["network intelligence", "threat hunting", "cloud infrastructure", "geoip", "attribution", "threat intelligence"],
-          "metrics": ["multiple campaigns tracked"]
+          "text": "Developed network fingerprinting techniques to track threat actor deployment patterns and identify related infrastructure across campaigns",
+          "keywords": ["threat hunting", "attribution", "threat intelligence"],
+          "metrics": []
         }
       ]
     },
@@ -424,9 +394,9 @@
         },
         {
           "id": "proj-conf-b2",
-          "text": "Automated 13 recurring documentation and analysis workflows, saving approximately 20 analyst-hours per week across the team by replacing manual Confluence page creation, template application, and cross-referencing",
+          "text": "Automated recurring documentation and analysis workflows, replacing manual page creation, template application, and cross-referencing",
           "keywords": ["automation", "confluence", "documentation", "tool development"],
-          "metrics": ["~20 analyst-hours/week saved"]
+          "metrics": []
         }
       ]
     },
