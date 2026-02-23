@@ -16,7 +16,7 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="sticky top-0 z-30 w-full border-b border-white/[0.04] bg-bg-primary/70 backdrop-blur-2xl">
+<header class="sticky top-0 z-30 w-full border-b border-white/[0.04]" style="background: linear-gradient(135deg, rgba(8,9,14,0.75) 0%, rgba(14,16,22,0.7) 100%); backdrop-filter: blur(40px) saturate(1.8); -webkit-backdrop-filter: blur(40px) saturate(1.8);">
   <div class="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10">
     <div class="flex items-center justify-between h-14">
       <!-- Logo / site name -->
@@ -24,7 +24,7 @@ const isActive = (href: string) => {
         <div class="relative w-8 h-8 rounded-lg bg-gradient-to-br from-accent-primary/25 via-accent-tertiary/15 to-accent-secondary/25 border border-accent-primary/20 flex items-center justify-center transition-all duration-300 group-hover:border-accent-primary/40 group-hover:shadow-[0_0_15px_-3px_rgba(0,223,162,0.2)]">
           <span class="text-sm font-bold bg-gradient-to-br from-accent-primary to-accent-tertiary bg-clip-text text-transparent font-mono">JS</span>
         </div>
-        <span class="text-text-primary font-semibold text-sm tracking-tight hidden sm:inline transition-colors group-hover:text-accent-primary">Jacob Santos</span>
+        <span class="text-text-primary font-semibold text-sm tracking-tight hidden sm:inline transition-colors group-hover:text-accent-primary font-display">Jacob Santos</span>
       </a>
 
       <!-- Desktop navigation -->
@@ -85,7 +85,7 @@ const isActive = (href: string) => {
           <span class="text-sm font-bold bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent font-mono">JS</span>
         </div>
         <div>
-          <p class="text-text-primary text-sm font-semibold">Jacob Santos</p>
+          <p class="text-text-primary text-sm font-semibold font-display">Jacob Santos</p>
           <p class="text-text-muted text-[10px] font-mono">Sr. Threat Researcher</p>
         </div>
       </div>

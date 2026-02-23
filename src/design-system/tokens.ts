@@ -11,26 +11,26 @@
 
 export const colors = {
   bg: {
-    primary: '#06080e',
-    secondary: '#0c1018',
-    card: '#111822',
-    hover: '#182030',
-    surface: '#141c28',
+    primary: '#08090e',
+    secondary: '#0e1016',
+    card: '#12141c',
+    hover: '#1a1d28',
+    surface: '#161922',
   },
   accent: {
-    primary: '#00dfa2',
-    secondary: '#7c6ef0',
-    tertiary: '#00b4d8',
-    glow: '#00ffbc',
-    warning: '#f59e0b',
-    danger: '#ef4444',
-    success: '#00dfa2',
+    primary: '#f0a63a',
+    secondary: '#8b7cf7',
+    tertiary: '#4cc9f0',
+    glow: '#ffc857',
+    warning: '#eab308',
+    danger: '#ff6b6b',
+    success: '#34d399',
     hot: '#f87171',
   },
   text: {
-    primary: '#edf2f7',
-    secondary: '#8b949e',
-    muted: '#4a5568',
+    primary: '#f0f0f5',
+    secondary: '#8a8f9e',
+    muted: '#4d5263',
   },
 } as const;
 
@@ -79,9 +79,9 @@ export const spacing = {
 // ---------------------------------------------------------------------------
 
 export const fontFamily = {
-  sans: "'Space Grotesk', system-ui, sans-serif",
+  sans: "'Inter', system-ui, sans-serif",
   mono: "'JetBrains Mono', 'Fira Code', monospace",
-  display: "'Space Grotesk', system-ui, sans-serif",
+  display: "'Outfit', system-ui, sans-serif",
 } as const;
 
 export const fontSize = {
@@ -125,10 +125,10 @@ export const borderRadius = {
 // ---------------------------------------------------------------------------
 
 export const shadows = {
-  card: '0 0 0 1px rgba(0, 223, 162, 0.04), 0 20px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03)',
-  cardHover: '0 0 30px -10px rgba(0, 223, 162, 0.1)',
-  glow: '0 0 25px rgba(0, 223, 162, 0.3)',
-  modal: '0 0 80px -20px rgba(0, 223, 162, 0.15)',
+  card: '0 0 0 1px rgba(240, 166, 58, 0.04), 0 20px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04)',
+  cardHover: '0 0 30px -10px rgba(240, 166, 58, 0.1)',
+  glow: '0 0 25px rgba(240, 166, 58, 0.3)',
+  modal: '0 0 80px -20px rgba(240, 166, 58, 0.15)',
 } as const;
 
 // ---------------------------------------------------------------------------

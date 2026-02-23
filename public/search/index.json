@@ -1,11 +1,47 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-23T11:06:15.405Z",
+  "generatedAt": "2026-02-23T18:37:10.899Z",
   "items": [
     {
       "type": "blog",
-      "title": "Building MCP Servers for Threat Intelligence",
-      "excerpt": "How I built Model Context Protocol servers to bridge AI assistants with threat intelligence platforms.",
+      "title": "From OSINT to Internal Hunting",
+      "excerpt": "How shifting from external OSINT to internal telemetry hunting changed the way I approach threat research — and where most of my published work actually comes from.",
+      "tags": [
+        "threat-intelligence",
+        "security"
+      ],
+      "url": "/blog/2025-09-20-from-osint-to-internal-hunting",
+      "keywords": []
+    },
+    {
+      "type": "blog",
+      "title": "Automating Inquiry Triage with AI",
+      "excerpt": "How I built a 9-phase AI pipeline to handle threat intelligence inquiries that used to take a week — and what it taught me about building tools from real pain points.",
+      "tags": [
+        "ai",
+        "automation",
+        "threat-intelligence",
+        "tools"
+      ],
+      "url": "/blog/2025-11-10-automating-inquiry-triage",
+      "keywords": []
+    },
+    {
+      "type": "blog",
+      "title": "What Ransomware Hunting Actually Looks Like",
+      "excerpt": "The daily reality of proactive ransomware hunting — from YARA triggers and VirusTotal dashboards to naming new families and building attack chains from telemetry.",
+      "tags": [
+        "ransomware",
+        "threat-intelligence",
+        "security"
+      ],
+      "url": "/blog/2025-12-08-ransomware-hunting-daily-workflow",
+      "keywords": []
+    },
+    {
+      "type": "blog",
+      "title": "MCP Servers for Threat Intelligence",
+      "excerpt": "How I set up Model Context Protocol servers to bridge AI assistants with threat intelligence platforms — and what I learned about tool design along the way.",
       "tags": [
         "mcp",
         "ai",
@@ -13,6 +49,17 @@
         "threat-intelligence"
       ],
       "url": "/blog/2026-01-15-building-mcp-servers",
+      "keywords": []
+    },
+    {
+      "type": "blog",
+      "title": "Infrastructure Hunting Beyond IOCs",
+      "excerpt": "Moving up the Pyramid of Pain — from hash-based detection to hunting adversary infrastructure through behavioral fingerprints and network patterns.",
+      "tags": [
+        "threat-intelligence",
+        "security"
+      ],
+      "url": "/blog/2026-02-05-infrastructure-hunting-beyond-iocs",
       "keywords": []
     },
     {
