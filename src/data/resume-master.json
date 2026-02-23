@@ -251,6 +251,25 @@
       ]
     },
     {
+      "id": "proj-infra-hunting",
+      "name": "Infrastructure Hunting Toolkit",
+      "summary": "Methodology and tooling for adversary infrastructure identification using Shodan, Censys, FOFA, and passive DNS to map C2 servers through SSH key pivoting, SSL certificate analysis, HTTP header fingerprinting, and ASN attribution",
+      "tags": ["python", "shodan", "censys", "passive dns", "osint", "infrastructure hunting", "c2", "threat hunting"],
+      "bullets": [
+        {
+          "id": "proj-infra-b1",
+          "text": "Built infrastructure hunting tooling leveraging Shodan, Censys, FOFA, and passive DNS to identify and map C2 servers across ransomware campaigns using SSH key pivoting, SSL certificate analysis, HTTP header fingerprinting, and ASN attribution",
+          "keywords": ["python", "shodan", "censys", "passive dns", "infrastructure hunting", "c2", "osint", "threat hunting", "ssl", "network intelligence"]
+        },
+        {
+          "id": "proj-infra-b2",
+          "text": "Developed network fingerprinting techniques combining cloud provider mapping, GeoIP analysis, and hosting pattern correlation to track threat actor deployment patterns and identify related infrastructure across campaigns",
+          "keywords": ["network intelligence", "threat hunting", "cloud infrastructure", "geoip", "attribution", "threat intelligence"],
+          "metrics": ["multiple campaigns tracked"]
+        }
+      ]
+    },
+    {
       "id": "proj-spot-engine",
       "name": "Threat Report Generator",
       "summary": "AI agent system transforming raw threat intel into structured security reports and publication-ready blog articles with auto-redaction",

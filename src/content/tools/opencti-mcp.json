@@ -1,7 +1,7 @@
 {
   "name": "CTI Platform Connector",
   "fullName": "AI-to-Threat-Intelligence Bridge",
-  "badge": "AI + CTI Integration",
+  "badge": "500K+ Indicators",
   "description": "Model Context Protocol server that connects AI assistants directly to a production threat intelligence platform, enabling natural language queries against indicators, campaigns, relationships, and labels — bridging the gap between AI tooling and operational threat data.",
   "impact": "Connected AI workflows to 500K+ threat indicators, enabling natural-language CTI queries that previously required manual platform navigation",
   "tech": ["Python", "FastMCP", "pycti", "OpenCTI API"],

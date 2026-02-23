@@ -6,6 +6,8 @@ const allTools = await getCollection('tools');
 const tools = allTools
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
+const [featured, ...rest] = tools;
+
 const statusConfig: Record<string, { color: string; dot: string }> = {
   'Production': { color: 'text-accent-primary', dot: 'bg-accent-primary' },
   'Active Dev': { color: 'text-accent-warning', dot: 'bg-accent-warning' },
@@ -13,29 +15,23 @@ const statusConfig: Record<string, { color: string; dot: string }> = {
 };
 
 const toolAccents = [
-  { bg: 'bg-accent-primary/10', border: 'border-accent-primary/20', text: 'text-accent-primary' },
-  { bg: 'bg-violet-500/10', border: 'border-violet-500/20', text: 'text-violet-400' },
-  { bg: 'bg-rose-500/10', border: 'border-rose-500/20', text: 'text-rose-400' },
-  { bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', text: 'text-cyan-400' },
-  { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400' },
-  { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400' },
+  { bg: 'bg-accent-primary/10', border: 'border-accent-primary/20', text: 'text-accent-primary', gradient: 'from-accent-primary/20 to-accent-primary/5' },
+  { bg: 'bg-violet-500/10', border: 'border-violet-500/20', text: 'text-violet-400', gradient: 'from-violet-500/20 to-violet-500/5' },
+  { bg: 'bg-rose-500/10', border: 'border-rose-500/20', text: 'text-rose-400', gradient: 'from-rose-500/20 to-rose-500/5' },
+  { bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', text: 'text-cyan-400', gradient: 'from-cyan-500/20 to-cyan-500/5' },
+  { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', gradient: 'from-amber-500/20 to-amber-500/5' },
+  { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400', gradient: 'from-emerald-500/20 to-emerald-500/5' },
 ];
 
 const toolIcons: Record<string, string> = {
   'Threat Inquiry Pipeline': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
   'Threat Intelligence Platform': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>`,
-  'Threat Report Generator': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>`,
+  'Infrastructure Hunting Toolkit': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>`,
   'Security Automation Suite': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.63 3.29a.75.75 0 01-1.1-.66V5.65a.75.75 0 011.1-.66l5.63 3.29m0 0l5.63-3.29a.75.75 0 011.1.66v12.15a.75.75 0 01-1.1.66l-5.63-3.29m0 0V3.75m0 11.42V20.25"/></svg>`,
   'CTI Platform Connector': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>`,
-  'AI Development Environment': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
-  'Research Knowledge Base': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>`,
-  'Threat Visual Generator': `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M2.25 18V6a2.25 2.25 0 012.25-2.25h15A2.25 2.25 0 0121.75 6v12A2.25 2.25 0 0119.5 20.25h-15A2.25 2.25 0 012.25 18z"/></svg>`,
 };
 
 const defaultIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.63 3.29a.75.75 0 01-1.1-.66V5.65a.75.75 0 011.1-.66l5.63 3.29"/></svg>`;
-
-// Aggregate all tech for the tech stack section
-const allTech = [...new Set(tools.flatMap(t => t.data.tech))].sort();
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -50,6 +46,10 @@ const jsonLd = {
   },
   "numberOfItems": tools.length,
 };
+
+const featuredData = featured.data;
+const featuredAccent = toolAccents[0];
+const featuredStatus = statusConfig[featuredData.status] || statusConfig['Planned'];
 ---
 
 <AppShell
@@ -64,48 +64,93 @@ const jsonLd = {
   <div class="content-card mb-6">
     <h1 class="section-title">Tools & Automation</h1>
     <p class="section-subtitle">
-      Production tools built for real security operations
+      Production tools built for real threat hunting operations
       <span class="text-text-muted">-- not side projects, operational infrastructure.</span>
     </p>
 
-    <div class="grid sm:grid-cols-2 gap-3">
-      {tools.map((entry, idx) => {
-        const tool = entry.data;
-        const accent = toolAccents[idx % toolAccents.length];
-        const status = statusConfig[tool.status] || statusConfig['Planned'];
-        return (
-          <a href={`/tools/${entry.id}`} class="card !p-4 group block">
-            <div class="flex items-start justify-between mb-3">
-              <div class="flex items-center gap-2.5">
-                <div class={`w-9 h-9 rounded-xl ${accent.bg} border ${accent.border} flex items-center justify-center ${accent.text} shrink-0 transition-transform duration-300 group-hover:scale-110`} set:html={toolIcons[tool.name] || defaultIcon} />
+    <!-- Featured tool: full width -->
+    <a href={`/tools/${featured.id}`} class="block group mb-3">
+      <div class={`relative rounded-xl overflow-hidden bg-gradient-to-br ${featuredAccent.gradient} border border-white/[0.06] transition-all duration-300 hover:border-accent-primary/15`} style="box-shadow: 0 0 30px -10px rgba(0, 223, 162, 0.05);">
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 32px 32px;"></div>
+        <div class="relative p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2.5 mb-3">
+                <div class={`w-10 h-10 rounded-xl ${featuredAccent.bg} border ${featuredAccent.border} flex items-center justify-center ${featuredAccent.text} shrink-0 transition-transform duration-300 group-hover:scale-110`} set:html={toolIcons[featuredData.name] || defaultIcon} />
                 <div>
-                  <h2 class="text-text-primary font-semibold text-sm group-hover:text-accent-primary transition-colors">{tool.name}</h2>
-                  <p class="text-text-muted text-[10px] font-mono">{tool.fullName}</p>
+                  <h2 class="text-text-primary font-semibold text-[15px] group-hover:text-accent-primary transition-colors leading-tight">{featuredData.name}</h2>
+                  <p class="text-text-muted text-[10px] font-mono">{featuredData.fullName}</p>
                 </div>
               </div>
-              <div class="flex items-center gap-2">
-                {tool.badge && (
-                  <span class="inline-flex items-center px-1.5 py-0.5 rounded-md bg-violet-500/10 border border-violet-500/15 text-[8px] font-mono font-medium text-violet-400 uppercase tracking-wider">
-                    {tool.badge}
-                  </span>
-                )}
-                <span class={`inline-flex items-center gap-1.5 text-[10px] font-mono ${status.color}`}>
-                  <span class={`w-1.5 h-1.5 rounded-full ${status.dot}`}></span>
-                  {tool.status}
+              <p class="text-text-muted text-xs leading-relaxed mb-3 max-w-2xl">{featuredData.description}</p>
+              <div class="flex items-start gap-1.5 mb-3 px-3 py-2 rounded-lg bg-accent-primary/[0.06] border border-accent-primary/[0.08] max-w-2xl">
+                <svg class="w-3.5 h-3.5 text-accent-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+                <span class="text-text-secondary text-[11px] leading-relaxed">{featuredData.impact}</span>
+              </div>
+              <div class="flex flex-wrap gap-1">
+                {featuredData.tech.map(t => (
+                  <span class="tag-cyan !text-[9px]">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div class="flex items-center gap-2 sm:flex-col sm:items-end sm:gap-1.5 shrink-0">
+              {featuredData.badge && (
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-violet-500/10 border border-violet-500/15 text-[8px] font-mono font-medium text-violet-400 uppercase tracking-wider whitespace-nowrap">
+                  {featuredData.badge}
                 </span>
+              )}
+              <span class={`inline-flex items-center gap-1.5 text-[10px] font-mono ${featuredStatus.color}`}>
+                <span class={`w-1.5 h-1.5 rounded-full ${featuredStatus.dot}`}></span>
+                {featuredData.status}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Remaining tools: 2x2 grid -->
+    <div class="grid sm:grid-cols-2 gap-3">
+      {rest.map((entry, idx) => {
+        const tool = entry.data;
+        const accent = toolAccents[(idx + 1) % toolAccents.length];
+        const status = statusConfig[tool.status] || statusConfig['Planned'];
+        return (
+          <a href={`/tools/${entry.id}`} class="card !p-4 group block flex flex-col">
+            <div class="flex items-start justify-between mb-2">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class={`w-9 h-9 rounded-xl ${accent.bg} border ${accent.border} flex items-center justify-center ${accent.text} shrink-0 transition-transform duration-300 group-hover:scale-110`} set:html={toolIcons[tool.name] || defaultIcon} />
+                <div class="min-w-0">
+                  <h2 class="text-text-primary font-semibold text-sm group-hover:text-accent-primary transition-colors leading-tight">{tool.name}</h2>
+                  <p class="text-text-muted text-[10px] font-mono truncate">{tool.fullName}</p>
+                </div>
               </div>
             </div>
 
-            <p class="text-text-muted text-xs leading-relaxed mb-3">{tool.description}</p>
-
-            <div class="flex items-center gap-1.5 mb-3 px-2.5 py-1.5 rounded-lg bg-accent-primary/[0.04] border border-accent-primary/[0.06]">
-              <svg class="w-3 h-3 text-accent-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-              <span class="text-text-secondary text-[10px]">{tool.impact}</span>
+            <div class="flex items-center gap-2 mb-2">
+              {tool.badge && (
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded-md bg-violet-500/10 border border-violet-500/15 text-[8px] font-mono font-medium text-violet-400 uppercase tracking-wider">
+                  {tool.badge}
+                </span>
+              )}
+              <span class={`inline-flex items-center gap-1.5 text-[10px] font-mono ${status.color}`}>
+                <span class={`w-1.5 h-1.5 rounded-full ${status.dot}`}></span>
+                {status.color === 'text-accent-primary' ? 'Prod' : tool.status}
+              </span>
             </div>
 
-            <div class="flex flex-wrap gap-1">
+            <p class="text-text-muted text-xs leading-relaxed mb-3 flex-1">{tool.description}</p>
+
+            <div class="flex items-start gap-1.5 mb-3 px-2.5 py-1.5 rounded-lg bg-accent-primary/[0.04] border border-accent-primary/[0.06]">
+              <svg class="w-3 h-3 text-accent-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+              <span class="text-text-secondary text-[10px] leading-relaxed">{tool.impact}</span>
+            </div>
+
+            <div class="flex flex-wrap gap-1 mt-auto">
               {tool.tech.map(t => (
                 <span class="tag-cyan !text-[8px]">{t}</span>
               ))}
@@ -124,7 +169,7 @@ const jsonLd = {
         <span class="text-text-primary text-xs font-semibold">Tech Stack</span>
       </div>
       <div class="flex flex-wrap gap-1.5">
-        {['Python', 'Node.js', 'TypeScript', 'Claude AI', 'FastMCP', 'MCP SDK', 'Streamlit', 'Express', 'SQLite', 'WebSocket', 'Confluence API', 'VirusTotal API', 'OpenCTI', 'pycti', 'Gemini API'].map(tech => (
+        {['Python', 'Claude AI', 'Azure OpenAI', 'FastMCP', 'Streamlit', 'Shodan API', 'Censys API', 'Passive DNS', 'VirusTotal API', 'OpenCTI', 'pycti', 'Confluence API', 'RAG', 'OSINT'].map(tech => (
           <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06] text-[9px] font-mono text-text-secondary">{tech}</span>
         ))}
       </div>
@@ -141,7 +186,7 @@ const jsonLd = {
         <span class="text-text-primary text-xs font-semibold">Built for the team, used every day</span>
       </div>
       <p class="text-text-muted text-xs leading-relaxed">
-        Every tool here was born from a real workflow pain point. Together they save hundreds of hours per month on inquiry processing, report generation, and threat enrichment.
+        Every tool here was born from a real threat hunting workflow pain point. Together they save hundreds of analyst-hours per month across inquiry triage, infrastructure hunting, threat intelligence analysis, and report generation.
       </p>
     </div>
   </div>
