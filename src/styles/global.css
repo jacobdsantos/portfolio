@@ -13,12 +13,6 @@
 
   body {
     @apply bg-bg-primary text-text-primary font-sans;
-    background-image: url('/images/pages/site-bg-texture.jpg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-blend-mode: overlay;
   }
 
   ::selection {

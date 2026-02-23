@@ -52,6 +52,7 @@ const whatIDo = [
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`,
     description: 'Deep-dive analysis of ransomware families, APT campaigns, and adversary tooling. Published on the company research blog.',
     link: '/research',
+    bgImage: '/images/cards/whatido-research.jpg',
   },
   {
     title: 'Security Automation',
@@ -60,6 +61,7 @@ const whatIDo = [
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
     description: 'Building AI-powered tools that multiply team capability -- inquiry pipelines, threat intel platforms, MCP servers, and report generators.',
     link: '/tools',
+    bgImage: '/images/cards/whatido-automation.jpg',
   },
   {
     title: 'Intelligence Dissemination',
@@ -68,6 +70,7 @@ const whatIDo = [
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>`,
     description: 'Delivering advanced threat defense workshops for multinational participants, government agencies, and enterprises across multiple countries.',
     link: '/speaking',
+    bgImage: '/images/cards/whatido-dissemination.jpg',
   },
   {
     title: 'Tool Development',
@@ -76,6 +79,7 @@ const whatIDo = [
     icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
     description: 'Production tools used daily by the team -- MCP servers, AI pipelines, desktop applications, and Confluence integrations.',
     link: '/tools',
+    bgImage: '/images/cards/whatido-tooldev.jpg',
   },
 ];
 
@@ -109,6 +113,8 @@ const personJsonLd = {
 
   <!-- Hero Section -->
   <section class="content-card mb-6 relative overflow-hidden">
+    <!-- Background image -->
+    <img src="/images/cards/hero-bg.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" loading="eager" aria-hidden="true" />
     <!-- Decorative gradient orb -->
     <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-accent-primary/[0.08] to-accent-secondary/[0.04] rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-16 -left-16 w-40 h-40 bg-gradient-to-tr from-accent-tertiary/[0.04] to-transparent rounded-full blur-3xl pointer-events-none"></div>
@@ -191,8 +197,11 @@ const personJsonLd = {
     <p class="section-subtitle">Combining threat research with automation and intelligence dissemination.</p>
     <div class="grid sm:grid-cols-2 gap-3">
       {whatIDo.map((item, idx) => (
-        <a href={item.link} class="card !p-4 group block" data-reveal data-reveal-delay={String(idx + 1)}>
-          <div class="flex items-start gap-3">
+        <a href={item.link} class="card !p-0 group block relative overflow-hidden" data-reveal data-reveal-delay={String(idx + 1)}>
+          {item.bgImage && (
+            <img src={item.bgImage} alt="" class="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none" loading="lazy" aria-hidden="true" />
+          )}
+          <div class="flex items-start gap-3 p-4 relative z-[1]">
             <div class={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${item.accent} transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_15px_-3px_currentColor]`} set:html={item.icon} />
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2">
@@ -253,6 +262,8 @@ const personJsonLd = {
 
   <!-- CTA Section -->
   <section class="relative rounded-2xl overflow-hidden border border-white/[0.06] p-6 md:p-8 text-center" data-reveal>
+    <!-- Background image -->
+    <img src="/images/cards/cta-bg.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" loading="lazy" aria-hidden="true" />
     <!-- Background layers -->
     <div class="absolute inset-0 bg-gradient-to-br from-accent-primary/[0.04] via-bg-surface/80 to-accent-secondary/[0.04]"></div>
     <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 24px 24px;"></div>

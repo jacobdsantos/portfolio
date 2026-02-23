@@ -8,6 +8,7 @@ const valuePillars = [
     desc: 'Proactive threat hunting through YARA rules, infrastructure fingerprinting, and telemetry analysis -- from OSINT to APT attribution.',
     color: 'text-red-400',
     bg: 'bg-red-500/[0.08]',
+    bgImage: '/images/cards/about-hunter.jpg',
   },
   {
     icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>`,
@@ -15,6 +16,7 @@ const valuePillars = [
     desc: 'Every tool solves a real workflow problem -- from threat intelligence gathering to inquiry triage to automated detection. Built and shipped production tools adopted by the team.',
     color: 'text-accent-primary',
     bg: 'bg-accent-primary/[0.08]',
+    bgImage: '/images/cards/about-builder.jpg',
   },
   {
     icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347"/></svg>`,
@@ -22,6 +24,7 @@ const valuePillars = [
     desc: 'Delivered hands-on workshops for multinational groups, government agencies, and enterprises across multiple countries. Created conference lab content for 2 consecutive years.',
     color: 'text-violet-400',
     bg: 'bg-violet-500/[0.08]',
+    bgImage: '/images/cards/about-instructor.jpg',
   },
 ];
 
@@ -147,9 +150,12 @@ const personJsonLd = {
     <h3 class="text-lg font-semibold text-text-primary mb-4 tracking-tight font-display" data-reveal>What I Bring</h3>
     <div class="space-y-3 mb-8" data-reveal>
       {valuePillars.map(pillar => (
-        <div class="flex items-start gap-4 p-4 rounded-xl bg-bg-surface/40 border border-white/[0.04] hover:border-white/[0.08] transition-all">
-          <div class={`w-9 h-9 rounded-xl ${pillar.bg} border border-white/[0.06] flex items-center justify-center shrink-0 ${pillar.color}`} set:html={pillar.icon} />
-          <div>
+        <div class="flex items-start gap-4 p-4 rounded-xl bg-bg-surface/40 border border-white/[0.04] hover:border-white/[0.08] transition-all relative overflow-hidden">
+          {pillar.bgImage && (
+            <img src={pillar.bgImage} alt="" class="absolute inset-0 w-full h-full object-cover opacity-[0.1] pointer-events-none" loading="lazy" aria-hidden="true" />
+          )}
+          <div class={`w-9 h-9 rounded-xl ${pillar.bg} border border-white/[0.06] flex items-center justify-center shrink-0 ${pillar.color} relative z-[1]`} set:html={pillar.icon} />
+          <div class="relative z-[1]">
             <h4 class={`${pillar.color} font-semibold text-sm mb-0.5`}>{pillar.title}</h4>
             <p class="text-text-muted text-xs leading-relaxed">{pillar.desc}</p>
           </div>

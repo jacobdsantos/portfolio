@@ -3,8 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="404 — Not Found">
-  <div class="min-h-screen flex items-center justify-center p-6">
-    <div class="text-center max-w-md">
+  <div class="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+    <!-- Background image -->
+    <img src="/images/cards/404-lost.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" loading="eager" aria-hidden="true" />
+    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/60 to-[var(--bg-primary)]/80 pointer-events-none"></div>
+
+    <div class="text-center max-w-md relative z-10">
       <!-- Glitch-style 404 -->
       <div class="relative mb-6">
         <span class="text-8xl font-bold font-mono bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent">404</span>
@@ -16,7 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Maybe it's classified under TLP:RED.
       </p>
 
-      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(0,223,162,0.4)] hover:scale-[1.02]">
+      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-bg-primary font-semibold text-sm transition-all hover:shadow-[0_0_30px_-5px_rgba(240,166,58,0.4)] hover:scale-[1.02]">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
         </svg>
