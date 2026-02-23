@@ -57,7 +57,7 @@ const harvardBullets = {
     <div class="resume-page max-w-[800px] mx-auto">
 
       <!-- Header -->
-      <header class="mb-6 border-b border-white/[0.06] pb-6">
+      <header class="mb-6 border-b border-white/[0.06] pb-6 animate-fade-up">
         <h1 class="text-3xl font-bold text-text-primary tracking-tight">Jacob Santos</h1>
         <p class="text-accent-primary text-lg font-medium mt-1">Senior Threat Researcher</p>
         <div class="flex flex-wrap items-center gap-x-5 gap-y-1 mt-3 text-text-secondary text-sm font-mono">
@@ -74,7 +74,7 @@ const harvardBullets = {
       </header>
 
       <!-- Summary -->
-      <section class="mb-6">
+      <section class="mb-6" data-reveal>
         <h2 class="resume-section-title">Summary</h2>
         <p class="text-text-secondary text-sm leading-relaxed">
           Senior threat researcher with expertise in ransomware analysis, APT campaign tracking, and defense evasion techniques.
@@ -85,7 +85,7 @@ const harvardBullets = {
       </section>
 
       <!-- Experience -->
-      <section class="mb-6">
+      <section class="mb-6" data-reveal>
         <h2 class="resume-section-title">Experience</h2>
 
         <div class="mb-5">
@@ -129,7 +129,7 @@ const harvardBullets = {
       </section>
 
       <!-- Technical Skills -->
-      <section class="mb-6">
+      <section class="mb-6" data-reveal>
         <h2 class="resume-section-title">Technical Skills</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
           {resumeData.skills.map(group => (
@@ -142,7 +142,7 @@ const harvardBullets = {
       </section>
 
       <!-- Key Projects -->
-      <section class="mb-6">
+      <section class="mb-6" data-reveal>
         <h2 class="resume-section-title">Key Projects</h2>
         <ul class="space-y-1.5 text-sm">
           {resumeData.projects.slice(0, 5).map(proj => (
@@ -154,7 +154,7 @@ const harvardBullets = {
       </section>
 
       <!-- Selected Publications -->
-      <section class="mb-6">
+      <section class="mb-6" data-reveal>
         <h2 class="resume-section-title">Selected Publications</h2>
         <ul class="space-y-1 text-sm">
           {resumeData.publications.map(pub => (
@@ -170,7 +170,7 @@ const harvardBullets = {
       </section>
 
       <!-- Speaking & Workshops -->
-      <section class="mb-6">
+      <section class="mb-6" data-reveal>
         <h2 class="resume-section-title">Speaking & Workshops</h2>
         <ul class="space-y-1 text-sm text-text-secondary">
           <li><span class="text-text-primary font-medium">International Workshops</span> — Delivered Advanced Threat Defense programs for multinational participants through INTERPOL and JICA programs, and for government and enterprise organizations across multiple countries</li>
@@ -180,7 +180,7 @@ const harvardBullets = {
       </section>
 
       <!-- Education -->
-      <section class="mb-6">
+      <section class="mb-6" data-reveal>
         <h2 class="resume-section-title">Education</h2>
         {resumeData.education.map(edu => (
           <div class="text-sm">
