@@ -4,7 +4,14 @@
   "badge": "End-to-End Automation",
   "description": "9-phase AI pipeline that automates the full threat inquiry lifecycle: understanding email context, researching across internal and external sources, enriching IOCs, verifying detection coverage, drafting analyst responses, generating visual assets, and publishing documentation — all autonomously within minutes.",
   "impact": "Reduced threat inquiry response time from 2+ hours to under 15 minutes — 8x faster turnaround for customer-facing security advisories",
-  "tech": ["Python", "Claude AI", "VirusTotal API", "OSINT", "Confluence API"],
+  "tech": [
+    "Python",
+    "Claude AI",
+    "VirusTotal API",
+    "OSINT",
+    "Confluence API"
+  ],
   "status": "Production",
-  "order": 1
+  "order": 1,
+  "image": "/images/tools/titas.jpg"
 }

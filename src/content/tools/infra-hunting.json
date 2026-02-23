@@ -4,7 +4,16 @@
   "badge": "Proactive Hunting",
   "description": "Methodology and tooling for adversary infrastructure identification using Shodan, Censys, FOFA, and passive DNS. Maps C2 servers through SSH key pivoting, SSL certificate analysis, HTTP header fingerprinting, ASN attribution, and cloud provider mapping — turning network artifacts into threat actor attribution and campaign tracking.",
   "impact": "Identified and mapped active C2 infrastructure across multiple ransomware campaigns, enabling proactive detection before customer impact",
-  "tech": ["Python", "Shodan API", "Censys API", "FOFA", "Passive DNS", "SSL Analysis", "OSINT"],
+  "tech": [
+    "Python",
+    "Shodan API",
+    "Censys API",
+    "FOFA",
+    "Passive DNS",
+    "SSL Analysis",
+    "OSINT"
+  ],
   "status": "Production",
-  "order": 3
+  "order": 3,
+  "image": "/images/tools/infra-hunting.jpg"
 }

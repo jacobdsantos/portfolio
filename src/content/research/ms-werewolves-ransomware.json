@@ -8,5 +8,6 @@
   "description": "Thread investigating the newly identified Werewolves ransomware group after an external researcher's blog post caught the Threat Hunting team's attention.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 30
+  "order": 30,
+  "image": "/images/research/ms-werewolves-ransomware.jpg"
 }

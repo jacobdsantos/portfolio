@@ -10,5 +10,6 @@
   "description": "Discovered Charon ransomware using APT-grade techniques — DLL sideloading via Edge.exe, hybrid Curve25519/ChaCha20 encryption.",
   "summary": "Charon ransomware blurs the line between APT operations and cybercrime by adopting techniques previously attributed to Earth Baxia, a state-sponsored threat actor. The group leverages DLL sideloading through legitimate Microsoft Edge binaries, uses hybrid Curve25519/ChaCha20 encryption that makes file recovery virtually impossible, and employs multi-stage loaders to evade detection. This analysis maps the crossover between APT tradecraft and ransomware operations, including shared infrastructure indicators and tooling overlaps.",
   "source": "Trend Micro Research Blog",
-  "order": 8
+  "order": 8,
+  "image": "/images/research/charon-ransomware.jpg"
 }

@@ -9,5 +9,6 @@
   "description": "Identified an active campaign spreading self-propagating malware via WhatsApp ZIP attachments, targeting Brazilian users with persistence and account hijacking.",
   "summary": "An active campaign was identified spreading malware through WhatsApp via ZIP file attachments. When executed, the malware establishes persistence and hijacks the compromised WhatsApp account to propagate further by automatically sending malicious messages to the victim's contacts. The self-propagating nature enables rapid spread through trust networks. The research details the infection chain, persistence mechanisms, WhatsApp API abuse for propagation, and C2 communication protocols targeting Brazilian users.",
   "source": "Trend Micro Research Blog",
-  "order": 5
+  "order": 5,
+  "image": "/images/research/whatsapp-self-propagating.jpg"
 }

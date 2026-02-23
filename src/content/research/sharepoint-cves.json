@@ -9,5 +9,6 @@
   "description": "Provided proactive security analysis of CVE-2025-53770 and CVE-2025-53771 — SharePoint vulnerabilities enabling unauthenticated remote code execution.",
   "summary": "CVE-2025-53770 and CVE-2025-53771 are vulnerabilities in on-premise Microsoft SharePoint Servers that evolved from previously patched flaws, enabling unauthenticated remote code execution through advanced exploitation chains. This research provides proactive security insights including detailed technical analysis of the vulnerability mechanics, proof-of-concept walkthrough, and practical detection and mitigation strategies for defenders. The article emphasizes the importance of patch management for internet-facing collaboration platforms.",
   "source": "Trend Micro Research Blog",
-  "order": 15
+  "order": 15,
+  "image": "/images/research/sharepoint-cves.jpg"
 }

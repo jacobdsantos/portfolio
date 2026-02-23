@@ -10,5 +10,6 @@
   "description": "Thread on CVE-2025-53770 and CVE-2025-53771 — vulnerabilities in on-premise Microsoft SharePoint servers discovered at Pwn2Own Berlin, with TippingPoint customers protected since May.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 13
+  "order": 13,
+  "image": "/images/research/ms-threat-research-jul2025a.jpg"
 }

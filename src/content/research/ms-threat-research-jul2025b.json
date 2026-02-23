@@ -9,5 +9,6 @@
   "description": "Thread exposing the newly identified Charon ransomware and its advanced methods for breaching and spreading within organizations.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 14
+  "order": 14,
+  "image": "/images/research/ms-threat-research-jul2025b.jpg"
 }

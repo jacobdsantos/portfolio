@@ -9,5 +9,6 @@
   "description": "Thread on a new Agenda ransomware campaign continuing the group's use of Linux binaries on Windows systems, with new techniques and tooling building on earlier 2025 attacks.",
   "source": "X/Twitter (@trendai_RSRCH)",
   "type": "microstory",
-  "order": 2
+  "order": 2,
+  "image": "/images/research/ms-trendai-rsrch-2026b.jpg"
 }

@@ -10,5 +10,6 @@
   "description": "Thread analyzing SmokeLoader's use of steganography techniques to deliver W3CryptoLocker ransomware payloads while evading detection mechanisms.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 22
+  "order": 22,
+  "image": "/images/research/ms-smokeloader-w3cryptolocker.jpg"
 }

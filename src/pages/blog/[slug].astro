@@ -82,6 +82,14 @@ const jsonLd = {
   ]}
 >
   <article>
+    <!-- Cover image -->
+    {post.data.coverImage && (
+      <div class="relative rounded-2xl overflow-hidden mb-6">
+        <img src={post.data.coverImage} alt={post.data.title} class="w-full h-56 md:h-72 object-cover" loading="eager" />
+        <div class="absolute inset-0 bg-gradient-to-t from-bg-primary/80 via-transparent to-transparent"></div>
+      </div>
+    )}
+
     <!-- Article header -->
     <div class="content-card mb-6">
       <div class="flex items-center gap-3 text-[11px] font-mono text-text-muted mb-4">

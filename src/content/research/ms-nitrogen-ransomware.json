@@ -9,5 +9,6 @@
   "description": "Thread on the rapidly evolving Nitrogen ransomware group using social engineering via fake updates and malicious browser extensions for initial access.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 12
+  "order": 12,
+  "image": "/images/research/ms-nitrogen-ransomware.jpg"
 }

@@ -95,11 +95,18 @@ const jsonLd = {
   ]}
 >
   <!-- Hero header -->
-  <div class={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${gradient} mb-8`}>
-    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 24px 24px;"></div>
-    <div class="absolute inset-0 flex items-center justify-center text-white/10">
-      <Fragment set:html={getIcon(article.tags)} />
-    </div>
+  <div class={`relative rounded-2xl overflow-hidden ${article.image ? '' : `bg-gradient-to-br ${gradient}`} mb-8`}>
+    {article.image ? (
+      <img src={article.image} alt={article.title} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-t from-bg-primary/90 via-bg-primary/40 to-transparent"></div>
+    ) : (
+      <>
+        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 24px 24px;"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-white/10">
+          <Fragment set:html={getIcon(article.tags)} />
+        </div>
+      </>
+    )}
     <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-bg-primary to-transparent"></div>
 
     <div class="relative p-6 md:p-10 pt-16 md:pt-24">

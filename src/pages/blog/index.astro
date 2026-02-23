@@ -81,7 +81,14 @@ const jsonLd = {
             day: 'numeric',
           });
           return (
-            <a href={`/blog/${post.slug}`} class="card !p-5 group block">
+            <a href={`/blog/${post.slug}`} class="card !p-0 group block overflow-hidden">
+              {post.data.coverImage && (
+                <div class="relative h-44 overflow-hidden">
+                  <img src={post.data.coverImage} alt={post.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-transparent to-transparent"></div>
+                </div>
+              )}
+              <div class={post.data.coverImage ? 'p-5 pt-3' : 'p-5'}>
               <div class="flex items-start justify-between gap-4 mb-2">
                 <h2 class="text-text-primary text-base font-semibold group-hover:text-accent-primary transition-colors leading-snug flex-1">
                   {post.data.title}
@@ -116,6 +123,7 @@ const jsonLd = {
                   <span class="text-text-muted/30">|</span>
                   <span>{readingTime}</span>
                 </div>
+              </div>
               </div>
             </a>
           );

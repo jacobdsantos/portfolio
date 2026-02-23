@@ -10,5 +10,6 @@
   "description": "Revisiting the tactics of UNC3886, a China-nexus threat actor targeting network edge devices and virtualization infrastructure.",
   "summary": "UNC3886 is a sophisticated China-nexus espionage group that specializes in targeting network edge devices, virtualization platforms, and security appliances — infrastructure that typically lacks endpoint detection. This article revisits their evolving tactics including exploitation of zero-day vulnerabilities in Fortinet and VMware products, custom backdoors designed for hypervisor environments, and persistence mechanisms that survive reboots and patches. Includes updated TTPs, infrastructure analysis, and defensive recommendations for organizations running exposed network appliances.",
   "source": "Trend Micro Research Blog",
-  "order": 16
+  "order": 16,
+  "image": "/images/research/unc3886.jpg"
 }

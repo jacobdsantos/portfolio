@@ -139,12 +139,18 @@ const jsonLd = {
             data-type={article.type || 'blog'}
             data-search-text={`${article.title} ${article.description} ${article.tags.join(' ')} ${article.summary || ''}`}
           >
-            <!-- Gradient thumbnail -->
-            <div class={`relative h-36 bg-gradient-to-br ${gradients[idx % gradients.length]} overflow-hidden`}>
-              <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px;"></div>
-              <div class="research-thumb absolute inset-0 flex items-center justify-center text-white/20">
-                <Fragment set:html={getIcon(article.tags)} />
-              </div>
+            <!-- Thumbnail: AI image or gradient fallback -->
+            <div class={`relative h-36 ${article.image ? '' : `bg-gradient-to-br ${gradients[idx % gradients.length]}`} overflow-hidden`}>
+              {article.image ? (
+                <img src={article.image} alt={article.title} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              ) : (
+                <>
+                  <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                  <div class="research-thumb absolute inset-0 flex items-center justify-center text-white/20">
+                    <Fragment set:html={getIcon(article.tags)} />
+                  </div>
+                </>
+              )}
               <div class="absolute top-3 right-3 flex gap-1.5">
                 {(article.date.includes('2026')) && (
                   <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-accent-primary/20 backdrop-blur-sm text-[10px] font-mono text-accent-primary border border-accent-primary/20 animate-pulse">

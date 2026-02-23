@@ -70,8 +70,13 @@ const featuredStatus = statusConfig[featuredData.status] || statusConfig['Planne
 
     <!-- Featured tool: full width -->
     <a href={`/tools/${featured.id}`} class="block group mb-3" data-reveal>
-      <div class={`relative rounded-xl overflow-hidden bg-gradient-to-br ${featuredAccent.gradient} border border-white/[0.06] transition-all duration-300 hover:border-accent-primary/15`} style="box-shadow: 0 0 30px -10px rgba(240, 166, 58, 0.06);">
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 32px 32px;"></div>
+      <div class={`relative rounded-xl overflow-hidden ${featuredData.image ? '' : `bg-gradient-to-br ${featuredAccent.gradient}`} border border-white/[0.06] transition-all duration-300 hover:border-accent-primary/15`} style="box-shadow: 0 0 30px -10px rgba(240, 166, 58, 0.06);">
+        {featuredData.image ? (
+          <img src={featuredData.image} alt={featuredData.name} class="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-bg-primary/95 via-bg-primary/80 to-bg-primary/60"></div>
+        ) : (
+          <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 32px 32px;"></div>
+        )}
         <div class="relative p-5 sm:p-6">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
             <div class="flex-1 min-w-0">
@@ -118,7 +123,14 @@ const featuredStatus = statusConfig[featuredData.status] || statusConfig['Planne
         const accent = toolAccents[(idx + 1) % toolAccents.length];
         const status = statusConfig[tool.status] || statusConfig['Planned'];
         return (
-          <a href={`/tools/${entry.id}`} class="card !p-4 group block flex flex-col">
+          <a href={`/tools/${entry.id}`} class="card !p-0 group block flex flex-col overflow-hidden">
+            {tool.image && (
+              <div class="relative h-32 overflow-hidden">
+                <img src={tool.image} alt={tool.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-transparent to-transparent"></div>
+              </div>
+            )}
+            <div class={tool.image ? 'p-4 pt-2 flex flex-col flex-1' : 'p-4 flex flex-col flex-1'}>
             <div class="flex items-start justify-between mb-2">
               <div class="flex items-center gap-2.5 min-w-0">
                 <div class={`w-9 h-9 rounded-xl ${accent.bg} border ${accent.border} flex items-center justify-center ${accent.text} shrink-0 transition-transform duration-300 group-hover:scale-110`} set:html={toolIcons[tool.name] || defaultIcon} />
@@ -154,6 +166,7 @@ const featuredStatus = statusConfig[featuredData.status] || statusConfig['Planne
               {tool.tech.map(t => (
                 <span class="tag-cyan !text-[8px]">{t}</span>
               ))}
+            </div>
             </div>
           </a>
         );

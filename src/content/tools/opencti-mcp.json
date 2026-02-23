@@ -4,7 +4,13 @@
   "badge": "500K+ Indicators",
   "description": "Model Context Protocol server that connects AI assistants directly to a production threat intelligence platform, enabling natural language queries against indicators, campaigns, relationships, and labels — bridging the gap between AI tooling and operational threat data.",
   "impact": "Connected AI workflows to 500K+ threat indicators, enabling natural-language CTI queries that previously required manual platform navigation",
-  "tech": ["Python", "FastMCP", "pycti", "OpenCTI API"],
+  "tech": [
+    "Python",
+    "FastMCP",
+    "pycti",
+    "OpenCTI API"
+  ],
   "status": "Production",
-  "order": 5
+  "order": 5,
+  "image": "/images/tools/opencti-mcp.jpg"
 }

@@ -10,5 +10,6 @@
   "description": "Thread on Agenda ransomware exploiting MeshAgent and Windows Subsystem for Linux (WSL) to deploy Linux payloads on Windows systems, raising the bar for cross-platform sophistication.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 17
+  "order": 17,
+  "image": "/images/research/ms-threat-research-jun2025a.jpg"
 }

@@ -4,6 +4,7 @@ interface CarouselItem {
   description: string;
   href: string;
   tags: string[];
+  image?: string;
 }
 
 interface Props {
@@ -50,9 +51,13 @@ const gradients = [
         rel="noopener"
         class="carousel-card group"
       >
-        <!-- Gradient header -->
-        <div class={`h-24 bg-gradient-to-br ${gradients[idx % gradients.length]} relative overflow-hidden rounded-t-xl`}>
-          <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px;"></div>
+        <!-- Image or gradient header -->
+        <div class={`h-24 ${item.image ? '' : `bg-gradient-to-br ${gradients[idx % gradients.length]}`} relative overflow-hidden rounded-t-xl`}>
+          {item.image ? (
+            <img src={item.image} alt={item.title} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          ) : (
+            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 20px 20px;"></div>
+          )}
           <!-- Hover arrow indicator -->
           <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div class="w-6 h-6 rounded-md bg-accent-primary/90 flex items-center justify-center">

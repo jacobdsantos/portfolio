@@ -9,5 +9,6 @@
   "description": "Thread analyzing five distinct ransomware groups written in Rust identified in early December 2025, signaling an accelerated shift in how threat actors build and scale attacks.",
   "source": "X/Twitter (@trendai_RSRCH)",
   "type": "microstory",
-  "order": 1
+  "order": 1,
+  "image": "/images/research/ms-trendai-rsrch-2026a.jpg"
 }

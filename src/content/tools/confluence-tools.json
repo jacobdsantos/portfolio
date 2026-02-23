@@ -4,7 +4,13 @@
   "badge": "13+ Production Tools",
   "description": "Collection of 13+ purpose-built tools covering RAG-powered report generation, malware-as-a-service analysis, PowerPoint threat brief analysis, AI chatbot for threat queries, BEC investigation workflows, and security log analysis — each automating a recurring analyst task.",
   "impact": "Automated 13 recurring documentation and analysis workflows, saving approximately 20 analyst-hours per week across the team",
-  "tech": ["Python", "Azure OpenAI", "Confluence API", "RAG"],
+  "tech": [
+    "Python",
+    "Azure OpenAI",
+    "Confluence API",
+    "RAG"
+  ],
   "status": "Production",
-  "order": 4
+  "order": 4,
+  "image": "/images/tools/confluence-tools.jpg"
 }

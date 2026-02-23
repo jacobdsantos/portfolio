@@ -10,5 +10,6 @@
   "description": "Thread detailing how the Agenda ransomware group incorporated the open-source TrueSightKiller tool to disable antivirus and EDR systems via BYOVD techniques.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 21
+  "order": 21,
+  "image": "/images/research/ms-agenda-truesightkiller.jpg"
 }

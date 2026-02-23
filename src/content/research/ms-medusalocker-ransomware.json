@@ -9,5 +9,6 @@
   "description": "Thread detailing a sophisticated new three-pronged attack strategy employed by MedusaLocker ransomware threat actors identified by the Threat Hunting team.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 26
+  "order": 26,
+  "image": "/images/research/ms-medusalocker-ransomware.jpg"
 }

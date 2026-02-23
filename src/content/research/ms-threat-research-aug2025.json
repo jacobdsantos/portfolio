@@ -10,5 +10,6 @@
   "description": "Thread analyzing the Chaos ransomware campaign leveraging malicious DLL sideloading and kernel-level driver deployment for broad defense evasion against EDR solutions.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 10
+  "order": 10,
+  "image": "/images/research/ms-threat-research-aug2025.jpg"
 }

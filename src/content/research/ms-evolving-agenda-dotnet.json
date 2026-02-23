@@ -10,5 +10,6 @@
   "description": "Thread on an Agenda ransomware variant leveraging a highly obfuscated .NET loader using Reflective Loading and .NET Reactor for defense evasion.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 24
+  "order": 24,
+  "image": "/images/research/ms-evolving-agenda-dotnet.jpg"
 }

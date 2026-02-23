@@ -9,5 +9,6 @@
   "description": "Thread on the emergence of the Morpheus ransomware group and its new data-leak site, with early victims including an Australian pharmaceutical firm and a German electronics company.",
   "source": "X/Twitter (@TrendMicroRSRCH)",
   "type": "microstory",
-  "order": 23
+  "order": 23,
+  "image": "/images/research/ms-morpheus-ransomware.jpg"
 }
