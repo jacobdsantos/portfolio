@@ -222,7 +222,6 @@ export const KEYWORD_WEIGHTS: Record<string, number> = {
   'purple team': 2.0,
   'soc': 2.0,
   'security operations': 2.0,
-  'threat modeling': 2.2,
   'risk assessment': 1.8,
   'compliance': 1.5,
   'nist': 1.5,
