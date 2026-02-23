@@ -27,6 +27,7 @@ const tools = defineCollection({
     status: z.enum(['Production', 'Active Dev', 'Planned']),
     order: z.number().optional(),
     badge: z.string().optional(),
+    image: z.string().optional(),
   }),
 });
 
