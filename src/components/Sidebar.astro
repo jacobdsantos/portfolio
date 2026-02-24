@@ -36,20 +36,16 @@ const stats = [
 <div class="sidebar-card">
   <!-- Avatar & identity -->
   <div class="text-center mb-5">
-    <div class="relative w-full max-w-[220px] mx-auto mb-4">
-      <!-- Outer animated glow -->
-      <div class="absolute -inset-2 rounded-2xl bg-gradient-to-br from-accent-primary/20 via-accent-secondary/10 to-accent-tertiary/20 animate-glow blur-md"></div>
-      <!-- Logo container -->
-      <div class="relative rounded-2xl bg-bg-secondary/80 border border-accent-primary/15 p-4 overflow-hidden group backdrop-blur-sm">
-        <img
-          src="/images/trendai-tagline.png"
-          alt="Trend AI"
-          class="w-full h-auto object-contain"
-          loading="eager"
-        />
-        <!-- Subtle scanline -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-primary/[0.02] to-transparent h-8 animate-float pointer-events-none"></div>
-      </div>
+    <div class="relative w-32 h-32 mx-auto mb-4">
+      <!-- Subtle outer glow -->
+      <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent-primary/15 via-accent-secondary/10 to-accent-tertiary/15 blur-sm"></div>
+      <!-- Photo -->
+      <img
+        src="/images/profile.jpg"
+        alt="Jacob Santos"
+        class="relative w-full h-full object-cover object-top rounded-2xl border border-white/[0.08]"
+        loading="eager"
+      />
     </div>
     <h1 class="text-xl font-semibold text-text-primary tracking-tight font-display">Jacob Santos</h1>
     <p class="text-text-muted text-[11px] mt-1.5 leading-relaxed max-w-[220px] mx-auto">Threat researcher. Tool builder.<br/>Intelligence dissemination.</p>
