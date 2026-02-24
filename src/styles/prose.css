@@ -4,13 +4,13 @@
   --prose-body: #8b949e;
   --prose-headings: #e8edf5;
   --prose-lead: #8b949e;
-  --prose-links: #00dfa2;
+  --prose-links: #f0a63a;
   --prose-bold: #e8edf5;
   --prose-counters: #545d68;
-  --prose-bullets: #00dfa2;
+  --prose-bullets: #f0a63a;
   --prose-hr: rgba(255, 255, 255, 0.06);
   --prose-quotes: #8b949e;
-  --prose-quote-borders: #00dfa2;
+  --prose-quote-borders: #f0a63a;
   --prose-captions: #545d68;
   --prose-code: #e8edf5;
   --prose-pre-code: #e8edf5;
@@ -266,5 +266,5 @@
 
 .prose .task-list-item input[type="checkbox"] {
   margin-right: 0.5rem;
-  accent-color: #00dfa2;
+  accent-color: #f0a63a;
 }

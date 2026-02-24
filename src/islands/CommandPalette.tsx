@@ -276,7 +276,7 @@ export default function CommandPalette() {
                       aria-selected={isSelected}
                       className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${
                         isSelected
-                          ? 'bg-[#00dfa2]/10 text-[#00dfa2]'
+                          ? 'bg-[#f0a63a]/10 text-[#f0a63a]'
                           : 'text-[#e8edf5] hover:bg-[#161d27]'
                       }`}
                       onClick={() => navigate(item)}
@@ -304,7 +304,7 @@ export default function CommandPalette() {
                       </div>
                       {isSelected && (
                         <svg
-                          className="h-4 w-4 shrink-0 text-[#00dfa2]"
+                          className="h-4 w-4 shrink-0 text-[#f0a63a]"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"

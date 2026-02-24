@@ -32,8 +32,8 @@ export default function CopyCodeButton({ code }: Props) {
       onClick={handleCopy}
       className={`absolute right-2 top-2 rounded-md border px-2 py-1 text-xs font-medium transition-all duration-200 ${
         copied
-          ? 'border-[#00dfa2]/40 bg-[#00dfa2]/10 text-[#00dfa2]'
-          : 'border-[#2a3140] bg-[#131920] text-[#8b949e] hover:border-[#00dfa2]/40 hover:text-[#e8edf5]'
+          ? 'border-[#f0a63a]/40 bg-[#f0a63a]/10 text-[#f0a63a]'
+          : 'border-[#2a3140] bg-[#131920] text-[#8b949e] hover:border-[#f0a63a]/40 hover:text-[#e8edf5]'
       }`}
       aria-label={copied ? 'Copied to clipboard' : 'Copy code to clipboard'}
       title={copied ? 'Copied!' : 'Copy'}

@@ -33,11 +33,11 @@ const TAG_COLORS: Record<string, string> = {
   ransomware: '#ff6b6b',
   malware: '#ee5a24',
   apt: '#e056fd',
-  'threat intelligence': '#00dfa2',
+  'threat intelligence': '#f0a63a',
   ai: '#00b4d8',
   automation: '#6c5ce7',
   python: '#f9ca24',
-  mcp: '#00dfa2',
+  mcp: '#f0a63a',
   tools: '#6c5ce7',
   training: '#e17055',
   research: '#00b4d8',
@@ -48,7 +48,7 @@ function getNodeColor(tags: string[]): string {
     const lower = tag.toLowerCase();
     if (TAG_COLORS[lower]) return TAG_COLORS[lower];
   }
-  return '#00dfa2';
+  return '#f0a63a';
 }
 
 export default function ResearchGraph({ items }: Props) {
@@ -272,7 +272,7 @@ export default function ResearchGraph({ items }: Props) {
               y1={a.y}
               x2={b.x}
               y2={b.y}
-              stroke={isHovered ? '#00dfa2' : '#2a3140'}
+              stroke={isHovered ? '#f0a63a' : '#2a3140'}
               strokeWidth={isHovered ? 2 : 1}
               strokeOpacity={isHovered ? 0.8 : 0.4}
             />

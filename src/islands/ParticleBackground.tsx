@@ -18,7 +18,7 @@ interface Particle {
 const PARTICLE_COUNT = 60;
 const CONNECTION_DISTANCE = 120;
 const PARTICLE_SPEED = 0.3;
-const ACCENT_COLOR = { r: 0, g: 223, b: 162 }; // #00dfa2
+const ACCENT_COLOR = { r: 240, g: 166, b: 58 }; // #f0a63a
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

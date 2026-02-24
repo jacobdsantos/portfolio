@@ -15,7 +15,7 @@ import type { ProviderId } from '../../lib/resume/ai-generate';
 const FONT = { fontFamily: "'Space Grotesk', sans-serif" };
 const LABEL = 'mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#8b949e]';
 const INPUT =
-  'w-full rounded-lg border border-[#2a3140] bg-[#0d1117] px-3 py-2 text-sm text-[#e8edf5] placeholder-[#545d68] outline-none transition-colors focus:border-[#00dfa2]/50';
+  'w-full rounded-lg border border-[#2a3140] bg-[#0d1117] px-3 py-2 text-sm text-[#e8edf5] placeholder-[#545d68] outline-none transition-colors focus:border-[#f0a63a]/50';
 const BTN_PRIMARY =
   'rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40';
 const BTN_SECONDARY =
@@ -77,7 +77,7 @@ function APISettings() {
           </svg>
           API Configuration
           {apiKey && (
-            <span className="rounded-full bg-[#00dfa2]/15 px-1.5 py-0.5 text-[10px] text-[#00dfa2]">
+            <span className="rounded-full bg-[#f0a63a]/15 px-1.5 py-0.5 text-[10px] text-[#f0a63a]">
               {PROVIDERS.find((p) => p.id === provider)?.label ?? 'configured'}
             </span>
           )}
@@ -102,7 +102,7 @@ function APISettings() {
                   onClick={() => setProvider(p.id)}
                   className={`flex-1 rounded-lg border px-2 py-1.5 text-[11px] font-medium transition-colors ${
                     provider === p.id
-                      ? 'border-[#00dfa2] bg-[#00dfa2]/10 text-[#00dfa2]'
+                      ? 'border-[#f0a63a] bg-[#f0a63a]/10 text-[#f0a63a]'
                       : 'border-[#2a3140] text-[#545d68] hover:border-[#3a4250] hover:text-[#8b949e]'
                   }`}
                   style={FONT}
@@ -163,8 +163,8 @@ function APISettings() {
 /* ------------------------------------------------------------------ */
 
 const FIT_CONFIG: Record<string, { color: string; label: string; bg: string }> = {
-  strong:   { color: '#00dfa2', label: 'Strong Fit',   bg: '#00dfa2' },
-  good:     { color: '#00dfa2', label: 'Good Fit',     bg: '#00dfa2' },
+  strong:   { color: '#f0a63a', label: 'Strong Fit',   bg: '#f0a63a' },
+  good:     { color: '#f0a63a', label: 'Good Fit',     bg: '#f0a63a' },
   moderate: { color: '#f0b429', label: 'Moderate Fit',  bg: '#f0b429' },
   stretch:  { color: '#f56565', label: 'Stretch Role',  bg: '#f56565' },
 };
@@ -187,7 +187,7 @@ function AIAssessmentPanel() {
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div className="rounded-md bg-[#0d1117] px-2.5 py-2 text-center">
-              <div className="text-lg font-bold" style={{ color: analysis.atsScore >= 60 ? '#00dfa2' : analysis.atsScore >= 40 ? '#f0b429' : '#f56565', ...FONT }}>
+              <div className="text-lg font-bold" style={{ color: analysis.atsScore >= 60 ? '#f0a63a' : analysis.atsScore >= 40 ? '#f0b429' : '#f56565', ...FONT }}>
                 {analysis.atsScore}
               </div>
               <div className="text-[9px] text-[#545d68]">ATS Score</div>
@@ -229,7 +229,7 @@ function AIAssessmentPanel() {
       {/* ATS + Keywords row */}
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded-md bg-[#0d1117] px-2.5 py-2 text-center">
-          <div className="text-lg font-bold" style={{ color: analysis.atsScore >= 60 ? '#00dfa2' : analysis.atsScore >= 40 ? '#f0b429' : '#f56565', ...FONT }}>
+          <div className="text-lg font-bold" style={{ color: analysis.atsScore >= 60 ? '#f0a63a' : analysis.atsScore >= 40 ? '#f0b429' : '#f56565', ...FONT }}>
             {analysis.atsScore}
           </div>
           <div className="text-[9px] text-[#545d68]">ATS Score</div>
@@ -271,7 +271,7 @@ function AIAssessmentPanel() {
           <ul className="space-y-0.5">
             {aiAssessment.strengths.map((s, i) => (
               <li key={i} className="flex items-start gap-1.5 text-[11px] text-[#8b949e]">
-                <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-[#00dfa2]" />
+                <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-[#f0a63a]" />
                 {s}
               </li>
             ))}
@@ -357,7 +357,7 @@ function JDInputPanel() {
           className={BTN_PRIMARY}
           style={{
             ...FONT,
-            backgroundColor: jdText.trim() && !isGenerating ? '#00dfa2' : '#2a3140',
+            backgroundColor: jdText.trim() && !isGenerating ? '#f0a63a' : '#2a3140',
             color: jdText.trim() && !isGenerating ? '#07090f' : '#545d68',
             flex: 1,
           }}
@@ -382,7 +382,7 @@ function JDInputPanel() {
       {generationMode && generateOutput && (
         <div className="flex items-center gap-1.5 text-[10px] text-[#545d68]">
           <span
-            className={`inline-block h-1.5 w-1.5 rounded-full ${generationMode === 'ai' ? 'bg-[#00dfa2]' : 'bg-[#f0b429]'}`}
+            className={`inline-block h-1.5 w-1.5 rounded-full ${generationMode === 'ai' ? 'bg-[#f0a63a]' : 'bg-[#f0b429]'}`}
           />
           {generationMode === 'ai' ? 'AI-generated' : 'Rule-based (local)'}
         </div>
@@ -448,7 +448,7 @@ function EditableText({
         onChange={(e) => setLocalValue(e.target.value)}
         onBlur={handleBlur}
         rows={rows}
-        className="w-full rounded border border-[#00dfa2]/30 bg-[#0d1117] px-2 py-1.5 text-xs text-[#e8edf5] outline-none"
+        className="w-full rounded border border-[#f0a63a]/30 bg-[#0d1117] px-2 py-1.5 text-xs text-[#e8edf5] outline-none"
         style={FONT}
       />
     );
@@ -578,7 +578,7 @@ function EditPanel() {
               ...FONT,
               color:
                 effectiveOutput.analysis.atsScore >= 80
-                  ? '#00dfa2'
+                  ? '#f0a63a'
                   : effectiveOutput.analysis.atsScore >= 60
                     ? '#f0b429'
                     : '#f56565',
@@ -612,7 +612,7 @@ function AnalysisPanel() {
   }
 
   const { analysis } = effectiveOutput;
-  const scoreColor = analysis.atsScore >= 80 ? '#00dfa2' : analysis.atsScore >= 60 ? '#f0b429' : '#f56565';
+  const scoreColor = analysis.atsScore >= 80 ? '#f0a63a' : analysis.atsScore >= 60 ? '#f0b429' : '#f56565';
   const scoreLabel = analysis.atsScore >= 80 ? 'Excellent' : analysis.atsScore >= 60 ? 'Good' : analysis.atsScore >= 40 ? 'Fair' : 'Low';
 
   return (
@@ -641,7 +641,7 @@ function AnalysisPanel() {
         <div className={LABEL} style={FONT}>Matched Keywords ({analysis.matchedKeywords.length})</div>
         <div className="flex flex-wrap gap-1.5">
           {analysis.matchedKeywords.slice(0, 25).map((kw) => (
-            <span key={kw} className="rounded bg-[#00dfa2]/10 px-2 py-0.5 text-xs text-[#00dfa2]">{kw}</span>
+            <span key={kw} className="rounded bg-[#f0a63a]/10 px-2 py-0.5 text-xs text-[#f0a63a]">{kw}</span>
           ))}
         </div>
       </div>
@@ -723,7 +723,7 @@ function CustomizePanel() {
               onClick={() => setTemplateId(t.id)}
               className={`rounded-lg border px-3 py-2 text-xs font-medium transition-colors ${
                 templateId === t.id
-                  ? 'border-[#00dfa2] bg-[#00dfa2]/10 text-[#00dfa2]'
+                  ? 'border-[#f0a63a] bg-[#f0a63a]/10 text-[#f0a63a]'
                   : 'border-[#2a3140] text-[#545d68] hover:border-[#3a4250] hover:text-[#8b949e]'
               }`}
               style={FONT}
@@ -744,7 +744,7 @@ function CustomizePanel() {
               onClick={() => setMaxPages(pages)}
               className={`flex-1 rounded-lg border px-3 py-2 text-xs font-medium transition-colors ${
                 maxPages === pages
-                  ? 'border-[#00dfa2] bg-[#00dfa2]/10 text-[#00dfa2]'
+                  ? 'border-[#f0a63a] bg-[#f0a63a]/10 text-[#f0a63a]'
                   : 'border-[#2a3140] text-[#545d68] hover:border-[#3a4250]'
               }`}
               style={FONT}
@@ -764,7 +764,7 @@ function CustomizePanel() {
               <div
                 className={`flex h-4 w-4 items-center justify-center rounded border transition-colors ${
                   includeSections[s.key]
-                    ? 'border-[#00dfa2] bg-[#00dfa2]'
+                    ? 'border-[#f0a63a] bg-[#f0a63a]'
                     : 'border-[#3a4250] group-hover:border-[#545d68]'
                 }`}
                 onClick={() => toggleSection(s.key)}
@@ -806,7 +806,7 @@ function CustomizePanel() {
             style={{
               ...FONT,
               flex: 1,
-              backgroundColor: effectiveOutput && !saving ? '#00dfa2' : '#2a3140',
+              backgroundColor: effectiveOutput && !saving ? '#f0a63a' : '#2a3140',
               color: effectiveOutput && !saving ? '#07090f' : '#545d68',
             }}
           >
@@ -877,7 +877,7 @@ export default function ResumeBuilder() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex flex-1 items-center justify-center gap-1 px-2 py-3 text-[11px] font-medium transition-colors ${
                   activeTab === tab.id
-                    ? 'border-b-2 border-[#00dfa2] text-[#00dfa2]'
+                    ? 'border-b-2 border-[#f0a63a] text-[#f0a63a]'
                     : 'text-[#545d68] hover:text-[#8b949e]'
                 }`}
                 style={FONT}
@@ -919,7 +919,7 @@ export default function ResumeBuilder() {
         {isGenerating ? (
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
-              <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-[#2a3140] border-t-[#00dfa2]" />
+              <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-[#2a3140] border-t-[#f0a63a]" />
               <p className="mt-4 text-sm font-medium text-[#545d68]" style={FONT}>
                 Generating your tailored resume...
               </p>

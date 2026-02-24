@@ -105,7 +105,7 @@ export default function TrainingMap({ locations }: Props) {
             return (
               <g key={i}>
                 {/* Pulse ring animation */}
-                <circle cx={loc.x} cy={loc.y} r="12" fill="none" stroke="#00dfa2" strokeWidth="1" opacity="0.3">
+                <circle cx={loc.x} cy={loc.y} r="12" fill="none" stroke="#f0a63a" strokeWidth="1" opacity="0.3">
                   <animate
                     attributeName="r"
                     values="6;18;6"
@@ -127,7 +127,7 @@ export default function TrainingMap({ locations }: Props) {
                   cx={loc.x}
                   cy={loc.y}
                   r={isActive ? 10 : 6}
-                  fill="#00dfa2"
+                  fill="#f0a63a"
                   opacity={isActive ? 0.2 : 0.1}
                 />
 
@@ -136,8 +136,8 @@ export default function TrainingMap({ locations }: Props) {
                   cx={loc.x}
                   cy={loc.y}
                   r={isActive ? 6 : 4}
-                  fill="#00dfa2"
-                  stroke={isActive ? '#e8edf5' : '#00dfa2'}
+                  fill="#f0a63a"
+                  stroke={isActive ? '#e8edf5' : '#f0a63a'}
                   strokeWidth={isActive ? 2 : 1}
                   className="cursor-pointer transition-all duration-200"
                   onMouseEnter={() => handleDotHover(loc)}
@@ -202,11 +202,11 @@ export default function TrainingMap({ locations }: Props) {
             {locations.map((loc, i) => (
               <span
                 key={i}
-                className="flex items-center gap-1.5 text-xs text-[#8b949e] hover:text-[#00dfa2] cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 text-xs text-[#8b949e] hover:text-[#f0a63a] cursor-pointer transition-colors"
                 onMouseEnter={() => setActiveLocation(loc)}
                 onMouseLeave={() => setActiveLocation(null)}
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-[#00dfa2]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#f0a63a]" />
                 {loc.name}
               </span>
             ))}

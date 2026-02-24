@@ -52,7 +52,7 @@ function getTacticForTechnique(id: string): string {
 }
 
 function getIntensityColor(ratio: number): string {
-  if (ratio >= 0.8) return '#00dfa2';
+  if (ratio >= 0.8) return '#f0a63a';
   if (ratio >= 0.6) return '#00c48c';
   if (ratio >= 0.4) return '#00a876';
   if (ratio >= 0.2) return '#008c60';
@@ -216,7 +216,7 @@ export default function MitreHeatmap({ techniques }: Props) {
           }}
         >
           <div
-            className="text-xs font-semibold text-[#00dfa2]"
+            className="text-xs font-semibold text-[#f0a63a]"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             {tooltip.technique.id}

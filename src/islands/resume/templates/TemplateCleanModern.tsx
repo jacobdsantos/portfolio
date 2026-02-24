@@ -7,7 +7,7 @@ interface Props {
 function SummarySection({ section }: { section: Extract<ResumeSection, { type: 'summary' }> }) {
   return (
     <div className="mb-5">
-      <h2 className="mb-2 border-b-2 border-[#00dfa2] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
+      <h2 className="mb-2 border-b-2 border-[#f0a63a] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
         {section.title}
       </h2>
       {section.blocks.map((block, i) => (
@@ -22,7 +22,7 @@ function SummarySection({ section }: { section: Extract<ResumeSection, { type: '
 function SkillsSection({ section }: { section: Extract<ResumeSection, { type: 'skills' }> }) {
   return (
     <div className="mb-5">
-      <h2 className="mb-2 border-b-2 border-[#00dfa2] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
+      <h2 className="mb-2 border-b-2 border-[#f0a63a] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
         {section.title}
       </h2>
       <div className="space-y-1">
@@ -40,7 +40,7 @@ function SkillsSection({ section }: { section: Extract<ResumeSection, { type: 's
 function ExperienceSection({ section }: { section: Extract<ResumeSection, { type: 'experience' }> }) {
   return (
     <div className="mb-5">
-      <h2 className="mb-2 border-b-2 border-[#00dfa2] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
+      <h2 className="mb-2 border-b-2 border-[#f0a63a] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
         {section.title}
       </h2>
       {section.items.map((item, i) => (
@@ -64,7 +64,7 @@ function ExperienceSection({ section }: { section: Extract<ResumeSection, { type
                 }`}
                 style={{ textIndent: '-0.75em', paddingLeft: '1.5em' }}
               >
-                <span className="text-[#00dfa2]">&bull;</span> {bullet.text}
+                <span className="text-[#f0a63a]">&bull;</span> {bullet.text}
               </li>
             ))}
           </ul>
@@ -77,7 +77,7 @@ function ExperienceSection({ section }: { section: Extract<ResumeSection, { type
 function ProjectsSection({ section }: { section: Extract<ResumeSection, { type: 'projects' }> }) {
   return (
     <div className="mb-5">
-      <h2 className="mb-2 border-b-2 border-[#00dfa2] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
+      <h2 className="mb-2 border-b-2 border-[#f0a63a] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
         {section.title}
       </h2>
       {section.items.map((item, i) => (
@@ -85,7 +85,7 @@ function ProjectsSection({ section }: { section: Extract<ResumeSection, { type: 
           <div className="text-[13px] font-bold text-[#07090f]">
             {item.name}
             {item.links && item.links.length > 0 && (
-              <span className="ml-2 text-[11px] font-normal text-[#00dfa2]">
+              <span className="ml-2 text-[11px] font-normal text-[#f0a63a]">
                 {item.links.map((l) => l.url).join(' ')}
               </span>
             )}
@@ -98,7 +98,7 @@ function ProjectsSection({ section }: { section: Extract<ResumeSection, { type: 
                 className="pl-3 text-[12px] leading-relaxed text-[#444]"
                 style={{ textIndent: '-0.75em', paddingLeft: '1.5em' }}
               >
-                <span className="text-[#00dfa2]">&bull;</span> {bullet.text}
+                <span className="text-[#f0a63a]">&bull;</span> {bullet.text}
               </li>
             ))}
           </ul>
@@ -111,7 +111,7 @@ function ProjectsSection({ section }: { section: Extract<ResumeSection, { type: 
 function EducationSection({ section }: { section: Extract<ResumeSection, { type: 'education' }> }) {
   return (
     <div className="mb-5">
-      <h2 className="mb-2 border-b-2 border-[#00dfa2] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
+      <h2 className="mb-2 border-b-2 border-[#f0a63a] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
         {section.title}
       </h2>
       {section.items.map((item, i) => (
@@ -130,7 +130,7 @@ function EducationSection({ section }: { section: Extract<ResumeSection, { type:
 function CertificationsSection({ section }: { section: Extract<ResumeSection, { type: 'certifications' }> }) {
   return (
     <div className="mb-5">
-      <h2 className="mb-2 border-b-2 border-[#00dfa2] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
+      <h2 className="mb-2 border-b-2 border-[#f0a63a] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
         {section.title}
       </h2>
       <div className="space-y-0.5">
@@ -151,7 +151,7 @@ function CertificationsSection({ section }: { section: Extract<ResumeSection, { 
 function PublicationsSection({ section }: { section: Extract<ResumeSection, { type: 'publications' }> }) {
   return (
     <div className="mb-5">
-      <h2 className="mb-2 border-b-2 border-[#00dfa2] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
+      <h2 className="mb-2 border-b-2 border-[#f0a63a] pb-1 text-sm font-bold uppercase tracking-wider text-[#07090f]">
         {section.title}
       </h2>
       <div className="space-y-1">
@@ -187,14 +187,14 @@ export default function TemplateCleanModern({ renderModel }: Props) {
       <div className="mb-6 text-center">
         <h1 className="text-2xl font-bold tracking-tight text-[#07090f]">{header.name}</h1>
         {header.label && (
-          <div className="mt-0.5 text-sm font-medium text-[#00dfa2]">{header.label}</div>
+          <div className="mt-0.5 text-sm font-medium text-[#f0a63a]">{header.label}</div>
         )}
         <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-[11px] text-[#555]">
           {header.contactLines.map((line, i) => (
             <span key={i}>{line}</span>
           ))}
           {header.links.map((link, i) => (
-            <a key={i} href={link.url} className="text-[#00dfa2] hover:underline">
+            <a key={i} href={link.url} className="text-[#f0a63a] hover:underline">
               {link.label}
             </a>
           ))}
