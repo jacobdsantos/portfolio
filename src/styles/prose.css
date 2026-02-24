@@ -32,7 +32,7 @@
 .prose h3,
 .prose h4 {
   color: var(--prose-headings);
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Urbanist', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
   scroll-margin-top: 5rem;
@@ -223,7 +223,7 @@
   text-align: left;
   padding: 0.75rem 1rem;
   border-bottom: 2px solid var(--prose-th-borders);
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Urbanist', system-ui, sans-serif;
 }
 
 .prose td {

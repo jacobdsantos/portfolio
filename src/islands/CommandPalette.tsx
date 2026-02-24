@@ -207,7 +207,7 @@ export default function CommandPalette() {
             ref={inputRef}
             type="text"
             className="flex-1 bg-transparent text-[#e8edf5] placeholder-[#545d68] outline-none"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            style={{ fontFamily: "'Urbanist', sans-serif" }}
             placeholder="Search pages, posts, research..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -292,7 +292,7 @@ export default function CommandPalette() {
                       <div className="min-w-0 flex-1">
                         <div
                           className="truncate text-sm font-medium"
-                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                          style={{ fontFamily: "'Urbanist', sans-serif" }}
                         >
                           {item.title}
                         </div>

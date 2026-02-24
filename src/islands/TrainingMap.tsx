@@ -52,7 +52,7 @@ export default function TrainingMap({ locations }: Props) {
       <div className="flex items-center justify-between border-b border-[#2a3140] px-4 py-2">
         <h3
           className="text-sm font-semibold text-[#e8edf5]"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          style={{ fontFamily: "'Urbanist', sans-serif" }}
         >
           Training Locations
         </h3>
@@ -162,7 +162,7 @@ export default function TrainingMap({ locations }: Props) {
                       y={loc.y + 2}
                       fill="#e8edf5"
                       fontSize="11"
-                      fontFamily="'Space Grotesk', sans-serif"
+                      fontFamily="'Urbanist', sans-serif"
                       fontWeight="500"
                     >
                       {loc.name}
@@ -178,7 +178,7 @@ export default function TrainingMap({ locations }: Props) {
       {/* Active location detail */}
       {activeLocation && (
         <div className="border-t border-[#2a3140] px-4 py-3">
-          <div className="text-sm font-semibold text-[#e8edf5]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <div className="text-sm font-semibold text-[#e8edf5]" style={{ fontFamily: "'Urbanist', sans-serif" }}>
             {activeLocation.name}
           </div>
           <div className="mt-1.5 flex flex-wrap gap-1.5">

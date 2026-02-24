@@ -12,7 +12,7 @@ import type { ProviderId } from '../../lib/resume/ai-generate';
 /*  Shared styles                                                      */
 /* ------------------------------------------------------------------ */
 
-const FONT = { fontFamily: "'Space Grotesk', sans-serif" };
+const FONT = { fontFamily: "'Urbanist', sans-serif" };
 const LABEL = 'mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#8b949e]';
 const INPUT =
   'w-full rounded-lg border border-[#2a3140] bg-[#0d1117] px-3 py-2 text-sm text-[#e8edf5] placeholder-[#545d68] outline-none transition-colors focus:border-[#f0a63a]/50';

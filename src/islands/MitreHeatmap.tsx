@@ -129,7 +129,7 @@ export default function MitreHeatmap({ techniques }: Props) {
         <div className="mb-4 flex items-center justify-between">
           <h3
             className="text-sm font-semibold text-[#e8edf5]"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            style={{ fontFamily: "'Urbanist', sans-serif" }}
           >
             MITRE ATT&CK Heatmap
           </h3>

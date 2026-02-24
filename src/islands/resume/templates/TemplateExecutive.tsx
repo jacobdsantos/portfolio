@@ -157,7 +157,7 @@ export default function TemplateExecutive({ renderModel }: Props) {
     <div className="mx-auto max-w-[210mm] bg-white p-10 text-[#07090f] shadow-lg print:shadow-none" style={{ fontFamily: "'Georgia', 'Times New Roman', serif", minHeight: '297mm' }}>
       {/* Header */}
       <div className="mb-8 text-center">
-        <h1 className="text-[26px] font-normal tracking-[0.15em] text-[#07090f]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        <h1 className="text-[26px] font-normal tracking-[0.15em] text-[#07090f]" style={{ fontFamily: "'Urbanist', sans-serif" }}>
           {header.name.toUpperCase()}
         </h1>
         {header.label && (

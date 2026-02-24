@@ -241,7 +241,7 @@ export default function ResearchGraph({ items }: Props) {
       <div className="flex items-center justify-between border-b border-[#2a3140] px-4 py-2">
         <h3
           className="text-sm font-semibold text-[#e8edf5]"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          style={{ fontFamily: "'Urbanist', sans-serif" }}
         >
           Research Connections
         </h3>
@@ -317,7 +317,7 @@ export default function ResearchGraph({ items }: Props) {
                   textAnchor="middle"
                   fill={isHovered ? '#e8edf5' : '#8b949e'}
                   fontSize={11}
-                  fontFamily="'Space Grotesk', sans-serif"
+                  fontFamily="'Urbanist', sans-serif"
                   fontWeight={isHovered ? 600 : 400}
                   className="pointer-events-none select-none"
                 >
@@ -332,7 +332,7 @@ export default function ResearchGraph({ items }: Props) {
       {/* Hovered node detail */}
       {hoveredNode && (
         <div className="border-t border-[#2a3140] px-4 py-2">
-          <div className="text-sm font-medium text-[#e8edf5]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <div className="text-sm font-medium text-[#e8edf5]" style={{ fontFamily: "'Urbanist', sans-serif" }}>
             {hoveredNode.title}
           </div>
           <div className="mt-1 flex flex-wrap gap-1">

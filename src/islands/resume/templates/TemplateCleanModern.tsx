@@ -182,7 +182,7 @@ export default function TemplateCleanModern({ renderModel }: Props) {
   const { header, sections } = renderModel;
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-8 text-[#07090f] shadow-lg print:shadow-none" style={{ fontFamily: "'Space Grotesk', sans-serif", minHeight: '297mm' }}>
+    <div className="mx-auto max-w-[210mm] bg-white p-8 text-[#07090f] shadow-lg print:shadow-none" style={{ fontFamily: "'Urbanist', sans-serif", minHeight: '297mm' }}>
       {/* Header */}
       <div className="mb-6 text-center">
         <h1 className="text-2xl font-bold tracking-tight text-[#07090f]">{header.name}</h1>

@@ -151,7 +151,7 @@ export default function TemplateTechnical({ renderModel }: Props) {
   const { header, sections } = renderModel;
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white p-6 text-[#07090f] shadow-lg print:shadow-none" style={{ fontFamily: "'Space Grotesk', 'Segoe UI', sans-serif", minHeight: '297mm' }}>
+    <div className="mx-auto max-w-[210mm] bg-white p-6 text-[#07090f] shadow-lg print:shadow-none" style={{ fontFamily: "'Urbanist', 'Segoe UI', sans-serif", minHeight: '297mm' }}>
       {/* Header */}
       <div className="mb-4 border-b-2 border-[#6c5ce7] pb-3">
         <h1 className="text-xl font-bold text-[#07090f]" style={{ fontFamily: "'JetBrains Mono', 'Consolas', monospace" }}>
