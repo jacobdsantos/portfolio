@@ -33,23 +33,21 @@ const stats = [
 ];
 ---
 
-<div class="sidebar-card relative overflow-hidden">
-  <!-- Subtle background texture -->
-  <img src="/images/cards/sidebar-profile.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-[0.08] pointer-events-none" loading="lazy" aria-hidden="true" />
+<div class="sidebar-card">
   <!-- Avatar & identity -->
   <div class="text-center mb-5">
-    <div class="relative w-28 h-28 mx-auto mb-4">
-      <!-- Outer animated ring -->
-      <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent-primary/40 via-accent-secondary/30 to-accent-tertiary/40 animate-glow blur-sm"></div>
-      <!-- Inner ring -->
-      <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary/20 via-transparent to-accent-secondary/20"></div>
-      <div class="relative w-full h-full rounded-2xl bg-bg-secondary border border-accent-primary/25 flex items-center justify-center overflow-hidden group">
-        <span class="text-4xl font-bold bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent font-mono tracking-tighter select-none">JS</span>
-        <!-- Scanline effect -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-primary/[0.03] to-transparent h-8 animate-float pointer-events-none"></div>
-      </div>
+    <div class="relative w-32 h-32 mx-auto mb-4">
+      <!-- Subtle outer glow -->
+      <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent-primary/15 via-accent-secondary/10 to-accent-tertiary/15 blur-sm"></div>
+      <!-- Photo -->
+      <img
+        src="/images/profile.jpg"
+        alt="Jacob Santos"
+        class="relative w-full h-full object-cover object-top rounded-2xl border border-white/[0.08]"
+        loading="eager"
+      />
     </div>
-    <h2 class="text-xl font-bold text-text-primary tracking-tight">
+    <h2 class="text-xl font-semibold text-text-primary tracking-tight font-display">
       <a href="/" class="hover:text-accent-primary transition-colors">Jacob Santos</a>
     </h2>
     <p class="text-text-muted text-[11px] mt-1.5 leading-relaxed max-w-[220px] mx-auto">Threat researcher. Tool builder.<br/>Intelligence dissemination.</p>
