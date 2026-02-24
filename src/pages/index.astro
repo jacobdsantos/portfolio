@@ -55,11 +55,11 @@ const whatIDo = [
     bgImage: '/images/cards/whatido-research.jpg',
   },
   {
-    title: 'Security Automation',
+    title: 'Security Tooling',
     color: 'from-emerald-500/20 to-teal-500/10',
     accent: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/15',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
-    description: 'Building AI-powered tools that multiply team capability -- inquiry pipelines, threat intel platforms, MCP servers, and report generators.',
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
+    description: 'Building production tools adopted team-wide — AI pipelines, threat intel platforms, MCP servers, desktop applications, and Confluence integrations.',
     link: '/tools',
     bgImage: '/images/cards/whatido-automation.jpg',
   },
@@ -71,15 +71,6 @@ const whatIDo = [
     description: 'Delivering advanced threat defense workshops for multinational participants, government agencies, and enterprises across multiple countries.',
     link: '/speaking',
     bgImage: '/images/cards/whatido-dissemination.jpg',
-  },
-  {
-    title: 'Tool Development',
-    color: 'from-cyan-500/20 to-blue-500/10',
-    accent: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/15',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>`,
-    description: 'Production tools used daily by the team -- MCP servers, AI pipelines, desktop applications, and Confluence integrations.',
-    link: '/tools',
-    bgImage: '/images/cards/whatido-tooldev.jpg',
   },
 ];
 
@@ -195,7 +186,7 @@ const personJsonLd = {
   <section class="content-card mb-6" data-reveal>
     <h2 class="section-title">What I Do</h2>
     <p class="section-subtitle">Combining threat research with automation and intelligence dissemination.</p>
-    <div class="grid sm:grid-cols-2 gap-3">
+    <div class="grid sm:grid-cols-3 gap-3">
       {whatIDo.map((item, idx) => (
         <a href={item.link} class="card !p-0 group block relative overflow-hidden" data-reveal data-reveal-delay={String(idx + 1)}>
           {item.bgImage && (
