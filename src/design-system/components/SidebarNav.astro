@@ -33,32 +33,36 @@ const stats = [
 ];
 ---
 
-<div class="sidebar-card">
-  <!-- Avatar & identity -->
-  <div class="text-center mb-5">
-    <div class="relative w-32 h-32 mx-auto mb-4">
-      <!-- Subtle outer glow -->
-      <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent-primary/15 via-accent-secondary/10 to-accent-tertiary/15 blur-sm"></div>
-      <!-- Photo -->
-      <img
-        src="/images/profile.jpg"
-        alt="Jacob Santos"
-        class="relative w-full h-full object-cover object-top rounded-2xl border border-white/[0.08]"
-        loading="eager"
-      />
-    </div>
-    <h2 class="text-xl font-semibold text-text-primary tracking-tight font-display">
-      <a href="/" class="hover:text-accent-primary transition-colors">Jacob Santos</a>
-    </h2>
-    <p class="text-text-muted text-[11px] mt-1.5 leading-relaxed max-w-[220px] mx-auto">Threat researcher. Tool builder.<br/>Intelligence dissemination.</p>
-    <div class="inline-flex items-center gap-2 mt-3 px-3.5 py-1.5 rounded-lg bg-accent-primary/[0.06] border border-accent-primary/10 text-xs font-mono text-accent-primary">
-      <span class="relative flex h-1.5 w-1.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-primary"></span>
-      </span>
-      Sr. Threat Researcher
+<div class="sidebar-card !p-0 overflow-hidden">
+  <!-- Full-bleed hero photo -->
+  <div class="relative h-[220px] overflow-hidden">
+    <img
+      src="/images/profile.jpg"
+      alt="Jacob Santos"
+      class="absolute inset-0 w-full h-full object-cover object-[center_10%]"
+      loading="eager"
+    />
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[rgba(18,20,28,1)] via-[rgba(18,20,28,0.5)_55%] to-transparent"></div>
+    <!-- Identity overlaid -->
+    <div class="absolute bottom-0 left-0 right-0 p-5 pb-4">
+      <h2 class="text-xl font-semibold text-text-primary tracking-tight font-display drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+        <a href="/" class="hover:text-accent-primary transition-colors">Jacob Santos</a>
+      </h2>
+      <p class="text-text-muted text-[11px] mt-1 leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">Threat Hunter, Researcher and Builder</p>
+      <div class="amber-badge mt-2.5">
+        <span class="relative flex h-1.5 w-1.5 shrink-0">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-primary"></span>
+        </span>
+        <span>Sr. Threat Researcher</span>
+        <span class="opacity-40">|</span>
+        <span class="text-accent-primary/70">Trend AI</span>
+      </div>
     </div>
   </div>
+  <!-- Card body with padding -->
+  <div class="p-6 pt-4">
 
   <div class="sep"></div>
 
@@ -119,4 +123,5 @@ const stats = [
     </svg>
     View Resume
   </a>
+  </div><!-- end card body -->
 </div>
