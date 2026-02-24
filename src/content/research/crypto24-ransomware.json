@@ -8,7 +8,7 @@
   ],
   "description": "Analyzed Crypto24 ransomware group's technique of blending legitimate tools with custom malware to bypass EDR and security technologies.",
   "summary": "Crypto24 is a ransomware group that stealthily blends legitimate tools with custom malware, using advanced evasion techniques to bypass security and EDR technologies. The group's toolkit includes living-off-the-land binaries mixed with custom-developed payloads, making detection through traditional signature-based methods extremely difficult. This research documents the full attack lifecycle, tool analysis, and provides behavioral detection strategies for identifying Crypto24 operations in enterprise environments.",
-  "source": "Trend Micro Research Blog",
+  "source": "Trend AI Research Blog",
   "order": 9,
   "image": "/images/research/crypto24-ransomware.jpg"
 }

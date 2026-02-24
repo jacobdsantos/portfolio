@@ -32,7 +32,7 @@ const timeline = [
   {
     year: 'Jan 2025',
     title: 'Senior Threat Researcher',
-    org: 'Trend Micro',
+    org: 'Trend AI',
     bullets: [
       'Lead ransomware spotlight research and APT campaign tracking with Diamond Model attribution',
       'Monitor critical global events for threat activity across dark web, domain registrations, and internal telemetry',
@@ -43,7 +43,7 @@ const timeline = [
   {
     year: 'Jun 2023',
     title: 'Threat Hunter / Threat Researcher',
-    org: 'Trend Micro',
+    org: 'Trend AI',
     bullets: [
       'Proactively hunted emerging threats via OSINT and internal telemetry, writing YARA rules, building dashboards, and performing malware analysis on samples',
       'Published research articles, authored numerous spot and threat intelligence reports, and contributed to ransomware spotlight publications',
@@ -52,7 +52,7 @@ const timeline = [
   {
     year: 'Oct 2022',
     title: 'Cybersecurity Threat Engineer',
-    org: 'Trend Micro (Training)',
+    org: 'Trend AI (Training)',
     bullets: [
       '6-month intensive malware analysis training: assembly programming, reverse engineering, binary/non-binary analysis across all platforms, with practical elimination-based exams',
     ],
@@ -66,7 +66,7 @@ const personJsonLd = {
   "jobTitle": "Senior Threat Researcher",
   "worksFor": {
     "@type": "Organization",
-    "name": "Trend Micro"
+    "name": "Trend AI"
   },
   "url": "https://jacobsantos.pages.dev",
   "sameAs": [
@@ -222,6 +222,7 @@ const personJsonLd = {
           <div class="flex items-center gap-2 flex-wrap">
             <span class="text-accent-primary text-xs font-mono font-semibold">{item.year}</span>
             <span class="text-text-muted text-[10px]">&middot;</span>
+            <img src="/images/trendai-logo.jpg" alt="Trend AI" class="w-4 h-4 rounded-sm inline-block" />
             <span class="text-accent-secondary text-xs font-mono">{item.org}</span>
           </div>
           <h4 class="text-text-primary font-semibold text-sm mt-0.5">{item.title}</h4>

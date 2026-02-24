@@ -7,9 +7,9 @@
     "BYOVD",
     "Defense Evasion"
   ],
-  "description": "Analysis of a new ransomware group with adaptive defense evasion — custom-patching anti-AV tools mid-attack based on target recon.",
+  "description": "Analysis of a new ransomware group with adaptive defense evasion \u2014 custom-patching anti-AV tools mid-attack based on target recon.",
   "summary": "Gentlemen ransomware introduced a novel approach to defense evasion: rather than using a fixed BYOVD payload, the operators dynamically select and custom-patch anti-AV tools during the attack based on reconnaissance of the target's security stack. This article provides a full technical breakdown of their multi-stage infection chain, the adaptive evasion framework, encrypted C2 communication, and the Rust-based ransomware payload. Includes IOCs, MITRE ATT&CK mapping, and detection guidance.",
-  "source": "Trend Micro Research Blog",
+  "source": "Trend AI Research Blog",
   "order": 6,
   "image": "/images/research/gentlemen-ransomware.jpg"
 }

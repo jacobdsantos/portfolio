@@ -41,8 +41,8 @@
     "careerGoals": {
       "targetRoles": ["Threat Hunting", "Threat Research", "Threat Intelligence", "Detection Engineering", "Security Architecture"],
       "openTo": "Adjacent roles where job description aligns with existing skills, even if title differs",
-      "priorities": ["Compensation", "Title", "Scope of work", "Company size (same or larger than Trend Micro)"],
-      "companyPreference": "Same size or larger than Trend Micro for better compensation and scope"
+      "priorities": ["Compensation", "Title", "Scope of work", "Company size (same or larger than Trend AI)"],
+      "companyPreference": "Same size or larger than Trend AI for better compensation and scope"
     }
   },
 
@@ -61,9 +61,9 @@
       "organization": "ICPeP (Institute of Computer Engineers of the Philippines)",
       "toolsLearned": ["Burp Suite"],
       "focus": "Web penetration testing fundamentals",
-      "notes": "Only prior experience before Trend Micro. No other cybersecurity foundation."
+      "notes": "Only prior experience before Trend AI. No other cybersecurity foundation."
     },
-    "programmingBackground": "Had programming foundation from Computer Engineering degree, but not to the extent of what was built later. Learned to code specifically to solve operational problems at Trend Micro."
+    "programmingBackground": "Had programming foundation from Computer Engineering degree, but not to the extent of what was built later. Learned to code specifically to solve operational problems at Trend AI."
   },
 
   "careerTimeline": {
@@ -146,7 +146,7 @@
   },
 
   "growthTemplate": {
-    "description": "Trend Micro Threat Hunting Team growth framework. Stages: - (training), 0, 1, 2, 3.",
+    "description": "Trend AI Threat Hunting Team growth framework. Stages: - (training), 0, 1, 2, 3.",
     "normalCompletion": "2-3 years for stages 0-2",
     "jacobCompletion": "1 year for stages 0-2",
     "stages": {
@@ -290,7 +290,7 @@
     },
     "programs": {
       "tcap": {
-        "name": "Trend Micro Certified Anti-Malware Professional Training",
+        "name": "Trend AI Certified Anti-Malware Professional Training",
         "duration": "5 days",
         "topics": ["Threat Concepts and Classification", "Payload Analysis", "Malware Analysis Techniques", "Advanced Malware Techniques"]
       },
@@ -334,16 +334,16 @@
           "participants": "International cybersecurity professionals from different countries"
         },
         {
-          "audience": "Trend Micro Internal (Japan)",
+          "audience": "Trend AI Internal (Japan)",
           "location": "Japan",
           "date": "April 2025",
           "program": "ATD 30X"
         },
         {
-          "audience": "Trend Micro Internal (Taiwan)",
+          "audience": "Trend AI Internal (Taiwan)",
           "location": "Taiwan",
           "program": "One Month Advanced Malware Training",
-          "notes": "For other teams within Trend Micro"
+          "notes": "For other teams within Trend AI"
         },
         {
           "audience": "Petroleum Development Oman",
@@ -415,12 +415,12 @@
     ],
     "internal": [
       {
-        "event": "CIRQIT (Trend Micro Internal Conference)",
+        "event": "CIRQIT (Trend AI Internal Conference)",
         "type": "Track Sessions",
         "description": "Presented multiple times to the whole company"
       },
       {
-        "event": "SHIFT++ (Trend Micro Internal Conference)",
+        "event": "SHIFT++ (Trend AI Internal Conference)",
         "type": "Track Sessions",
         "description": "Internal presentations"
       },
@@ -442,7 +442,7 @@
     "publications": {
       "blogs": 17,
       "spotReports": "80+",
-      "platform": "Trend Micro Research Blog",
+      "platform": "Trend AI Research Blog",
       "notablePublications": [
         "Cerber Ransomware (first blog — Confluence vulnerability connection)",
         "EDRSilencer: Disrupting Endpoint Security Solutions",

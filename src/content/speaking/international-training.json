@@ -1,12 +1,12 @@
 {
   "type": "Training",
   "title": "Advanced Threat Defense Programs -- International",
-  "org": "Trend Micro",
+  "org": "Trend AI",
   "location": "Japan, Oman, Philippines",
   "flag": "INTL",
   "year": "2024 -- 2025",
   "audience": "Government agencies, cybersecurity professionals, and enterprise security teams",
   "topics": ["Advanced Threat Defense", "Malware Analysis", "Threat Hunting", "Incident Response"],
-  "description": "Delivered Advanced Threat Defense (ATD) workshops internationally -- including programs in Japan for JICA-sourced multinational participants and Trend Micro teams, Oman for Petroleum Development Oman, and the Philippines for government agencies and financial enterprises.",
+  "description": "Delivered Advanced Threat Defense (ATD) workshops internationally -- including programs in Japan for JICA-sourced multinational participants and Trend AI teams, Oman for Petroleum Development Oman, and the Philippines for government agencies and financial enterprises.",
   "order": 2
 }

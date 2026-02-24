@@ -8,8 +8,8 @@
     "Defense Evasion"
   ],
   "description": "First discovery of Play ransomware's Linux variant targeting ESXi, with infrastructure ties to Prolific Puma link-shortening service.",
-  "summary": "Trend Micro threat hunters discovered the first Linux variant of Play ransomware specifically targeting ESXi environments. The analysis revealed infrastructure connections to Prolific Puma, a threat actor known for providing link-shortening services to cybercriminals. The ESXi variant shares code similarities with the Windows version but includes ESXi-specific routines for VM management and datastore encryption. This discovery demonstrates the continued trend of major ransomware groups developing dedicated Linux/ESXi payloads to maximize impact on enterprise virtualization infrastructure.",
-  "source": "Trend Micro Research Blog",
+  "summary": "Trend AI threat hunters discovered the first Linux variant of Play ransomware specifically targeting ESXi environments. The analysis revealed infrastructure connections to Prolific Puma, a threat actor known for providing link-shortening services to cybercriminals. The ESXi variant shares code similarities with the Windows version but includes ESXi-specific routines for VM management and datastore encryption. This discovery demonstrates the continued trend of major ransomware groups developing dedicated Linux/ESXi payloads to maximize impact on enterprise virtualization infrastructure.",
+  "source": "Trend AI Research Blog",
   "order": 28,
   "image": "/images/research/play-ransomware-linux.jpg"
 }

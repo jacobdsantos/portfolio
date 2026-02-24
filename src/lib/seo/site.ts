@@ -20,7 +20,7 @@ export const site = {
   jobTitle: 'Senior Threat Researcher',
 
   /** Employer organisation name. */
-  organization: 'Trend Micro',
+  organization: 'Trend AI',
 
   /** Social / external profile links. */
   socials: {

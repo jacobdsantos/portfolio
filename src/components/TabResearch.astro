@@ -133,7 +133,7 @@ const articlesWithRelated = articles.map((article, idx) => {
         data-description={article.description}
         data-summary={article.summary || article.description}
         data-date={article.date}
-        data-source={article.source || 'Trend Micro Research Blog'}
+        data-source={article.source || 'Trend AI Research Blog'}
         data-type={article.type || 'blog'}
         data-gradient={gradients[idx % gradients.length]}
         data-all-tags={JSON.stringify(article.tags)}
@@ -446,7 +446,7 @@ const articlesWithRelated = articles.map((article, idx) => {
       const title = el.dataset.title || '';
       const summary = el.dataset.summary || el.dataset.description || '';
       const date = el.dataset.date || '';
-      const source = el.dataset.source || 'Trend Micro Research Blog';
+      const source = el.dataset.source || 'Trend AI Research Blog';
       const contentType = el.dataset.type || 'blog';
       const tags: string[] = JSON.parse(el.dataset.allTags || '[]');
       const gradient = gradientClasses[idx % gradientClasses.length];

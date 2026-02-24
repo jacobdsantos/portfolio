@@ -36,15 +36,19 @@ const stats = [
 <div class="sidebar-card">
   <!-- Avatar & identity -->
   <div class="text-center mb-5">
-    <div class="relative w-28 h-28 mx-auto mb-4">
-      <!-- Outer animated ring -->
-      <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent-primary/40 via-accent-secondary/30 to-accent-tertiary/40 animate-glow blur-sm"></div>
-      <!-- Inner ring -->
-      <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary/20 via-transparent to-accent-secondary/20"></div>
-      <div class="relative w-full h-full rounded-2xl bg-bg-secondary border border-accent-primary/25 flex items-center justify-center overflow-hidden group">
-        <span class="text-4xl font-bold bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary bg-clip-text text-transparent font-mono tracking-tighter select-none">JS</span>
-        <!-- Scanline effect -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-primary/[0.03] to-transparent h-8 animate-float pointer-events-none"></div>
+    <div class="relative w-full max-w-[220px] mx-auto mb-4">
+      <!-- Outer animated glow -->
+      <div class="absolute -inset-2 rounded-2xl bg-gradient-to-br from-accent-primary/20 via-accent-secondary/10 to-accent-tertiary/20 animate-glow blur-md"></div>
+      <!-- Logo container -->
+      <div class="relative rounded-2xl bg-bg-secondary/80 border border-accent-primary/15 p-4 overflow-hidden group backdrop-blur-sm">
+        <img
+          src="/images/trendai-tagline.png"
+          alt="Trend AI"
+          class="w-full h-auto object-contain"
+          loading="eager"
+        />
+        <!-- Subtle scanline -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-primary/[0.02] to-transparent h-8 animate-float pointer-events-none"></div>
       </div>
     </div>
     <h1 class="text-xl font-semibold text-text-primary tracking-tight font-display">Jacob Santos</h1>

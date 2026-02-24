@@ -9,7 +9,7 @@
   ],
   "description": "Uncovered AI-generated fake GitHub repositories distributing SmartLoader and LummaStealer through convincing but malicious code projects.",
   "summary": "A sophisticated campaign used AI-generated content to create convincing fake GitHub repositories that distributed SmartLoader, which then delivered Lumma Stealer and other malicious payloads. The repositories featured AI-written README files, realistic code structures, and fabricated star counts to appear legitimate. This research documents how threat actors leverage generative AI to scale social engineering attacks on developer communities, including the full infection chain from repository discovery to credential theft.",
-  "source": "Trend Micro Research Blog",
+  "source": "Trend AI Research Blog",
   "order": 20,
   "image": "/images/research/fake-github-lummastealer.jpg"
 }
