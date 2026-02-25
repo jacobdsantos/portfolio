@@ -3,8 +3,8 @@ import { join, relative } from 'node:path';
 
 const DIST_DIR = join(process.cwd(), 'dist');
 
-// Admin/CMS pages that don't need SEO meta tags.
-const EXCLUDED_PREFIXES = ['_ctrl/', 'admin/'];
+// Pages that don't need SEO meta tags (admin, OG image templates, etc.)
+const EXCLUDED_PREFIXES = ['_ctrl/', 'admin/', 'og/'];
 
 const REQUIRED_TAGS = [
   {
