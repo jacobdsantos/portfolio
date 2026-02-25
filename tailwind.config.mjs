@@ -5,26 +5,26 @@ export default {
     extend: {
       colors: {
         bg: {
-          primary: '#08090e',
-          secondary: '#0e1016',
-          card: '#12141c',
-          hover: '#1a1d28',
-          surface: '#161922',
+          primary: 'rgb(var(--color-bg-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+          card: 'rgb(var(--color-bg-card) / <alpha-value>)',
+          hover: 'rgb(var(--color-bg-hover) / <alpha-value>)',
+          surface: 'rgb(var(--color-bg-surface) / <alpha-value>)',
         },
         accent: {
-          primary: '#f0a63a',
-          secondary: '#8b7cf7',
-          tertiary: '#4cc9f0',
-          glow: '#ffc857',
-          warning: '#eab308',
-          danger: '#ff6b6b',
-          success: '#34d399',
-          hot: '#f87171',
+          primary: 'rgb(var(--color-accent-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-accent-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--color-accent-tertiary) / <alpha-value>)',
+          glow: 'rgb(var(--color-accent-glow) / <alpha-value>)',
+          warning: 'rgb(var(--color-accent-warning) / <alpha-value>)',
+          danger: 'rgb(var(--color-accent-danger) / <alpha-value>)',
+          success: 'rgb(var(--color-accent-success) / <alpha-value>)',
+          hot: 'rgb(var(--color-accent-hot) / <alpha-value>)',
         },
         text: {
-          primary: '#f0f0f5',
-          secondary: '#8a8f9e',
-          muted: '#4d5263',
+          primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+          muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
         },
       },
       fontFamily: {
@@ -119,7 +119,7 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'grid-pattern': `linear-gradient(rgba(240, 166, 58, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(240, 166, 58, 0.02) 1px, transparent 1px)`,
+        'grid-pattern': `linear-gradient(rgb(var(--color-accent-primary) / var(--grid-opacity)) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--color-accent-primary) / var(--grid-opacity)) 1px, transparent 1px)`,
       },
       backgroundSize: {
         'grid': '50px 50px',
