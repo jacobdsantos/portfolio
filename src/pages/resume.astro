@@ -214,8 +214,8 @@ const harvardBullets = {
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--accent-primary, #f0a63a);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: rgb(var(--color-accent-primary));
+      border-bottom: 1px solid var(--glass-border);
       padding-bottom: 0.375rem;
       margin-bottom: 0.75rem;
       font-family: 'JetBrains Mono', monospace;
@@ -224,7 +224,7 @@ const harvardBullets = {
     .resume-bullets li {
       position: relative;
       padding-left: 1rem;
-      color: #8b949e;
+      color: rgb(var(--color-text-secondary));
       font-size: 0.8125rem;
       line-height: 1.6;
     }
@@ -237,7 +237,7 @@ const harvardBullets = {
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: #f0a63a;
+      background: rgb(var(--color-accent-primary));
       opacity: 0.5;
     }
 

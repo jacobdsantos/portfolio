@@ -3,6 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="404 — Not Found">
+  <!-- FOUC prevention -->
+  <script is:inline>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
   <div class="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
     <!-- Background image -->
     <img src="/images/cards/404-lost.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" loading="eager" aria-hidden="true" />
@@ -31,7 +40,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="mt-12 opacity-20">
         <div class="inline-grid grid-cols-5 gap-1">
           {Array.from({ length: 25 }).map((_, i) => (
-            <div class={`w-2 h-2 rounded-sm ${i % 7 === 0 ? 'bg-accent-primary' : i % 5 === 0 ? 'bg-accent-secondary' : 'bg-white/20'}`}></div>
+            <div class={`w-2 h-2 rounded-sm ${i % 7 === 0 ? 'bg-accent-primary' : i % 5 === 0 ? 'bg-accent-secondary' : 'bg-text-muted/20'}`}></div>
           ))}
         </div>
       </div>

@@ -23,7 +23,7 @@ const { class: className } = Astro.props;
 <style>
   .prose-wrapper {
     font-family: 'Urbanist', system-ui, sans-serif;
-    color: #e8edf5;
+    color: rgb(var(--color-text-secondary));
     line-height: 1.75;
     max-width: 72ch;
   }
@@ -35,7 +35,7 @@ const { class: className } = Astro.props;
     letter-spacing: -0.02em;
     margin-top: 0;
     margin-bottom: 1rem;
-    color: #e8edf5;
+    color: rgb(var(--color-text-primary));
   }
   .prose-wrapper :global(h2) {
     font-size: 1.5rem;
@@ -43,8 +43,8 @@ const { class: className } = Astro.props;
     letter-spacing: -0.01em;
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
-    color: #e8edf5;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgb(var(--color-text-primary));
+    border-bottom: 1px solid var(--glass-border);
     padding-bottom: 0.5rem;
   }
   .prose-wrapper :global(h3) {
@@ -52,34 +52,34 @@ const { class: className } = Astro.props;
     font-weight: 600;
     margin-top: 2rem;
     margin-bottom: 0.5rem;
-    color: #e8edf5;
+    color: rgb(var(--color-text-primary));
   }
   .prose-wrapper :global(h4) {
     font-size: 1.125rem;
     font-weight: 600;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
-    color: #8b949e;
+    color: rgb(var(--color-text-secondary));
   }
 
   /* ---- Paragraphs ---- */
   .prose-wrapper :global(p) {
     margin-top: 0;
     margin-bottom: 1.25rem;
-    color: #8b949e;
+    color: rgb(var(--color-text-secondary));
   }
 
   /* ---- Links ---- */
   .prose-wrapper :global(a) {
-    color: #f0a63a;
+    color: rgb(var(--color-accent-primary));
     text-decoration: underline;
     text-underline-offset: 2px;
-    text-decoration-color: rgba(240, 166, 58, 0.3);
+    text-decoration-color: rgb(var(--color-accent-primary) / 0.3);
     transition: color 200ms, text-decoration-color 200ms;
   }
   .prose-wrapper :global(a:hover) {
-    color: #00ffbc;
-    text-decoration-color: #f0a63a;
+    color: rgb(var(--color-accent-tertiary));
+    text-decoration-color: rgb(var(--color-accent-primary));
   }
 
   /* ---- Lists ---- */
@@ -87,36 +87,36 @@ const { class: className } = Astro.props;
     list-style: disc;
     padding-left: 1.5rem;
     margin-bottom: 1.25rem;
-    color: #8b949e;
+    color: rgb(var(--color-text-secondary));
   }
   .prose-wrapper :global(ol) {
     list-style: decimal;
     padding-left: 1.5rem;
     margin-bottom: 1.25rem;
-    color: #8b949e;
+    color: rgb(var(--color-text-secondary));
   }
   .prose-wrapper :global(li) {
     margin-bottom: 0.375rem;
   }
   .prose-wrapper :global(li::marker) {
-    color: #545d68;
+    color: rgb(var(--color-text-muted));
   }
 
   /* ---- Inline code ---- */
   .prose-wrapper :global(code) {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 0.85em;
-    background: rgba(22, 29, 39, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgb(var(--color-bg-surface));
+    border: 1px solid var(--glass-border);
     border-radius: 0.375rem;
     padding: 0.15em 0.4em;
-    color: #00b4d8;
+    color: rgb(var(--color-accent-tertiary));
   }
 
   /* ---- Code blocks (pre > code) ---- */
   .prose-wrapper :global(pre) {
-    background: #0d1117;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgb(var(--color-bg-secondary));
+    border: 1px solid var(--glass-border);
     border-radius: 0.75rem;
     padding: 1.25rem 1.5rem;
     margin-bottom: 1.5rem;
@@ -129,24 +129,24 @@ const { class: className } = Astro.props;
     border: none;
     padding: 0;
     font-size: inherit;
-    color: #e8edf5;
+    color: rgb(var(--color-text-primary));
   }
 
   /* ---- Blockquotes ---- */
   .prose-wrapper :global(blockquote) {
-    border-left: 3px solid #f0a63a;
+    border-left: 3px solid rgb(var(--color-accent-primary));
     padding: 0.5rem 1rem;
     margin: 1.5rem 0;
-    background: rgba(240, 166, 58, 0.04);
+    background: rgb(var(--color-accent-primary) / 0.04);
     border-radius: 0 0.5rem 0.5rem 0;
-    color: #8b949e;
+    color: rgb(var(--color-text-secondary));
     font-style: italic;
   }
 
   /* ---- Horizontal rule ---- */
   .prose-wrapper :global(hr) {
     border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--glass-border);
     margin: 2rem 0;
   }
 
@@ -161,23 +161,23 @@ const { class: className } = Astro.props;
     text-align: left;
     padding: 0.75rem 1rem;
     font-weight: 600;
-    color: #e8edf5;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(22, 29, 39, 0.5);
+    color: rgb(var(--color-text-primary));
+    border-bottom: 1px solid var(--glass-border-hover);
+    background: rgb(var(--color-bg-surface) / 0.5);
   }
   .prose-wrapper :global(td) {
     padding: 0.625rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    color: #8b949e;
+    border-bottom: 1px solid var(--glass-border);
+    color: rgb(var(--color-text-secondary));
   }
   .prose-wrapper :global(tr:hover td) {
-    background: rgba(26, 34, 48, 0.4);
+    background: rgb(var(--color-bg-hover) / 0.4);
   }
 
   /* ---- Images ---- */
   .prose-wrapper :global(img) {
     border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border);
     margin: 1.5rem 0;
     max-width: 100%;
     height: auto;
@@ -185,7 +185,7 @@ const { class: className } = Astro.props;
 
   /* ---- Strong / em ---- */
   .prose-wrapper :global(strong) {
-    color: #e8edf5;
+    color: rgb(var(--color-text-primary));
     font-weight: 600;
   }
   .prose-wrapper :global(em) {

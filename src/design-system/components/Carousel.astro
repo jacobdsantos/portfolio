@@ -115,19 +115,19 @@ const gradients = [
     display: flex;
     flex-direction: column;
     border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    background: rgba(22, 29, 39, 0.6);
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg-light);
     overflow: hidden;
     transition: all 0.3s ease;
     text-decoration: none;
   }
 
   .carousel-card:hover {
-    border-color: rgba(240, 166, 58, 0.2);
+    border-color: rgb(var(--color-accent-primary) / 0.2);
     box-shadow:
-      0 0 0 1px rgba(240, 166, 58, 0.06),
-      0 12px 40px -8px rgba(240, 166, 58, 0.12),
-      0 4px 12px -2px rgba(0, 0, 0, 0.4);
+      0 0 0 1px rgb(var(--color-accent-primary) / 0.06),
+      0 12px 40px -8px rgb(var(--color-accent-primary) / 0.12),
+      0 4px 12px -2px var(--glass-shadow-deep);
     transform: translateY(-3px);
   }
 
