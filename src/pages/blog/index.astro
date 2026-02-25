@@ -48,11 +48,21 @@ const jsonLd = {
     { label: 'Blog' },
   ]}
 >
+  <!-- Hero banner -->
+  <div class="page-hero page-hero--violet animate-fade-up" data-reveal>
+    <div class="page-hero__pattern"></div>
+    <div class="page-hero__content">
+      <div class="page-hero__icon">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-bold text-text-primary font-display tracking-tight">Blog</h1>
+      <p class="text-text-secondary text-sm mt-1">Threat research, security automation, and cybersecurity insights.</p>
+    </div>
+  </div>
+
   <div class="content-card">
-    <h1 class="section-title animate-fade-up">Blog</h1>
     <p class="section-subtitle">
-      Threat research, security automation, and cybersecurity insights.
-      <span class="text-text-muted">Longer-form writing on what I build and what I learn.</span>
+      Longer-form writing on what I build and what I learn.
     </p>
 
     <!-- RSS link -->
@@ -85,7 +95,7 @@ const jsonLd = {
               {post.data.coverImage && (
                 <div class="relative h-44 overflow-hidden">
                   <img src={post.data.coverImage} alt={post.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-transparent to-transparent"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent"></div>
                 </div>
               )}
               <div class={post.data.coverImage ? 'p-5 pt-3' : 'p-5'}>

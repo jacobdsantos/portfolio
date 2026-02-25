@@ -61,8 +61,19 @@ const featuredStatus = statusConfig[featuredData.status] || statusConfig['Planne
     { label: 'Tools' },
   ]}
 >
+  <!-- Hero banner -->
+  <div class="page-hero page-hero--amber animate-fade-up" data-reveal>
+    <div class="page-hero__pattern"></div>
+    <div class="page-hero__content">
+      <div class="page-hero__icon">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.22-3.01a1.5 1.5 0 010-2.6l5.22-3.01a1.5 1.5 0 011.58 0l5.22 3.01a1.5 1.5 0 010 2.6l-5.22 3.01a1.5 1.5 0 01-1.58 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6.2 12.17l-1.7.98a1.5 1.5 0 000 2.6l5.22 3.01a1.5 1.5 0 001.58 0l5.22-3.01a1.5 1.5 0 000-2.6l-1.7-.98"/></svg>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-bold text-text-primary font-display tracking-tight">Tools & Automation</h1>
+      <p class="text-text-secondary text-sm mt-1">Production tools built for real threat hunting operations.</p>
+    </div>
+  </div>
+
   <div class="content-card mb-6">
-    <h1 class="section-title animate-fade-up">Tools & Automation</h1>
     <p class="section-subtitle animate-fade-up-delay-1">
       Production tools built for real threat hunting operations
       <span class="text-text-muted">-- not side projects, operational infrastructure.</span>
@@ -127,7 +138,7 @@ const featuredStatus = statusConfig[featuredData.status] || statusConfig['Planne
             {tool.image && (
               <div class="relative h-32 overflow-hidden">
                 <img src={tool.image} alt={tool.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-transparent to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-bg-surface via-transparent to-transparent"></div>
               </div>
             )}
             <div class={tool.image ? 'p-4 pt-2 flex flex-col flex-1' : 'p-4 flex flex-col flex-1'}>
