@@ -56,48 +56,49 @@
 }
 
 [data-theme="light"] {
-  /* Background */
-  --color-bg-primary: 249 250 251;
-  --color-bg-secondary: 243 244 246;
+  /* Background — warm gray palette with clear card/surface contrast */
+  --color-bg-primary: 245 245 248;
+  --color-bg-secondary: 237 238 242;
   --color-bg-card: 255 255 255;
-  --color-bg-hover: 243 244 246;
-  --color-bg-surface: 249 250 251;
+  --color-bg-hover: 237 238 242;
+  --color-bg-surface: 241 242 246;
 
-  /* Text */
+  /* Text — strong contrast for readability */
   --color-text-primary: 17 24 39;
-  --color-text-secondary: 75 85 99;
-  --color-text-muted: 156 163 175;
+  --color-text-secondary: 55 65 81;
+  --color-text-muted: 107 114 128;
 
-  /* Accent tweaks for light readability */
-  --color-accent-primary: 202 138 40;
-  --color-accent-secondary: 109 94 217;
-  --color-accent-tertiary: 14 165 210;
-  --color-accent-glow: 202 138 40;
-  --color-accent-danger: 220 60 60;
-  --color-accent-success: 22 163 115;
-  --color-accent-hot: 220 80 80;
+  /* Accent tweaks for light readability — deeper/richer */
+  --color-accent-primary: 180 120 20;
+  --color-accent-secondary: 99 84 207;
+  --color-accent-tertiary: 8 145 190;
+  --color-accent-glow: 180 120 20;
+  --color-accent-warning: 180 130 8;
+  --color-accent-danger: 200 40 40;
+  --color-accent-success: 16 140 100;
+  --color-accent-hot: 200 60 60;
 
-  /* Glass morphism for light */
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-bg-mid: rgba(249, 250, 251, 0.8);
-  --glass-bg-light: rgba(255, 255, 255, 0.6);
-  --glass-bg-lighter: rgba(249, 250, 251, 0.5);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-border-hover: rgba(0, 0, 0, 0.12);
-  --glass-highlight: rgba(255, 255, 255, 0.8);
-  --glass-highlight-subtle: rgba(255, 255, 255, 0.4);
-  --glass-shadow: rgba(0, 0, 0, 0.06);
-  --glass-shadow-deep: rgba(0, 0, 0, 0.1);
+  /* Glass morphism for light — visible cards with soft shadows */
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-bg-mid: rgba(255, 255, 255, 0.85);
+  --glass-bg-light: rgba(255, 255, 255, 0.7);
+  --glass-bg-lighter: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-border-hover: rgba(0, 0, 0, 0.18);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-highlight-subtle: rgba(255, 255, 255, 0.5);
+  --glass-shadow: rgba(0, 0, 0, 0.08);
+  --glass-shadow-deep: rgba(0, 0, 0, 0.14);
 
   /* Mesh / orb opacities (subtler in light) */
-  --mesh-amber: 0.06;
-  --mesh-violet: 0.04;
-  --mesh-cyan: 0.03;
-  --grid-opacity: 0.04;
+  --mesh-amber: 0.05;
+  --mesh-violet: 0.03;
+  --mesh-cyan: 0.02;
+  --grid-opacity: 0.03;
 
   /* Misc */
   --modal-backdrop: rgba(0, 0, 0, 0.5);
-  --sep-color: rgba(0, 0, 0, 0.06);
+  --sep-color: rgba(0, 0, 0, 0.08);
   --noise-opacity: 0.02;
   --card-hover-lift: -2px;
 }
@@ -142,6 +143,61 @@ html {
   }
   ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(var(--color-accent-primary) / 0.35);
+  }
+}
+
+@layer utilities {
+  /* ------------------------------------------------------------------ */
+  /* Theme-aware border/bg overrides for light mode                     */
+  /* In dark mode, border-white/[0.04-0.12] is fine.                    */
+  /* In light mode, those become invisible on white backgrounds.        */
+  /* These rules flip white → black for the relevant low-opacity uses.  */
+  /* ------------------------------------------------------------------ */
+  [data-theme="light"] .border-white\/\[0\.04\],
+  [data-theme="light"] .border-white\/\[0\.06\],
+  [data-theme="light"] .border-white\/\[0\.08\],
+  [data-theme="light"] .border-white\/10,
+  [data-theme="light"] .border-white\/\[0\.12\] {
+    border-color: var(--glass-border);
+  }
+  [data-theme="light"] .hover\:border-white\/\[0\.08\]:hover,
+  [data-theme="light"] .hover\:border-white\/\[0\.12\]:hover,
+  [data-theme="light"] .hover\:border-white\/10:hover,
+  [data-theme="light"] .hover\:border-white\/20:hover,
+  [data-theme="light"] .hover\:border-white\/30:hover {
+    border-color: var(--glass-border-hover);
+  }
+  [data-theme="light"] .bg-white\/\[0\.03\],
+  [data-theme="light"] .bg-white\/\[0\.04\] {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  [data-theme="light"] .hover\:bg-white\/\[0\.03\]:hover,
+  [data-theme="light"] .hover\:bg-white\/\[0\.04\]:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  [data-theme="light"] .text-white\/10,
+  [data-theme="light"] .text-white\/15,
+  [data-theme="light"] .text-white\/20 {
+    color: rgba(0, 0, 0, 0.12);
+  }
+  [data-theme="light"] .text-white\/60 {
+    color: rgb(var(--color-text-secondary));
+  }
+  [data-theme="light"] .hover\:text-white:hover {
+    color: rgb(var(--color-text-primary));
+  }
+  [data-theme="light"] .bg-black\/40 {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  [data-theme="light"] .border-t.border-white\/\[0\.06\] {
+    border-top-color: var(--sep-color);
+  }
+  /* Tag / pill borders in light mode */
+  [data-theme="light"] .border-white\/10 {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  [data-theme="light"] .hover\:border-white\/20:hover {
+    border-color: rgba(0, 0, 0, 0.15);
   }
 }
 
