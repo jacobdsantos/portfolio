@@ -48,13 +48,11 @@ const jsonLd = {
     { label: 'Blog' },
   ]}
 >
-  <!-- Hero banner -->
-  <div class="page-hero page-hero--violet animate-fade-up" data-reveal>
-    <div class="page-hero__pattern"></div>
-    <div class="page-hero__content">
-      <div class="page-hero__icon">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
-      </div>
+  <!-- Hero image -->
+  <div class="relative rounded-2xl overflow-hidden mb-6 animate-fade-up" data-reveal>
+    <img src="/images/pages/blog-hero.jpg" alt="Blog" class="w-full h-44 md:h-56 object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/40 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6">
       <h1 class="text-2xl md:text-3xl font-bold text-text-primary font-display tracking-tight">Blog</h1>
       <p class="text-text-secondary text-sm mt-1">Threat research, security automation, and cybersecurity insights.</p>
     </div>
