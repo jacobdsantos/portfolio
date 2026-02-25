@@ -48,25 +48,28 @@ function loginPage(error = '') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Admin Access</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Space Grotesk', system-ui, sans-serif;
-      background: #07090f;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #08090e;
       color: #e8edf5;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background-image:
-        linear-gradient(rgba(0,223,162,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,223,162,0.02) 1px, transparent 1px);
+        linear-gradient(rgba(240,166,58,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,166,58,0.02) 1px, transparent 1px);
       background-size: 60px 60px;
     }
+    ::selection { background: rgba(240,166,58,0.25); color: #fff; }
     .card {
-      background: #131920;
-      border: 1px solid rgba(255,255,255,0.06);
+      background: #12141c;
+      border: 1px solid rgba(240,166,58,0.1);
       border-radius: 20px;
       padding: 2.5rem;
       width: 100%;
@@ -76,26 +79,26 @@ function loginPage(error = '') {
     .logo {
       width: 56px; height: 56px;
       border-radius: 16px;
-      background: linear-gradient(135deg, rgba(0,223,162,0.15), rgba(108,92,231,0.1));
-      border: 1px solid rgba(0,223,162,0.15);
+      background: linear-gradient(135deg, rgba(240,166,58,0.15), rgba(139,124,247,0.1));
+      border: 1px solid rgba(240,166,58,0.15);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 18px;
-      color: #00dfa2;
+      color: #f0a63a;
       font-family: 'JetBrains Mono', monospace;
       margin-bottom: 1.5rem;
     }
-    h1 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; }
-    h1 span { color: #00dfa2; }
+    h1 { font-family: 'Urbanist', sans-serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; }
+    h1 span { color: #f0a63a; }
     .sub { font-size: 0.7rem; color: #545d68; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; }
     form { display: flex; flex-direction: column; gap: 1rem; }
     input[type="password"] {
       width: 100%;
       padding: 0.75rem 1rem;
-      background: #0d1117;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #0b0c12;
+      border: 1px solid rgba(240,166,58,0.1);
       border-radius: 12px;
       color: #e8edf5;
       font-family: 'JetBrains Mono', monospace;
@@ -103,21 +106,21 @@ function loginPage(error = '') {
       outline: none;
       transition: border-color 0.2s;
     }
-    input[type="password"]:focus { border-color: rgba(0,223,162,0.4); }
+    input[type="password"]:focus { border-color: rgba(240,166,58,0.4); }
     input[type="password"]::placeholder { color: #545d68; }
     button {
       padding: 0.75rem;
-      background: #00dfa2;
-      color: #07090f;
+      background: #f0a63a;
+      color: #08090e;
       border: none;
       border-radius: 12px;
       font-weight: 600;
       font-size: 0.85rem;
       cursor: pointer;
       transition: all 0.2s;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'DM Sans', sans-serif;
     }
-    button:hover { box-shadow: 0 0 30px -5px rgba(0,223,162,0.4); transform: scale(1.02); }
+    button:hover { box-shadow: 0 0 30px -5px rgba(240,166,58,0.4); transform: scale(1.02); }
   </style>
 </head>
 <body>

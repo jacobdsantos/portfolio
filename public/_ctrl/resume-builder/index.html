@@ -5,19 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Resume Builder — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; background: #07090f; color: #e8edf5; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #08090e; color: #e8edf5; font-family: 'DM Sans', system-ui, sans-serif; }
+    ::selection { background: rgba(240,166,58,0.25); color: #fff; }
     .banner {
-      background: linear-gradient(90deg, rgba(0,223,162,0.08), rgba(108,92,231,0.08));
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(90deg, rgba(240,166,58,0.06), rgba(139,124,247,0.06));
+      border-bottom: 1px solid rgba(240,166,58,0.1);
       padding: 0.75rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 0.8rem;
     }
-    .banner a { color: #00dfa2; text-decoration: none; }
-    .banner a:hover { text-decoration: underline; }
+    .banner a { color: #f0a63a; text-decoration: none; transition: color 0.2s; }
+    .banner a:hover { color: #f5bc6a; text-decoration: underline; }
     .label { color: #545d68; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; }
     .redirect-msg {
       display: flex;
@@ -28,24 +33,43 @@
       text-align: center;
       gap: 1rem;
     }
-    .redirect-msg h2 { font-size: 1.5rem; font-weight: 700; }
+    .redirect-msg h2 { font-family: 'Urbanist', sans-serif; font-size: 1.5rem; font-weight: 700; }
     .redirect-msg p { color: #8b949e; max-width: 500px; line-height: 1.6; }
-    .badge { display: inline-block; font-size: 0.6rem; font-family: 'JetBrains Mono', monospace; padding: 0.2rem 0.6rem; border-radius: 6px; background: rgba(108,92,231,0.12); color: #6c5ce7; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.5rem; vertical-align: middle; }
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(139,124,247,0.12);
+      color: #8b7cf7;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
     .redirect-msg a.btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       padding: 0.75rem 1.5rem;
-      background: #00dfa2;
-      color: #07090f;
+      background: #f0a63a;
+      color: #08090e;
       border-radius: 12px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s;
     }
-    .redirect-msg a.btn:hover { box-shadow: 0 0 30px -5px rgba(0,223,162,0.4); transform: scale(1.02); }
+    .redirect-msg a.btn:hover { box-shadow: 0 0 30px -5px rgba(240,166,58,0.4); transform: scale(1.02); }
     .features { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 0.5rem; }
-    .feat { font-size: 0.7rem; color: #545d68; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; background: rgba(19,25,32,0.8); }
+    .feat {
+      font-size: 0.7rem;
+      color: #545d68;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid rgba(240,166,58,0.08);
+      border-radius: 8px;
+      background: rgba(18,20,28,0.8);
+    }
   </style>
 </head>
 <body>

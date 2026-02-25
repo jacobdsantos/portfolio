@@ -6,42 +6,42 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Admin — Jacob Santos Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-primary: #07090f;
-      --bg-secondary: #0d1117;
-      --bg-card: #131920;
-      --bg-surface: #161d27;
-      --bg-hover: #1a2230;
-      --accent: #00dfa2;
-      --accent-glow: #00ffbc;
-      --accent-purple: #6c5ce7;
-      --accent-cyan: #00b4d8;
-      --accent-red: #ff4757;
-      --accent-amber: #fbbf24;
-      --text-primary: #e8edf5;
-      --text-secondary: #8b949e;
-      --text-muted: #545d68;
+      --bg-primary: #08090e;
+      --bg-secondary: #0e1016;
+      --bg-card: #12141c;
+      --bg-surface: #161922;
+      --bg-hover: #1a1d28;
+      --accent: #f0a63a;
+      --accent-glow: #ffc857;
+      --accent-secondary: #8b7cf7;
+      --accent-tertiary: #4cc9f0;
+      --accent-danger: #ff6b6b;
+      --accent-warning: #eab308;
+      --text-primary: #f0f0f5;
+      --text-secondary: #8a8f9e;
+      --text-muted: #4d5263;
       --border: rgba(255,255,255,0.06);
-      --border-accent: rgba(0,223,162,0.15);
+      --border-accent: rgba(240,166,58,0.15);
     }
 
     body {
-      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-family: 'DM Sans', system-ui, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
       background-image:
-        linear-gradient(rgba(0,223,162,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,223,162,0.02) 1px, transparent 1px);
+        linear-gradient(rgba(240,166,58,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,166,58,0.015) 1px, transparent 1px);
       background-size: 60px 60px;
     }
 
-    ::selection { background: rgba(0,223,162,0.25); color: #fff; }
+    ::selection { background: rgba(240,166,58,0.25); color: #fff; }
 
     .container {
       max-width: 960px;
@@ -66,7 +66,7 @@
     .logo {
       width: 44px; height: 44px;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(0,223,162,0.15), rgba(108,92,231,0.1));
+      background: linear-gradient(135deg, rgba(240,166,58,0.15), rgba(139,124,247,0.1));
       border: 1px solid var(--border-accent);
       display: flex;
       align-items: center;
@@ -81,6 +81,7 @@
       font-size: 1.25rem;
       font-weight: 700;
       letter-spacing: -0.02em;
+      font-family: 'Urbanist', sans-serif;
     }
     .header h1 span { color: var(--accent); }
     .header-subtitle {
@@ -112,7 +113,7 @@
     .header-link:hover {
       border-color: var(--border-accent);
       color: var(--accent);
-      box-shadow: 0 0 20px -5px rgba(0,223,162,0.15);
+      box-shadow: 0 0 20px -5px rgba(240,166,58,0.15);
     }
 
     /* Section labels */
@@ -161,7 +162,7 @@
     .quick-add-btn:hover {
       border-color: var(--border-accent);
       transform: translateY(-3px);
-      box-shadow: 0 12px 40px -8px rgba(0,223,162,0.12);
+      box-shadow: 0 12px 40px -8px rgba(240,166,58,0.12);
     }
     .quick-add-btn:hover::before { opacity: 1; }
 
@@ -234,7 +235,7 @@
     .action-card:hover {
       border-color: var(--border-accent);
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px -6px rgba(0,223,162,0.1);
+      box-shadow: 0 8px 30px -6px rgba(240,166,58,0.1);
     }
 
     .action-icon {
@@ -261,8 +262,8 @@
       margin-left: 0.5rem;
       vertical-align: middle;
     }
-    .badge-new { background: rgba(0,223,162,0.12); color: #00dfa2; }
-    .badge-ai { background: rgba(108,92,231,0.12); color: #6c5ce7; }
+    .badge-new { background: rgba(240,166,58,0.12); color: #f0a63a; }
+    .badge-ai { background: rgba(139,124,247,0.12); color: #8b7cf7; }
 
     /* Feature list */
     .features-section {
@@ -342,8 +343,8 @@
     <!-- Quick Add -->
     <div class="section-label">Quick Add</div>
     <div class="quick-add-grid">
-      <a href="/_ctrl/cms/#/collections/research/new" class="quick-add-btn" style="--btn-accent: #ff4757;">
-        <div class="quick-icon" style="background: rgba(255,71,87,0.1); border: 1px solid rgba(255,71,87,0.2); color: #ff4757;">
+      <a href="/_ctrl/cms/#/collections/research/new" class="quick-add-btn" style="--btn-accent: #ff6b6b;">
+        <div class="quick-icon" style="background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.2); color: #ff6b6b;">
           <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
         </div>
         <div style="text-align:center">
@@ -351,8 +352,8 @@
           <div class="quick-sublabel">Research / Blog</div>
         </div>
       </a>
-      <a href="/_ctrl/cms/#/collections/tools/new" class="quick-add-btn" style="--btn-accent: #00b4d8;">
-        <div class="quick-icon" style="background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.2); color: #00b4d8;">
+      <a href="/_ctrl/cms/#/collections/tools/new" class="quick-add-btn" style="--btn-accent: #4cc9f0;">
+        <div class="quick-icon" style="background: rgba(76,201,240,0.1); border: 1px solid rgba(76,201,240,0.2); color: #4cc9f0;">
           <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
         </div>
         <div style="text-align:center">
@@ -360,8 +361,8 @@
           <div class="quick-sublabel">Automation</div>
         </div>
       </a>
-      <a href="/_ctrl/cms/#/collections/speaking/new" class="quick-add-btn" style="--btn-accent: #6c5ce7;">
-        <div class="quick-icon" style="background: rgba(108,92,231,0.1); border: 1px solid rgba(108,92,231,0.2); color: #6c5ce7;">
+      <a href="/_ctrl/cms/#/collections/speaking/new" class="quick-add-btn" style="--btn-accent: #8b7cf7;">
+        <div class="quick-icon" style="background: rgba(139,124,247,0.1); border: 1px solid rgba(139,124,247,0.2); color: #8b7cf7;">
           <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
         </div>
         <div style="text-align:center">
@@ -375,15 +376,15 @@
     <div class="section-label">Portfolio Overview</div>
     <div class="stats-row">
       <div class="stat-card">
-        <div class="stat-value" style="color: var(--accent-red);" id="stat-articles">31</div>
+        <div class="stat-value" style="color: var(--accent-danger);" id="stat-articles">31</div>
         <div class="stat-label">Articles</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" style="color: var(--accent-cyan);" id="stat-tools">5</div>
+        <div class="stat-value" style="color: var(--accent-tertiary);" id="stat-tools">5</div>
         <div class="stat-label">Tools</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" style="color: var(--accent-purple);" id="stat-events">4</div>
+        <div class="stat-value" style="color: var(--accent-secondary);" id="stat-events">4</div>
         <div class="stat-label">Events</div>
       </div>
       <div class="stat-card">
@@ -396,7 +397,7 @@
     <div class="section-label">Manage Content</div>
     <div class="actions-grid">
       <a href="/_ctrl/cms/#/collections/research" class="action-card">
-        <div class="action-icon" style="background: rgba(255,71,87,0.1); border: 1px solid rgba(255,71,87,0.15); color: #ff4757;">
+        <div class="action-icon" style="background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.15); color: #ff6b6b;">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
         </div>
         <div>
@@ -405,7 +406,7 @@
         </div>
       </a>
       <a href="/_ctrl/cms/#/collections/tools" class="action-card">
-        <div class="action-icon" style="background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.15); color: #00b4d8;">
+        <div class="action-icon" style="background: rgba(76,201,240,0.1); border: 1px solid rgba(76,201,240,0.15); color: #4cc9f0;">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>
         </div>
         <div>
@@ -414,7 +415,7 @@
         </div>
       </a>
       <a href="/_ctrl/cms/#/collections/speaking" class="action-card">
-        <div class="action-icon" style="background: rgba(108,92,231,0.1); border: 1px solid rgba(108,92,231,0.15); color: #6c5ce7;">
+        <div class="action-icon" style="background: rgba(139,124,247,0.1); border: 1px solid rgba(139,124,247,0.15); color: #8b7cf7;">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3"/></svg>
         </div>
         <div>
@@ -423,7 +424,7 @@
         </div>
       </a>
       <a href="/_ctrl/cms/" class="action-card">
-        <div class="action-icon" style="background: rgba(0,223,162,0.1); border: 1px solid rgba(0,223,162,0.15); color: var(--accent);">
+        <div class="action-icon" style="background: rgba(240,166,58,0.1); border: 1px solid rgba(240,166,58,0.15); color: var(--accent);">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
         </div>
         <div>
@@ -437,7 +438,7 @@
     <div class="section-label">Portfolio Tools</div>
     <div class="actions-grid">
       <a href="/resume-builder" class="action-card">
-        <div class="action-icon" style="background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.15); color: var(--accent-amber);">
+        <div class="action-icon" style="background: rgba(240,166,58,0.1); border: 1px solid rgba(240,166,58,0.15); color: var(--accent);">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
         </div>
         <div>
@@ -446,7 +447,7 @@
         </div>
       </a>
       <a href="/resume" class="action-card" target="_blank">
-        <div class="action-icon" style="background: rgba(139,148,158,0.1); border: 1px solid rgba(139,148,158,0.15); color: var(--text-secondary);">
+        <div class="action-icon" style="background: rgba(138,143,158,0.1); border: 1px solid rgba(138,143,158,0.15); color: var(--text-secondary);">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
         </div>
         <div>
@@ -461,35 +462,35 @@
     <div class="features-section">
       <div class="feature-grid">
         <div class="feature-item">
-          <div class="feature-dot" style="background: #6c5ce7;"></div>
+          <div class="feature-dot" style="background: #8b7cf7;"></div>
           Multi-provider AI (Anthropic, OpenAI, Gemini)
         </div>
         <div class="feature-item">
-          <div class="feature-dot" style="background: #00dfa2;"></div>
+          <div class="feature-dot" style="background: #f0a63a;"></div>
           Weighted ATS scoring (domain-aware)
         </div>
         <div class="feature-item">
-          <div class="feature-dot" style="background: #00b4d8;"></div>
+          <div class="feature-dot" style="background: #4cc9f0;"></div>
           AI assessment panel (fit, strengths, gaps)
         </div>
         <div class="feature-item">
-          <div class="feature-dot" style="background: #fbbf24;"></div>
+          <div class="feature-dot" style="background: #eab308;"></div>
           Cloudflare proxy (no CORS, server-side keys)
         </div>
         <div class="feature-item">
-          <div class="feature-dot" style="background: #ff4757;"></div>
+          <div class="feature-dot" style="background: #ff6b6b;"></div>
           4 resume templates with live preview
         </div>
         <div class="feature-item">
-          <div class="feature-dot" style="background: #00dfa2;"></div>
+          <div class="feature-dot" style="background: #f0a63a;"></div>
           Inline bullet editing with live ATS recalc
         </div>
         <div class="feature-item">
-          <div class="feature-dot" style="background: #6c5ce7;"></div>
+          <div class="feature-dot" style="background: #8b7cf7;"></div>
           Smart keyword extraction (150+ stopwords)
         </div>
         <div class="feature-item">
-          <div class="feature-dot" style="background: #00b4d8;"></div>
+          <div class="feature-dot" style="background: #4cc9f0;"></div>
           PDF export via html2pdf.js
         </div>
       </div>
